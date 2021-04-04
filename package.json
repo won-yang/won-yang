@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mimseong/won-yang/issues"
   },
-  "homepage": "https://github.com/mimseong/won-yang#readme"
+  "homepage": "https://github.com/mimseong/won-yang#readme",
+  "dependencies": {
+    "eslint": "^7.23.0"
+  }
 }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+	<meta charset="utf8">
+	<link rel="shortcut icon" href="/image/logo.jpg">
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+	</script>
+	
+	
+	<link rel="stylesheet" href="/css/post_style.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<title>게시글 보기</title>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<!-- 상단 헤더 -->
+		<nav class="navbar navbar-light bg-light sticky-top">
+			<a class="navbar-brand" href="/">
+				<img src="/image/logo.jpg" width="30" height="30" class="d-inline-block align-top" alt="로고"
+					loading="lazy">
+			</a>
+		</nav>
+
+		<!-- 점보트론 -->
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4 text-center">창원대 이어살기</h1>
+				<p class="lead text-center">창원대학교 원룸 양도 서비스입니다</p>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="form-group row">
+				<div class="col-sm-8">
+					<h1><%=notice[0].title%></h1>
+				</div>
+				<div class="col-sm-4 text-right">
+					<% if(admin_check) { %>
+						<input type="hidden" value="<%=notice[0].post_idx %>" name="post_idx">
+						<button type="button" class="btn btn-primary btn-edit">수정</button>
+						<button type="button" class="btn btn-primary btn-delete">삭제</button>
+					<% } %>
+				</div>
+			</div>
+			<hr>
+			<p>
+				<%-notice[0].content %>
+			</p>
+		</div>
+	</div>
+
+	<footer class="text-muted border-top">
+		<div class="container mt-4 pb-4">
+			<p class="float-right">
+				<a href="#">위로 가기</a>
+			</p>
+			<p>창원대학교 원룸 양도 서비스</p>
+			<p>버그를 발견하셨나요? cynxia90@gmail.com로 알려주시면 감사하겠습니다!</p>
+		</div>
+	</footer>
+	<script src="/js/admin/edit_delete_button.js"></script>
+</body>
+
+</html>

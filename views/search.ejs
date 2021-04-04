@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>창원대 원양</title>
+	
+	<meta name="description" content="창원대 원룸 양도 서비스 입니다.">
+	<link rel="shortcut icon" href="/image/logo.jpg">
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+	</script>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+	<div class="container-fluid">
+		<!-- 상단 헤더 -->
+		<nav class="navbar navbar-light bg-light sticky-top">
+			<a class="navbar-brand" href="/">
+				<img src="/image/logo.jpg" width="30" height="30" class="d-inline-block align-top" alt=""
+					loading="lazy">
+			</a>
+			<form class="form-inline">
+				<% if(login_check == true) { %>
+					<a href="/logout"><button class="btn btn-outline-success my-2 my-sm-0 mr-3" type="button">로그아웃</button></a>
+				<% } else{ %>
+					<a href="/login"><button class="btn btn-outline-success my-2 my-sm-0 mr-3" type="button">로그인</button></a>
+				<% } %>
+				<a href="/write"><button class="btn btn-outline-success my-2 my-sm-0" type="button">글쓰기</button></a>
+			</form>
+		</nav>
+
+		<!-- 점보트론 -->
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4 text-center">창원대 원양</h1>
+				<p class="lead text-center">창원대학교 원룸 양도 서비스입니다</p>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="찾으시는 글이 있나요?"
+					aria-label="search-post" aria-describedby="button-addon2" name="search">
+				<div class="input-group-append">
+					<button class="btn btn-outline-secondary btn-search" type="button" id="button-addon2">검색</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-10">
+					<form class="form-inline">
+						<div class="custom-control custom-switch mr-3">
+							<input type="checkbox" <% if(main_gate == "1") { %> checked <% } %> class="custom-control-input" id="main-gate" name="main_gate">
+							<label class="custom-control-label" for="main-gate">창원대 정문</label>
+						</div>
+
+						<div class="custom-control custom-switch mr-3">
+							<input type="checkbox" <% if(west_gate == "1") { %> checked <% } %> class="custom-control-input" id="west-gate" name="west_gate">
+							<label class="custom-control-label" for="west-gate">기숙사 서문</label>
+						</div>
+						<div class="custom-control custom-switch mr-3">
+							<input type="checkbox" <% if(east_gate == "1") { %> checked <% } %> class="custom-control-input" id="east-gate" name="east_gate">
+							<label class="custom-control-label" for="east-gate">공대 동문</label>
+						</div>
+						<div class="custom-control custom-switch">
+							<input type="checkbox" <% if(etc_gate == "1") { %> checked <% } %> class="custom-control-input" id="etc-gate" name="etc_gate">
+							<label class="custom-control-label" for="etc-gate">기타</label>
+						</div>
+					</form>
+				</div>
+				<% if (login_check == true){ %>
+				<div class="col-2 text-right">
+					<div class="custom-control custom-switch">
+							<input type="checkbox" class="custom-control-input" id="my-post" name="my_post">
+							<label class="custom-control-label" for="my-post">내가 쓴 글</label>
+					</div>
+				</div>
+				<% } %>
+			</div>
+			
+			<div class="row">
+				<label for="inputdeposit" class="col-sm-2 col-form-label btn-search">희망 월세</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="input-deposit" name="monthly_rent" maxlength="30" onkeypress="onlyNumber()" value="<%=monthly_rent %>">
+				</div>
+				<button type="button" class="btn btn-success btn-search">검색</button>
+			</div>
+			
+			<div class="row mt-4 posts">
+				<% for(let i=0; i<post.length; i++) { %>
+				
+					<div class="col-md-6 col-sm-6 col-lg-4">
+						<a href="/posts/<%=post[i].post_idx %>">
+						<div class="card mb-4 shadow-sm">
+							<div style="height: 225px; ">
+								<img src="<%=image[i] %>" alt="집사진" style="width: 100%; height: 100%;">
+							</div>
+							<div class="card-body">
+								<h4> <%=post[i].title %> </h4>
+								<div class="d-flex justify-content-between align-items-center">
+									<p>보증금 <%=post[i].deposit %></p>
+									<p>월세 <%=post[i].monthly_rent %></p>
+								</div>
+								<p><%=post[i].address %></p>
+							</div>
+						</div>
+						</a>
+					</div>
+				
+				<% } %>
+			</div>
+			
+			<!-- 하단의 페이징 부분 -->
+			<div class="d-flex justify-content-center mb-4 mt-4 paging">
+				<% if (post.length != 0) { %>
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination">
+				    <li class="page-item">
+				      <a class="page-link" <%if(page_info.pageNum > 1){%> href="?main_gate=<%=(main_gate == "1") ? "true" : "false" %>&west_gate=<%=(west_gate == "1") ? "true" : "false" %>&east_gate=<%=(east_gate == "1") ? "true" : "false" %>&etc_gate=<%=(etc_gate == "1") ? "true" : "false" %>&pageNum=<%=page_info.pageNum-1%>" <%}%> aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
+				    </li>
+				    
+				    <% for(let i=page_info.pnStart; i<=page_info.pnEnd; i++){ %> 
+				    	<li <%if(i===page_info.pageNum){%> 
+				    			class="page-item active"
+				        	<%}%>>
+				        	<a class="page-link" href="?main_gate=<%=(main_gate == "1") ? "true" : "false" %>&west_gate=<%=(west_gate == "1") ? "true" : "false" %>&east_gate=<%=(east_gate == "1") ? "true" : "false" %>&etc_gate=<%=(etc_gate == "1") ? "true" : "false" %>&pageNum=<%=i%>"><%=i%></a>
+				        </li>
+				      <% } %>
+				      
+				    <li class="page-item">
+				      <a class="page-link" <%if(page_info.pageNum < page_info.pnTotal){%> href="?main_gate=<%=(main_gate == "1") ? "true" : "false" %>&west_gate=<%=(west_gate == "1") ? "true" : "false" %>&east_gate=<%=(east_gate == "1") ? "true" : "false" %>&etc_gate=<%=(etc_gate == "1") ? "true" : "false" %>&pageNum=<%=page_info.pageNum+1%>" <%}%> aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>
+				  </ul>
+				</nav>
+				<% } %>
+			</div>
+		</div>
+		
+		<footer class="text-muted border-top">
+			<div class="container mt-4 pb-4">
+				<p class="float-right">
+					<a href="#">위로 가기</a>
+				</p>
+				<p>창원대학교 원룸 양도 서비스</p>
+				<p>버그를 발견하셨나요? cynxia90@gmail.com로 알려주시면 감사하겠습니다!</p>
+			</div>
+		</footer>
+	</div>
+	<script src="/js/psearch.js"></script>
+	<script src="/js/common/utils.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "won-yang",
+  "version": "1.0.0",
+  "description": "1년 동안 계속 살 거라 생각하고 계약한 원룸!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mimseong/won-yang.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mimseong/won-yang/issues"
+  },
+  "homepage": "https://github.com/mimseong/won-yang#readme"
+}

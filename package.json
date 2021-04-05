@@ -4,7 +4,8 @@
   "description": "1년 동안 계속 살 거라 생각하고 계약한 원룸!",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",

@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf8">
-	<link rel="shortcut icon" href="/image/logo.jpg">
+	<link rel="shortcut icon" href="/image/logo.png">
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -22,7 +22,7 @@
 		<!-- 상단 헤더 -->
 		<nav class="navbar navbar-light bg-light sticky-top">
 			<a class="navbar-brand" href="/">
-				<img src="/image/logo.jpg" width="30" height="30" class="d-inline-block align-top" alt="로고"
+				<img src="/image/logo.png" width="30" height="30" class="d-inline-block align-top" alt="로고"
 					loading="lazy">
 			</a>
 		</nav>
@@ -39,6 +39,7 @@
 			<div class="form-group row">
 				<div class="col-sm-8">
 					<h1><%=result[0].title%></h1>
+					<p><%=getTag(tag[0]) %></p>
 				</div>
 				<div class="col-sm-4 text-right">
 					<% if((auth_check.login == true && auth_check.post_owner == true) || auth_check.admin == true) { %>
@@ -46,6 +47,7 @@
 						<button type="button" class="btn btn-outline-secondary btn-edit">수정</button>
 						<button type="button" class="btn btn-outline-secondary btn-delete">삭제</button>
 					<% } %>
+					<p> <%=time[0].post_date %></p>
 				</div>
 			</div>
 			<hr>

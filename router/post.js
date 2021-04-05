@@ -2,6 +2,14 @@ const express = require('express');
 const router = express.Router();
 const sendQuery = require('../config/db');
 
+const getTag = (post) => {
+  if (post.main_gate == '1') return '#기숙사 서문';
+  else if (post.west_gate == '1') return '#기숙사 서문';
+  else if (post.east_gate == '1') return '#공대 동문';
+  else if (post.etc_gate == '1') return '#기타';
+  else return '#기타';
+};
+
 router.get('/posts/:idx', async (req, res) => {
   const rows = await sendQuery(`SELECT * FROM post NATURAL JOIN post_content NATURAL JOIN options WHERE post_idx=?`, [req.params.idx]);
 
@@ -10,10 +18,13 @@ router.get('/posts/:idx', async (req, res) => {
     return;
   }
   const image_rows = await sendQuery('SELECT image_path FROM thumbnail WHERE post_idx = ?', [req.params.idx]);
-
+  const post_date_rows = await sendQuery(`SELECT DATE_FORMAT(post_date, '%Y년 %m월 %d일 %H:%i') as post_date FROM post WHERE post_idx = ?`, [req.params.idx]);
+  const tag_rows = await sendQuery('SELECT main_gate, west_gate, east_gate, etc_gate FROM tag WHERE post_idx = ?', [req.params.idx]);
   const auth_check = await authCheck(req);
+  
+  console.log(post_date_rows);
 
-  res.render('post', { result: rows, image: image_rows, auth_check: auth_check });
+  res.render('post', { result: rows, tag: tag_rows, time: post_date_rows, image: image_rows, auth_check: auth_check, getTag: getTag });
 });
 
 async function authCheck(req) {

@@ -3,14 +3,24 @@ const router = express.Router();
 const sendQuery = require('../config/db');
 const permission = require('../function/permission_verify');
 
+const getTag = (post) => {
+  if (post.main_gate == '1') return '#기숙사 서문';
+  else if (post.west_gate == '1') return '#기숙사 서문';
+  else if (post.east_gate == '1') return '#공대 동문';
+  else if (post.etc_gate == '1') return '#기타';
+  else return '#기타';
+};
+
 router.get('/', async (req, res) => {
   const notice_rows = await sendQuery(`SELECT title, post_idx FROM notice ORDER BY post_date DESC`);
 
   const page = await getPageInfo(req);
   const send_img = await getThumbNail(page.post_rows);
   const login_check = loginCheck(req);
-  res.render('index', { post: page.post_rows, notice: notice_rows, image: send_img, login_check: login_check, page_info: page.page_info });
+  res.render('index', { post: page.post_rows, notice: notice_rows, image: send_img, login_check: login_check, page_info: page.page_info, getTag: getTag });
 });
+
+
 
 async function getPageInfo(req) {
   const pageNum = Number(req.query.pageNum) || 1;
@@ -24,7 +34,7 @@ async function getPageInfo(req) {
   let pnEnd = pnStart + pnSize - 1;
 
   const post_rows = await sendQuery(
-    `SELECT post_idx, title, post_date, address, deposit, monthly_rent FROM post NATURAl JOIN post_content ORDER BY post_date DESC LIMIT ${skipSize}, ${contentSize}`,
+    `SELECT post_idx, title, DATE_FORMAT(post_date, '%Y년 %m월 %d일 %H:%i') as post_date, address, deposit, monthly_rent, main_gate, west_gate, east_gate, etc_gate FROM post NATURAl JOIN post_content NATURAl JOIN tag ORDER BY post_date DESC LIMIT ${skipSize}, ${contentSize}`,
   );
   if (pnEnd > pnTotal) pnEnd = pnTotal;
 

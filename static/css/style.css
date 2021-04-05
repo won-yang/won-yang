@@ -138,3 +138,14 @@ input[type='checkbox']:checked + label {
 .my_posting {
   white-space: nowrap;
 }
+
+.card-body p {
+    margin-top: 0;
+    margin-bottom: 0.2rem;
+    color: #6B6B6B;
+}
+.post_date p {
+  margin-top: 0.3rem;
+    margin-bottom: 0;
+    color: #A0A0A0;
+}

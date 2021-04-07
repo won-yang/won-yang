@@ -1,2 +1,2 @@
-config/secret_keys.json
+src/config/secret_keys.json
 node_modules/*

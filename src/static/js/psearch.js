@@ -9,6 +9,7 @@ $('.btn-search').click(function () {
 });
 
 $('input[name=main_gate]').change(function () {
+  console.log('------------');
   search();
 });
 $('input[name=east_gate]').change(function () {

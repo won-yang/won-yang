@@ -4,6 +4,7 @@ $(document).ready(() => {
 });
 
 $('.btn-search').click(function () {
+  /*if(!(checkMonthlyRent(monthly_values))) return;*/
   search();
 });
 
@@ -129,4 +130,12 @@ function paging(data) {
     if (data.page_info.pageNum < page_info.pnTotal) html = html.replace('{{next}}', `href="?pageNum=${Number(data.page_info.pageNum) + 1}`);
     else html = html.replace('{{next}}', '');
   }
+}
+
+function checkMonthlyRent(monthly_values) {
+  if(monthly_values > 100) {
+    alert('희망 월세를 100이하로 해주세요');
+    return false;
+  }
+  return true;
 }

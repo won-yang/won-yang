@@ -38,7 +38,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var router = express.Router();
-var sendQuery = require('../config/db');
+// const sendQuery = require('../config/db');
+var db_1 = require("../config/db");
 var permission = require('../function/permission_verify');
 var getTag = function (post) {
     if (post.main_gate == '1')
@@ -56,7 +57,7 @@ router.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, f
     var notice_rows, page, send_img, login_check;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, sendQuery("SELECT title, post_idx FROM notice ORDER BY post_date DESC")];
+            case 0: return [4 /*yield*/, db_1.sendQuery("SELECT title, post_idx FROM notice ORDER BY post_date DESC")];
             case 1:
                 notice_rows = _a.sent();
                 return [4 /*yield*/, getPageInfo(req)];
@@ -87,13 +88,13 @@ var getPageInfo = function (req) { return __awaiter(void 0, void 0, void 0, func
                 contentSize = 12;
                 pnSize = 10;
                 skipSize = (pageNum - 1) * contentSize;
-                return [4 /*yield*/, sendQuery('SELECT count(*) as `count` FROM post')];
+                return [4 /*yield*/, db_1.sendQuery('SELECT count(*) as `count` FROM post')];
             case 1:
                 totalCount = _a.sent();
                 pnTotal = Math.ceil(totalCount[0].count / contentSize);
                 pnStart = (Math.ceil(pageNum / pnSize) - 1) * pnSize + 1;
                 pnEnd = pnStart + pnSize - 1;
-                return [4 /*yield*/, sendQuery("SELECT post_idx, title, DATE_FORMAT(post_date, '%Y\uB144 %m\uC6D4 %d\uC77C %H:%i') as post_date, address, deposit, monthly_rent, main_gate, west_gate, east_gate, etc_gate FROM post NATURAl JOIN post_content NATURAl JOIN tag ORDER BY post_date DESC LIMIT " + skipSize + ", " + contentSize)];
+                return [4 /*yield*/, db_1.sendQuery("SELECT post_idx, title, DATE_FORMAT(post_date, '%Y\uB144 %m\uC6D4 %d\uC77C %H:%i') as post_date, address, deposit, monthly_rent, main_gate, west_gate, east_gate, etc_gate FROM post NATURAl JOIN post_content NATURAl JOIN tag ORDER BY post_date DESC LIMIT " + skipSize + ", " + contentSize)];
             case 2:
                 post_rows = _a.sent();
                 if (pnEnd > pnTotal)
@@ -119,7 +120,7 @@ var getThumbNail = function (post_rows) { return __awaiter(void 0, void 0, void 
             case 1:
                 if (!(_i < post_rows_1.length)) return [3 /*break*/, 4];
                 row = post_rows_1[_i];
-                return [4 /*yield*/, sendQuery('SELECT image_path FROM thumbnail WHERE post_idx = ?', [row.post_idx])];
+                return [4 /*yield*/, db_1.sendQuery('SELECT image_path FROM thumbnail WHERE post_idx = ?', [row.post_idx])];
             case 2:
                 image = _a.sent();
                 images.push(image);

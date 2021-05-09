@@ -7,7 +7,7 @@ const getConnection = () => {
   return pool.getConnection();
 };
 
-export const sendQuery = async (query: string, values: any[]): Promise<any[]> => {
+export const sendQuery = async (query: string, values?: any[]): Promise<any[]> => {
   try {
     const connection = await getConnection();
     try {

@@ -1,5 +1,5 @@
-const mysql = require('mysql2/promise');
-const secret = require('./secret_keys');
+import * as mysql from 'mysql2/promise';
+import {secret} from './secret_keys';
 
 const pool = mysql.createPool({ host: 'localhost', user: secret.db.user, password: secret.db.password, database: secret.db.database });
 
@@ -7,7 +7,7 @@ const getConnection = () => {
   return pool.getConnection();
 };
 
-const sendQuery = async (query, values) => {
+export const sendQuery = async (query: string, values: []) => {
   try {
     const connection = await getConnection();
     try {
@@ -24,5 +24,3 @@ const sendQuery = async (query, values) => {
     console.log(err);
   }
 };
-
-module.exports = sendQuery;

@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const KakaoStrategy = require('passport-kakao').Strategy;
 const sendQuery = require('../config/db');
-const config = require('../config/secret_keys.json');
+const config = require('../config/secret_keys');
 
 passport.use(
   'kakao',

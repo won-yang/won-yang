@@ -3,14 +3,14 @@ const router = express.Router();
 const passport = require('passport');
 const KakaoStrategy = require('passport-kakao').Strategy;
 const sendQuery = require('../config/db');
-const config = require('../config/secret_keys');
+import {secret} from '../config/secret_keys';
 
 passport.use(
   'kakao',
   new KakaoStrategy(
     {
-      clientID: config.kakao.clientID,
-      callbackURL: config.kakao.callbackURL, // 위에서 설정한 Redirect URI
+      clientID: secret.kakao.clientID,
+      callbackURL: secret.kakao.callbackURL, // 위에서 설정한 Redirect URI
     },
     async (accessToken: any, refreshToken: any, profile: any, done: any) => {
       const rows = await sendQuery(`SELECT user_id FROM users WHERE user_id = ?`, [profile.id]);

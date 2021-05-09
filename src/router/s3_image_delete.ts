@@ -1,4 +1,4 @@
-const secret = require('../config/secret_keys');
+import {secret} from '../config/secret_keys';
 const AWS = require('aws-sdk');
 const ID = secret.s3.ID;
 const SECRET = secret.s3.SECRET;

@@ -39,15 +39,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var router = express.Router();
 var AWS = require('aws-sdk');
-var secret = require('../config/secret_keys');
+var secret_keys_1 = require("../config/secret_keys");
 var multer = require('multer');
 var uuidv4 = require('uuid').v4;
 var path = require('path');
 var permission = require('../function/permission_verify');
 var sendQuery = require('../config/db');
-var ID = secret.s3.ID;
-var SECRET = secret.s3.SECRET;
-var BUCKET_NAME = secret.s3.BUCKET_NAME;
+var ID = secret_keys_1.secret.s3.ID;
+var SECRET = secret_keys_1.secret.s3.SECRET;
+var BUCKET_NAME = secret_keys_1.secret.s3.BUCKET_NAME;
 var s3 = new AWS.S3({
     accessKeyId: ID,
     secretAccessKey: SECRET,

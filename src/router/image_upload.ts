@@ -1,7 +1,8 @@
 import * as express from 'express';
 const router = express.Router();
 const AWS = require('aws-sdk');
-const secret = require('../config/secret_keys');
+import {secret} from '../config/secret_keys';
+
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');

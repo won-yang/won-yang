@@ -3,25 +3,25 @@ $(document).ready(() => {
   $('#my-post').prop('checked', false);
 });
 
-$('.btn-search').click(function () {
+$('.btn-search').click(() => {
   /*if(!(checkMonthlyRent(monthly_values))) return;*/
   search();
 });
 
-$('input[name=main_gate]').change(function () {
+$('input[name=main_gate]').change(() => {
   console.log('------------');
   search();
 });
-$('input[name=east_gate]').change(function () {
+$('input[name=east_gate]').change(() => {
   search();
 });
-$('input[name=west_gate]').change(function () {
+$('input[name=west_gate]').change(() => {
   search();
 });
-$('input[name=etc_gate]').change(function () {
+$('input[name=etc_gate]').change(() => {
   search();
 });
-$('input[name=my_post]').change(function () {
+$('input[name=my_post]').change(() => {
   if (this.checked) {
     my_post();
     $('.pagination').hide();
@@ -34,7 +34,7 @@ $('input[name=my_post]').change(function () {
   }
 });
 
-function my_post() {
+const my_post = () => {
   let my_post = $('input[name=my_post]').is(':checked');
 
   var formData = new FormData();
@@ -47,7 +47,7 @@ function my_post() {
     dataType: 'json',
     processData: false,
     contentType: false,
-    success: function (data) {
+    success: (data) => {
       board_backup = $('.posts').children();
       $('.posts').children().remove();
 
@@ -76,9 +76,9 @@ function my_post() {
       }
     },
   });
-}
+};
 
-function search() {
+const search = () => {
   $('#my-post').prop('checked', false);
 
   let search = $('input[name=search]').val();
@@ -96,9 +96,9 @@ function search() {
   formData.append('etc_gate', etc_gate);
 
   location.href = `/search?search=${search}&main_gate=${main_gate}&west_gate=${west_gate}&east_gate=${east_gate}&etc_gate=${etc_gate}&monthly_rent=${monthly_rent}`;
-}
+};
 
-function paging(data) {
+const paging = (data) => {
   $('.paging').children().remove();
 
   if (data.post_row.length != 0) {
@@ -131,12 +131,12 @@ function paging(data) {
     if (data.page_info.pageNum < page_info.pnTotal) html = html.replace('{{next}}', `href="?pageNum=${Number(data.page_info.pageNum) + 1}`);
     else html = html.replace('{{next}}', '');
   }
-}
+};
 
-function checkMonthlyRent(monthly_values) {
-  if(monthly_values > 100) {
+const checkMonthlyRent = (monthly_values) => {
+  if (monthly_values > 100) {
     alert('희망 월세를 100이하로 해주세요');
     return false;
   }
   return true;
-}
+};

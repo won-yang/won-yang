@@ -1,10 +1,10 @@
-$('.btn-edit').click(function () {
+$('.btn-edit').click(() => {
   let post_idx = $('input[name=post_idx]').val();
 
   location.href = '/admin/edit/' + post_idx;
 });
 
-$('.btn-delete').click(function () {
+$('.btn-delete').click(() => {
   let post_idx = $('input[name=post_idx]').val();
 
   fetch('/notices/' + post_idx, {

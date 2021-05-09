@@ -17,12 +17,17 @@ router.get('/', async (req, res) => {
   const page = await getPageInfo(req);
   const send_img = await getThumbNail(page.post_rows);
   const login_check = loginCheck(req);
-  res.render('index', { post: page.post_rows, notice: notice_rows, image: send_img, login_check: login_check, page_info: page.page_info, getTag: getTag });
+  res.render('index', {
+    post: page.post_rows,
+    notice: notice_rows,
+    image: send_img,
+    login_check: login_check,
+    page_info: page.page_info,
+    getTag: getTag,
+  });
 });
 
-
-
-async function getPageInfo(req) {
+const getPageInfo = async (req) => {
   const pageNum = Number(req.query.pageNum) || 1;
   const contentSize = 12;
   const pnSize = 10; //페이지 사이즈
@@ -46,9 +51,9 @@ async function getPageInfo(req) {
   };
 
   return { page_info: page_info, post_rows: post_rows };
-}
+};
 
-async function getThumbNail(post_rows) {
+const getThumbNail = async (post_rows) => {
   const images = new Array();
   for (const row of post_rows) {
     const image = await sendQuery('SELECT image_path FROM thumbnail WHERE post_idx = ?', [row.post_idx]);
@@ -61,11 +66,11 @@ async function getThumbNail(post_rows) {
   });
 
   return send_img;
-}
+};
 
-function loginCheck(req) {
+const loginCheck = (req) => {
   if (permission.isLogin(req.session.passport)) return true;
   return false;
-}
+};
 
 module.exports = router;

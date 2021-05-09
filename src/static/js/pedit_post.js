@@ -1,4 +1,4 @@
-$('.btn-edit-finish').click(function () {
+$('.btn-edit-finish').click(() => {
   const title = $('input[name=title]').val();
   const contact = $('input[name=contact]').val();
   const deposit = $('input[name=deposit]').val();
@@ -87,7 +87,7 @@ $('.btn-edit-finish').click(function () {
     },
 
     dataType: 'json',
-    success: function (data) {
+    success: (data) => {
       var result = data;
 
       if (result.result == 'error') {
@@ -103,7 +103,7 @@ $('.btn-edit-finish').click(function () {
 
 /* 내용 입력 시, 글자 수 검증 */
 $('#editor').on({
-  keydown: function (event) {
+  keydown: (event) => {
     if ($('#editor').text().length <= 2000) {
       var current_length = $('#editor').text().length;
       $('.text-length').text(current_length + '자');
@@ -113,8 +113,8 @@ $('#editor').on({
   },
 });
 
-function onlyNumber() {
+const onlyNumber = () => {
   if (event.keyCode < 48 || event.keyCode > 57) {
     event.returnValue = false;
   }
-}
+};

@@ -18,16 +18,19 @@ router.get('/posts/:idx', async (req, res) => {
     return;
   }
   const image_rows = await sendQuery('SELECT image_path FROM thumbnail WHERE post_idx = ?', [req.params.idx]);
-  const post_date_rows = await sendQuery(`SELECT DATE_FORMAT(post_date, '%Y년 %m월 %d일 %H:%i') as post_date FROM post WHERE post_idx = ?`, [req.params.idx]);
+  const post_date_rows = await sendQuery(
+    `SELECT DATE_FORMAT(post_date, '%Y년 %m월 %d일 %H:%i') as post_date FROM post WHERE post_idx = ?`,
+    [req.params.idx],
+  );
   const tag_rows = await sendQuery('SELECT main_gate, west_gate, east_gate, etc_gate FROM tag WHERE post_idx = ?', [req.params.idx]);
   const auth_check = await authCheck(req);
-  
+
   console.log(post_date_rows);
 
   res.render('post', { result: rows, tag: tag_rows, time: post_date_rows, image: image_rows, auth_check: auth_check, getTag: getTag });
 });
 
-async function authCheck(req) {
+const authCheck = async (req) => {
   const auth_check = {};
 
   auth_check.login = false;
@@ -46,6 +49,6 @@ async function authCheck(req) {
 
   if (admin_rows.length == 1) auth_check.admin = true;
   return auth_check;
-}
+};
 
 module.exports = router;

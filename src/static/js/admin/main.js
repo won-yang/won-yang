@@ -1,4 +1,4 @@
-$('.notice-all-select').click(function () {
+$('.notice-all-select').click(() => {
   if ($(this).text() == '전체 선택') {
     allClick($('input[name=notice]'), true);
     $(this).text('전체 해제');
@@ -8,7 +8,7 @@ $('.notice-all-select').click(function () {
   }
 });
 
-$('.board-all-select').click(function () {
+$('.board-all-select').click(() => {
   if ($(this).text() == '전체 선택') {
     allClick($('input[name=post]'), true);
     $(this).text('전체 해제');
@@ -18,12 +18,12 @@ $('.board-all-select').click(function () {
   }
 });
 
-$('.edit-btn').click(function () {
+$('.edit-btn').click(() => {
   location.href = $(this).val();
 });
 
-$('.notice-specific-delete').click(function () {
-  (async function () {
+$('.notice-specific-delete').click(() => {
+  (async () => {
     for (let i = 0; i < $('input[name=notice]').length; i++) {
       if ($('input[name=notice]')[i].checked == true) {
         deleteData($('input[name=notice_url]')[i].value);
@@ -35,8 +35,8 @@ $('.notice-specific-delete').click(function () {
   });
 });
 
-$('.board-specific-delete').click(function () {
-  (async function () {
+$('.board-specific-delete').click(() => {
+  (async () => {
     for (let i = 0; i < $('input[name=post]').length; i++) {
       if ($('input[name=post]')[i].checked == true) {
         deleteData($('input[name=post_url]')[i].value);
@@ -48,8 +48,8 @@ $('.board-specific-delete').click(function () {
   });
 });
 
-function deleteData(url) {
-  return new Promise(function (resolve, reject) {
+const deleteData = (url) => {
+  return new Promise((resolve, reject) => {
     fetch(url, {
       method: 'DELETE',
     })
@@ -58,8 +58,8 @@ function deleteData(url) {
         resolve();
       });
   });
-}
+};
 
-function allClick($selector, bool) {
+const allClick = ($selector, bool) => {
   $selector.prop('checked', bool);
-}
+};

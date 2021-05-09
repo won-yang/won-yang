@@ -18,11 +18,8 @@ sundayInit.tz = 'Etc/UTC';
 sundayInit.second = 5;
 
 exports.nodeSchedule = schedule.scheduleJob(sundayInit, async () => {
-  console.log('5 sec');
-
   // 	const notice_rows = await sendQuery(`SELECT post_idx FROM post WHERE DATE(post_date) < DATE_SUB(NOW(), INTERVAL 1 DAY);`);
   // 	const notice_rows = await sendQuery(`DELETE FROM image WHERE DATE(post_date) < DATE_SUB(NOW(), INTERVAL 31 DAY);`);
-
   // 	notice_rows.forEach(async (row) => {
   //         sendQuery(`DELETE FROM options WHERE post_idx = ?`, [row.post_idx]);
   //         sendQuery(`DELETE FROM post WHERE post_idx = ?`, [row.post_idx]);
@@ -30,11 +27,10 @@ exports.nodeSchedule = schedule.scheduleJob(sundayInit, async () => {
   //         sendQuery(`DELETE FROM tag WHERE post_idx = ?`, [row.post_idx]);
   //         sendQuery(`DELETE FROM thumbnail WHERE post_idx = ?`, [row.post_idx]);
   // 	})
-
   //s3_image_delete('7c15da07-af36-4313-9fad-f6ad4daa1b17.jpg');
 });
 
-const s3_image_delete = async function (image_path) {
+const s3_image_delete = async (image_path) => {
   s3.upload(
     {
       Bucket: BUCKET_NAME,

@@ -81,11 +81,11 @@ router.get('/my_post', async (req, res) => {
   res.json({ result: 'success', rows: search_rows, image: send_img });
 });
 
-function check(val) {
+const check = (val) => {
   return val == 'true' ? '1' : '-1';
-}
+};
 
-async function getPageInfo(req) {
+const getPageInfo = async (req) => {
   const search = req.query.search != undefined ? `%${req.query.search}%` : '%%';
   const main_gate = check(req.query.main_gate);
   const east_gate = check(req.query.east_gate);
@@ -136,11 +136,11 @@ async function getPageInfo(req) {
   };
 
   return { page_info: page_info, post_rows: post_rows };
-}
+};
 
-function loginCheck(req) {
+const loginCheck = (req) => {
   if (permission.isLogin(req.session.passport)) return true;
   return false;
-}
+};
 
 module.exports = router;

@@ -3,11 +3,11 @@ const secret = require('./secret_keys.json');
 
 const pool = mysql.createPool({ host: 'localhost', user: secret.db.user, password: secret.db.password, database: secret.db.database });
 
-const getConnection = function () {
+const getConnection = () => {
   return pool.getConnection();
 };
 
-const sendQuery = async function (query, values) {
+const sendQuery = async (query, values) => {
   try {
     const connection = await getConnection();
     try {

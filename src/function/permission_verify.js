@@ -1,6 +1,6 @@
 const sendQuery = require('../config/db');
 
-const isLogin = function (passport) {
+const isLogin = (passport) => {
   if (!passport) {
     return false;
   }
@@ -10,7 +10,7 @@ const isLogin = function (passport) {
 
 exports.isLogin = isLogin;
 
-exports.isAdmin = async function (passport) {
+exports.isAdmin = async (passport) => {
   if (!isLogin(passport)) return false;
 
   const admin_rows = await sendQuery(`SELECT user_id FROM admin WHERE user_id = ?`, [passport.user.id]);

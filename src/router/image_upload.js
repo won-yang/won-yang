@@ -31,7 +31,7 @@ router.post('/api/image/upload', upload.array('upload'), (req, res) => {
     Body: req.files[0].buffer, // i
     ACL: 'public-read',
   };
-  s3.upload(params, async function (err, data) {
+  s3.upload(params, async (err, data) => {
     if (err) throw err;
 
     await sendQuery(`INSERT INTO image (image_path, image_date) VALUES (?, now())`, [data.Location]);

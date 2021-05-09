@@ -1,4 +1,4 @@
-$('.btn-edit-finish').click(function () {
+$('.btn-edit-finish').click(() => {
   let title = $('input[name=title]').val();
   let content = getDataFromTheEditor();
   let post_idx = $('input[name=post_idx]').val();
@@ -13,7 +13,7 @@ $('.btn-edit-finish').click(function () {
     },
 
     dataType: 'json',
-    success: function (data) {
+    success: (data) => {
       var result = data;
 
       if (result.result == 'error') {

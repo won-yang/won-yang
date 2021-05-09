@@ -1,6 +1,6 @@
 const sendQuery = require('../config/db');
 
-exports.getindex = async function (user_id) {
+exports.getindex = async (user_id) => {
   const rows = await sendQuery(
     `SELECT post_idx FROM post WHERE user_id = ? AND post_date = (
                                   SELECT MAX(post_date)
@@ -13,7 +13,7 @@ exports.getindex = async function (user_id) {
   return rows[0].post_idx;
 };
 
-exports.setData = function (req) {
+exports.setData = (req) => {
   let send_data = {};
 
   send_data.title = req.body.title;
@@ -43,7 +43,7 @@ exports.setData = function (req) {
   return send_data;
 };
 
-exports.setGate = function (tag) {
+exports.setGate = (tag) => {
   let gate = {};
 
   gate.main_gate = '0';
@@ -59,7 +59,7 @@ exports.setGate = function (tag) {
   return gate;
 };
 
-exports.checkLength = function (send_data, res) {
+exports.checkLength = (send_data, res) => {
   if (send_data.title.length == 0) {
     res.json({ 'result:': 'error', message: '제목을 입력해 주세요.' });
     return false;
@@ -87,13 +87,13 @@ exports.checkLength = function (send_data, res) {
   return true;
 };
 
-exports.tag_name = function (tag_rows) {
+exports.tag_name = (tag_rows) => {
   if (tag_rows[0].main_gate == '1') return '창원대 정문';
   if (tag_rows[0].west_gate == '1') return '기숙사 서문';
   if (tag_rows[0].east_gate == '1') return '공대 동문';
   if (tag_rows[0].etc_gate == '1') return '기타';
 };
 
-function check(parm) {
+const check = (parm) => {
   return parm == 'true' ? '1' : '0';
-}
+};

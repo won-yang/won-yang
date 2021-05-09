@@ -1,4 +1,4 @@
-$('.btn-submit').click(function () {
+$('.btn-submit').click(() => {
   let notice_check = $('input[name=notice_check]').is(':checked');
 
   if (notice_check) {
@@ -14,13 +14,13 @@ $('.btn-submit').click(function () {
   sendData(post_values, '/write_ok');
 });
 
-function sendData(post_values, url) {
+const sendData = (post_values, url) => {
   $.ajax({
     type: 'POST',
     url: url,
     data: post_values,
     dataType: 'json',
-    success: function (data) {
+    success: (data) => {
       var result = data;
 
       if (result.result == 'error') {
@@ -32,9 +32,9 @@ function sendData(post_values, url) {
       }
     },
   });
-}
+};
 
-function checkNoticeLength(notice_values) {
+const checkNoticeLength = (notice_values) => {
   if (notice_values.title.length == 0) {
     alert('제목을 적어주세요');
     return false;
@@ -44,9 +44,9 @@ function checkNoticeLength(notice_values) {
     return false;
   }
   return true;
-}
+};
 
-function checkPostLength(post_values) {
+const checkPostLength = (post_values) => {
   if (post_values.tag === '태그') {
     alert('태그를 선택해주세요');
     return false;
@@ -76,18 +76,18 @@ function checkPostLength(post_values) {
     return false;
   }
   return true;
-}
+};
 
 // 공지 게시글 데이터 가져오기
-function getNoticeValue() {
+const getNoticeValue = () => {
   return {
     title: $('input[name=title]').val(),
     content: getDataFromTheEditor(),
   };
-}
+};
 
 // 일반 게시글 데이터 가져오기
-function getPostValue() {
+const getPostValue = () => {
   return {
     title: $('input[name=title]').val(),
     contact: $('input[name=contact]').val(),
@@ -113,11 +113,11 @@ function getPostValue() {
     public_kitchen: $('input[name=public_kitchen]').is(':checked'),
     elevator: $('input[name=elevator]').is(':checked'),
   };
-}
+};
 
 /* 내용 입력 시, 글자 수 검증 */
 $('#editor').on({
-  keydown: function (event) {
+  keydown: (event) => {
     if ($('#editor').text().length <= 2000) {
       var current_length = $('#editor').text().length;
       $('.text-length').text(current_length + '자');

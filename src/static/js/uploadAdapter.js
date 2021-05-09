@@ -52,11 +52,11 @@ class UploadAdapter {
 }
 
 // ckeditor image upload editor
-function MyCustomUploadAdapterPlugin(editor) {
+const MyCustomUploadAdapterPlugin = (editor) => {
   editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
     return new UploadAdapter(loader);
   };
-}
+};
 
 // ckeditor init
 ClassicEditor.create(document.querySelector('#editor'), {
@@ -70,17 +70,17 @@ ClassicEditor.create(document.querySelector('#editor'), {
   });
 
 // Get content data
-function getDataFromTheEditor() {
+const getDataFromTheEditor = () => {
   return theEditor.getData();
-}
+};
 
-function no_submit() {
+const no_submit = () => {
   let value = $('.btn-upload-wait').text();
   $('.btn-upload-wait').attr('disabled', true);
   $('.btn-upload-wait').text('이미지를 업로드 중 입니다.');
-}
+};
 
-function ok_submit() {
+const ok_submit = () => {
   $('.btn-upload-wait').attr('disabled', false);
   $('.btn-upload-wait').text('작성완료');
-}
+};

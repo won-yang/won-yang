@@ -44,7 +44,7 @@ var multer = require('multer');
 var uuidv4 = require('uuid').v4;
 var path = require('path');
 var permission = require('../function/permission_verify');
-var sendQuery = require('../config/db');
+var db_1 = require("../config/db");
 var ID = secret_keys_1.secret.s3.ID;
 var SECRET = secret_keys_1.secret.s3.SECRET;
 var BUCKET_NAME = secret_keys_1.secret.s3.BUCKET_NAME;
@@ -72,7 +72,7 @@ router.post('/api/image/upload', upload.array('upload'), function (req, res) {
                 case 0:
                     if (err)
                         throw err;
-                    return [4 /*yield*/, sendQuery("INSERT INTO image (image_path, image_date) VALUES (?, now())", [data.Location])];
+                    return [4 /*yield*/, db_1.sendQuery("INSERT INTO image (image_path, image_date) VALUES (?, now())", [data.Location])];
                 case 1:
                     _a.sent();
                     res.json({ url: data.Location });

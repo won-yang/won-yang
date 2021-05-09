@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var router = express.Router();
-var sendQuery = require('../config/db');
+var db_1 = require("../config/db");
 var permission = require('../function/permission_verify');
 router.get('/search', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var main_gate, east_gate, west_gate, etc_gate, monthly_rent, page, login_check, images, _i, _a, row, image, send_img;
@@ -69,7 +69,7 @@ router.get('/search', function (req, res) { return __awaiter(void 0, void 0, voi
             case 2:
                 if (!(_i < _a.length)) return [3 /*break*/, 5];
                 row = _a[_i];
-                return [4 /*yield*/, sendQuery('SELECT image_path FROM thumbnail WHERE post_idx = ?', [row.post_idx])];
+                return [4 /*yield*/, db_1.sendQuery('SELECT image_path FROM thumbnail WHERE post_idx = ?', [row.post_idx])];
             case 3:
                 image = _b.sent();
                 images.push(image);
@@ -109,7 +109,7 @@ router.get('/my_post', function (req, res) { return __awaiter(void 0, void 0, vo
                     return [2 /*return*/];
                 }
                 user_id = req.session.passport.user.id;
-                return [4 /*yield*/, sendQuery("SELECT post_idx, title, post_date, address, deposit, monthly_rent\n                                        FROM post NATURAl JOIN post_content\n                                        WHERE post_idx IN\n                                        \t(SELECT post_idx FROM post NATURAL JOIN users WHERE user_id = ?)\n                                        ORDER BY post_date DESC", [user_id])];
+                return [4 /*yield*/, db_1.sendQuery("SELECT post_idx, title, post_date, address, deposit, monthly_rent\n                                        FROM post NATURAl JOIN post_content\n                                        WHERE post_idx IN\n                                        \t(SELECT post_idx FROM post NATURAL JOIN users WHERE user_id = ?)\n                                        ORDER BY post_date DESC", [user_id])];
             case 1:
                 search_rows = _a.sent();
                 images = new Array();
@@ -118,7 +118,7 @@ router.get('/my_post', function (req, res) { return __awaiter(void 0, void 0, vo
             case 2:
                 if (!(_i < search_rows_1.length)) return [3 /*break*/, 5];
                 row = search_rows_1[_i];
-                return [4 /*yield*/, sendQuery('SELECT image_path FROM thumbnail WHERE post_idx = ?', [row.post_idx])];
+                return [4 /*yield*/, db_1.sendQuery('SELECT image_path FROM thumbnail WHERE post_idx = ?', [row.post_idx])];
             case 3:
                 image = _a.sent();
                 images.push(image);
@@ -156,13 +156,13 @@ var getPageInfo = function (req) { return __awaiter(void 0, void 0, void 0, func
                 contentSize = 12;
                 pnSize = 10;
                 skipSize = (pageNum - 1) * contentSize;
-                return [4 /*yield*/, sendQuery("SELECT count(*) as count\n                                            FROM post NATURAl JOIN post_content\n                                            WHERE post_idx IN\n                                            \t(SELECT post_idx FROM post NATURAL JOIN tag WHERE main_gate = ? OR west_gate = ? OR east_gate = ? OR etc_gate = ?)\n                                            \tAND\n                                            \ttitle LIKE ?\n                                                AND\n                                                monthly_rent <= ?\n                                            ORDER BY post_date DESC;", [main_gate, west_gate, east_gate, etc_gate, search, monthly_rent])];
+                return [4 /*yield*/, db_1.sendQuery("SELECT count(*) as count\n                                            FROM post NATURAl JOIN post_content\n                                            WHERE post_idx IN\n                                            \t(SELECT post_idx FROM post NATURAL JOIN tag WHERE main_gate = ? OR west_gate = ? OR east_gate = ? OR etc_gate = ?)\n                                            \tAND\n                                            \ttitle LIKE ?\n                                                AND\n                                                monthly_rent <= ?\n                                            ORDER BY post_date DESC;", [main_gate, west_gate, east_gate, etc_gate, search, monthly_rent])];
             case 1:
                 totalCount = _a.sent();
                 pnTotal = Math.ceil(totalCount[0].count / contentSize);
                 pnStart = (Math.ceil(pageNum / pnSize) - 1) * pnSize + 1;
                 pnEnd = pnStart + pnSize - 1;
-                return [4 /*yield*/, sendQuery("SELECT post_idx, title, post_date, address, deposit, monthly_rent\n                                    FROM post NATURAl JOIN post_content\n                                    WHERE post_idx IN\n                                    \t(SELECT post_idx FROM post NATURAL JOIN tag WHERE main_gate = ? OR west_gate = ? OR east_gate = ? OR etc_gate = ?)\n                                    \tAND\n                                    \ttitle LIKE ?\n                                        AND\n                                        monthly_rent <= ?\n                                    ORDER BY post_date DESC LIMIT " + skipSize + ", " + contentSize + ";", [main_gate, west_gate, east_gate, etc_gate, search, monthly_rent])];
+                return [4 /*yield*/, db_1.sendQuery("SELECT post_idx, title, post_date, address, deposit, monthly_rent\n                                    FROM post NATURAl JOIN post_content\n                                    WHERE post_idx IN\n                                    \t(SELECT post_idx FROM post NATURAL JOIN tag WHERE main_gate = ? OR west_gate = ? OR east_gate = ? OR etc_gate = ?)\n                                    \tAND\n                                    \ttitle LIKE ?\n                                        AND\n                                        monthly_rent <= ?\n                                    ORDER BY post_date DESC LIMIT " + skipSize + ", " + contentSize + ";", [main_gate, west_gate, east_gate, etc_gate, search, monthly_rent])];
             case 2:
                 post_rows = _a.sent();
                 if (pnEnd > pnTotal)

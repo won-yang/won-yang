@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var router = express.Router();
-var sendQuery = require('../config/db');
+var db_1 = require("../config/db");
 var permission = require('../function/permission_verify');
 router.post('/admin/notice_ok', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var title, content, user_id;
@@ -57,7 +57,7 @@ router.post('/admin/notice_ok', function (req, res) { return __awaiter(void 0, v
                     return [2 /*return*/];
                 }
                 user_id = req.session.passport.user.id;
-                return [4 /*yield*/, sendQuery("INSERT INTO notice (user_id, title, post_date, content) VALUES(?, ?, SYSDATE(), ?)", [user_id, title, content])];
+                return [4 /*yield*/, db_1.sendQuery("INSERT INTO notice (user_id, title, post_date, content) VALUES(?, ?, SYSDATE(), ?)", [user_id, title, content])];
             case 2:
                 _a.sent();
                 res.json({ result: 'success', message: '글이 작성되었습니다.', redirect: '/' });

@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var router = express.Router();
-var sendQuery = require('../config/db');
+var db_1 = require("../config/db");
 var JSSoup = require('jssoup').default;
 var permission = require('../function/permission_verify');
 var write_func = require('../function/write_function');
@@ -53,7 +53,7 @@ router.get('/edit/:idx', function (req, res) { return __awaiter(void 0, void 0, 
                 }
                 post_idx = req.params.idx;
                 user_id = req.session.passport.user.id;
-                return [4 /*yield*/, sendQuery("SELECT post_idx FROM post WHERE post_idx = ? AND user_id = ?", [post_idx, user_id])];
+                return [4 /*yield*/, db_1.sendQuery("SELECT post_idx FROM post WHERE post_idx = ? AND user_id = ?", [post_idx, user_id])];
             case 1:
                 my_post = _a.sent();
                 return [4 /*yield*/, permission.isAdmin(req.session.passport)];
@@ -64,10 +64,10 @@ router.get('/edit/:idx', function (req, res) { return __awaiter(void 0, void 0, 
                         return [2 /*return*/];
                     }
                 }
-                return [4 /*yield*/, sendQuery("SELECT * FROM post NATURAL JOIN post_content NATURAL JOIN options WHERE post_idx=?", [post_idx])];
+                return [4 /*yield*/, db_1.sendQuery("SELECT * FROM post NATURAL JOIN post_content NATURAL JOIN options WHERE post_idx=?", [post_idx])];
             case 3:
                 rows = _a.sent();
-                return [4 /*yield*/, sendQuery("SELECT main_gate, west_gate, east_gate, etc_gate FROM tag WHERE post_idx = ?", [post_idx])];
+                return [4 /*yield*/, db_1.sendQuery("SELECT main_gate, west_gate, east_gate, etc_gate FROM tag WHERE post_idx = ?", [post_idx])];
             case 4:
                 tag_rows = _a.sent();
                 res.render('edit_post', { result: rows, tag: write_func.tag_name(tag_rows) });
@@ -86,10 +86,10 @@ router.post('/edit_ok', function (req, res) { return __awaiter(void 0, void 0, v
                 }
                 post_idx = req.body.idx;
                 user_id = req.session.passport.user.id;
-                return [4 /*yield*/, sendQuery("SELECT post_idx FROM post WHERE post_idx = ? AND user_id = ?", [post_idx, user_id])];
+                return [4 /*yield*/, db_1.sendQuery("SELECT post_idx FROM post WHERE post_idx = ? AND user_id = ?", [post_idx, user_id])];
             case 1:
                 my_post = _a.sent();
-                return [4 /*yield*/, sendQuery("SELECT user_id FROM admin WHERE user_id = ?", [req.session.passport.user.id])];
+                return [4 /*yield*/, db_1.sendQuery("SELECT user_id FROM admin WHERE user_id = ?", [req.session.passport.user.id])];
             case 2:
                 admin_rows = _a.sent();
                 if (admin_rows.length == 0 && my_post.length == 0) {
@@ -104,25 +104,25 @@ router.post('/edit_ok', function (req, res) { return __awaiter(void 0, void 0, v
                     res.json({ result: 'error', message: '태그를 선택하세요' });
                 soup = new JSSoup(send_data.content);
                 image_path = soup.find('img');
-                return [4 /*yield*/, sendQuery('SELECT post_date FROM post WHERE post_idx = ?', [post_idx])];
+                return [4 /*yield*/, db_1.sendQuery('SELECT post_date FROM post WHERE post_idx = ?', [post_idx])];
             case 3:
                 date_row = _a.sent();
                 if (!(admin_rows.length == 0)) return [3 /*break*/, 5];
-                return [4 /*yield*/, sendQuery("UPDATE post SET title = ?, post_date = SYSDATE() WHERE post_idx = ?", [send_data.title, post_idx])];
+                return [4 /*yield*/, db_1.sendQuery("UPDATE post SET title = ?, post_date = SYSDATE() WHERE post_idx = ?", [send_data.title, post_idx])];
             case 4:
                 _a.sent();
                 return [3 /*break*/, 7];
-            case 5: return [4 /*yield*/, sendQuery("UPDATE post SET title = ?, post_date = ? WHERE post_idx = ?", [send_data.title, date_row[0].post_date, post_idx])];
+            case 5: return [4 /*yield*/, db_1.sendQuery("UPDATE post SET title = ?, post_date = ? WHERE post_idx = ?", [send_data.title, date_row[0].post_date, post_idx])];
             case 6:
                 _a.sent();
                 _a.label = 7;
             case 7:
                 if (!(image_path != undefined)) return [3 /*break*/, 9];
-                return [4 /*yield*/, sendQuery("UPDATE thumbnail SET image_path = ? WHERE post_idx = ?", [image_path.attrs.src, post_idx])];
+                return [4 /*yield*/, db_1.sendQuery("UPDATE thumbnail SET image_path = ? WHERE post_idx = ?", [image_path.attrs.src, post_idx])];
             case 8:
                 _a.sent();
                 _a.label = 9;
-            case 9: return [4 /*yield*/, sendQuery("UPDATE tag SET main_gate = ?, west_gate = ?, east_gate = ?, etc_gate = ? WHERE post_idx = ?", [
+            case 9: return [4 /*yield*/, db_1.sendQuery("UPDATE tag SET main_gate = ?, west_gate = ?, east_gate = ?, etc_gate = ? WHERE post_idx = ?", [
                     gate.main_gate,
                     gate.west_gate,
                     gate.east_gate,
@@ -131,7 +131,7 @@ router.post('/edit_ok', function (req, res) { return __awaiter(void 0, void 0, v
                 ])];
             case 10:
                 _a.sent();
-                return [4 /*yield*/, sendQuery("UPDATE options SET refrigerator = ?, desk = ?, wifi = ?, washing_machine = ?,\n                    gas_stove = ?, microwave = ?, cctv = ?, closet = ?, bed = ?, tv = ?,\n                    public_washing_machine = ?, public_kitchen = ?, elevator = ?, air_conditioner = ?, door_lock = ?  WHERE post_idx = ?", [
+                return [4 /*yield*/, db_1.sendQuery("UPDATE options SET refrigerator = ?, desk = ?, wifi = ?, washing_machine = ?,\n                    gas_stove = ?, microwave = ?, cctv = ?, closet = ?, bed = ?, tv = ?,\n                    public_washing_machine = ?, public_kitchen = ?, elevator = ?, air_conditioner = ?, door_lock = ?  WHERE post_idx = ?", [
                         send_data.refrigerator,
                         send_data.desk,
                         send_data.wifi,
@@ -151,7 +151,7 @@ router.post('/edit_ok', function (req, res) { return __awaiter(void 0, void 0, v
                     ])];
             case 11:
                 _a.sent();
-                return [4 /*yield*/, sendQuery("UPDATE post_content SET contact = ?, contract_period = ?, address = ?, monthly_rent = ?, content = ?, deposit = ? WHERE post_idx = ?", [
+                return [4 /*yield*/, db_1.sendQuery("UPDATE post_content SET contact = ?, contract_period = ?, address = ?, monthly_rent = ?, content = ?, deposit = ? WHERE post_idx = ?", [
                         send_data.contact,
                         send_data.contract_period,
                         send_data.address,

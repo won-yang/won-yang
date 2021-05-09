@@ -1,6 +1,6 @@
 import * as express from 'express';
 const router = express.Router();
-const sendQuery = require('../config/db');
+import { sendQuery } from '../config/db';
 const JSSoup = require('jssoup').default;
 const permission = require('../function/permission_verify');
 const write_func = require('../function/write_function');

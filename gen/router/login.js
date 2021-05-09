@@ -40,7 +40,7 @@ var express = require("express");
 var router = express.Router();
 var passport = require('passport');
 var KakaoStrategy = require('passport-kakao').Strategy;
-var sendQuery = require('../config/db');
+var db_1 = require("../config/db");
 var secret_keys_1 = require("../config/secret_keys");
 passport.use('kakao', new KakaoStrategy({
     clientID: secret_keys_1.secret.kakao.clientID,
@@ -49,11 +49,11 @@ passport.use('kakao', new KakaoStrategy({
     var rows;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, sendQuery("SELECT user_id FROM users WHERE user_id = ?", [profile.id])];
+            case 0: return [4 /*yield*/, db_1.sendQuery("SELECT user_id FROM users WHERE user_id = ?", [profile.id])];
             case 1:
                 rows = _a.sent();
                 if (rows.length == 0)
-                    sendQuery("INSERT INTO users (user_id, social) VALUES(?, ?)", [profile.id, profile.provider]);
+                    db_1.sendQuery("INSERT INTO users (user_id, social) VALUES(?, ?)", [profile.id, profile.provider]);
                 return [2 /*return*/, done(null, profile)];
         }
     });

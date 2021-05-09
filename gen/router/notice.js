@@ -38,13 +38,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var router = express.Router();
-var sendQuery = require('../config/db');
+var db_1 = require("../config/db");
 var permission = require('../function/permission_verify');
 router.get('/notices/:idx', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var notice_rows, admin_check;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, sendQuery("SELECT title, content, post_idx FROM notice WHERE post_idx = ?", [req.params.idx])];
+            case 0: return [4 /*yield*/, db_1.sendQuery("SELECT title, content, post_idx FROM notice WHERE post_idx = ?", [req.params.idx])];
             case 1:
                 notice_rows = _a.sent();
                 if (notice_rows.length == 0) {

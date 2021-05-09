@@ -1,6 +1,6 @@
 import * as express from 'express';
 const router = express.Router();
-const sendQuery = require('../config/db');
+import { sendQuery } from '../config/db';
 
 const getTag = (post: any) => {
   if (post.main_gate == '1') return '#기숙사 서문';

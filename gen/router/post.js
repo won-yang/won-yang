@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var router = express.Router();
-var sendQuery = require('../config/db');
+var db_1 = require("../config/db");
 var getTag = function (post) {
     if (post.main_gate == '1')
         return '#기숙사 서문';
@@ -55,20 +55,20 @@ router.get('/posts/:idx', function (req, res) { return __awaiter(void 0, void 0,
     var rows, image_rows, post_date_rows, tag_rows, auth_check;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, sendQuery("SELECT * FROM post NATURAL JOIN post_content NATURAL JOIN options WHERE post_idx=?", [req.params.idx])];
+            case 0: return [4 /*yield*/, db_1.sendQuery("SELECT * FROM post NATURAL JOIN post_content NATURAL JOIN options WHERE post_idx=?", [req.params.idx])];
             case 1:
                 rows = _a.sent();
                 if (rows.length == 0) {
                     res.send('<script type="text/javascript">alert("찾으시는 글이 존재하지 않습니다."); history.back();</script>');
                     return [2 /*return*/];
                 }
-                return [4 /*yield*/, sendQuery('SELECT image_path FROM thumbnail WHERE post_idx = ?', [req.params.idx])];
+                return [4 /*yield*/, db_1.sendQuery('SELECT image_path FROM thumbnail WHERE post_idx = ?', [req.params.idx])];
             case 2:
                 image_rows = _a.sent();
-                return [4 /*yield*/, sendQuery("SELECT DATE_FORMAT(post_date, '%Y\uB144 %m\uC6D4 %d\uC77C %H:%i') as post_date FROM post WHERE post_idx = ?", [req.params.idx])];
+                return [4 /*yield*/, db_1.sendQuery("SELECT DATE_FORMAT(post_date, '%Y\uB144 %m\uC6D4 %d\uC77C %H:%i') as post_date FROM post WHERE post_idx = ?", [req.params.idx])];
             case 3:
                 post_date_rows = _a.sent();
-                return [4 /*yield*/, sendQuery('SELECT main_gate, west_gate, east_gate, etc_gate FROM tag WHERE post_idx = ?', [req.params.idx])];
+                return [4 /*yield*/, db_1.sendQuery('SELECT main_gate, west_gate, east_gate, etc_gate FROM tag WHERE post_idx = ?', [req.params.idx])];
             case 4:
                 tag_rows = _a.sent();
                 return [4 /*yield*/, authCheck(req)];
@@ -94,10 +94,10 @@ var authCheck = function (req) { return __awaiter(void 0, void 0, void 0, functi
                 auth_check.login = true;
                 post_idx = req.params.idx;
                 user_id = req.session.passport.user.id;
-                return [4 /*yield*/, sendQuery("SELECT post_idx FROM post WHERE post_idx = ? AND user_id = ?", [post_idx, user_id])];
+                return [4 /*yield*/, db_1.sendQuery("SELECT post_idx FROM post WHERE post_idx = ? AND user_id = ?", [post_idx, user_id])];
             case 1:
                 my_post = _a.sent();
-                return [4 /*yield*/, sendQuery("SELECT user_id FROM admin WHERE user_id = ?", [req.session.passport.user.id])];
+                return [4 /*yield*/, db_1.sendQuery("SELECT user_id FROM admin WHERE user_id = ?", [req.session.passport.user.id])];
             case 2:
                 admin_rows = _a.sent();
                 if (my_post.length != 0)

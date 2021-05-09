@@ -1,6 +1,6 @@
 import * as express from 'express';
 const router = express.Router();
-const sendQuery = require('../config/db');
+import { sendQuery } from '../config/db';
 const permission = require('../function/permission_verify');
 
 router.post('/admin/notice_ok', async (req: any, res) => {

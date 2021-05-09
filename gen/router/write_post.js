@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var router = express.Router();
-var sendQuery = require('../config/db');
+var db_1 = require("../config/db");
 var JSSoup = require('jssoup').default;
 var permission = require('../function/permission_verify');
 var write_func = require('../function/write_function');
@@ -78,7 +78,7 @@ router.post('/write_ok', function (req, res) { return __awaiter(void 0, void 0, 
                 if (gate == false)
                     res.json({ result: 'error', message: '태그를 선택하세요' });
                 user_id = req.session.passport.user.id;
-                return [4 /*yield*/, sendQuery("INSERT INTO post (user_id, title, post_date) VALUES(?, ?, SYSDATE())", [user_id, send_data.title])];
+                return [4 /*yield*/, db_1.sendQuery("INSERT INTO post (user_id, title, post_date) VALUES(?, ?, SYSDATE())", [user_id, send_data.title])];
             case 1:
                 _a.sent();
                 return [4 /*yield*/, write_func.getindex(user_id)];
@@ -87,14 +87,14 @@ router.post('/write_ok', function (req, res) { return __awaiter(void 0, void 0, 
                 soup = new JSSoup(send_data.content);
                 image_path = soup.find('img');
                 if (!(image_path != undefined)) return [3 /*break*/, 4];
-                return [4 /*yield*/, sendQuery("INSERT INTO thumbnail (post_idx, image_path)  VALUES(?, ?)", [index, image_path.attrs.src])];
+                return [4 /*yield*/, db_1.sendQuery("INSERT INTO thumbnail (post_idx, image_path)  VALUES(?, ?)", [index, image_path.attrs.src])];
             case 3:
                 _a.sent();
                 _a.label = 4;
-            case 4: return [4 /*yield*/, sendQuery("INSERT INTO tag VALUES(?, ?, ?, ?, ?)", [index, gate.main_gate, gate.west_gate, gate.east_gate, gate.etc_gate])];
+            case 4: return [4 /*yield*/, db_1.sendQuery("INSERT INTO tag VALUES(?, ?, ?, ?, ?)", [index, gate.main_gate, gate.west_gate, gate.east_gate, gate.etc_gate])];
             case 5:
                 _a.sent();
-                return [4 /*yield*/, sendQuery("INSERT INTO options VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
+                return [4 /*yield*/, db_1.sendQuery("INSERT INTO options VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
                         index,
                         send_data.refrigerator,
                         send_data.desk,
@@ -114,7 +114,7 @@ router.post('/write_ok', function (req, res) { return __awaiter(void 0, void 0, 
                     ])];
             case 6:
                 _a.sent();
-                return [4 /*yield*/, sendQuery("INSERT INTO post_content VALUES(?, ?, ?, ?, ?, ?, ?)", [
+                return [4 /*yield*/, db_1.sendQuery("INSERT INTO post_content VALUES(?, ?, ?, ?, ?, ?, ?)", [
                         index,
                         send_data.contact,
                         send_data.contract_period,

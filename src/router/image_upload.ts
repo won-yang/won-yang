@@ -7,7 +7,7 @@ const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const permission = require('../function/permission_verify');
-const sendQuery = require('../config/db');
+import { sendQuery } from '../config/db';
 
 const ID = secret.s3.ID;
 const SECRET = secret.s3.SECRET;

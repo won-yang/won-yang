@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var router = express.Router();
-var sendQuery = require('../config/db');
+var db_1 = require("../config/db");
 var permission = require('../function/permission_verify');
 router.delete('/posts/:idx', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var post_idx, user_id, rows;
@@ -51,7 +51,7 @@ router.delete('/posts/:idx', function (req, res) { return __awaiter(void 0, void
                 }
                 post_idx = req.params.idx;
                 user_id = req.session.passport.user.id;
-                return [4 /*yield*/, sendQuery("SELECT post_idx FROM post WHERE post_idx = ? AND user_id = ?", [post_idx, user_id])];
+                return [4 /*yield*/, db_1.sendQuery("SELECT post_idx FROM post WHERE post_idx = ? AND user_id = ?", [post_idx, user_id])];
             case 1:
                 rows = _a.sent();
                 return [4 /*yield*/, permission.isAdmin(req.session.passport)];
@@ -62,19 +62,19 @@ router.delete('/posts/:idx', function (req, res) { return __awaiter(void 0, void
                         return [2 /*return*/];
                     }
                 }
-                return [4 /*yield*/, sendQuery("DELETE FROM thumbnail WHERE post_idx = ?", [post_idx])];
+                return [4 /*yield*/, db_1.sendQuery("DELETE FROM thumbnail WHERE post_idx = ?", [post_idx])];
             case 3:
                 _a.sent();
-                return [4 /*yield*/, sendQuery("DELETE FROM tag WHERE post_idx = ?", [post_idx])];
+                return [4 /*yield*/, db_1.sendQuery("DELETE FROM tag WHERE post_idx = ?", [post_idx])];
             case 4:
                 _a.sent();
-                return [4 /*yield*/, sendQuery("DELETE FROM options WHERE post_idx = ?", [post_idx])];
+                return [4 /*yield*/, db_1.sendQuery("DELETE FROM options WHERE post_idx = ?", [post_idx])];
             case 5:
                 _a.sent();
-                return [4 /*yield*/, sendQuery("DELETE FROM post_content WHERE post_idx = ?", [post_idx])];
+                return [4 /*yield*/, db_1.sendQuery("DELETE FROM post_content WHERE post_idx = ?", [post_idx])];
             case 6:
                 _a.sent();
-                return [4 /*yield*/, sendQuery("DELETE FROM post WHERE post_idx = ?", [post_idx])];
+                return [4 /*yield*/, db_1.sendQuery("DELETE FROM post WHERE post_idx = ?", [post_idx])];
             case 7:
                 _a.sent();
                 res.json({ result: 'success', message: '게시글이 삭제 되었습니다.', redirect: '/' });

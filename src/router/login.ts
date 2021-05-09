@@ -2,7 +2,7 @@ import * as express from 'express';
 const router = express.Router();
 const passport = require('passport');
 const KakaoStrategy = require('passport-kakao').Strategy;
-const sendQuery = require('../config/db');
+import { sendQuery } from '../config/db';
 import {secret} from '../config/secret_keys';
 
 passport.use(

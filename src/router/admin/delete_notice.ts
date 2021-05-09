@@ -1,9 +1,9 @@
 import * as express from 'express';
-const router = express.Router();
 const sendQuery = require('../../config/db');
 const permission = require('../../function/permission_verify');
 
-router.delete('/notices/:idx', async (req, res) => {
+const router = express.Router();
+router.delete('/notices/:idx', async (req: any, res: any) => {
   if (!(await permission.isAdmin(req.session.passport))) {
     res.json({ result: 'error', message: '잘못된 접근 입니다.' });
     return;

@@ -19,7 +19,7 @@ const upload = multer({
   storage: multer.memoryStorage(),
 });
 
-router.post('/api/image/upload', upload.array('upload'), (req, res) => {
+router.post('/api/image/upload', upload.array('upload'), (req: any, res: any) => {
   if (!permission.isLogin(req.session.passport)) {
     res.send("<script>alert('로그인이 필요합니다.'); location.href='/'; </script>");
     return;
@@ -31,7 +31,7 @@ router.post('/api/image/upload', upload.array('upload'), (req, res) => {
     Body: req.files[0].buffer, // i
     ACL: 'public-read',
   };
-  s3.upload(params, async (err, data) => {
+  s3.upload(params, async (err: any, data: any) => {
     if (err) throw err;
 
     await sendQuery(`INSERT INTO image (image_path, image_date) VALUES (?, now())`, [data.Location]);

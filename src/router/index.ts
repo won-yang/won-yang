@@ -3,7 +3,7 @@ const router = express.Router();
 const sendQuery = require('../config/db');
 const permission = require('../function/permission_verify');
 
-const getTag = (post) => {
+const getTag = (post: any) => {
   if (post.main_gate == '1') return '#창원대 정문';
   else if (post.west_gate == '1') return '#기숙사 서문';
   else if (post.east_gate == '1') return '#공대 동문';
@@ -11,7 +11,7 @@ const getTag = (post) => {
   else return '#기타';
 };
 
-router.get('/', async (req, res) => {
+router.get('/', async (req: any, res: any) => {
   const notice_rows = await sendQuery(`SELECT title, post_idx FROM notice ORDER BY post_date DESC`);
 
   const page = await getPageInfo(req);
@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   });
 });
 
-const getPageInfo = async (req) => {
+const getPageInfo = async (req: any) => {
   const pageNum = Number(req.query.pageNum) || 1;
   const contentSize = 12;
   const pnSize = 10; //페이지 사이즈
@@ -53,7 +53,7 @@ const getPageInfo = async (req) => {
   return { page_info: page_info, post_rows: post_rows };
 };
 
-const getThumbNail = async (post_rows) => {
+const getThumbNail = async (post_rows: any) => {
   const images = new Array();
   for (const row of post_rows) {
     const image = await sendQuery('SELECT image_path FROM thumbnail WHERE post_idx = ?', [row.post_idx]);
@@ -68,7 +68,7 @@ const getThumbNail = async (post_rows) => {
   return send_img;
 };
 
-const loginCheck = (req) => {
+const loginCheck = (req: any) => {
   if (permission.isLogin(req.session.passport)) return true;
   return false;
 };

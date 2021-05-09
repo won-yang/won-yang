@@ -3,7 +3,7 @@ const router = express.Router();
 const sendQuery = require('../config/db');
 const permission = require('../function/permission_verify');
 
-router.get('/search', async (req, res) => {
+router.get('/search', async (req: any, res: any) => {
   const main_gate = check(req.query.main_gate);
   const east_gate = check(req.query.east_gate);
   const west_gate = check(req.query.west_gate);
@@ -49,7 +49,7 @@ router.get('/search', async (req, res) => {
   });
 });
 
-router.get('/my_post', async (req, res) => {
+router.get('/my_post', async (req: any, res: any) => {
   if (!req.session.passport) {
     res.json({ result: 'error', message: '로그인이 되어 있지 않습니다.' });
     return;
@@ -81,11 +81,11 @@ router.get('/my_post', async (req, res) => {
   res.json({ result: 'success', rows: search_rows, image: send_img });
 });
 
-const check = (val) => {
+const check = (val: string) => {
   return val == 'true' ? '1' : '-1';
 };
 
-const getPageInfo = async (req) => {
+const getPageInfo = async (req: any) => {
   const search = req.query.search != undefined ? `%${req.query.search}%` : '%%';
   const main_gate = check(req.query.main_gate);
   const east_gate = check(req.query.east_gate);
@@ -138,7 +138,7 @@ const getPageInfo = async (req) => {
   return { page_info: page_info, post_rows: post_rows };
 };
 
-const loginCheck = (req) => {
+const loginCheck = (req: any) => {
   if (permission.isLogin(req.session.passport)) return true;
   return false;
 };

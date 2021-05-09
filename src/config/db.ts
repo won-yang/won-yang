@@ -7,20 +7,22 @@ const getConnection = () => {
   return pool.getConnection();
 };
 
-export const sendQuery = async (query: string, values: []) => {
+export const sendQuery = async (query: string, values: any[]): Promise<any[]> => {
   try {
     const connection = await getConnection();
     try {
-      const [rows] = await connection.execute(query, values);
+      const [rows]: any[] = await connection.execute(query, values);
       connection.release();
       return rows;
     } catch (err) {
       connection.release();
       console.log('query error');
       console.log(err);
+      return [];
     }
   } catch (err) {
     console.log('db error');
     console.log(err);
+    return [];
   }
 };

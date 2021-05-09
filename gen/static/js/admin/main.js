@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,45 +34,73 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendQuery = void 0;
-var mysql = require("mysql2/promise");
-var secret_keys_1 = require("./secret_keys");
-var pool = mysql.createPool({ host: 'localhost', user: secret_keys_1.secret.db.user, password: secret_keys_1.secret.db.password, database: secret_keys_1.secret.db.database });
-var getConnection = function () {
-    return pool.getConnection();
-};
-var sendQuery = function (query, values) { return __awaiter(void 0, void 0, void 0, function () {
-    var connection, rows, err_1, err_2;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 6, , 7]);
-                return [4 /*yield*/, getConnection()];
-            case 1:
-                connection = _a.sent();
-                _a.label = 2;
-            case 2:
-                _a.trys.push([2, 4, , 5]);
-                return [4 /*yield*/, connection.execute(query, values)];
-            case 3:
-                rows = (_a.sent())[0];
-                connection.release();
-                return [2 /*return*/, rows];
-            case 4:
-                err_1 = _a.sent();
-                connection.release();
-                console.log('query error');
-                console.log(err_1);
-                return [2 /*return*/, []];
-            case 5: return [3 /*break*/, 7];
-            case 6:
-                err_2 = _a.sent();
-                console.log('db error');
-                console.log(err_2);
-                return [2 /*return*/, []];
-            case 7: return [2 /*return*/];
-        }
+var _this = this;
+$('.notice-all-select').click(function () {
+    if ($(_this).text() == '전체 선택') {
+        allClick($('input[name=notice]'), true);
+        $(_this).text('전체 해제');
+    }
+    else if ($(_this).text() == '전체 해제') {
+        allClick($('input[name=notice]'), false);
+        $(_this).text('전체 선택');
+    }
+});
+$('.board-all-select').click(function () {
+    if ($(_this).text() == '전체 선택') {
+        allClick($('input[name=post]'), true);
+        $(_this).text('전체 해제');
+    }
+    else if ($(_this).text() == '전체 해제') {
+        allClick($('input[name=post]'), false);
+        $(_this).text('전체 선택');
+    }
+});
+$('.edit-btn').click(function () {
+    location.href = $(_this).val();
+});
+$('.notice-specific-delete').click(function () {
+    (function () { return __awaiter(_this, void 0, void 0, function () {
+        var i;
+        return __generator(this, function (_a) {
+            for (i = 0; i < $('input[name=notice]').length; i++) {
+                if ($('input[name=notice]')[i].checked == true) {
+                    deleteData($('input[name=notice_url]')[i].value);
+                }
+            }
+            return [2 /*return*/];
+        });
+    }); })().then(function (v) {
+        alert('공지글이 삭제 되었습니다.');
+        location.reload();
     });
-}); };
-exports.sendQuery = sendQuery;
+});
+$('.board-specific-delete').click(function () {
+    (function () { return __awaiter(_this, void 0, void 0, function () {
+        var i;
+        return __generator(this, function (_a) {
+            for (i = 0; i < $('input[name=post]').length; i++) {
+                if ($('input[name=post]')[i].checked == true) {
+                    deleteData($('input[name=post_url]')[i].value);
+                }
+            }
+            return [2 /*return*/];
+        });
+    }); })().then(function (v) {
+        alert('게시글이 삭제 되었습니다.');
+        location.reload();
+    });
+});
+var deleteData = function (url) {
+    return new Promise(function (resolve, reject) {
+        fetch(url, {
+            method: 'DELETE',
+        })
+            .then(function (res) { return res.json(); })
+            .then(function (res) {
+            resolve();
+        });
+    });
+};
+var allClick = function ($selector, bool) {
+    $selector.prop('checked', bool);
+};

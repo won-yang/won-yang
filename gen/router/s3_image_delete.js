@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,45 +34,45 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendQuery = void 0;
-var mysql = require("mysql2/promise");
-var secret_keys_1 = require("./secret_keys");
-var pool = mysql.createPool({ host: 'localhost', user: secret_keys_1.secret.db.user, password: secret_keys_1.secret.db.password, database: secret_keys_1.secret.db.database });
-var getConnection = function () {
-    return pool.getConnection();
-};
-var sendQuery = function (query, values) { return __awaiter(void 0, void 0, void 0, function () {
-    var connection, rows, err_1, err_2;
+var _this = this;
+var secret = require('../config/secret_keys');
+var AWS = require('aws-sdk');
+var ID = secret.s3.ID;
+var SECRET = secret.s3.SECRET;
+var BUCKET_NAME = secret.s3.BUCKET_NAME;
+var s3 = new AWS.S3({
+    accessKeyId: ID,
+    secretAccessKey: SECRET,
+    region: 'ap-northeast-2',
+});
+var schedule = require('node-schedule');
+var sundayInit = new schedule.RecurrenceRule();
+sundayInit.tz = 'Etc/UTC';
+// sundayInit.dayOfWeek = 0;
+// sundayInit.hour = 0;
+// sundayInit.minute = 0;
+sundayInit.second = 5;
+exports.nodeSchedule = schedule.scheduleJob(sundayInit, function () { return __awaiter(_this, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 6, , 7]);
-                return [4 /*yield*/, getConnection()];
-            case 1:
-                connection = _a.sent();
-                _a.label = 2;
-            case 2:
-                _a.trys.push([2, 4, , 5]);
-                return [4 /*yield*/, connection.execute(query, values)];
-            case 3:
-                rows = (_a.sent())[0];
-                connection.release();
-                return [2 /*return*/, rows];
-            case 4:
-                err_1 = _a.sent();
-                connection.release();
-                console.log('query error');
-                console.log(err_1);
-                return [2 /*return*/, []];
-            case 5: return [3 /*break*/, 7];
-            case 6:
-                err_2 = _a.sent();
-                console.log('db error');
-                console.log(err_2);
-                return [2 /*return*/, []];
-            case 7: return [2 /*return*/];
-        }
+        return [2 /*return*/];
+    });
+}); });
+var s3_image_delete = function (image_path) { return __awaiter(_this, void 0, void 0, function () {
+    var _this = this;
+    return __generator(this, function (_a) {
+        s3.upload({
+            Bucket: BUCKET_NAME,
+            Key: image_path,
+        }, function (err, data) { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                if (err) {
+                    console.log('aws delete error');
+                }
+                else
+                    console.log('s3 deleteObject ', data);
+                return [2 /*return*/];
+            });
+        }); });
+        return [2 /*return*/];
     });
 }); };
-exports.sendQuery = sendQuery;

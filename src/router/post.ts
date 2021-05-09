@@ -2,7 +2,7 @@ import * as express from 'express';
 const router = express.Router();
 const sendQuery = require('../config/db');
 
-const getTag = (post) => {
+const getTag = (post: any) => {
   if (post.main_gate == '1') return '#기숙사 서문';
   else if (post.west_gate == '1') return '#기숙사 서문';
   else if (post.east_gate == '1') return '#공대 동문';
@@ -30,8 +30,8 @@ router.get('/posts/:idx', async (req, res) => {
   res.render('post', { result: rows, tag: tag_rows, time: post_date_rows, image: image_rows, auth_check: auth_check, getTag: getTag });
 });
 
-const authCheck = async (req) => {
-  const auth_check = {};
+const authCheck = async (req: any) => {
+  const auth_check: any = {};
 
   auth_check.login = false;
   auth_check.post_owner = false;

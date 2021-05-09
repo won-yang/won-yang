@@ -3,7 +3,7 @@ const router = express.Router();
 const sendQuery = require('../config/db');
 const permission = require('../function/permission_verify');
 
-router.delete('/posts/:idx', async (req, res) => {
+router.delete('/posts/:idx', async (req: any, res: any) => {
   if (!permission.isLogin(req.session.passport)) {
     res.json({ result: 'error', message: '로그인이 필요합니다.', redirect: '/login' });
     return;

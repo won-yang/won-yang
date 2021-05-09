@@ -3,7 +3,7 @@ const router = express.Router();
 const sendQuery = require('../config/db');
 const permission = require('../function/permission_verify');
 
-router.get('/notices/:idx', async (req, res) => {
+router.get('/notices/:idx', async (req: any, res: any) => {
   const notice_rows = await sendQuery(`SELECT title, content, post_idx FROM notice WHERE post_idx = ?`, [req.params.idx]);
 
   if (notice_rows.length == 0) {

@@ -36,44 +36,27 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendQuery = void 0;
-var mysql = require("mysql2/promise");
-var secret_keys_1 = require("./secret_keys");
-var pool = mysql.createPool({ host: 'localhost', user: secret_keys_1.secret.db.user, password: secret_keys_1.secret.db.password, database: secret_keys_1.secret.db.database });
-var getConnection = function () {
-    return pool.getConnection();
-};
-var sendQuery = function (query, values) { return __awaiter(void 0, void 0, void 0, function () {
-    var connection, rows, err_1, err_2;
+var express = require("express");
+var sendQuery = require('../../config/db');
+var permission = require('../../function/permission_verify');
+var router = express.Router();
+router.delete('/notices/:idx', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var post_idx;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 6, , 7]);
-                return [4 /*yield*/, getConnection()];
+            case 0: return [4 /*yield*/, permission.isAdmin(req.session.passport)];
             case 1:
-                connection = _a.sent();
-                _a.label = 2;
+                if (!(_a.sent())) {
+                    res.json({ result: 'error', message: '잘못된 접근 입니다.' });
+                    return [2 /*return*/];
+                }
+                post_idx = req.params.idx;
+                return [4 /*yield*/, sendQuery("DELETE FROM notice WHERE post_idx = ?", [post_idx])];
             case 2:
-                _a.trys.push([2, 4, , 5]);
-                return [4 /*yield*/, connection.execute(query, values)];
-            case 3:
-                rows = (_a.sent())[0];
-                connection.release();
-                return [2 /*return*/, rows];
-            case 4:
-                err_1 = _a.sent();
-                connection.release();
-                console.log('query error');
-                console.log(err_1);
-                return [2 /*return*/, []];
-            case 5: return [3 /*break*/, 7];
-            case 6:
-                err_2 = _a.sent();
-                console.log('db error');
-                console.log(err_2);
-                return [2 /*return*/, []];
-            case 7: return [2 /*return*/];
+                _a.sent();
+                res.json({ result: 'success', message: '공지글이 삭제 되었습니다.', redirect: '/' });
+                return [2 /*return*/];
         }
     });
-}); };
-exports.sendQuery = sendQuery;
+}); });
+module.exports = router;

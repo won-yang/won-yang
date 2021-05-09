@@ -5,7 +5,7 @@ const JSSoup = require('jssoup').default;
 const permission = require('../function/permission_verify');
 const write_func = require('../function/write_function');
 
-router.get('/write', async (req, res) => {
+router.get('/write', async (req: any, res) => {
   if (!permission.isLogin(req.session.passport)) {
     res.send("<script>alert('로그인이 필요합니다.'); location.href='/login'; </script>");
     return;
@@ -18,7 +18,7 @@ router.get('/write', async (req, res) => {
   res.render('write_post', { admin_check: admin_check });
 });
 
-router.post('/write_ok', async (req, res) => {
+router.post('/write_ok', async (req: any, res) => {
   if (!permission.isLogin(req.session.passport)) {
     res.json({ result: 'error', message: '로그인이 필요합니다.', redirect: '/' });
     return;

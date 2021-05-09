@@ -3,7 +3,7 @@ const router = express.Router();
 const sendQuery = require('../../config/db');
 const permission = require('../../function/permission_verify');
 
-router.get('/admin/edit/:idx', async (req, res) => {
+router.get('/admin/edit/:idx', async (req: any, res: any) => {
   if (!(await permission.isAdmin(req.session.passport))) {
     res.send("<script>alert('잘못된 접근 입니다.'); location.href='/login'; </script>");
     return;
@@ -15,7 +15,7 @@ router.get('/admin/edit/:idx', async (req, res) => {
   res.render('admin/edit_notice', { result: rows });
 });
 
-router.post('/admin/edit_ok', async (req, res) => {
+router.post('/admin/edit_ok', async (req: any, res: any) => {
   if (!(await permission.isAdmin(req.session.passport))) {
     res.send("<script>alert('잘못된 접근 입니다.'); location.href='/login'; </script>");
     return;

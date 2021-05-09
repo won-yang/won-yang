@@ -3,7 +3,7 @@ const router = express.Router();
 const sendQuery = require('../config/db');
 const permission = require('../function/permission_verify');
 
-router.post('/admin/notice_ok', async (req, res) => {
+router.post('/admin/notice_ok', async (req: any, res) => {
   if (!(await permission.isAdmin(req.session.passport))) {
     res.json({ result: 'error', message: '관리자가 아닙니다.', redirect: '/' });
     return;

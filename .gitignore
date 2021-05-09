@@ -2,5 +2,6 @@ src/config/secret_keys.json
 node_modules/*
 config/secret_key.json
 src/config/secret_keys.ts
+src/config/secret_keys.js
 gen/config/secret_keys.js
 

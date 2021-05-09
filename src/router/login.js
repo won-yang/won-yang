@@ -1,4 +1,4 @@
-import * as express from 'express';
+const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const KakaoStrategy = require('passport-kakao').Strategy;

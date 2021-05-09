@@ -1,4 +1,4 @@
-import * as express from 'express';
+const express = require('express');
 const router = express.Router();
 const AWS = require('aws-sdk');
 const secret = require('../config/secret_keys');

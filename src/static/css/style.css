@@ -49,22 +49,22 @@ button.btn {
 }
 button.btn:hover {
   color: white;
-  background-color: #a4a4a4 !important;
+  background-color: #777777 !important;
   outline: none;
   box-shadow: none !important;
 }
 
 button.btn:focus {
-  color: black;
-  background-color: white !important;
-  border-color: white;
+  color: white;
+  background-color: #777777 !important;
+  outline: none;
   box-shadow: none !important;
 }
 
 button.btn:active {
-  color: black;
-  background-color: white !important;
-  border-color: #d8d8d8;
+  color: white;
+  background-color: #777777 !important;
+  outline: none;
   box-shadow: none !important;
 }
 /*체크박스 커서*/

@@ -4,7 +4,7 @@ const sendQuery = require('../config/db');
 const permission = require('../function/permission_verify');
 
 const getTag = (post) => {
-  if (post.main_gate == '1') return '#기숙사 서문';
+  if (post.main_gate == '1') return '#창원대 정문';
   else if (post.west_gate == '1') return '#기숙사 서문';
   else if (post.east_gate == '1') return '#공대 동문';
   else if (post.etc_gate == '1') return '#기타';

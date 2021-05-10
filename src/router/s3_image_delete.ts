@@ -1,8 +1,8 @@
-import {secret} from '../config/secret_keys';
+require('dotenv').config();
 const AWS = require('aws-sdk');
-const ID = secret.s3.ID;
-const SECRET = secret.s3.SECRET;
-const BUCKET_NAME = secret.s3.BUCKET_NAME;
+const ID = process.env.S3_ID;
+const SECRET = process.env.S3_SECRET;
+const BUCKET_NAME = process.env.S3_BUCKET_NAME;
 const s3 = new AWS.S3({
   accessKeyId: ID,
   secretAccessKey: SECRET,

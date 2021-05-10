@@ -38,8 +38,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sendQuery = void 0;
 var mysql = require("mysql2/promise");
-var secret_keys_1 = require("./secret_keys");
-var pool = mysql.createPool({ host: 'localhost', user: secret_keys_1.secret.db.user, password: secret_keys_1.secret.db.password, database: secret_keys_1.secret.db.database });
+require('dotenv').config();
+var DB_USER = process.env.DB_USER;
+var DB_PASSWORD = process.env.DB_PASSWORD;
+var DB_DATABASE = process.env.DB_DATABASE;
+var pool = mysql.createPool({ host: 'localhost', user: DB_USER, password: DB_PASSWORD, database: DB_DATABASE });
 var getConnection = function () {
     return pool.getConnection();
 };

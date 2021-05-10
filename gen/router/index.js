@@ -38,7 +38,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var router = express.Router();
-// import { sendQuery } from '../config/db';
 var db_1 = require("../config/db");
 var permission = require('../function/permission_verify');
 var getTag = function (post) {

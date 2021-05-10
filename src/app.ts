@@ -1,5 +1,6 @@
-const express = require('express');
+// const express = require('express');
 // import * as express from 'express';
+import * as express from "express";
 const session = require('express-session');
 const app = express();
 const passport = require('passport');

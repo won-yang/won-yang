@@ -20,6 +20,7 @@
   "homepage": "https://github.com/mimseong/won-yang#readme",
   "dependencies": {
     "aws-sdk": "^2.903.0",
+    "dotenv": "^9.0.1",
     "eslint": "^7.23.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",

@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,12 +34,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var secret_keys_1 = require("../config/secret_keys");
+var _this = this;
+require('dotenv').config();
 var AWS = require('aws-sdk');
-var ID = secret_keys_1.secret.s3.ID;
-var SECRET = secret_keys_1.secret.s3.SECRET;
-var BUCKET_NAME = secret_keys_1.secret.s3.BUCKET_NAME;
+var ID = process.env.S3_ID;
+var SECRET = process.env.S3_SECRET;
+var BUCKET_NAME = process.env.S3_BUCKET_NAME;
 var s3 = new AWS.S3({
     accessKeyId: ID,
     secretAccessKey: SECRET,
@@ -53,17 +52,18 @@ sundayInit.tz = 'Etc/UTC';
 // sundayInit.hour = 0;
 // sundayInit.minute = 0;
 sundayInit.second = 5;
-exports.nodeSchedule = schedule.scheduleJob(sundayInit, function () { return __awaiter(void 0, void 0, void 0, function () {
+exports.nodeSchedule = schedule.scheduleJob(sundayInit, function () { return __awaiter(_this, void 0, void 0, function () {
     return __generator(this, function (_a) {
         return [2 /*return*/];
     });
 }); });
-var s3_image_delete = function (image_path) { return __awaiter(void 0, void 0, void 0, function () {
+var s3_image_delete = function (image_path) { return __awaiter(_this, void 0, void 0, function () {
+    var _this = this;
     return __generator(this, function (_a) {
         s3.upload({
             Bucket: BUCKET_NAME,
             Key: image_path,
-        }, function (err, data) { return __awaiter(void 0, void 0, void 0, function () {
+        }, function (err, data) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 if (err) {
                     console.log('aws delete error');

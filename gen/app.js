@@ -1,5 +1,8 @@
-var express = require('express');
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+// const express = require('express');
 // import * as express from 'express';
+var express = require("express");
 var session = require('express-session');
 var app = express();
 var passport = require('passport');

@@ -1,7 +1,12 @@
 import * as mysql from 'mysql2/promise';
-import {secret} from './secret_keys';
 
-const pool = mysql.createPool({ host: 'localhost', user: secret.db.user, password: secret.db.password, database: secret.db.database });
+require('dotenv').config();
+
+const DB_USER = process.env.DB_USER;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const DB_DATABASE = process.env.DB_DATABASE;
+
+const pool = mysql.createPool({ host: 'localhost', user: DB_USER, password: DB_PASSWORD, database: DB_DATABASE });
 
 const getConnection = () => {
   return pool.getConnection();

@@ -39,18 +39,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var router = express.Router();
 var AWS = require('aws-sdk');
-var secret_keys_1 = require("../config/secret_keys");
 var multer = require('multer');
 var uuidv4 = require('uuid').v4;
 var path = require('path');
 var permission = require('../function/permission_verify');
 var db_1 = require("../config/db");
-var ID = secret_keys_1.secret.s3.ID;
-var SECRET = secret_keys_1.secret.s3.SECRET;
-var BUCKET_NAME = secret_keys_1.secret.s3.BUCKET_NAME;
+require('dotenv').config();
+var S3_ID = process.env.S3_ID;
+var S3_SECRET = process.env.S3_SECRET;
+var S3_BUCKET_NAME = process.env.S3_BUCKET_NAME;
 var s3 = new AWS.S3({
-    accessKeyId: ID,
-    secretAccessKey: SECRET,
+    accessKeyId: S3_ID,
+    secretAccessKey: S3_SECRET,
 });
 var upload = multer({
     storage: multer.memoryStorage(),
@@ -61,7 +61,7 @@ router.post('/api/image/upload', upload.array('upload'), function (req, res) {
         return;
     }
     var params = {
-        Bucket: BUCKET_NAME,
+        Bucket: S3_BUCKET_NAME,
         Key: uuidv4() + path.extname(req.files[0].originalname),
         Body: req.files[0].buffer,
         ACL: 'public-read',

@@ -41,10 +41,12 @@ var router = express.Router();
 var passport = require('passport');
 var KakaoStrategy = require('passport-kakao').Strategy;
 var db_1 = require("../config/db");
-var secret_keys_1 = require("../config/secret_keys");
+require('dotenv').config();
+var KAKAO_CLIENT_ID = process.env.KAKAO_CLIENT_ID;
+var KAKAO_CALLBACK_URL = process.env.KAKAO_CALLBACK_URL;
 passport.use('kakao', new KakaoStrategy({
-    clientID: secret_keys_1.secret.kakao.clientID,
-    callbackURL: secret_keys_1.secret.kakao.callbackURL, // 위에서 설정한 Redirect URI
+    clientID: KAKAO_CLIENT_ID,
+    callbackURL: KAKAO_CALLBACK_URL, // 위에서 설정한 Redirect URI
 }, function (accessToken, refreshToken, profile, done) { return __awaiter(void 0, void 0, void 0, function () {
     var rows;
     return __generator(this, function (_a) {

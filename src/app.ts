@@ -1,5 +1,6 @@
 // const express = require('express');
 // import * as express from 'express';
+require('dotenv').config();
 import * as express from "express";
 const session = require('express-session');
 const app = express();

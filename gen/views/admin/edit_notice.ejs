@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="/image/logo.png">
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+	<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+	</script>
+
+	<!-- ckeditor -->
+	<script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
+	<!---->
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+	</script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+	<script>
+		window.addEventListener('load', () => {
+			dropdownList = document.querySelectorAll('.dropdown')
+			dropdownList.forEach(dropdown => {
+				aTags = dropdown.querySelectorAll('.dropdown-menu a')
+				dropBtn = dropdown.querySelector('button')
+				aTags.forEach(aTag => aTag.addEventListener('click', (e) => {
+					dropBtn.innerHTML = aTag.innerHTML
+				}))
+			})
+		})
+	</script>
+
+	<link rel="stylesheet" href="/css/post_style.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<title>게시글 수정</title>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<!-- 상단 헤더 -->
+		<nav class="navbar navbar-light bg-light sticky-top">
+			<a class="navbar-brand" href="/">
+				<img src="/image/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""
+					loading="lazy">
+			</a>
+		</nav>
+
+		<!-- 점보트론 -->
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4 text-center">창원대 이어살기</h1>
+				<p class="lead text-center">창원대학교 원룸 양도 서비스입니다</p>
+			</div>
+		</div>
+
+		<div class="container">
+			<!-- 제목 -->
+			<form>
+				<div class="form-group row">
+					<label for="staticEmail" class="col-sm-2 col-form-label">제목</label>
+					<div class="col-sm-10">
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" name="title"
+								aria-label="Text input with dropdown button" maxlength="30" value="<%=result[0].title %>">
+						</div>
+					</div>
+				</div>
+				<hr>
+
+				<textarea name="content" id="editor"></textarea>
+			    <script src="/js/uploadAdapter.js"></script>
+			    <script>
+			    	theEditor.data.set('<%-result[0].content %>');
+			    	
+			    </script>
+
+				<div class="form-group row mt-4">
+					<div class="col-12 text-right">
+						<input type="hidden" value="<%=result[0].post_idx %>" name="post_idx">
+						<button type="button" class="btn btn-primary btn-edit-finish btn-upload-wait">수정 완료</button>
+					</div>
+				</div>
+		</div>
+		</form>
+	</div>
+
+
+	</div>
+
+	<footer class="text-muted border-top">
+		<div class="container mt-4 pb-4">
+			<p class="float-right">
+				<a href="#">위로 가기</a>
+			</p>
+			<p>창원대학교 원룸 양도 서비스</p>
+			<p>버그를 발견하셨나요? cynxia90@gmail.com로 알려주시면 감사하겠습니다!</p>
+		</div>
+	</footer>
+	<script src="/js/admin/pedit_notice.js"></script>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,7 +6,6 @@
 	<title>창원대 원양</title>
 	
 	<meta name="description" content="창원대 원룸 양도 서비스 입니다.">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="/image/logo.png">
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
@@ -15,7 +14,6 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
 	</script>
-	
 	<link rel="stylesheet" href="/css/style.css">
 </head>
 
@@ -29,11 +27,11 @@
 			</a>
 			<form class="form-inline">
 				<% if(login_check == true) { %>
-					<a href="/logout"><button class="btn btn-outline-secondary my-2 my-sm-0 mr-3" type="button">로그아웃</button></a>
+					<a href="/logout"><button class="btn btn-outline-success my-2 my-sm-0 mr-3" type="button">로그아웃</button></a>
 				<% } else{ %>
-					<a href="/login"><button class="btn btn-outline-secondary my-2 my-sm-0 mr-3" type="button">로그인</button></a>
+					<a href="/login"><button class="btn btn-outline-success my-2 my-sm-0 mr-3" type="button">로그인</button></a>
 				<% } %>
-				<a href="/write"><button class="btn btn-outline-secondary my-2 my-sm-0" type="button">글쓰기</button></a>
+				<a href="/write"><button class="btn btn-outline-success my-2 my-sm-0" type="button">글쓰기</button></a>
 			</form>
 		</nav>
 
@@ -45,7 +43,7 @@
 			</div>
 		</div>
 
-		<div class="container-xl">
+		<div class="container">
 			<div class="input-group mb-3">
 				<input type="text" class="form-control" placeholder="찾으시는 글이 있나요?"
 					aria-label="search-post" aria-describedby="button-addon2" name="search">
@@ -55,29 +53,29 @@
 			</div>
 
 			<div class="row">
-				<div class="col-9 mb-3">
+				<div class="col-10">
 					<form class="form-inline">
 						<div class="custom-control custom-switch mr-3">
-							<input type="checkbox" checked class="custom-control-input" id="main-gate" name="main_gate">
+							<input type="checkbox" <% if(main_gate == "1") { %> checked <% } %> class="custom-control-input" id="main-gate" name="main_gate">
 							<label class="custom-control-label" for="main-gate">창원대 정문</label>
 						</div>
 
 						<div class="custom-control custom-switch mr-3">
-							<input type="checkbox" checked class="custom-control-input" id="west-gate" name="west_gate">
+							<input type="checkbox" <% if(west_gate == "1") { %> checked <% } %> class="custom-control-input" id="west-gate" name="west_gate">
 							<label class="custom-control-label" for="west-gate">기숙사 서문</label>
 						</div>
 						<div class="custom-control custom-switch mr-3">
-							<input type="checkbox" checked class="custom-control-input" id="east-gate" name="east_gate">
+							<input type="checkbox" <% if(east_gate == "1") { %> checked <% } %> class="custom-control-input" id="east-gate" name="east_gate">
 							<label class="custom-control-label" for="east-gate">공대 동문</label>
 						</div>
 						<div class="custom-control custom-switch">
-							<input type="checkbox" checked class="custom-control-input" id="etc-gate" name="etc_gate">
+							<input type="checkbox" <% if(etc_gate == "1") { %> checked <% } %> class="custom-control-input" id="etc-gate" name="etc_gate">
 							<label class="custom-control-label" for="etc-gate">기타</label>
 						</div>
 					</form>
 				</div>
 				<% if (login_check == true){ %>
-				<div class="col-3 text-right my_posting">
+				<div class="col-2 text-right">
 					<div class="custom-control custom-switch">
 							<input type="checkbox" class="custom-control-input" id="my-post" name="my_post">
 							<label class="custom-control-label" for="my-post">내가 쓴 글</label>
@@ -86,32 +84,14 @@
 				<% } %>
 			</div>
 			
-			<div class="row searching">
-				<label for="inputdeposit" class="col-sm-2 col-form-label">희망 월세</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control" id="input-deposit" name="monthly_rent" maxlength="30" onkeypress="onlyNumber()" placeholder="만원 단위로 숫자만 입력해주세요.">
+			<div class="row">
+				<label for="inputdeposit" class="col-sm-2 col-form-label btn-search">희망 월세</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="input-deposit" name="monthly_rent" maxlength="30" onkeypress="onlyNumber()" value="<%=monthly_rent %>">
 				</div>
-				<div class="col-sm-2">
-					<button type="button" class="btn btn-outline-secondary btn-search">검색</button>
-				</div>
+				<button type="button" class="btn btn-success btn-search">검색</button>
 			</div>
 			
-			<div class="notice-board">
-				<table class="table table-hover mt-4 mb-3">
-					<tbody>
-						<% for (let i = 0; i < notice.length; i++) { %>
-							<tr class="notice-board-tr">
-								<td scope="row">
-									<a href="/notices/<%=notice[i].post_idx %>">
-										<i class="fas fa-thumbtack"></i> <%=notice[i].title %>
-									</a>
-								</td>
-							</tr>
-						<% } %>
-					</tbody>
-				</table>
-			</div>
-
 			<div class="row mt-4 posts">
 				<% for(let i=0; i<post.length; i++) { %>
 				
@@ -123,11 +103,11 @@
 							</div>
 							<div class="card-body">
 								<h4> <%=post[i].title %> </h4>
-								<p> <%=getTag(post[i]) %> </p>
-								<p>보증금 <%=post[i].deposit %></p>
-								<p>월세 <%=post[i].monthly_rent %></p>
+								<div class="d-flex justify-content-between align-items-center">
+									<p>보증금 <%=post[i].deposit %></p>
+									<p>월세 <%=post[i].monthly_rent %></p>
+								</div>
 								<p><%=post[i].address %></p>
-								<div class="post_date" align="right"><p><%=post[i].post_date %></p></div>
 							</div>
 						</div>
 						</a>
@@ -142,7 +122,7 @@
 				<nav aria-label="Page navigation example">
 				  <ul class="pagination">
 				    <li class="page-item">
-				      <a class="page-link" <%if(page_info.pageNum > 1){%> href="?pageNum=<%=page_info.pageNum-1%>" <%}%> aria-label="Previous">
+				      <a class="page-link" <%if(page_info.pageNum > 1){%> href="?main_gate=<%=(main_gate == "1") ? "true" : "false" %>&west_gate=<%=(west_gate == "1") ? "true" : "false" %>&east_gate=<%=(east_gate == "1") ? "true" : "false" %>&etc_gate=<%=(etc_gate == "1") ? "true" : "false" %>&pageNum=<%=page_info.pageNum-1%>" <%}%> aria-label="Previous">
 				        <span aria-hidden="true">&laquo;</span>
 				      </a>
 				    </li>
@@ -151,12 +131,12 @@
 				    	<li <%if(i===page_info.pageNum){%> 
 				    			class="page-item active"
 				        	<%}%>>
-				        	<a class="page-link" href="?pageNum=<%=i%>"><%=i%></a>
+				        	<a class="page-link" href="?main_gate=<%=(main_gate == "1") ? "true" : "false" %>&west_gate=<%=(west_gate == "1") ? "true" : "false" %>&east_gate=<%=(east_gate == "1") ? "true" : "false" %>&etc_gate=<%=(etc_gate == "1") ? "true" : "false" %>&pageNum=<%=i%>"><%=i%></a>
 				        </li>
 				      <% } %>
 				      
 				    <li class="page-item">
-				      <a class="page-link" <%if(page_info.pageNum < page_info.pnTotal){%> href="?pageNum=<%=page_info.pageNum+1%>" <%}%> aria-label="Next">
+				      <a class="page-link" <%if(page_info.pageNum < page_info.pnTotal){%> href="?main_gate=<%=(main_gate == "1") ? "true" : "false" %>&west_gate=<%=(west_gate == "1") ? "true" : "false" %>&east_gate=<%=(east_gate == "1") ? "true" : "false" %>&etc_gate=<%=(etc_gate == "1") ? "true" : "false" %>&pageNum=<%=page_info.pageNum+1%>" <%}%> aria-label="Next">
 				        <span aria-hidden="true">&raquo;</span>
 				      </a>
 				    </li>

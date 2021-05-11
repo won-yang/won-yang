@@ -1,0 +1,4 @@
+input[name='notice'],
+input[name='post'] {
+  margin-right: 20px;
+}

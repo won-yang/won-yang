@@ -52,11 +52,11 @@ class UploadAdapter {
 }
 
 // ckeditor image upload editor
-const MyCustomUploadAdapterPlugin = (editor) => {
+function MyCustomUploadAdapterPlugin(editor) {
   editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
     return new UploadAdapter(loader);
   };
-};
+}
 
 // ckeditor init
 ClassicEditor.create(document.querySelector('#editor'), {
@@ -70,9 +70,9 @@ ClassicEditor.create(document.querySelector('#editor'), {
   });
 
 // Get content data
-const getDataFromTheEditor = () => {
+function getDataFromTheEditor() {
   return theEditor.getData();
-};
+}
 
 const no_submit = () => {
   let value = $('.btn-upload-wait').text();

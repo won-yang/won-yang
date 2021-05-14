@@ -114,9 +114,9 @@ input[type='checkbox']:checked + label {
 .jumbotron {
   background-color: #373737;
   background-image: url('/image/main.png') !important;
-  background-size: 1300px;
+  background-size: cover;
   background-repeat: repeat-x;
-  background-position: center;
+  background-position: center center;
   height: auto;
   text-shadow: 2px 2px 2px #373737;
 }

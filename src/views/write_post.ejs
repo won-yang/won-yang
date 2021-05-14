@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="/image/logo.png">
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
@@ -51,7 +52,7 @@
 		<!-- 점보트론 -->
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
-				<h1 class="display-4 text-center">창원대 이어살기</h1>
+				<h1 class="display-4 text-center">창원대 원양</h1>
 				<p class="lead text-center">창원대학교 원룸 양도 서비스입니다</p>
 			</div>
 		</div>
@@ -74,7 +75,7 @@
 								</div>
 							</div>
 							<input type="text" class="form-control" name="title"
-								aria-label="Text input with dropdown button" maxlength="30">
+								aria-label="Text input with dropdown button" maxlength="30" placeholder="제목을 입력해주세요.">
 						</div>
 					</div>
 				</div>
@@ -82,35 +83,35 @@
 				<div class="form-group row">
 					<label for="inputcontact" class="col-sm-2 col-form-label">연락처</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="input-contact" name="contact" maxlength="50">
+						<input type="text" class="form-control" id="input-contact" name="contact" maxlength="50" placeholder="전화번호나 카카오톡 오픈링크를 입력해주세요.">
 					</div>
 				</div>
 				<!-- 보증금 -->
 				<div class="form-group row">
 					<label for="inputdeposit" class="col-sm-2 col-form-label">보증금</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="input-deposit" name="deposit" maxlength="30" onkeypress="onlyNumber()">
+						<input type="number" class="form-control" id="input-deposit" name="deposit" maxlength="30" onkeypress="onlyNumber()" placeholder="만원단위로 숫자만 입력해주세요.">
 					</div>
 				</div>
 				<!-- 월세 -->
 				<div class="form-group row">
 					<label for="inputmonthly-rent" class="col-sm-2 col-form-label">월세</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="input-monthly-rent" name="monthly_rent" maxlength="30" onkeypress="onlyNumber()">
+						<input type="number" class="form-control" id="input-monthly-rent" name="monthly_rent" maxlength="30" onkeypress="onlyNumber()" placeholder="만원단위로 숫자만 입력해주세요.">
 					</div>
 				</div>
 				<!-- 계약기간 -->
 				<div class="form-group row">
 					<label for="inputcontract-period" class="col-sm-2 col-form-label">계약기간</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="input-contract-period" name="contract_period" maxlength="30">
+						<input type="text" class="form-control" id="input-contract-period" name="contract_period" maxlength="30" placeholder="계약이 언제부터 언제까진지, 또는 언제 끝나는지 입력해주세요.">
 					</div>
 				</div>
 				<!-- 위치 -->
 				<div class="form-group row">
 					<label for="inputaddress" class="col-sm-2 col-form-label">위치</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="input-address" name="address" maxlength="50">
+						<input type="text" class="form-control" id="input-address" name="address" maxlength="50" placeholder="양도하려는 원룸의 주소를 입력해주세요.">
 						
 					</div>
 					<!--<div class="col-sm-1">-->

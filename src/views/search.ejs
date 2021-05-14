@@ -6,6 +6,7 @@
 	<title>창원대 원양</title>
 	
 	<meta name="description" content="창원대 원룸 양도 서비스 입니다.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="/image/logo.png">
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
@@ -43,17 +44,17 @@
 			</div>
 		</div>
 
-		<div class="container">
+		<div class="container-xl">
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="찾으시는 글이 있나요?"
-					aria-label="search-post" aria-describedby="button-addon2" name="search">
+				<input type="text" class="form-control" placeholder="찾으시는 글이 있나요? 제목을 검색합니다."
+					aria-label="search-post" aria-describedby="button-addon2" name="search" value="<%=search %>">
 				<div class="input-group-append">
 					<button class="btn btn-outline-secondary btn-search" type="button" id="button-addon2">검색</button>
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-10">
+				<div class="col-9 mb-3">
 					<form class="form-inline">
 						<div class="custom-control custom-switch mr-3">
 							<input type="checkbox" <% if(main_gate == "1") { %> checked <% } %> class="custom-control-input" id="main-gate" name="main_gate">
@@ -75,7 +76,7 @@
 					</form>
 				</div>
 				<% if (login_check == true){ %>
-				<div class="col-2 text-right">
+				<div class="col-3 text-right my_posting">
 					<div class="custom-control custom-switch">
 							<input type="checkbox" class="custom-control-input" id="my-post" name="my_post">
 							<label class="custom-control-label" for="my-post">내가 쓴 글</label>
@@ -84,10 +85,10 @@
 				<% } %>
 			</div>
 			
-			<div class="row">
+			<div class="row searching">
 				<label for="inputdeposit" class="col-sm-2 col-form-label btn-search">희망 월세</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="input-deposit" name="monthly_rent" maxlength="30" onkeypress="onlyNumber()" value="<%=monthly_rent %>" placeholder="만원 단위로 숫자만 입력해주세요.">
+					<input type="number" class="form-control" id="input-deposit" name="monthly_rent" maxlength="30" onkeypress="onlyNumber()" value="<%=monthly_rent %>" placeholder="만원 단위로 숫자만 입력해주세요.">
 				</div>
 				<div class="col-sm-2">
 					<button type="button" class="btn btn-success btn-search">검색</button>
@@ -105,7 +106,7 @@
 							</div>
 							<div class="card-body">
 								<h4> <%=post[i].title %> </h4>
-								<p> #창원대정문 </p>
+								<p> <%=getTag(post[i]) %> </p>
 								<p>보증금 <%=post[i].deposit %></p>
 								<p>월세 <%=post[i].monthly_rent %></p>
 								<p><%=post[i].address %></p>

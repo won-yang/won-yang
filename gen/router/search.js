@@ -40,10 +40,23 @@ var express = require("express");
 var router = express.Router();
 var db_1 = require("../config/db");
 var permission = require('../function/permission_verify');
+var getTag = function (post) {
+    console.log(post);
+    if (post.main_gate == '1')
+        return '#창원대 정문';
+    else if (post.west_gate == '1')
+        return '#기숙사 서문';
+    else if (post.east_gate == '1')
+        return '#공대 동문';
+    else if (post.etc_gate == '1')
+        return '#기타';
+    else
+        return '#기타';
+};
 router.get('/search', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var main_gate, east_gate, west_gate, etc_gate, monthly_rent, page, login_check, images, _i, _a, row, image, send_img;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var main_gate, east_gate, west_gate, etc_gate, monthly_rent, notice_rows, page, send_img, login_check;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
                 main_gate = check(req.query.main_gate);
                 east_gate = check(req.query.east_gate);
@@ -59,48 +72,36 @@ router.get('/search', function (req, res) { return __awaiter(void 0, void 0, voi
                     res.redirect('/');
                     return [2 /*return*/];
                 }
-                return [4 /*yield*/, getPageInfo(req)];
+                return [4 /*yield*/, db_1.sendQuery("SELECT title, post_idx FROM notice ORDER BY post_date DESC")];
             case 1:
-                page = _b.sent();
-                login_check = loginCheck(req);
-                images = new Array();
-                _i = 0, _a = page.post_rows;
-                _b.label = 2;
+                notice_rows = _a.sent();
+                return [4 /*yield*/, getPageInfo(req)];
             case 2:
-                if (!(_i < _a.length)) return [3 /*break*/, 5];
-                row = _a[_i];
-                return [4 /*yield*/, db_1.sendQuery('SELECT image_path FROM thumbnail WHERE post_idx = ?', [row.post_idx])];
+                page = _a.sent();
+                return [4 /*yield*/, getThumbNail(page.post_rows)];
             case 3:
-                image = _b.sent();
-                images.push(image);
-                _b.label = 4;
-            case 4:
-                _i++;
-                return [3 /*break*/, 2];
-            case 5:
-                send_img = images.map(function (image) {
-                    if (image[0])
-                        return image[0].image_path;
-                    else
-                        return '/image/image_thumbnail.png';
-                });
+                send_img = _a.sent();
+                login_check = loginCheck(req);
                 res.render('search', {
                     post: page.post_rows,
+                    notice: notice_rows,
                     image: send_img,
                     login_check: login_check,
                     page_info: page.page_info,
+                    getTag: getTag,
                     main_gate: main_gate,
                     east_gate: east_gate,
                     west_gate: west_gate,
                     etc_gate: etc_gate,
                     monthly_rent: monthly_rent,
+                    search: req.query.search,
                 });
                 return [2 /*return*/];
         }
     });
 }); });
 router.get('/my_post', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user_id, search_rows, images, _i, search_rows_1, row, image, send_img;
+    var user_id, page, send_img, login_check;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -109,31 +110,21 @@ router.get('/my_post', function (req, res) { return __awaiter(void 0, void 0, vo
                     return [2 /*return*/];
                 }
                 user_id = req.session.passport.user.id;
-                return [4 /*yield*/, db_1.sendQuery("SELECT post_idx, title, post_date, address, deposit, monthly_rent\n                                        FROM post NATURAl JOIN post_content\n                                        WHERE post_idx IN\n                                        \t(SELECT post_idx FROM post NATURAL JOIN users WHERE user_id = ?)\n                                        ORDER BY post_date DESC", [user_id])];
+                return [4 /*yield*/, getPageInfoMyPost(req, user_id)];
             case 1:
-                search_rows = _a.sent();
-                images = new Array();
-                _i = 0, search_rows_1 = search_rows;
-                _a.label = 2;
+                page = _a.sent();
+                return [4 /*yield*/, getThumbNail(page.post_rows)];
             case 2:
-                if (!(_i < search_rows_1.length)) return [3 /*break*/, 5];
-                row = search_rows_1[_i];
-                return [4 /*yield*/, db_1.sendQuery('SELECT image_path FROM thumbnail WHERE post_idx = ?', [row.post_idx])];
-            case 3:
-                image = _a.sent();
-                images.push(image);
-                _a.label = 4;
-            case 4:
-                _i++;
-                return [3 /*break*/, 2];
-            case 5:
-                send_img = images.map(function (image) {
-                    if (image[0])
-                        return image[0].image_path;
-                    else
-                        return '/image/image_thumbnail.png';
+                send_img = _a.sent();
+                login_check = loginCheck(req);
+                res.json({
+                    result: 'success',
+                    post: page.post_rows,
+                    image: send_img,
+                    login_check: login_check,
+                    page_info: page.page_info,
+                    getTag: getTag,
                 });
-                res.json({ result: 'success', rows: search_rows, image: send_img });
                 return [2 /*return*/];
         }
     });
@@ -141,6 +132,42 @@ router.get('/my_post', function (req, res) { return __awaiter(void 0, void 0, vo
 var check = function (val) {
     return val == 'true' ? '1' : '-1';
 };
+var getPageInfoMyPost = function (req, userId) { return __awaiter(void 0, void 0, void 0, function () {
+    var search, main_gate, east_gate, west_gate, etc_gate, monthly_rent, pageNum, contentSize, pnSize, skipSize, totalCount, pnTotal, pnStart, pnEnd, post_rows, page_info;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                search = req.query.search != undefined ? "%" + req.query.search + "%" : '%%';
+                main_gate = check(req.query.main_gate);
+                east_gate = check(req.query.east_gate);
+                west_gate = check(req.query.west_gate);
+                etc_gate = check(req.query.etc_gate);
+                monthly_rent = Number(req.query.monthly_rent) ? Number(req.query.monthly_rent) : 9999999999;
+                pageNum = Number(req.query.pageNum) || 1;
+                contentSize = 12;
+                pnSize = 10;
+                skipSize = (pageNum - 1) * contentSize;
+                return [4 /*yield*/, db_1.sendQuery("SELECT count(*) as count\n      FROM post NATURAl JOIN post_content\n      WHERE user_id = ?\n      ORDER BY post_date DESC;", [userId])];
+            case 1:
+                totalCount = _a.sent();
+                pnTotal = Math.ceil(totalCount[0].count / contentSize);
+                pnStart = (Math.ceil(pageNum / pnSize) - 1) * pnSize + 1;
+                pnEnd = pnStart + pnSize - 1;
+                return [4 /*yield*/, db_1.sendQuery("SELECT post_idx, title, DATE_FORMAT(post_date, '%Y\uB144 %m\uC6D4 %d\uC77C %H:%i') as post_date, address, deposit, monthly_rent, main_gate, west_gate, east_gate, etc_gate \n      FROM post NATURAl JOIN post_content NATURAl JOIN tag\n      WHERE user_id = ?\n      ORDER BY post_date DESC LIMIT " + skipSize + ", " + contentSize + ";", [userId])];
+            case 2:
+                post_rows = _a.sent();
+                if (pnEnd > pnTotal)
+                    pnEnd = pnTotal;
+                page_info = {
+                    pageNum: pageNum,
+                    pnStart: pnStart,
+                    pnEnd: pnEnd,
+                    pnTotal: pnTotal,
+                };
+                return [2 /*return*/, { page_info: page_info, post_rows: post_rows }];
+        }
+    });
+}); };
 var getPageInfo = function (req) { return __awaiter(void 0, void 0, void 0, function () {
     var search, main_gate, east_gate, west_gate, etc_gate, monthly_rent, pageNum, contentSize, pnSize, skipSize, totalCount, pnTotal, pnStart, pnEnd, post_rows, page_info;
     return __generator(this, function (_a) {
@@ -156,13 +183,13 @@ var getPageInfo = function (req) { return __awaiter(void 0, void 0, void 0, func
                 contentSize = 12;
                 pnSize = 10;
                 skipSize = (pageNum - 1) * contentSize;
-                return [4 /*yield*/, db_1.sendQuery("SELECT count(*) as count\n                                            FROM post NATURAl JOIN post_content\n                                            WHERE post_idx IN\n                                            \t(SELECT post_idx FROM post NATURAL JOIN tag WHERE main_gate = ? OR west_gate = ? OR east_gate = ? OR etc_gate = ?)\n                                            \tAND\n                                            \ttitle LIKE ?\n                                                AND\n                                                monthly_rent <= ?\n                                            ORDER BY post_date DESC;", [main_gate, west_gate, east_gate, etc_gate, search, monthly_rent])];
+                return [4 /*yield*/, db_1.sendQuery("SELECT count(*) as count\n      FROM post NATURAl JOIN post_content\n      WHERE post_idx IN\n      \t(SELECT post_idx FROM post NATURAL JOIN tag WHERE main_gate = ? OR west_gate = ? OR east_gate = ? OR etc_gate = ?)\n      \tAND\n      \ttitle LIKE ?\n          AND\n          monthly_rent <= ?\n      ORDER BY post_date DESC;", [main_gate, west_gate, east_gate, etc_gate, search, monthly_rent])];
             case 1:
                 totalCount = _a.sent();
                 pnTotal = Math.ceil(totalCount[0].count / contentSize);
                 pnStart = (Math.ceil(pageNum / pnSize) - 1) * pnSize + 1;
                 pnEnd = pnStart + pnSize - 1;
-                return [4 /*yield*/, db_1.sendQuery("SELECT post_idx, title, post_date, address, deposit, monthly_rent\n                                    FROM post NATURAl JOIN post_content\n                                    WHERE post_idx IN\n                                    \t(SELECT post_idx FROM post NATURAL JOIN tag WHERE main_gate = ? OR west_gate = ? OR east_gate = ? OR etc_gate = ?)\n                                    \tAND\n                                    \ttitle LIKE ?\n                                        AND\n                                        monthly_rent <= ?\n                                    ORDER BY post_date DESC LIMIT " + skipSize + ", " + contentSize + ";", [main_gate, west_gate, east_gate, etc_gate, search, monthly_rent])];
+                return [4 /*yield*/, db_1.sendQuery("SELECT post_idx, title, DATE_FORMAT(post_date, '%Y\uB144 %m\uC6D4 %d\uC77C %H:%i') as post_date, address, deposit, monthly_rent, main_gate, west_gate, east_gate, etc_gate\n      FROM post NATURAl JOIN post_content NATURAl JOIN tag\n      WHERE post_idx IN\n      \t(SELECT post_idx FROM post NATURAL JOIN tag WHERE main_gate = ? OR west_gate = ? OR east_gate = ? OR etc_gate = ?)\n      \tAND\n      \ttitle LIKE ? \n          AND\n          monthly_rent <= ?\n      ORDER BY post_date DESC LIMIT " + skipSize + ", " + contentSize + ";", [main_gate, west_gate, east_gate, etc_gate, search, monthly_rent])];
             case 2:
                 post_rows = _a.sent();
                 if (pnEnd > pnTotal)
@@ -174,6 +201,36 @@ var getPageInfo = function (req) { return __awaiter(void 0, void 0, void 0, func
                     pnTotal: pnTotal,
                 };
                 return [2 /*return*/, { page_info: page_info, post_rows: post_rows }];
+        }
+    });
+}); };
+var getThumbNail = function (post_rows) { return __awaiter(void 0, void 0, void 0, function () {
+    var images, _i, post_rows_1, row, image, send_img;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                images = new Array();
+                _i = 0, post_rows_1 = post_rows;
+                _a.label = 1;
+            case 1:
+                if (!(_i < post_rows_1.length)) return [3 /*break*/, 4];
+                row = post_rows_1[_i];
+                return [4 /*yield*/, db_1.sendQuery('SELECT image_path FROM thumbnail WHERE post_idx = ?', [row.post_idx])];
+            case 2:
+                image = _a.sent();
+                images.push(image);
+                _a.label = 3;
+            case 3:
+                _i++;
+                return [3 /*break*/, 1];
+            case 4:
+                send_img = images.map(function (image) {
+                    if (image[0])
+                        return image[0].image_path;
+                    else
+                        return '/image/image_thumbnail.png';
+                });
+                return [2 /*return*/, send_img];
         }
     });
 }); };

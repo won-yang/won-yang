@@ -46,10 +46,10 @@ router.post('/edit_ok', async (req: any, res) => {
     return false;
   }
 
-  let send_data = write_func.setData(req);
+  const send_data = write_func.setData(req);
 
   if (write_func.checkLength(send_data, res) == false) return;
-  let gate = write_func.setGate(req.body.tag);
+  const gate = write_func.setGate(req.body.tag);
 
   if (gate == false) res.json({ result: 'error', message: '태그를 선택하세요' });
 
@@ -57,9 +57,9 @@ router.post('/edit_ok', async (req: any, res) => {
   const image_path = soup.find('img');
 
   const date_row = await sendQuery('SELECT post_date FROM post WHERE post_idx = ?', [post_idx]);
-  if (admin_rows.length == 0)
+  if (admin_rows.length == 0) {
     await sendQuery(`UPDATE post SET title = ?, post_date = SYSDATE() WHERE post_idx = ?`, [send_data.title, post_idx]);
-  else await sendQuery(`UPDATE post SET title = ?, post_date = ? WHERE post_idx = ?`, [send_data.title, date_row[0].post_date, post_idx]);
+  } else await sendQuery(`UPDATE post SET title = ?, post_date = ? WHERE post_idx = ?`, [send_data.title, date_row[0].post_date, post_idx]);
 
   if (image_path != undefined) {
     await sendQuery(`UPDATE thumbnail SET image_path = ? WHERE post_idx = ?`, [image_path.attrs.src, post_idx]);
@@ -107,7 +107,7 @@ router.post('/edit_ok', async (req: any, res) => {
     ],
   );
 
-  res.json({ result: 'success', message: '글 수정이 완료 되었습니다.', redirect: '/posts/' + post_idx });
+  res.json({ result: 'success', message: '글 수정이 완료 되었습니다.', redirect: `/posts/${post_idx}` });
 });
 
 module.exports = router;

@@ -15,7 +15,7 @@ router.get('/write', async (req: any, res) => {
   if (await permission.isAdmin(req.session.passport)) {
     admin_check = true;
   }
-  res.render('write_post', { admin_check: admin_check });
+  res.render('write_post', { admin_check });
 });
 
 router.post('/write_ok', async (req: any, res) => {
@@ -24,10 +24,10 @@ router.post('/write_ok', async (req: any, res) => {
     return;
   }
 
-  let send_data = write_func.setData(req);
+  const send_data = write_func.setData(req);
 
   if (write_func.checkLength(send_data, res) == false) return;
-  let gate = write_func.setGate(req.body.tag);
+  const gate = write_func.setGate(req.body.tag);
 
   if (gate == false) res.json({ result: 'error', message: '태그를 선택하세요' });
 
@@ -35,8 +35,8 @@ router.post('/write_ok', async (req: any, res) => {
   await sendQuery(`INSERT INTO post (user_id, title, post_date) VALUES(?, ?, SYSDATE())`, [user_id, send_data.title]);
   const index = await write_func.getindex(user_id);
 
-  let soup = new JSSoup(send_data.content);
-  let image_path = soup.find('img');
+  const soup = new JSSoup(send_data.content);
+  const image_path = soup.find('img');
   if (image_path != undefined) {
     await sendQuery(`INSERT INTO thumbnail (post_idx, image_path)  VALUES(?, ?)`, [index, image_path.attrs.src]);
   }
@@ -69,7 +69,7 @@ router.post('/write_ok', async (req: any, res) => {
     send_data.content,
   ]);
 
-  res.json({ result: 'success', message: '글이 작성되었습니다.', redirect: '/posts/' + index });
+  res.json({ result: 'success', message: '글이 작성되었습니다.', redirect: `/posts/${index}` });
 });
 
 module.exports = router;

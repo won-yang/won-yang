@@ -1,8 +1,9 @@
 import { sendQuery } from '../config/db';
 
 export const isLogin = (passport: any): boolean => {
-  if (!passport)
+  if (!passport) {
     return false;
+  }
   return true;
 };
 

@@ -14,7 +14,7 @@ export const getindex = async (user_id: any) => {
 };
 
 export const setData = (req: any) => {
-  let send_data: any = {};
+  const send_data: any = {};
 
   send_data.title = req.body.title;
   send_data.contact = req.body.contact;
@@ -44,7 +44,7 @@ export const setData = (req: any) => {
 };
 
 export const setGate = (tag: string) => {
-  let gate: any = {};
+  const gate: any = {};
 
   gate.main_gate = '0';
   gate.west_gate = '0';

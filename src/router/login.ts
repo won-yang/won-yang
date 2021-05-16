@@ -9,7 +9,6 @@ require('dotenv').config();
 const KAKAO_CLIENT_ID = process.env.KAKAO_CLIENT_ID;
 const KAKAO_CALLBACK_URL = process.env.KAKAO_CALLBACK_URL;
 
-
 passport.use(
   'kakao',
   new KakaoStrategy(

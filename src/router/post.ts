@@ -27,7 +27,7 @@ router.get('/posts/:idx', async (req, res) => {
 
   console.log(post_date_rows);
 
-  res.render('post', { result: rows, tag: tag_rows, time: post_date_rows, image: image_rows, auth_check: auth_check, getTag: getTag });
+  res.render('post', { result: rows, tag: tag_rows, time: post_date_rows, image: image_rows, auth_check, getTag });
 });
 
 const authCheck = async (req: any) => {

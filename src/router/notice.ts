@@ -11,9 +11,9 @@ router.get('/notices/:idx', async (req: any, res: any) => {
     return;
   }
 
-  let admin_check = await permission.isAdmin(req.session.passport);
+  const admin_check = await permission.isAdmin(req.session.passport);
 
-  res.render('notice', { notice: notice_rows, admin_check: admin_check });
+  res.render('notice', { notice: notice_rows, admin_check });
 });
 
 module.exports = router;

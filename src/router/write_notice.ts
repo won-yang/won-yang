@@ -9,8 +9,8 @@ router.post('/admin/notice_ok', async (req: any, res) => {
     return;
   }
 
-  let title = req.body.title;
-  let content = req.body.content;
+  const title = req.body.title;
+  const content = req.body.content;
 
   if (title.length == 0) {
     res.json({ 'result:': 'error', message: '제목을 입력해 주세요.' });

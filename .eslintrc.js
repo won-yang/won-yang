@@ -19,15 +19,10 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     sourceType: 'module',
+    project: './tsconfig.json',
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'prettier/@typescript-eslint',
-    'plugin:prettier/recommended',
-  ],
-  plugins: ['@typescript-eslint', 'import'],
+  extends: ['eslint:recommended', 'plugin:import/errors', 'plugin:import/warnings', 'plugin:prettier/recommended', 'prettier'],
+  plugins: ['@typescript-eslint', 'import', 'prettier'],
   rules: {
     '@typescript-eslint/await-thenable': 'off',
     '@typescript-eslint/indent': 'off',
@@ -64,7 +59,7 @@ module.exports = {
       },
     ],
     'no-cond-assign': 'error',
-    'no-console': 'error',
+    'no-console': 'off',
     'no-constant-condition': 'error',
     'no-duplicate-imports': 'error',
     'no-empty': 'off',
@@ -139,4 +134,5 @@ module.exports = {
       },
     },
   ],
+  ignorePatterns: ['gen/', 'nodemodules/'],
 };

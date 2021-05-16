@@ -4,7 +4,6 @@ import { sendQuery } from '../config/db';
 const permission = require('../common/permission_verify');
 
 const getTag = (post: any) => {
-  console.log(post);
   if (post.main_gate == '1') return '#창원대 정문';
   else if (post.west_gate == '1') return '#기숙사 서문';
   else if (post.east_gate == '1') return '#공대 동문';
@@ -41,14 +40,14 @@ router.get('/search', async (req: any, res: any) => {
     post: page.post_rows,
     notice: notice_rows,
     image: send_img,
-    login_check: login_check,
+    login_check,
     page_info: page.page_info,
-    getTag: getTag,
-    main_gate: main_gate,
-    east_gate: east_gate,
-    west_gate: west_gate,
-    etc_gate: etc_gate,
-    monthly_rent: monthly_rent,
+    getTag,
+    main_gate,
+    east_gate,
+    west_gate,
+    etc_gate,
+    monthly_rent,
     search: req.query.search,
   });
 });
@@ -65,13 +64,13 @@ router.get('/my_post', async (req: any, res: any) => {
   const send_img = await getThumbNail(page.post_rows);
   const login_check = loginCheck(req);
 
-  res.json({ 
-    result: 'success', 
-    post: page.post_rows, 
-    image: send_img, 
-    login_check: login_check, 
-    page_info: page.page_info, 
-    getTag: getTag,
+  res.json({
+    result: 'success',
+    post: page.post_rows,
+    image: send_img,
+    login_check,
+    page_info: page.page_info,
+    getTag,
   });
 });
 
@@ -119,7 +118,7 @@ const getPageInfoMyPost = async (req: any, userId: any) => {
     pnTotal,
   };
 
-  return { page_info: page_info, post_rows: post_rows };
+  return { page_info, post_rows };
 };
 
 const getPageInfo = async (req: any) => {
@@ -172,7 +171,7 @@ const getPageInfo = async (req: any) => {
     pnTotal,
   };
 
-  return { page_info: page_info, post_rows: post_rows };
+  return { page_info, post_rows };
 };
 
 const getThumbNail = async (post_rows: any) => {

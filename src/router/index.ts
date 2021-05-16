@@ -21,9 +21,9 @@ router.get('/', async (req: any, res: any) => {
     post: page.post_rows,
     notice: notice_rows,
     image: send_img,
-    login_check: login_check,
+    login_check,
     page_info: page.page_info,
-    getTag: getTag,
+    getTag,
   });
 });
 
@@ -50,7 +50,7 @@ const getPageInfo = async (req: any) => {
     pnTotal,
   };
 
-  return { page_info: page_info, post_rows: post_rows };
+  return { page_info, post_rows };
 };
 
 const getThumbNail = async (post_rows: any) => {

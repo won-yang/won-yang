@@ -23,7 +23,7 @@ router.post('/admin/edit_ok', async (req: any, res: any) => {
 
   const post_idx = req.body.idx;
 
-  let data = {
+  const data = {
     title: req.body.title,
     content: req.body.content,
   };
@@ -34,7 +34,7 @@ router.post('/admin/edit_ok', async (req: any, res: any) => {
     post_idx,
   ]);
 
-  res.json({ result: 'success', message: '공지글 수정이 완료 되었습니다.', redirect: '/notices/' + post_idx });
+  res.json({ result: 'success', message: '공지글 수정이 완료 되었습니다.', redirect: `/notices/${post_idx}` });
 });
 
 module.exports = router;

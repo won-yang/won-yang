@@ -95,6 +95,23 @@
 				</div>
 			</div>
 			
+			<div class="notice-board">
+				<table class="table table-hover mt-4 mb-3">
+					<tbody>
+						<% for (let i = 0; i < notice.length; i++) { %>
+							<tr class="notice-board-tr">
+								<td scope="row">
+									<a href="/notices/<%=notice[i].post_idx %>">
+										<i class="fas fa-thumbtack"></i> <%=notice[i].title %>
+									</a>
+								</td>
+							</tr>
+						<% } %>
+					</tbody>
+				</table>
+			</div>
+
+			
 			<div class="row mt-4 posts">
 				<% for(let i=0; i<post.length; i++) { %>
 				

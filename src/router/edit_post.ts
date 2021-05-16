@@ -2,8 +2,8 @@ import * as express from 'express';
 const router = express.Router();
 import { sendQuery } from '../config/db';
 const JSSoup = require('jssoup').default;
-const permission = require('../function/permission_verify');
-const write_func = require('../function/write_function');
+const permission = require('../common/permission_verify');
+const write_func = require('../common/write_function');
 
 router.get('/edit/:idx', async (req: any, res: any) => {
   if (!permission.isLogin(req.session.passport)) {

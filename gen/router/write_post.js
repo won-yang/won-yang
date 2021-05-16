@@ -40,8 +40,8 @@ var express = require("express");
 var router = express.Router();
 var db_1 = require("../config/db");
 var JSSoup = require('jssoup').default;
-var permission = require('../function/permission_verify');
-var write_func = require('../function/write_function');
+var permission = require('../common/permission_verify');
+var write_func = require('../common/write_function');
 router.get('/write', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var admin_check;
     return __generator(this, function (_a) {

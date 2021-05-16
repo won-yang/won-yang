@@ -39,7 +39,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var router = express.Router();
 var db_1 = require("../config/db");
-var permission = require('../function/permission_verify');
+var permission = require('../common/permission_verify');
 router.delete('/posts/:idx', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var post_idx, user_id, rows;
     return __generator(this, function (_a) {

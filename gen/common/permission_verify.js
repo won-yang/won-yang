@@ -36,27 +36,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = require("express");
-var router = express.Router();
+exports.isAdmin = exports.isLogin = void 0;
 var db_1 = require("../config/db");
-var permission = require('../common/permission_verify');
-router.get('/notices/:idx', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var notice_rows, admin_check;
+var isLogin = function (passport) {
+    if (!passport)
+        return false;
+    return true;
+};
+exports.isLogin = isLogin;
+var isAdmin = function (passport) { return __awaiter(void 0, void 0, void 0, function () {
+    var admin_rows;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, db_1.sendQuery("SELECT title, content, post_idx FROM notice WHERE post_idx = ?", [req.params.idx])];
+            case 0:
+                if (!exports.isLogin(passport))
+                    return [2 /*return*/, false];
+                return [4 /*yield*/, db_1.sendQuery("SELECT user_id FROM admin WHERE user_id = ?", [passport.user.id])];
             case 1:
-                notice_rows = _a.sent();
-                if (notice_rows.length == 0) {
-                    res.send('<script type="text/javascript">alert("찾으시는 글이 존재하지 않습니다."); history.back();</script>');
-                    return [2 /*return*/];
+                admin_rows = _a.sent();
+                if (admin_rows === undefined || admin_rows.length == 0) {
+                    return [2 /*return*/, false];
                 }
-                return [4 /*yield*/, permission.isAdmin(req.session.passport)];
-            case 2:
-                admin_check = _a.sent();
-                res.render('notice', { notice: notice_rows, admin_check: admin_check });
-                return [2 /*return*/];
+                return [2 /*return*/, true];
         }
     });
-}); });
-module.exports = router;
+}); };
+exports.isAdmin = isAdmin;

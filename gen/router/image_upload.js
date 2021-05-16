@@ -42,7 +42,7 @@ var AWS = require('aws-sdk');
 var multer = require('multer');
 var uuidv4 = require('uuid').v4;
 var path = require('path');
-var permission = require('../function/permission_verify');
+var permission = require('../common/permission_verify');
 var db_1 = require("../config/db");
 require('dotenv').config();
 var S3_ID = process.env.S3_ID;

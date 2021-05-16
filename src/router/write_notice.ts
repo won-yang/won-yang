@@ -1,7 +1,7 @@
 import * as express from 'express';
 const router = express.Router();
 import { sendQuery } from '../config/db';
-const permission = require('../function/permission_verify');
+const permission = require('../common/permission_verify');
 
 router.post('/admin/notice_ok', async (req: any, res) => {
   if (!(await permission.isAdmin(req.session.passport))) {

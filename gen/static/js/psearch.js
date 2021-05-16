@@ -1,5 +1,5 @@
 var _this = this;
-var board_backup = [];
+var board_backup;
 $(document).ready(function () {
     $('#my-post').prop('checked', false);
 });
@@ -21,9 +21,7 @@ $('input[name=etc_gate]').change(function () {
     search();
 });
 $('input[name=my_post]').change(function () {
-    var checked = $('input[name=my_post]').is(':checked');
-    
-    if (checked) {
+    if (_this.checked) {
         my_post();
         $('.pagination').hide();
     }
@@ -35,17 +33,6 @@ $('input[name=my_post]').change(function () {
         }
     }
 });
-
-const getTag = (post) => {
-  console.log(post);
-  if (post.main_gate == '1') return '#창원대 정문';
-  else if (post.west_gate == '1') return '#기숙사 서문';
-  else if (post.east_gate == '1') return '#공대 동문';
-  else if (post.etc_gate == '1') return '#기타';
-  else return '#기타';
-};
-
-
 var my_post = function () {
     var my_post = $('input[name=my_post]').is(':checked');
     var formData = new FormData();
@@ -60,26 +47,8 @@ var my_post = function () {
             board_backup = $('.posts').children();
             $('.posts').children().remove();
             var result = data;
-            console.log("result 결과");
-            console.log(result.post[0].post_idx);
-            for (var i = 0; i < result.post.length; i++) {
-                let post = `<div class="col-md-6 col-sm-6 col-lg-4">
-					<a href="/posts/${result.post[i].post_idx}">
-						<div class="card mb-4 shadow-sm">
-							<div style="height: 225px; ">
-								<img src="${result.image[i]}" alt="집사진" style="width: 100%; height: 100%;">
-							</div>
-							<div class="card-body">
-								<h4> ${result.post[i].title} </h4>
-								<p> ${getTag(result.post[i])} </p>
-                                <p>보증금 ${result.post[i].deposit}</p>
-                                <p>월세 ${result.post[i].monthly_rent}</p>
-                                <p>${result.post[i].address}</p>
-                                <div class="post_date" align="right"><p><${result.post[i].post_date} </p></div>
-							</div>
-						</div>
-						</a>
-					</div>`;
+            for (var i = 0; i < result.rows.length; i++) {
+                var post = "<div class=\"col-md-6 col-sm-6 col-lg-4\">\n\t\t\t\t\t\t<a href=\"/posts/" + result.rows[i].post_idx + "\">\n\t\t\t\t\t\t<div class=\"card mb-4 shadow-sm\">\n\t\t\t\t\t\t\t<div style=\"height: 225px; \">\n\t\t\t\t\t\t\t\t<img src=\"" + result.image[i] + "\" alt=\"\uC9D1\uC0AC\uC9C4\" style=\"width: 100%; height: 100%;\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"card-body\">\n\t\t\t\t\t\t\t\t<h4> " + result.rows[i].title + " </h4>\n\t\t\t\t\t\t\t\t<div class=\"d-flex justify-content-between align-items-center\">\n\t\t\t\t\t\t\t\t\t<p>\uBCF4\uC99D\uAE08 " + result.rows[i].deposit + "</p>\n\t\t\t\t\t\t\t\t\t<p>\uC6D4\uC138 " + result.rows[i].monthly_rent + "</p>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<p>" + result.rows[i].address + "</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>";
                 $('.posts').append(post);
             }
         },

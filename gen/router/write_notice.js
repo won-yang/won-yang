@@ -39,7 +39,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var router = express.Router();
 var db_1 = require("../config/db");
-var permission = require('../function/permission_verify');
+var permission = require('../common/permission_verify');
 router.post('/admin/notice_ok', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var title, content, user_id;
     return __generator(this, function (_a) {

@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
-var sendQuery = require('../../config/db');
+var db_1 = require("../../config/db");
 var permission = require('../../function/permission_verify');
 var router = express.Router();
 router.delete('/notices/:idx', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -51,7 +51,7 @@ router.delete('/notices/:idx', function (req, res) { return __awaiter(void 0, vo
                     return [2 /*return*/];
                 }
                 post_idx = req.params.idx;
-                return [4 /*yield*/, sendQuery("DELETE FROM notice WHERE post_idx = ?", [post_idx])];
+                return [4 /*yield*/, db_1.sendQuery("DELETE FROM notice WHERE post_idx = ?", [post_idx])];
             case 2:
                 _a.sent();
                 res.json({ result: 'success', message: '공지글이 삭제 되었습니다.', redirect: '/' });

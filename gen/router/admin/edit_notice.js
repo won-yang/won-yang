@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var router = express.Router();
-var sendQuery = require('../../config/db');
+var db_1 = require("../../config/db");
 var permission = require('../../function/permission_verify');
 router.get('/admin/edit/:idx', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var post_idx, rows;
@@ -51,7 +51,7 @@ router.get('/admin/edit/:idx', function (req, res) { return __awaiter(void 0, vo
                     return [2 /*return*/];
                 }
                 post_idx = req.params.idx;
-                return [4 /*yield*/, sendQuery("SELECT post_idx, title, content FROM notice WHERE post_idx=?", [post_idx])];
+                return [4 /*yield*/, db_1.sendQuery("SELECT post_idx, title, content FROM notice WHERE post_idx=?", [post_idx])];
             case 2:
                 rows = _a.sent();
                 res.render('admin/edit_notice', { result: rows });
@@ -74,7 +74,7 @@ router.post('/admin/edit_ok', function (req, res) { return __awaiter(void 0, voi
                     title: req.body.title,
                     content: req.body.content,
                 };
-                return [4 /*yield*/, sendQuery("UPDATE notice SET title = ?, post_date = SYSDATE(), content = ? WHERE post_idx = ?", [
+                return [4 /*yield*/, db_1.sendQuery("UPDATE notice SET title = ?, post_date = SYSDATE(), content = ? WHERE post_idx = ?", [
                         data.title,
                         data.content,
                         post_idx,

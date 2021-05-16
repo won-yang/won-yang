@@ -8,7 +8,6 @@ $('.btn-search').click(function () {
     search();
 });
 $('input[name=main_gate]').change(function () {
-    console.log('------------');
     search();
 });
 $('input[name=east_gate]').change(function () {
@@ -73,15 +72,18 @@ var search = function () {
 var paging = function (data) {
     $('.paging').children().remove();
     if (data.post_row.length != 0) {
-        var html = "<nav aria-label=\"Page navigation example\">\n    \t\t\t\t  <ul class=\"pagination\">\n    \t\t\t\t    <li class=\"page-item\">\n    \t\t\t\t      <a class=\"page-link\" {{prev}} aria-label=\"Previous\">\n    \t\t\t\t        <span aria-hidden=\"true\">&laquo;</span>\n    \t\t\t\t      </a>\n    \t\t\t\t    </li>\n    \t\t\t\t    \n    \t\t\t\t    <% for(let i=page_info.pnStart; i<=page_info.pnEnd; i++){ %> \n    \t\t\t\t    \t<li <%if(i===page_info.pageNum){%> \n    \t\t\t\t    \t\t\tclass=\"page-item active\"\n    \t\t\t\t        \t<%}%>>\n    \t\t\t\t        \t<a class=\"page-link\" href=\"?pageNum=<%=i%>\"><%=i%></a>\n    \t\t\t\t        </li>\n    \t\t\t\t      <% } %>\n    \t\t\t\t      \n    \t\t\t\t    <li class=\"page-item\">\n    \t\t\t\t      <a class=\"page-link\" {{next}} aria-label=\"Next\">\n    \t\t\t\t        <span aria-hidden=\"true\">&raquo;</span>\n    \t\t\t\t      </a>\n    \t\t\t\t    </li>\n    \t\t\t\t  </ul>";
+        var html = '<nav aria-label="Page navigation example">\n    \t\t\t\t  <ul class="pagination">\n    \t\t\t\t    <li class="page-item">\n    \t\t\t\t      <a class="page-link" {{prev}} aria-label="Previous">\n    \t\t\t\t        <span aria-hidden="true">&laquo;</span>\n    \t\t\t\t      </a>\n    \t\t\t\t    </li>\n    \t\t\t\t    \n    \t\t\t\t    <% for(let i=page_info.pnStart; i<=page_info.pnEnd; i++){ %> \n    \t\t\t\t    \t<li <%if(i===page_info.pageNum){%> \n    \t\t\t\t    \t\t\tclass="page-item active"\n    \t\t\t\t        \t<%}%>>\n    \t\t\t\t        \t<a class="page-link" href="?pageNum=<%=i%>"><%=i%></a>\n    \t\t\t\t        </li>\n    \t\t\t\t      <% } %>\n    \t\t\t\t      \n    \t\t\t\t    <li class="page-item">\n    \t\t\t\t      <a class="page-link" {{next}} aria-label="Next">\n    \t\t\t\t        <span aria-hidden="true">&raquo;</span>\n    \t\t\t\t      </a>\n    \t\t\t\t    </li>\n    \t\t\t\t  </ul>';
         if (data.page_info.pageNum > 1)
             html = html.replace('{{prev}}', "href=\"?pageNum=" + (Number(data.page_info.pageNum) - 1));
-        else
+        else {
             html = html.replace('{{prev}}', '');
-        if (data.page_info.pageNum < page_info.pnTotal)
+        }
+        if (data.page_info.pageNum < page_info.pnTotal) {
             html = html.replace('{{next}}', "href=\"?pageNum=" + (Number(data.page_info.pageNum) + 1));
-        else
+        }
+        else {
             html = html.replace('{{next}}', '');
+        }
     }
 };
 var checkMonthlyRent = function (monthly_values) {

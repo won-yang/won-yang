@@ -162,7 +162,7 @@ router.post('/edit_ok', function (req, res) { return __awaiter(void 0, void 0, v
                     ])];
             case 12:
                 _a.sent();
-                res.json({ result: 'success', message: '글 수정이 완료 되었습니다.', redirect: '/posts/' + post_idx });
+                res.json({ result: 'success', message: '글 수정이 완료 되었습니다.', redirect: "/posts/" + post_idx });
                 return [2 /*return*/];
         }
     });

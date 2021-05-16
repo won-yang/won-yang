@@ -39,8 +39,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.isAdmin = exports.isLogin = void 0;
 var db_1 = require("../config/db");
 var isLogin = function (passport) {
-    if (!passport)
+    if (!passport) {
         return false;
+    }
     return true;
 };
 exports.isLogin = isLogin;

@@ -100,7 +100,7 @@ $('#editor').on({
     keydown: function (event) {
         if ($('#editor').text().length <= 2000) {
             var current_length = $('#editor').text().length;
-            $('.text-length').text(current_length + '자');
+            $('.text-length').text(current_length + "\uC790");
         }
         else {
             event.preventDefault();

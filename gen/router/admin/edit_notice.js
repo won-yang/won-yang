@@ -81,7 +81,7 @@ router.post('/admin/edit_ok', function (req, res) { return __awaiter(void 0, voi
                     ])];
             case 2:
                 _a.sent();
-                res.json({ result: 'success', message: '공지글 수정이 완료 되었습니다.', redirect: '/notices/' + post_idx });
+                res.json({ result: 'success', message: '공지글 수정이 완료 되었습니다.', redirect: "/notices/" + post_idx });
                 return [2 /*return*/];
         }
     });

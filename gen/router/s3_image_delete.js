@@ -34,7 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
+var _this_1 = this;
 require('dotenv').config();
 var AWS = require('aws-sdk');
 var ID = process.env.S3_ID;
@@ -52,18 +52,18 @@ sundayInit.tz = 'Etc/UTC';
 // sundayInit.hour = 0;
 // sundayInit.minute = 0;
 sundayInit.second = 5;
-exports.nodeSchedule = schedule.scheduleJob(sundayInit, function () { return __awaiter(_this, void 0, void 0, function () {
+exports.nodeSchedule = schedule.scheduleJob(sundayInit, function () { return __awaiter(_this_1, void 0, void 0, function () {
     return __generator(this, function (_a) {
         return [2 /*return*/];
     });
 }); });
-var s3_image_delete = function (image_path) { return __awaiter(_this, void 0, void 0, function () {
-    var _this = this;
+var s3_image_delete = function (image_path) { return __awaiter(_this_1, void 0, void 0, function () {
+    var _this_1 = this;
     return __generator(this, function (_a) {
         s3.upload({
             Bucket: BUCKET_NAME,
             Key: image_path,
-        }, function (err, data) { return __awaiter(_this, void 0, void 0, function () {
+        }, function (err, data) { return __awaiter(_this_1, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 if (err) {
                     console.log('aws delete error');

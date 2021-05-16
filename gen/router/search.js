@@ -41,7 +41,6 @@ var router = express.Router();
 var db_1 = require("../config/db");
 var permission = require('../common/permission_verify');
 var getTag = function (post) {
-    console.log(post);
     if (post.main_gate == '1')
         return '#창원대 정문';
     else if (post.west_gate == '1')

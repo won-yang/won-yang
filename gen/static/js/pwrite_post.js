@@ -2,15 +2,17 @@ $('.btn-submit').click(function () {
     var notice_check = $('input[name=notice_check]').is(':checked');
     if (notice_check) {
         var notice_values = getNoticeValue();
-        if (!checkNoticeLength(notice_values))
+        if (!checkNoticeLength(notice_values)) {
             return;
+        }
         console.log('체크 완료');
         sendData(notice_values, '/admin/notice_ok');
         return;
     }
     var post_values = getPostValue();
-    if (!checkPostLength(post_values))
+    if (!checkPostLength(post_values)) {
         return;
+    }
     sendData(post_values, '/write_ok');
 });
 var sendData = function (post_values, url) {
@@ -114,7 +116,7 @@ $('#editor').on({
     keydown: function (event) {
         if ($('#editor').text().length <= 2000) {
             var current_length = $('#editor').text().length;
-            $('.text-length').text(current_length + '자');
+            $('.text-length').text(current_length + "\uC790");
         }
         else {
             event.preventDefault();

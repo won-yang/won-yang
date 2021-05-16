@@ -125,7 +125,7 @@ router.post('/write_ok', function (req, res) { return __awaiter(void 0, void 0, 
                     ])];
             case 7:
                 _a.sent();
-                res.json({ result: 'success', message: '글이 작성되었습니다.', redirect: '/posts/' + index });
+                res.json({ result: 'success', message: '글이 작성되었습니다.', redirect: "/posts/" + index });
                 return [2 /*return*/];
         }
     });

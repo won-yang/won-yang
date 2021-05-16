@@ -34,32 +34,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
+var _this_1 = this;
 $('.notice-all-select').click(function () {
-    if ($(_this).text() == '전체 선택') {
+    if ($(_this_1).text() == '전체 선택') {
         allClick($('input[name=notice]'), true);
-        $(_this).text('전체 해제');
+        $(_this_1).text('전체 해제');
     }
-    else if ($(_this).text() == '전체 해제') {
+    else if ($(_this_1).text() == '전체 해제') {
         allClick($('input[name=notice]'), false);
-        $(_this).text('전체 선택');
+        $(_this_1).text('전체 선택');
     }
 });
 $('.board-all-select').click(function () {
-    if ($(_this).text() == '전체 선택') {
+    if ($(_this_1).text() == '전체 선택') {
         allClick($('input[name=post]'), true);
-        $(_this).text('전체 해제');
+        $(_this_1).text('전체 해제');
     }
-    else if ($(_this).text() == '전체 해제') {
+    else if ($(_this_1).text() == '전체 해제') {
         allClick($('input[name=post]'), false);
-        $(_this).text('전체 선택');
+        $(_this_1).text('전체 선택');
     }
 });
 $('.edit-btn').click(function () {
-    location.href = $(_this).val();
+    location.href = $(_this_1).val();
 });
 $('.notice-specific-delete').click(function () {
-    (function () { return __awaiter(_this, void 0, void 0, function () {
+    (function () { return __awaiter(_this_1, void 0, void 0, function () {
         var i;
         return __generator(this, function (_a) {
             for (i = 0; i < $('input[name=notice]').length; i++) {
@@ -75,7 +75,7 @@ $('.notice-specific-delete').click(function () {
     });
 });
 $('.board-specific-delete').click(function () {
-    (function () { return __awaiter(_this, void 0, void 0, function () {
+    (function () { return __awaiter(_this_1, void 0, void 0, function () {
         var i;
         return __generator(this, function (_a) {
             for (i = 0; i < $('input[name=post]').length; i++) {

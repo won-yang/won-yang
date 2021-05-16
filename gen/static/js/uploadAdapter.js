@@ -26,7 +26,9 @@ var UploadAdapter = /** @class */ (function () {
         xhr.addEventListener('error', function () {
             reject(genericErrorText);
         });
-        xhr.addEventListener('abort', function () { return reject(); });
+        xhr.addEventListener('abort', function () {
+            return reject();
+        });
         xhr.addEventListener('load', function () {
             var response = xhr.response;
             if (!response || response.error) {
@@ -44,7 +46,7 @@ var UploadAdapter = /** @class */ (function () {
         this.xhr.send(data);
     };
     return UploadAdapter;
-}());
+})();
 // ckeditor image upload editor
 function MyCustomUploadAdapterPlugin(editor) {
     editor.plugins.get('FileRepository').createUploadAdapter = function (loader) {

@@ -43,7 +43,6 @@ const getTag = (post) => {
   else return '#기타';
 };
 
-
 var my_post = function () {
     var my_post = $('input[name=my_post]').is(':checked');
     var formData = new FormData();

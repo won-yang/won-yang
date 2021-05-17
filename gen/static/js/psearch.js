@@ -1,5 +1,5 @@
 var _this = this;
-var board_backup;
+var board_backup = [];
 $(document).ready(function () {
     $('#my-post').prop('checked', false);
 });
@@ -20,7 +20,8 @@ $('input[name=etc_gate]').change(function () {
     search();
 });
 $('input[name=my_post]').change(function () {
-    if (_this.checked) {
+    var checked = $('input[name=my_post]').is(':checked');
+    if (checked) {
         my_post();
         $('.pagination').hide();
     }
@@ -32,6 +33,18 @@ $('input[name=my_post]').change(function () {
         }
     }
 });
+var getTag = function (post) {
+    if (post.main_gate == '1')
+        return '#창원대 정문';
+    else if (post.west_gate == '1')
+        return '#기숙사 서문';
+    else if (post.east_gate == '1')
+        return '#공대 동문';
+    else if (post.etc_gate == '1')
+        return '#기타';
+    else
+        return '#기타';
+};
 var my_post = function () {
     var my_post = $('input[name=my_post]').is(':checked');
     var formData = new FormData();
@@ -46,8 +59,8 @@ var my_post = function () {
             board_backup = $('.posts').children();
             $('.posts').children().remove();
             var result = data;
-            for (var i = 0; i < result.rows.length; i++) {
-                var post = "<div class=\"col-md-6 col-sm-6 col-lg-4\">\n\t\t\t\t\t\t<a href=\"/posts/" + result.rows[i].post_idx + "\">\n\t\t\t\t\t\t<div class=\"card mb-4 shadow-sm\">\n\t\t\t\t\t\t\t<div style=\"height: 225px; \">\n\t\t\t\t\t\t\t\t<img src=\"" + result.image[i] + "\" alt=\"\uC9D1\uC0AC\uC9C4\" style=\"width: 100%; height: 100%;\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"card-body\">\n\t\t\t\t\t\t\t\t<h4> " + result.rows[i].title + " </h4>\n\t\t\t\t\t\t\t\t<div class=\"d-flex justify-content-between align-items-center\">\n\t\t\t\t\t\t\t\t\t<p>\uBCF4\uC99D\uAE08 " + result.rows[i].deposit + "</p>\n\t\t\t\t\t\t\t\t\t<p>\uC6D4\uC138 " + result.rows[i].monthly_rent + "</p>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<p>" + result.rows[i].address + "</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>";
+            for (var i = 0; i < result.post.length; i++) {
+                var post = "<div class=\"col-md-6 col-sm-6 col-lg-4\">\n\t\t\t\t\t<a href=\"/posts/" + result.post[i].post_idx + "\">\n\t\t\t\t\t\t<div class=\"card mb-4 shadow-sm\">\n\t\t\t\t\t\t\t<div style=\"height: 225px; \">\n\t\t\t\t\t\t\t\t<img src=\"" + result.image[i] + "\" alt=\"\uC9D1\uC0AC\uC9C4\" style=\"width: 100%; height: 100%;\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"card-body\">\n\t\t\t\t\t\t\t\t<h4> " + result.post[i].title + " </h4>\n\t\t\t\t\t\t\t\t<p> " + getTag(result.post[i]) + " </p>\n                                <p>\uBCF4\uC99D\uAE08 " + result.post[i].deposit + "</p>\n                                <p>\uC6D4\uC138 " + result.post[i].monthly_rent + "</p>\n                                <p>" + result.post[i].address + "</p>\n                                <div class=\"post_date\" align=\"right\"><p><" + result.post[i].post_date + " </p></div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</div>";
                 $('.posts').append(post);
             }
         },
@@ -72,18 +85,15 @@ var search = function () {
 var paging = function (data) {
     $('.paging').children().remove();
     if (data.post_row.length != 0) {
-        var html = '<nav aria-label="Page navigation example">\n    \t\t\t\t  <ul class="pagination">\n    \t\t\t\t    <li class="page-item">\n    \t\t\t\t      <a class="page-link" {{prev}} aria-label="Previous">\n    \t\t\t\t        <span aria-hidden="true">&laquo;</span>\n    \t\t\t\t      </a>\n    \t\t\t\t    </li>\n    \t\t\t\t    \n    \t\t\t\t    <% for(let i=page_info.pnStart; i<=page_info.pnEnd; i++){ %> \n    \t\t\t\t    \t<li <%if(i===page_info.pageNum){%> \n    \t\t\t\t    \t\t\tclass="page-item active"\n    \t\t\t\t        \t<%}%>>\n    \t\t\t\t        \t<a class="page-link" href="?pageNum=<%=i%>"><%=i%></a>\n    \t\t\t\t        </li>\n    \t\t\t\t      <% } %>\n    \t\t\t\t      \n    \t\t\t\t    <li class="page-item">\n    \t\t\t\t      <a class="page-link" {{next}} aria-label="Next">\n    \t\t\t\t        <span aria-hidden="true">&raquo;</span>\n    \t\t\t\t      </a>\n    \t\t\t\t    </li>\n    \t\t\t\t  </ul>';
+        var html = "<nav aria-label=\"Page navigation example\">\n    \t\t\t\t  <ul class=\"pagination\">\n    \t\t\t\t    <li class=\"page-item\">\n    \t\t\t\t      <a class=\"page-link\" {{prev}} aria-label=\"Previous\">\n    \t\t\t\t        <span aria-hidden=\"true\">&laquo;</span>\n    \t\t\t\t      </a>\n    \t\t\t\t    </li>\n    \t\t\t\t    \n    \t\t\t\t    <% for(let i=page_info.pnStart; i<=page_info.pnEnd; i++){ %> \n    \t\t\t\t    \t<li <%if(i===page_info.pageNum){%> \n    \t\t\t\t    \t\t\tclass=\"page-item active\"\n    \t\t\t\t        \t<%}%>>\n    \t\t\t\t        \t<a class=\"page-link\" href=\"?pageNum=<%=i%>\"><%=i%></a>\n    \t\t\t\t        </li>\n    \t\t\t\t      <% } %>\n    \t\t\t\t      \n    \t\t\t\t    <li class=\"page-item\">\n    \t\t\t\t      <a class=\"page-link\" {{next}} aria-label=\"Next\">\n    \t\t\t\t        <span aria-hidden=\"true\">&raquo;</span>\n    \t\t\t\t      </a>\n    \t\t\t\t    </li>\n    \t\t\t\t  </ul>";
         if (data.page_info.pageNum > 1)
             html = html.replace('{{prev}}', "href=\"?pageNum=" + (Number(data.page_info.pageNum) - 1));
-        else {
+        else
             html = html.replace('{{prev}}', '');
-        }
-        if (data.page_info.pageNum < page_info.pnTotal) {
+        if (data.page_info.pageNum < page_info.pnTotal)
             html = html.replace('{{next}}', "href=\"?pageNum=" + (Number(data.page_info.pageNum) + 1));
-        }
-        else {
+        else
             html = html.replace('{{next}}', '');
-        }
     }
 };
 var checkMonthlyRent = function (monthly_values) {

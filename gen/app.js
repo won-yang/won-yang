@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 require('dotenv').config();
 var express = require("express");
+var path = require("path");
 var session = require('express-session');
 var app = express();
 var passport = require('passport');
@@ -28,7 +29,7 @@ app.use(session({
 }));
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/static'));
+app.use(express.static(path.join(__dirname, '..', 'res')));
 app.use(passport.initialize());
 app.use(passport.session());
 // for parsing application/json

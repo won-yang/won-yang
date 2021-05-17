@@ -1,7 +1,7 @@
 var _this = this;
 var board_backup = [];
 $(document).ready(function () {
-    $('#my-post').prop('checked', false);
+    //$('#my-post').prop('checked', false);
 });
 $('.btn-search').click(function () {
     /*if(!(checkMonthlyRent(monthly_values))) return;*/
@@ -45,6 +45,10 @@ const getTag = (post) => {
 
 
 var my_post = function () {
+  $('#main_gate').prop('checked', true);
+  $('#east_gate').prop('checked', true);
+  $('#west_gate').prop('checked', true);
+  $('#etc_gate').prop('checked', true);
     var my_post = $('input[name=my_post]').is(':checked');
     var formData = new FormData();
     formData.append('my_post', my_post);
@@ -82,7 +86,7 @@ var my_post = function () {
     });
 };
 var search = function () {
-    $('#my-post').prop('checked', false);
+   // $('#my-post').prop('checked', false);
     var search = $('input[name=search]').val();
     var main_gate = $('input[name=main_gate]').is(':checked');
     var west_gate = $('input[name=west_gate]').is(':checked');

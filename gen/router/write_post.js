@@ -86,6 +86,7 @@ router.post('/write_ok', function (req, res) { return __awaiter(void 0, void 0, 
                 index = _a.sent();
                 soup = new JSSoup(send_data.content);
                 image_path = soup.find('img');
+                console.log(image_path);
                 if (!(image_path != undefined)) return [3 /*break*/, 4];
                 return [4 /*yield*/, db_1.sendQuery("INSERT INTO thumbnail (post_idx, image_path)  VALUES(?, ?)", [index, image_path.attrs.src])];
             case 3:

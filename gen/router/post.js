@@ -74,7 +74,6 @@ router.get('/posts/:idx', function (req, res) { return __awaiter(void 0, void 0,
                 return [4 /*yield*/, authCheck(req)];
             case 5:
                 auth_check = _a.sent();
-                console.log(post_date_rows);
                 res.render('post', { result: rows, tag: tag_rows, time: post_date_rows, image: image_rows, auth_check: auth_check, getTag: getTag });
                 return [2 /*return*/];
         }

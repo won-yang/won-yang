@@ -1,5 +1,6 @@
 require('dotenv').config();
-import * as express from "express";
+import * as express from 'express';
+import path = require('path');
 const session = require('express-session');
 const app = express();
 const passport = require('passport');
@@ -33,7 +34,8 @@ app.use(
 
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/static'));
+app.use(express.static(path.join(__dirname, '..', 'res')));
+
 app.use(passport.initialize());
 app.use(passport.session());
 

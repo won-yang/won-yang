@@ -37,6 +37,7 @@ router.post('/write_ok', async (req: any, res) => {
 
   const soup = new JSSoup(send_data.content);
   const image_path = soup.find('img');
+  console.log(image_path);
   if (image_path != undefined) {
     await sendQuery(`INSERT INTO thumbnail (post_idx, image_path)  VALUES(?, ?)`, [index, image_path.attrs.src]);
   }

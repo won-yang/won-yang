@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { sendQuery } from '../../config/db';
-const permission = require('../../function/permission_verify');
+const permission = require('../../common/permission_verify');
 
 const router = express.Router();
 router.delete('/notices/:idx', async (req: any, res: any) => {

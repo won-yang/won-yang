@@ -25,8 +25,6 @@ router.get('/posts/:idx', async (req, res) => {
   const tag_rows = await sendQuery('SELECT main_gate, west_gate, east_gate, etc_gate FROM tag WHERE post_idx = ?', [req.params.idx]);
   const auth_check = await authCheck(req);
 
-  console.log(post_date_rows);
-
   res.render('post', { result: rows, tag: tag_rows, time: post_date_rows, image: image_rows, auth_check, getTag });
 });
 

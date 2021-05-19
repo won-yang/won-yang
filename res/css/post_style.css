@@ -1,0 +1,40 @@
+body {
+  margin: 0px;
+}
+
+.content {
+  font-size: 18px;
+}
+
+.ck-content {
+  height: 600px;
+}
+.funiture img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateY(+30%);
+}
+
+.funiture {
+  text-align: center;
+}
+
+p {
+  word-break: break-all;
+}
+
+@media (max-width: 768px) {
+  .sub_title {
+    font-size: 24px !important;
+    font-weight: bold;
+  }
+  
+  .post_title {
+    font-weight: bold;
+  }
+}
+
+.post_content {
+  max-width:100%;height:auto
+}

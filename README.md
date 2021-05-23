@@ -35,7 +35,9 @@
 - 디자인 총괄
 
 ## 🏠 개발환경
-개발 환경 : Ubuntu 10.04
+개발 환경 : Ubuntu 18.04
+
+개발 언어 : javascript, typescript, css, html
 
 협업 도구 : github, notion, google docs, discord
 

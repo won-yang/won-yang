@@ -76,7 +76,7 @@ router.get('/edit/:idx', function (req, res) { return __awaiter(void 0, void 0, 
     });
 }); });
 router.post('/edit_ok', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var post_idx, user_id, my_post, admin_rows, send_data, gate, soup, image_path, date_row;
+    var post_idx, user_id, my_post, admin_rows, send_data, gate, date_row, result, soup, image_path;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -102,8 +102,6 @@ router.post('/edit_ok', function (req, res) { return __awaiter(void 0, void 0, v
                 gate = write_func.setGate(req.body.tag);
                 if (gate == false)
                     res.json({ result: 'error', message: '태그를 선택하세요' });
-                soup = new JSSoup(send_data.content);
-                image_path = soup.find('img');
                 return [4 /*yield*/, db_1.sendQuery('SELECT post_date FROM post WHERE post_idx = ?', [post_idx])];
             case 3:
                 date_row = _a.sent();
@@ -116,20 +114,36 @@ router.post('/edit_ok', function (req, res) { return __awaiter(void 0, void 0, v
             case 6:
                 _a.sent();
                 _a.label = 7;
-            case 7:
-                if (!(image_path != undefined)) return [3 /*break*/, 9];
-                return [4 /*yield*/, db_1.sendQuery("UPDATE thumbnail SET image_path = ? WHERE post_idx = ?", [image_path.attrs.src, post_idx])];
+            case 7: return [4 /*yield*/, db_1.sendQuery("SELECT COUNT(*) as count FROM thumbnail WHERE post_idx = ?", [post_idx])];
             case 8:
+                result = _a.sent();
+                soup = new JSSoup(send_data.content);
+                image_path = soup.find('img');
+                if (!(image_path != undefined)) return [3 /*break*/, 13];
+                if (!(result[0].count == 0)) return [3 /*break*/, 10];
+                return [4 /*yield*/, db_1.sendQuery("INSERT INTO thumbnail (post_idx, image_path)  VALUES(?, ?)", [post_idx, image_path.attrs.src])];
+            case 9:
                 _a.sent();
-                _a.label = 9;
-            case 9: return [4 /*yield*/, db_1.sendQuery("UPDATE tag SET main_gate = ?, west_gate = ?, east_gate = ?, etc_gate = ? WHERE post_idx = ?", [
+                return [3 /*break*/, 12];
+            case 10: return [4 /*yield*/, db_1.sendQuery("UPDATE thumbnail SET image_path = ? WHERE post_idx = ?", [image_path.attrs.src, post_idx])];
+            case 11:
+                _a.sent();
+                _a.label = 12;
+            case 12: return [3 /*break*/, 15];
+            case 13:
+                if (!(result[0].count > 0)) return [3 /*break*/, 15];
+                return [4 /*yield*/, db_1.sendQuery("DELETE FROM thumbnail WHERE post_idx = ?", [post_idx])];
+            case 14:
+                _a.sent();
+                _a.label = 15;
+            case 15: return [4 /*yield*/, db_1.sendQuery("UPDATE tag SET main_gate = ?, west_gate = ?, east_gate = ?, etc_gate = ? WHERE post_idx = ?", [
                     gate.main_gate,
                     gate.west_gate,
                     gate.east_gate,
                     gate.etc_gate,
                     post_idx,
                 ])];
-            case 10:
+            case 16:
                 _a.sent();
                 return [4 /*yield*/, db_1.sendQuery("UPDATE options SET refrigerator = ?, desk = ?, wifi = ?, washing_machine = ?,\n                    gas_stove = ?, microwave = ?, cctv = ?, closet = ?, bed = ?, tv = ?,\n                    public_washing_machine = ?, public_kitchen = ?, elevator = ?, air_conditioner = ?, door_lock = ?  WHERE post_idx = ?", [
                         send_data.refrigerator,
@@ -149,7 +163,7 @@ router.post('/edit_ok', function (req, res) { return __awaiter(void 0, void 0, v
                         send_data.door_lock,
                         post_idx,
                     ])];
-            case 11:
+            case 17:
                 _a.sent();
                 return [4 /*yield*/, db_1.sendQuery("UPDATE post_content SET contact = ?, contract_period = ?, address = ?, monthly_rent = ?, content = ?, deposit = ? WHERE post_idx = ?", [
                         send_data.contact,
@@ -160,7 +174,7 @@ router.post('/edit_ok', function (req, res) { return __awaiter(void 0, void 0, v
                         send_data.deposit,
                         post_idx,
                     ])];
-            case 12:
+            case 18:
                 _a.sent();
                 res.json({ result: 'success', message: '글 수정이 완료 되었습니다.', redirect: "/posts/" + post_idx });
                 return [2 /*return*/];

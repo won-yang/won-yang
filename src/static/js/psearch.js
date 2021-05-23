@@ -21,7 +21,7 @@ $('input[name=etc_gate]').change(function () {
 });
 $('input[name=my_post]').change(function () {
     var checked = $('input[name=my_post]').is(':checked');
-    
+
     if (checked) {
         my_post();
         $('.pagination').hide();

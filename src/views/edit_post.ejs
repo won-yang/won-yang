@@ -92,14 +92,14 @@
 				<div class="form-group row">
 					<label for="inputdeposit" class="col-sm-2 col-form-label">보증금</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="input-deposit" name="deposit" maxlength="30" onkeypress="onlyNumber()" value="<%=result[0].deposit %>">
+						<input type="number" class="form-control" id="input-deposit" name="deposit" maxlength="30" onkeypress="onlyNumber()" value="<%=result[0].deposit %>">
 					</div>
 				</div>
 				<!-- 월세 -->
 				<div class="form-group row">
 					<label for="inputmonthly-rent" class="col-sm-2 col-form-label">월세</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="input-monthly-rent" name="monthly_rent" maxlength="30" onkeypress="onlyNumber()" value="<%=result[0].monthly_rent %>">
+						<input type="number" class="form-control" id="input-monthly-rent" name="monthly_rent" maxlength="30" onkeypress="onlyNumber()" value="<%=result[0].monthly_rent %>">
 					</div>
 				</div>
 				<!-- 계약기간 -->

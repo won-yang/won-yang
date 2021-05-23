@@ -77,6 +77,9 @@ router.delete('/posts/:idx', function (req, res) { return __awaiter(void 0, void
                 return [4 /*yield*/, db_1.sendQuery("DELETE FROM post WHERE post_idx = ?", [post_idx])];
             case 7:
                 _a.sent();
+                return [4 /*yield*/, db_1.sendQuery("DELETE FROM thumbnail WHERE post_idx = ?", [post_idx])];
+            case 8:
+                _a.sent();
                 res.json({ result: 'success', message: '게시글이 삭제 되었습니다.', redirect: '/' });
                 return [2 /*return*/];
         }

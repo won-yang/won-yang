@@ -53,17 +53,29 @@ router.post('/edit_ok', async (req: any, res) => {
 
   if (gate == false) res.json({ result: 'error', message: '태그를 선택하세요' });
 
-  const soup = new JSSoup(send_data.content);
-  const image_path = soup.find('img');
+  
 
   const date_row = await sendQuery('SELECT post_date FROM post WHERE post_idx = ?', [post_idx]);
   if (admin_rows.length == 0) {
     await sendQuery(`UPDATE post SET title = ?, post_date = SYSDATE() WHERE post_idx = ?`, [send_data.title, post_idx]);
   } else await sendQuery(`UPDATE post SET title = ?, post_date = ? WHERE post_idx = ?`, [send_data.title, date_row[0].post_date, post_idx]);
+  
 
+  
+  
+  const result = await sendQuery(`SELECT COUNT(*) as count FROM thumbnail WHERE post_idx = ?`, [post_idx]);
+  const soup = new JSSoup(send_data.content);
+  const image_path = soup.find('img');
   if (image_path != undefined) {
-    await sendQuery(`UPDATE thumbnail SET image_path = ? WHERE post_idx = ?`, [image_path.attrs.src, post_idx]);
+    if (result[0].count == 0)
+      await sendQuery(`INSERT INTO thumbnail (post_idx, image_path)  VALUES(?, ?)`, [post_idx, image_path.attrs.src]);
+    else
+      await sendQuery(`UPDATE thumbnail SET image_path = ? WHERE post_idx = ?`, [image_path.attrs.src, post_idx]);
   }
+  else if (result[0].count > 0) {
+    await sendQuery(`DELETE FROM thumbnail WHERE post_idx = ?`, [post_idx]);
+  }
+  
   await sendQuery(`UPDATE tag SET main_gate = ?, west_gate = ?, east_gate = ?, etc_gate = ? WHERE post_idx = ?`, [
     gate.main_gate,
     gate.west_gate,

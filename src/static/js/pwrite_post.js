@@ -111,13 +111,21 @@ const getPostValue = function () {
   };
 };
 /* 내용 입력 시, 글자 수 검증 */
-$('#editor').on({
-  keydown(event) {
-    if ($('#editor').text().length <= 2000) {
-      const current_length = $('#editor').text().length;
-      $('.text-length').text(`${current_length}자`);
-    } else {
-      event.preventDefault();
-    }
-  },
+// $('#editor').on({
+//   keydown(event) {
+//     if ($('#editor').text().length <= 2000) {
+//       const current_length = $('#editor').text().length;
+//       $('.text-length').text(`${current_length}자`);
+//     } else {
+//       event.preventDefault();
+//     }
+//   },
+// });
+
+$('#editor').on('keyup', function() {
+  console.log('글자수 확인중');
+  if($(this).val().length > 4000) {
+    alert('2000자 이내로 작성해 주세요.');
+    $(this).val($(this).val().substring(0, 4000));
+  }
 });

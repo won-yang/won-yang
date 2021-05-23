@@ -14,6 +14,10 @@
 
 [http://won-yang.com/](http://won-yang.com/)
 
+## 🏠 원양 다운받기
+
+코드를 다운받은 뒤 `npm start`를 입력해주세요. 
+
 ## 🏠 개발환경
 
 **박성민** (git: [mimseong](https://github.com/mimseong))
@@ -27,7 +31,7 @@
 - 디자인 총괄
 
 ## 🏠 개발환경
-개발 도구 : aws, Ubuntu
+개발 환경 : Ubuntu 10.04
 
 협업 도구 : github, notion, google docs, discord
 

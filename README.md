@@ -1,3 +1,7 @@
+![issue](https://img.shields.io/github/issues/mimseong/won-yang)
+![issue](https://img.shields.io/github/issues-closed/mimseong/won-yang)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/mimseong/won-yang)
+
 # 창원대 원룸 양도 서비스 원양
 
 1년 동안 계속 살 거라 생각하고 계약한 원룸! 

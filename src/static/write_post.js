@@ -122,9 +122,9 @@ const getPostValue = function () {
 //   },
 // });
 
-$('#editor').on('keyup', function() {
+$('#editor').on('keyup', function () {
   console.log('글자수 확인중');
-  if($(this).val().length > 4000) {
+  if ($(this).val().length > 4000) {
     alert('2000자 이내로 작성해 주세요.');
     $(this).val($(this).val().substring(0, 4000));
   }

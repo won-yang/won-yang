@@ -42,7 +42,7 @@ const getTag = (post) => {
   else return '#기타';
 };
 
-let my_post = function () {
+const my_post = function () {
   $('#main_gate').prop('checked', true);
   $('#east_gate').prop('checked', true);
   $('#west_gate').prop('checked', true);
@@ -83,7 +83,7 @@ let my_post = function () {
     },
   });
 };
-let search = function () {
+const search = function () {
   // $('#my-post').prop('checked', false);
   const search = $('input[name=search]').val();
   const main_gate = $('input[name=main_gate]').is(':checked');

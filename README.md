@@ -1,3 +1,7 @@
+![issue](https://img.shields.io/github/issues/mimseong/won-yang)
+![issue](https://img.shields.io/github/issues-closed/mimseong/won-yang)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/mimseong/won-yang)
+
 # 창원대 원룸 양도 서비스 원양
 
 1년 동안 계속 살 거라 생각하고 계약한 원룸! 
@@ -14,7 +18,15 @@
 
 [http://won-yang.com/](http://won-yang.com/)
 
-## 🏠 개발환경
+## 🏠 원양 다운받아 실행하기
+
+코드를 다운받은 뒤 `npm install`로 패키지를 다운 받아줍니다.
+
+타입스크립트 코드를 컴파일해주기 위해 루트 디렉토리에서 `tsc -w`를 입력해줍니다.
+
+`npm start`로 node js를 실행시켜 줍니다. 
+
+## 🏠 팀원 소개
 
 **박성민** (git: [mimseong](https://github.com/mimseong))
 
@@ -26,8 +38,10 @@
 - 프론트엔드
 - 디자인 총괄
 
-## 🏠 개발환경
-개발 도구 : aws, Ubuntu
+## 🏠 개발 환경
+개발 환경 : Ubuntu 18.04
+
+개발 언어 : javascript, typescript, css, html
 
 협업 도구 : github, notion, google docs, discord
 

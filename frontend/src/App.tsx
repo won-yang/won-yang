@@ -4,16 +4,14 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import { LandingPage, MainPage, PostDetailPage, PostWritePage } from './pages';
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" exact component={LandingPage}></Route>
-          <Route path="/main" component={MainPage}></Route>
-          <Route path="/view" component={PostDetailPage}></Route>
-          <Button>HELLO</Button>
-        </Switch>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact component={LandingPage}></Route>
+        <Route path="/main" component={MainPage}></Route>
+        <Route path="/view" component={PostDetailPage}></Route>
+        <Button>HELLO</Button>
+      </Switch>
+    </BrowserRouter>
   );
 }
 

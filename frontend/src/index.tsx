@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { ThemeProvider } from 'styled-components';
-import { darkTheme, lightTheme } from './styles/theme/DefaultTheme';
-import { GlobalStyle } from './styles/GlobalStyle';
+import { darkTheme, lightTheme } from 'src/styles/theme/DefaultTheme';
+import { GlobalStyle } from 'src/styles/GlobalStyle';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,4 +17,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root'),
 );
-

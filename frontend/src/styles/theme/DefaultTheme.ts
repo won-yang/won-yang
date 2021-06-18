@@ -1,14 +1,28 @@
 import { DefaultTheme } from 'styled-components';
 
 const darkTheme: DefaultTheme = {
-  mainBgColor: 'blue',
+  common: {
+    mainBgColor: '#4593EF',
+    svgSize: {
+      small: '50px',
+      middle: '75px',
+      large: '200px',
+    },
+  },
   bgColors: {
     primary: 'blue',
   },
 };
 
 const lightTheme: DefaultTheme = {
-  mainBgColor: 'blue',
+  common: {
+    mainBgColor: '#4593EF',
+    svgSize: {
+      small: '50px',
+      middle: '75px',
+      large: '200px',
+    },
+  },
   bgColors: {
     primary: 'blue',
   },

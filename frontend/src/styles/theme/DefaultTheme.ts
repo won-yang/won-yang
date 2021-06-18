@@ -1,9 +1,17 @@
 import { DefaultTheme } from 'styled-components';
 
-const myTheme: DefaultTheme = {
+const darkTheme: DefaultTheme = {
+  mainBgColor: 'blue',
   bgColors: {
     primary: 'blue',
-  }
+  },
 };
 
-export { myTheme };
+const lightTheme: DefaultTheme = {
+  mainBgColor: 'blue',
+  bgColors: {
+    primary: 'blue',
+  },
+};
+
+export { darkTheme, lightTheme };

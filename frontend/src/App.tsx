@@ -1,17 +1,15 @@
 import './App.css';
 import styled from 'styled-components';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import LandingPage from './pages/LandingPage';
-import MainPage from './pages/MainPage';
-import PostViewPage from './pages/PostViewPage';
+import { LandingPage, MainPage, PostDetailPage, PostWritePage } from './pages';
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       <BrowserRouter>
         <Switch>
-          <Route path='/' exact component={LandingPage}></Route>
-          <Route path='/main' component={MainPage}></Route>
-          <Route path='/view' component={PostViewPage}></Route>
+          <Route path="/" exact component={LandingPage}></Route>
+          <Route path="/main" component={MainPage}></Route>
+          <Route path="/view" component={PostDetailPage}></Route>
           <Button>HELLO</Button>
         </Switch>
       </BrowserRouter>

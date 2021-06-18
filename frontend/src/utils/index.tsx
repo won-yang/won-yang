@@ -1,0 +1,1 @@
+export { requestGet, requestPost } from './HttpMethod'

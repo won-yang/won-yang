@@ -1,7 +1,5 @@
 import React from 'react';
 
-function PostWritePage() {
+export const PostWritePage = () => {
   return <div>PostWritePage</div>;
-}
-
-export default PostWritePage;
+};

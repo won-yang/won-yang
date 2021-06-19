@@ -25,7 +25,6 @@ router.delete('/posts/:idx', async (req: any, res: any) => {
   await sendQuery(`DELETE FROM options WHERE post_idx = ?`, [post_idx]);
   await sendQuery(`DELETE FROM post_content WHERE post_idx = ?`, [post_idx]);
   await sendQuery(`DELETE FROM post WHERE post_idx = ?`, [post_idx]);
-  await sendQuery(`DELETE FROM thumbnail WHERE post_idx = ?`, [post_idx]);
 
   res.json({ result: 'success', message: '게시글이 삭제 되었습니다.', redirect: '/' });
 });

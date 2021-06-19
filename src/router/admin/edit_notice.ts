@@ -1,7 +1,7 @@
 import * as express from 'express';
 const router = express.Router();
 import { sendQuery } from '../../config/db';
-const permission = require('../../common/permission_verify');
+const permission = require('../../function/permission_verify');
 
 router.get('/admin/edit/:idx', async (req: any, res: any) => {
   if (!(await permission.isAdmin(req.session.passport))) {

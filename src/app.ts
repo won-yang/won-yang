@@ -1,5 +1,6 @@
 require('dotenv').config();
-import * as express from "express";
+import * as express from 'express';
+import path = require('path');
 const session = require('express-session');
 const app = express();
 const passport = require('passport');
@@ -20,7 +21,6 @@ const admin_index_router = require('./router/admin/index');
 const admin_delete_router = require('./router/admin/delete_notice.js');
 const admin_edit_router = require('./router/admin/edit_notice.js');
 
-const address = require('./router/api/address');
 /***********************************/
 
 app.use(
@@ -33,7 +33,8 @@ app.use(
 
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/static'));
+app.use(express.static(path.join(__dirname, '..', 'res')));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -69,8 +70,6 @@ app.get('/admin', admin_index_router);
 app.get('/admin/edit/:idx', admin_edit_router);
 app.post('/admin/edit_ok', admin_edit_router);
 app.delete('/notices/:idx', admin_delete_router);
-
-app.get('/api/address', address);
 
 app.get('*', (req: any, res: any) => {
   res.render('error/404');

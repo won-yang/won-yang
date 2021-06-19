@@ -1,3 +1,8 @@
 node_modules/*
 .env
 .vscode/*
+<<<<<<< HEAD
+gen/*
+=======
+gen/*
+>>>>>>> ae3d82ffdec4251086b1c97ff954c740dc625137

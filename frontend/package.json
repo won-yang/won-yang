@@ -18,12 +18,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "lint": "npx eslint 'src/**/*.{js,jsx}",
     "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
+      "airbnb",
       "react-app/jest"
     ],
     "overrides": [
@@ -65,6 +65,6 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.3.1"
-  },
+  }
 
 }

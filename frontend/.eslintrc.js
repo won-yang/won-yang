@@ -1,14 +1,14 @@
 module.exports = {
-  parser: "babel-eslint",
-  extends: ["airbnb-base", "plugin:react/recommended", "plugin:prettier/recommended"],
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: "module",
-    ecmaFeatures: {
-      jsx: true,
+  "parser": "babel-eslint",
+  "extends": ["airbnb-base", "plugin:react/recommended", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
     },
   },
-  rules: {
+  "rules": {
     "no-unused-expressions": 0,
     "no-unused-vars": 0,
     "no-param-reassign": 0,
@@ -23,9 +23,9 @@ module.exports = {
     "react/display-name": 0,
     "import/prefer-default-export": 0,
   },
-  settings: {
-    react: {
-      version: "detect",
+  "settings": {
+    "react": {
+      "version": "detect",
     },
   },
 };

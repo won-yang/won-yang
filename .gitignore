@@ -2,5 +2,6 @@
 
 backend/node_modules/*
 backend/.env
+backend/gen/
 
 frontend/node_modules/

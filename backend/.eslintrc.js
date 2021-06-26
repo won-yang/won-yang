@@ -19,7 +19,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     sourceType: 'module',
-    project: './tsconfig.json',
+    project: './backend/tsconfig.json',
   },
   extends: ['eslint:recommended', 'plugin:import/errors', 'plugin:import/warnings', 'plugin:prettier/recommended', 'prettier'],
   plugins: ['@typescript-eslint', 'import', 'prettier'],
@@ -134,5 +134,5 @@ module.exports = {
       },
     },
   ],
-  ignorePatterns: ['gen/', 'nodemodules/'],
+  ignorePatterns: ['gen/', 'nodemodules/', '.eslintrc.js'],
 };

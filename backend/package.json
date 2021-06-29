@@ -4,7 +4,8 @@
   "description": "backend",
   "main": ".eslintrc.js",
   "scripts": {
-    "start": "node ./gen/route/app.js"
+    "start": "node ./gen/route/app.js",
+    "dev": "tsc -w & nodemon ./gen/route/app.js"
   },
   "repository": {
     "type": "git",

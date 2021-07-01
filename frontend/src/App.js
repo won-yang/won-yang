@@ -1,5 +1,5 @@
 import React from 'react';
-import UnivSearchbar from './components/UnivSearchbar';
+import UnivSearchbar from 'components/UnivSearchbar';
 import './App.css';
 
 function App() {

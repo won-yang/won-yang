@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Container } from './style';
 
 const Header = (props) => {
-  return <div></div>;
+  return <Container>hello</Container>;
 };
 
 Header.propTypes = {};

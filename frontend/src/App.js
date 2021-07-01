@@ -1,14 +1,15 @@
 import React from 'react';
 import UnivSearchbar from 'components/UnivSearchbar';
 import Header from 'components/Header';
-import './App.css';
+import GlobalStyle from 'styles/GlobalStyle';
 
 function App() {
   return (
-    <div className='App'>
+    <>
+      <GlobalStyle />
       <Header></Header>
       <UnivSearchbar></UnivSearchbar>
-    </div>
+    </>
   );
 }
 

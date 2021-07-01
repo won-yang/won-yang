@@ -12,3 +12,4 @@ WORKDIR /won-yang
 RUN chmod 755 ./install.sh
 RUN ./install.sh
 
+ENTRYPOINT ["yarn", "start"]

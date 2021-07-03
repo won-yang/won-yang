@@ -1,14 +1,5 @@
 import * as express from 'express';
-import { Pool } from 'pg';
-
-const pool = new Pool({
-  user: 'wonyang',
-  host: 'localhost',
-  database: 'wonyang',
-  password: 'mysecretpassword',
-  port: 5432,
-  max: 20,
-});
+import pool from '../db';
 
 const router = express.Router();
 

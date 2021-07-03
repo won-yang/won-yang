@@ -1,8 +1,7 @@
 import * as express from 'express';
+import router from './hello';
 
 const app = express();
-
-import router from './hello';
 
 app.use(express.json());
 

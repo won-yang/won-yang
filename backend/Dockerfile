@@ -1,7 +1,6 @@
 FROM alpine:3.14
 RUN apk add --no-cache 
 
-COPY gen /won-yang/gen
 COPY yarn.lock /won-yang
 COPY package.json /won-yang
 

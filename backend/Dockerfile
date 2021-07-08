@@ -1,12 +1,14 @@
 FROM alpine:3.14
 RUN apk add --no-cache 
+RUN mkdir /wonyang
 
-COPY yarn.lock /won-yang
-COPY package.json /won-yang
+COPY yarn.lock /wonyang
+COPY package.json /wonyang
 
-COPY install.sh /won-yang
+COPY install.sh /wonyang
+COPY .env /wonyang
 
-WORKDIR /won-yang
+WORKDIR /wonyang
 
 RUN chmod 755 ./install.sh
 RUN ./install.sh

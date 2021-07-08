@@ -6,11 +6,11 @@ import IconContainer from './IconContainer';
 
 const IconLogo = (props) => {
   return (
-    <Link to='/'>
-      <IconContainer {...props}>
+    <IconContainer {...props}>
+      <Link to='/'>
         <Logo alt='logo'></Logo>
-      </IconContainer>
-    </Link>
+      </Link>
+    </IconContainer>
   );
 };
 

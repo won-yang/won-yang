@@ -1,5 +1,5 @@
 import React from 'react';
-import UnivSearchbar from 'components/UnivSearchbar';
+import UnivSearchbar from 'components/Univ';
 import Header from 'components/Header';
 import { LandingPage, MainPage, PostDetailPage, PostWritePage } from 'pages';
 import GlobalStyle from 'styles/GlobalStyle';
@@ -9,9 +9,8 @@ function App() {
   return (
     <Router>
       <GlobalStyle />
-      <Header></Header>
       <Switch>
-        <Route path='/'>
+        <Route path='/' exact>
           {/* landing page */}
           <LandingPage />
         </Route>

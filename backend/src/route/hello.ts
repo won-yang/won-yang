@@ -1,16 +1,17 @@
 import * as express from 'express';
-import pool from '../db';
+// import pool from '../db';
 
 const router = express.Router();
 
 const hello = (request, response) => {
-  pool.query('select * from films', (error, results) => {
-    if (error) {
-      throw error;
-    }
-    console.log(results.rows);
-    response.status(200).json(results.rows);
-  });
+  // pool.query('select * from films', (error, results) => {
+  //   if (error) {
+  //     throw error;
+  //   }
+  //   console.log(results.rows);
+  //   response.status(200).json(results.rows);
+  // });
+  response.status(200).json({ hello: 'hi' });
 };
 
 router.get('/', hello);

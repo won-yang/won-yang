@@ -134,5 +134,5 @@ module.exports = {
       },
     },
   ],
-  ignorePatterns: ['gen/', 'nodemodules/'],
+  ignorePatterns: ['gen/', 'nodemodules/', '.eslintrc.js'],
 };

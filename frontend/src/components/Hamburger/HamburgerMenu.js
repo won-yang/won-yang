@@ -1,27 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import useModal from '../../hooks/useModal';
 import { Container, HamburgerSticks, SticksWrapper } from './style';
 import HamburgerModal from './HamburgerModal';
 
 const HamburgerMenu = (props) => {
   const [isMounted, setIsMounted] = useState(false);
-  const [shouldRender, setShouldRender] = useState(false);
+  const { shouldRender } = useModal({ isMounted });
 
-  useEffect(() => {
-    if (isMounted && !shouldRender) {
-      setShouldRender(true);
-    } else if (!isMounted && shouldRender) {
-      setShouldRender(false);
-    }
-  }, [isMounted]);
   const handleClick = (e) => {
-    console.log(e.target);
     const { kind } = e.target.dataset;
-    if (kind === 'modal-bg') {
-      setIsMounted(false);
-    } else if (
+    if (
       isMounted &&
-      (kind === 'modal-toggle-btn' || kind === 'modal-btn-sticks')
+      (kind === 'modal-toggle-btn' ||
+        kind === 'modal-btn-sticks' ||
+        kind === 'modal-bg')
     ) {
       setIsMounted(false);
     } else if (
@@ -32,7 +25,7 @@ const HamburgerMenu = (props) => {
     }
   };
   return (
-    <Container data-kind='wrapper' onClick={handleClick}>
+    <Container onClick={handleClick}>
       <SticksWrapper data-kind='modal-toggle-btn'>
         <HamburgerSticks
           data-kind='modal-btn-sticks'

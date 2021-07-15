@@ -6,8 +6,8 @@ export default {
   title: 'Secho/Button',
   component: Button,
   argTypes: {
-    backgroundColor: { control: 'color', },
-    fontSize: { control: 'range', },
+    backgroundColor: { control: 'color' },
+    fontSize: { control: 'range' },
   },
 };
 

@@ -13,6 +13,19 @@ export const HamburgerSticks = styled.div`
   width: 50%;
   height: 3px;
   background-color: white;
+  &.open {
+    transition: 0.5s;
+    transform: rotate3d(0, 0, 1, 45deg);
+  }
+  &.open::before {
+    content: '';
+    top: 0;
+    transform: rotate3d(0, 0, 1, 90deg);
+  }
+  &.open::after {
+    content: '';
+    display: none;
+  }
   &::before {
     position: absolute;
     content: '';

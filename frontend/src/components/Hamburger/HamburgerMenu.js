@@ -29,7 +29,7 @@ const HamburgerMenu = (props) => {
       <SticksWrapper data-kind='modal-toggle-btn'>
         <HamburgerSticks
           data-kind='modal-btn-sticks'
-          open={shouldRender}
+          className={shouldRender ? 'open' : ''}
         ></HamburgerSticks>
       </SticksWrapper>
       {isMounted ? <HamburgerModal open={shouldRender} /> : ''}

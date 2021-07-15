@@ -13,14 +13,17 @@ export const HamburgerSticks = styled.div`
   width: 50%;
   height: 3px;
   background-color: white;
+  transition: ease-in 0.3s;
   &.open {
-    transition: 0.5s;
+    background-color: black;
     transform: rotate3d(0, 0, 1, 45deg);
-  }
-  &.open::before {
-    content: '';
-    top: 0;
-    transform: rotate3d(0, 0, 1, 90deg);
+    &::before {
+      content: '';
+      background-color: black;
+      top: 0;
+      transition: 0.6s;
+      transform: rotate3d(0, 0, 1, 90deg);
+    }
   }
   &.open::after {
     content: '';
@@ -41,9 +44,6 @@ export const HamburgerSticks = styled.div`
     height: 3px;
     background-color: white;
     top: 10px;
-    &:hover {
-      background-color: beige;
-    }
   }
 `;
 
@@ -53,7 +53,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   cursor: pointer;
-  &:hover ${HamburgerSticks}:before {
+  /* &:hover ${HamburgerSticks}:before {
     background-color: black;
   }
   &:hover ${HamburgerSticks} {
@@ -61,7 +61,7 @@ export const Container = styled.div`
   }
   &:hover ${HamburgerSticks}:after {
     background-color: black;
-  }
+  } */
 `;
 
 export const ModalBackGround = styled.div`

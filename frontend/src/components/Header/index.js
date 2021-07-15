@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import UnivTitle from 'components/Univ/UnivTitle';
-import HamburgerMenu from 'components/HamburgerMenu';
+import { HamburgerMenu } from 'components/Hamburger';
 import { IconLogo } from 'components/Icon';
 import { Container } from './style';
 

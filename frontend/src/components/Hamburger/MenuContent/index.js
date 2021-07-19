@@ -6,18 +6,29 @@ import {
   List,
   ListItems,
   NickNameDisplayWrapper,
+  NickName,
 } from './style';
 
 const HamburgerMenuContent = (props) => {
   return (
     <Wrapper>
-      <NickNameDisplayWrapper>닉네임</NickNameDisplayWrapper>
+      <NickNameDisplayWrapper>
+        <NickName>닉네임</NickName>
+      </NickNameDisplayWrapper>
       <ListWrapper>
         <List>
-          <ListItems>내가 쓴 글</ListItems>
-          <ListItems>내 정보 수정</ListItems>
-          <ListItems>글 작성</ListItems>
-          <ListItems>로그아웃</ListItems>
+          <ListItems>
+            <a>내가 쓴 글</a>
+          </ListItems>
+          <ListItems>
+            <a>내 정보 수정</a>
+          </ListItems>
+          <ListItems>
+            <a>글 작성</a>
+          </ListItems>
+          <ListItems>
+            <a>로그아웃</a>
+          </ListItems>
         </List>
       </ListWrapper>
     </Wrapper>

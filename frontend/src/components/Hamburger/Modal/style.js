@@ -13,7 +13,7 @@ export const ModalContainer = styled.div`
   background-color: white;
   position: absolute;
   left: 100%;
-  padding-top: 60px;
+  padding-top: 50px;
   /* 50%까지 이동. */
   height: 100%;
   width: 70%;

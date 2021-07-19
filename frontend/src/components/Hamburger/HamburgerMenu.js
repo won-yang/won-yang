@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import useModal from '../../hooks/useModal';
 import { Container, HamburgerSticks, SticksWrapper } from './style';
 import HamburgerModal from './HamburgerModal';
+import HamburgerMenuContent from './HamburgerMenuContent';
 
 const HamburgerMenu = (props) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -32,7 +33,13 @@ const HamburgerMenu = (props) => {
           className={shouldRender ? 'open' : ''}
         ></HamburgerSticks>
       </SticksWrapper>
-      {isMounted ? <HamburgerModal open={shouldRender} /> : ''}
+      {isMounted ? (
+        <HamburgerModal open={shouldRender}>
+          <HamburgerMenuContent />
+        </HamburgerModal>
+      ) : (
+        ''
+      )}
     </Container>
   );
 };

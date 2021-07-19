@@ -1,0 +1,8 @@
+CREATE TABLE USERS
+(
+	id SERIAL PRIMARY KEY,
+	auth_id VARCHAR(30) NOT NULL,
+	nickname VARCHAR(30) NOT NULL,
+	school_id INT NOT NULL,
+	last_login TIMESTAMP
+);

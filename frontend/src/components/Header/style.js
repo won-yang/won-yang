@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.header`
-  background-color: #4593ef;
+  background-color: ${(props) => props.theme.primary};
   width: 100%;
   box-shadow: 0px 2px 5px 3px grey;
   height: 50px;

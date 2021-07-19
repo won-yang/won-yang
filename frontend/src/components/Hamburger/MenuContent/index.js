@@ -1,19 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  Wrapper,
+  ListWrapper,
+  List,
+  ListItems,
+  NickNameDisplayWrapper,
+} from './style';
 
 const HamburgerMenuContent = (props) => {
   return (
-    <div>
-      <div>닉네임</div>
-      <div>
-        <ul>
-          <li>내가 쓴 글</li>
-          <li>내 정보 수정</li>
-          <li>글 작성</li>
-          <li>로그아웃</li>
-        </ul>
-      </div>
-    </div>
+    <Wrapper>
+      <NickNameDisplayWrapper>닉네임</NickNameDisplayWrapper>
+      <ListWrapper>
+        <List>
+          <ListItems>내가 쓴 글</ListItems>
+          <ListItems>내 정보 수정</ListItems>
+          <ListItems>글 작성</ListItems>
+          <ListItems>로그아웃</ListItems>
+        </List>
+      </ListWrapper>
+    </Wrapper>
   );
 };
 

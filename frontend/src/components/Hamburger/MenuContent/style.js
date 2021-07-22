@@ -13,7 +13,7 @@ export const List = styled.ul`
 export const ListItems = styled.li`
   height: 50px;
   padding-left: 20px;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid ${(props) => props.theme.primary};
   & a {
     width: 100%;
     cursor: pointer;

@@ -11,12 +11,19 @@ const HamburgerModal = (props) => {
         <ModalContainer
           data-kind='modal'
           className={open ? 'modal-open' : 'modal-close'}
-        ></ModalContainer>
+        >
+          {props.children}
+        </ModalContainer>
       </ModalBackGround>
     </ModalPortal>
   );
 };
 
-HamburgerModal.propTypes = {};
+HamburgerModal.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+};
 
 export default HamburgerModal;

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import useModal from '../../../hooks/useModal';
+import useModal from 'hooks/useModal';
+import HamburgerModal from 'components/Hamburger/Modal';
+import HamburgerMenuContent from 'components/Hamburger/MenuContent';
 import { Container, HamburgerSticks, SticksWrapper } from './style';
-import HamburgerModal from '../Modal';
-import HamburgerMenuContent from '../MenuContent';
 
 const HamburgerMenu = (props) => {
   const [isMounted, setIsMounted] = useState(false);

@@ -4,9 +4,11 @@ import passport from 'passport';
 import loginRouter from './user/login';
 import userRouter from './user/user';
 import mainRouter from './main';
+import morgan from 'morgan';
 
 const app = express();
 
+app.use(morgan('common'));
 app.use(express.json());
 app.use(passport.initialize());
 app.use(cookieParser());

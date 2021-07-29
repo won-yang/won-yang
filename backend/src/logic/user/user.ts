@@ -17,7 +17,7 @@ export const getByAuthId = async (authId: string) => {
 export const getOrCreate = async (authId: string) => {
   const user = await getByAuthId(authId);
 
-  if (user.rows.length === 0) {
+  if (user?.rows.length === 0) {
     const newUser = await create(authId);
     const resUser = await getByAuthId(authId);
 

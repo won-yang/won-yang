@@ -4,7 +4,7 @@
   "description": "backend",
   "main": ".eslintrc.js",
   "scripts": {
-    "start": "node ./gen/route/app.js",
+    "start": "nodemon ./gen/route/app.js",
     "dev": "tsc -w & nodemon ./gen/route/app.js"
   },
   "repository": {
@@ -21,10 +21,16 @@
   },
   "homepage": "https://github.com/mimseong/won-yang#readme",
   "dependencies": {
+    "@types/cookie-parser": "^1.4.2",
+    "@types/jsonwebtoken": "^8.5.4",
     "@types/node": "^16.0.0",
+    "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-kakao": "^1.0.1",
     "pg": "^8.6.0",
     "tsc": "^2.0.3"
   },

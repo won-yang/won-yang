@@ -30,4 +30,4 @@ services:
       timeout: 1s
       retries: 10
     volumes:
-      - ./postgresql:/docker-entrypoint-initdb.d/'
+      - './postgresql:/docker-entrypoint-initdb.d/'

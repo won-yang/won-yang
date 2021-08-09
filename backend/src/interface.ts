@@ -38,6 +38,7 @@ export interface IRequest<T> {
   body: T;
   session: any;
   params: any;
+  query: any;
   ip: string;
   app: any;
 }

@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 export const HamburgerMenuModal = () => {
   return <div>1234</div>;
@@ -8,7 +8,7 @@ export const HamburgerMenuModal = () => {
 HamburgerMenuModal.propTypes = {
   primary: PropTypes.bool,
   backgroundColor: PropTypes.string,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(["small", "medium", "large"]),
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func,
 };
@@ -16,6 +16,6 @@ HamburgerMenuModal.propTypes = {
 HamburgerMenuModal.defaultProps = {
   backgroundColor: null,
   primary: false,
-  size: 'medium',
+  size: "medium",
   onClick: undefined,
 };

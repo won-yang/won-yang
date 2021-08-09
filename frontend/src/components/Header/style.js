@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.header`
   background-color: ${(props) => props.theme.primary};
@@ -12,13 +12,14 @@ export const Wrapper = styled.header`
 export const CenterAlignWrapper = styled.div`
   width: 90%;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
 `;
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1060px;
-  margin: 0 auto;
+  max-width: 1280px;
   height: 50px;
 `;

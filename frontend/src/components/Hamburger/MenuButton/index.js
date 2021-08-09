@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import useModal from 'hooks/useModal';
-import HamburgerModal from 'components/Hamburger/Modal';
-import HamburgerMenuContent from 'components/Hamburger/MenuContent';
-import { Container, HamburgerSticks, SticksWrapper } from './style';
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import useModal from "hooks/useModal";
+import HamburgerModal from "components/Hamburger/Modal";
+import HamburgerMenuContent from "components/Hamburger/MenuContent";
+import { Container, HamburgerSticks, SticksWrapper } from "./style";
 
 const HamburgerMenu = (props) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -13,14 +13,14 @@ const HamburgerMenu = (props) => {
     const { kind } = e.target.dataset;
     if (
       isMounted &&
-      (kind === 'modal-toggle-btn' ||
-        kind === 'modal-btn-sticks' ||
-        kind === 'modal-bg')
+      (kind === "modal-toggle-btn" ||
+        kind === "modal-btn-sticks" ||
+        kind === "modal-bg")
     ) {
       setIsMounted(false);
     } else if (
       !isMounted &&
-      (kind === 'modal-toggle-btn' || kind === 'modal-btn-sticks')
+      (kind === "modal-toggle-btn" || kind === "modal-btn-sticks")
     ) {
       setIsMounted(true);
     }
@@ -30,7 +30,7 @@ const HamburgerMenu = (props) => {
       <SticksWrapper data-kind='modal-toggle-btn'>
         <HamburgerSticks
           data-kind='modal-btn-sticks'
-          className={shouldRender ? 'open' : ''}
+          className={shouldRender ? "open" : ""}
         ></HamburgerSticks>
       </SticksWrapper>
       {isMounted ? (
@@ -38,7 +38,7 @@ const HamburgerMenu = (props) => {
           <HamburgerMenuContent />
         </HamburgerModal>
       ) : (
-        ''
+        ""
       )}
     </Container>
   );

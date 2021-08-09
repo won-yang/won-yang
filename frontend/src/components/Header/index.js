@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import UnivTitle from 'components/Univ/UnivTitle';
-import { HamburgerMenu } from 'components/Hamburger';
-import { IconLogo } from 'components/Icon';
-import { Wrapper, Container, CenterAlignWrapper } from './style';
+import React from "react";
+import PropTypes from "prop-types";
+import UnivTitle from "components/Univ/UnivTitle";
+import { HamburgerMenu } from "components/Hamburger";
+import { IconLogo } from "components/Icon";
+import { Wrapper, Container, CenterAlignWrapper } from "./style";
 
 const Header = (props) => {
   return (
@@ -20,7 +20,7 @@ const Header = (props) => {
 };
 
 Header.defaultProps = {
-  univName: '농담곰대학교',
+  univName: "농담곰대학교",
 };
 
 Header.propTypes = {

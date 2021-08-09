@@ -21,6 +21,11 @@ export interface IUser {
   lastLogin: number;
 }
 
+export interface ISchool {
+  id: number;
+  name: string;
+}
+
 export interface IUserRequest extends CustomRequest<IUser> {}
 
 interface CustomRequest<T> extends Request {

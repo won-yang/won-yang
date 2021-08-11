@@ -7,7 +7,7 @@ export const Wrapper = styled.header`
   height: 50px;
   position: fixed;
   z-index: 1;
-  font-size: 16px;
+  font-size: 1rem;
 `;
 export const CenterAlignWrapper = styled.div`
   width: 90%;

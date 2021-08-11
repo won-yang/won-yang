@@ -8,10 +8,10 @@ const PlacePostItem = (props) => {
   return (
     <Container>
       <ImageWrapper>
-        <img size='50px' src={tempImg} alt='place picture'></img>
+        <img src={tempImg} alt='place picture'></img>
       </ImageWrapper>
       <ItemInfo>
-        <span>태평동 원룸 양도합니다</span>
+        <h2>태평동 원룸 12312123321132132132312123132312</h2>
         <span>기타</span>
         <span>보증금 500</span>
         <span>월세 40</span>
@@ -27,28 +27,71 @@ PlacePostItem.propTypes = {};
 export default PlacePostItem;
 
 const ImageWrapper = styled.div`
-  width: ${(props) => props.size};
-  height: ${(props) => props.size};
+  /* width: ${(props) => props.size};
+  height: ${(props) => props.size}; */
+  flex: 1;
   & img {
+    min-width: 75px;
+    min-height: 75px;
+    max-width: 400px;
     width: 100%;
     height: 100%;
+    /* object-fit: fill; */
+  }
+  @media ${device.tablet} {
+    & img {
+      max-width: 400px;
+      /* object-fit: fill; */
+    }
+  }
+  @media ${device.desktop} {
   }
 `;
 
 const ItemInfo = styled.div`
   display: flex;
+  justify-content: space-around;
+  flex: 1;
   flex-direction: column;
   gap: 10px;
+  margin: 10px;
+  overflow: hidden;
 
   & span {
-    font-size: 1em;
+    font-size: 0.6rem;
   }
-  & span:first-child {
+  & h2 {
+    width: 100%;
+    line-height: normal;
     font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1rem;
+    overflow: hidden;
+  }
+  @media ${device.mobileS} {
+    & h2 {
+      max-width: 180px;
+    }
+  }
+  @media ${device.mobileL} {
+    & h2 {
+      max-width: 100%;
+    }
   }
 `;
 
 const Container = styled.div`
+  /* width: 100%; */
   display: flex;
   border: 1px solid gray;
+  font-size: ${(props) => props.theme.mobileFontSize};
+
+  @media ${device.tablet} {
+    flex-direction: column;
+    font-size: ${(props) => props.theme.tabletFontSize};
+  }
+  @media ${device.desktop} {
+    font-size: ${(props) => props.theme.desktopFontSize};
+  }
 `;

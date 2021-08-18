@@ -6,6 +6,7 @@ import Header from "components/Header";
 import PlacePostList from "components/PlacePostList";
 import { getPostItem } from "utils/api";
 import { BASE_URL } from "utils/constants/request";
+import PostFilter from "components/PlacePostList/PostFilter";
 
 const MainPage = (props) => {
   const [postData, setPostData] = useState([]);
@@ -21,9 +22,8 @@ const MainPage = (props) => {
       <ArticleContainer>
         <section className='temp-section'>검색 및 공지사항 div</section>
         <section className='filtered-bar'>필터링 버튼</section>
-        <ListWrapper>
-          <PlacePostList items={postData} />
-        </ListWrapper>
+        <PostFilter />
+        <PlacePostList items={postData} />
       </ArticleContainer>
     </>
   );
@@ -32,22 +32,6 @@ const MainPage = (props) => {
 MainPage.propTypes = {};
 
 export default MainPage;
-
-const ListWrapper = styled.section`
-  display: grid;
-  justify-content: center;
-  max-width: 1280px;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 20px;
-  @media ${device.tablet} {
-    grid-template-columns: repeat(2, 300px);
-    justify-self: center;
-    align-self: center;
-  }
-  @media ${device.desktop} {
-    grid-template-columns: repeat(3, 1fr);
-  }
-`;
 
 export const ArticleContainer = styled.article`
   padding-top: 60px;

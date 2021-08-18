@@ -1,5 +1,4 @@
 import React from "react";
-
 import { HamburgerMenuModal } from "./HamburgerMenuModal";
 
 export default {
@@ -12,6 +11,7 @@ export default {
 };
 
 const Template = (args) => <HamburgerMenuModal {...args} />;
-
-export const Defalut = Template.bind({});
-Default.args = {};
+export const Primary = Template.bind({});
+Primary.args = {
+  primary: true,
+};

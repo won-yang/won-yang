@@ -15,7 +15,7 @@ const PlacePostItem = (props) => {
         <span>기타</span>
         <span>보증금 500</span>
         <span>월세 40</span>
-        <span>경기도 성남시 태평동 5109 202호</span>
+        <span>성남시 태평동 5109 202호</span>
         <span>2021년 08월 07일 21:11</span>
       </ItemInfo>
     </Container>
@@ -58,7 +58,12 @@ const ItemInfo = styled.div`
   overflow: hidden;
 
   & span {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
+    color: ${(props) => props.theme.fontGrayColor};
+  }
+  & span:last-child {
+    color: ${(props) => props.theme.fontlightGrayColor};
+    align-self: flex-end;
   }
   & h2 {
     width: 100%;

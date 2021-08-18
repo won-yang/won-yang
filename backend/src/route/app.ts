@@ -4,7 +4,7 @@ import passport from 'passport';
 import morgan from 'morgan';
 import userRouter from './user';
 import mainRouter from './main';
-import schoolRouter from './school';
+import universityRouter from './university';
 
 const app = express();
 
@@ -15,7 +15,7 @@ app.use(cookieParser());
 
 app.use('/api/user', userRouter);
 app.use('/api/main', mainRouter);
-app.use('/api/school', schoolRouter);
+app.use('/api/university', universityRouter);
 
 app.get('*', (req: any, res: any) => {
   res.send('not found');

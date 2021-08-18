@@ -6,6 +6,7 @@ import loginRouter from './user/login';
 import userRouter from './user/user';
 import mainRouter from './main';
 import schoolRouter from './school';
+import boardRouter from './main/board';
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use('/api/login', loginRouter);
 app.use('/api/user', userRouter);
 app.use('/api/main', mainRouter);
 app.use('/api/school', schoolRouter);
+app.use('/api/board', boardRouter);
 
 app.get('*', (req: any, res: any) => {
   res.send('not found');

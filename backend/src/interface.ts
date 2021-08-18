@@ -17,11 +17,11 @@ export interface IUser {
   id: number;
   authId: string;
   nickname: string;
-  schoolId: number;
+  universityId: number;
   lastLogin: number;
 }
 
-export interface ISchool {
+export interface IUniversity {
   id: number;
   name: string;
 }

@@ -4,12 +4,12 @@
     {
       "id": 1,
       "imageUrl": "https://picsum.photos/536/354",
-      "title": "태평동 방 양도해요",
+      "title": "태평동 방 양도해요1231232123113123123123123213",
       "deposit": 5000000,
       "monthlyRent": 350000,
       "address": "성남시 수정구 태평동 5107 202호",
       "createdAt": "2021년 08월 03일 21:22",
-      "status": 0
+      "status": "progress"
     },
     {
       "id": 2,
@@ -19,7 +19,7 @@
       "monthlyRent": 350000,
       "address": "성남시 수정구 태평동 5107 202호",
       "createdAt": "2021년 08월 03일 21:22",
-      "status": 0
+      "status": "expired"
     },
     {
       "id": 3,
@@ -29,7 +29,7 @@
       "monthlyRent": 350000,
       "address": "성남시 수정구 태평동 5107 202호",
       "createdAt": "2021년 08월 03일 21:22",
-      "status": 0
+      "status": "contracted"
     },
     {
       "id": 4,
@@ -39,7 +39,7 @@
       "monthlyRent": 350000,
       "address": "성남시 수정구 태평동 5107 202호",
       "createdAt": "2021년 08월 03일 21:22",
-      "status": 0
+      "status": "progress"
     },
     {
       "id": 5,
@@ -49,7 +49,7 @@
       "monthlyRent": 350000,
       "address": "성남시 수정구 태평동 5107 202호",
       "createdAt": "2021년 08월 03일 21:22",
-      "status": 0
+      "status": "progress"
     },
     {
       "id": 6,
@@ -59,7 +59,7 @@
       "monthlyRent": 350000,
       "address": "성남시 수정구 태평동 5107 202호",
       "createdAt": "2021년 08월 03일 21:22",
-      "status": 0
+      "status": "progress"
     }
   ]
 }

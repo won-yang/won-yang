@@ -1,22 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-import tempImg from "assets/nong.png";
 import styled from "styled-components";
 import { device } from "styles/media";
+import PostStatusBadge from "components/common/PostStatusBadge";
 
-const PlacePostItem = (props) => {
+const PlacePostItem = ({ item }) => {
   return (
     <Container>
       <ImageWrapper>
-        <img src={tempImg} alt='place picture'></img>
+        <img src={item.imageUrl} alt='place picture'></img>
+        <PostStatusBadge status={item.status} />
       </ImageWrapper>
       <ItemInfo>
-        <h2>태평동 원룸 12312123321132132132312123132312</h2>
+        <h2>{item.title}</h2>
         <span>기타</span>
-        <span>보증금 500</span>
-        <span>월세 40</span>
-        <span>성남시 태평동 5109 202호</span>
-        <span>2021년 08월 07일 21:11</span>
+        <span>보증금 {item.deposit}</span>
+        <span>월세 {item.monthlyRent}</span>
+        <span>{item.addres}</span>
+        <span>{item.createdAt}</span>
       </ItemInfo>
     </Container>
   );
@@ -29,6 +30,7 @@ export default PlacePostItem;
 const ImageWrapper = styled.div`
   /* width: ${(props) => props.size};
   height: ${(props) => props.size}; */
+  position: relative;
   flex: 1;
   & img {
     min-width: 75px;

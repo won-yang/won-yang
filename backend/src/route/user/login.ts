@@ -16,6 +16,7 @@ const successLogin = (req, res) => {
     id: 'iddd',
     data: 'hihihi',
   };
+
   const token = util.createToken(tokenData);
   res.cookie('token', token, { httpOnly: true });
 
@@ -23,12 +24,7 @@ const successLogin = (req, res) => {
 };
 
 router.get('/', passport.authenticate('kakao', { session: false }));
-router.get('/kakao/callback', passport.authenticate('kakao', { session: false, failureRedirect: '/api/login' }), successLogin);
-
-router.get('/logout', (req: any, res: any) => {
-  req.session.destroy();
-  res.send("<script type='text/javascript'>alert('로그아웃 되었습니다'); location.href='/';</script>");
-});
+router.get('/kakao/callback', passport.authenticate('kakao', { session: false, failureRedirect: '/api/user/login' }), successLogin);
 
 passport.use(
   'kakao',

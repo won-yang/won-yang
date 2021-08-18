@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import * as school_logic from '../../logic/school';
+import * as school_logic from '../logic/school';
 
 router.get('/', async (req: any, res) => {
   const { name } = req.query;

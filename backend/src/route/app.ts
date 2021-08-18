@@ -2,12 +2,15 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import morgan from 'morgan';
+import cors from 'cors';
+
 import userRouter from './user';
 import mainRouter from './main';
 import universityRouter from './university';
 
 const app = express();
 
+app.use(cors({ origin: true, credentials: true }));
 app.use(morgan('common'));
 app.use(express.json());
 app.use(passport.initialize());

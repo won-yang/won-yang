@@ -5,6 +5,9 @@ import * as post_db from '../../db/post';
 export const getPostList = async (type: TPOST_STATUS | null, page: number): Promise<{ total_post: number; post: IPostBoardList[] }> => {
   const postList = await post_db.getPost(type, page);
 
+  console.log('-----getPostList---------');
+  console.log(postList);
+
   const postListForClient: IPostBoardList[] = postList.map((post) => {
     return {
       id: post.id,

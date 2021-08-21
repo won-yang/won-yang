@@ -43,7 +43,7 @@ export interface IPost {
   bus_time: number;
   content: string;
   is_private: boolean;
-  status: types.TPOST_STATUS;
+  post_status: types.TPOST_STATUS;
 }
 
 export interface IPostBoardForClient {

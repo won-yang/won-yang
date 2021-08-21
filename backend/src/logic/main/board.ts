@@ -14,7 +14,7 @@ export const getPostList = async (type: TPOST_STATUS | null, page: number): Prom
       monthly_rent: post.monthly_rent,
       address: post.address,
       created_at: 'creates_at',
-      status: post.status,
+      status: post.post_status,
     };
   });
 

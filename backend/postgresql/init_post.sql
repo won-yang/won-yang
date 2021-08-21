@@ -5,7 +5,7 @@ CREATE TYPE ROOM_T AS ENUM('STUDIO_WITH_SEPERATION', 'STUDIO', 'LOFT', 'TWO_BEDR
 DROP TYPE IF EXISTS WINDOW_SIDE_T;
 CREATE TYPE WINDOW_SIDE_T AS ENUM('NORTH', 'SOUTH', 'EAST', 'WEST');
 DROP TYPE IF EXISTS STATUS_T;
-CREATE TYPE STATUS_T AS ENUM('IN_PROGRASS', 'EXPIRED', 'CONTRACTED');
+CREATE TYPE STATUS_T AS ENUM('IN_PROGRESS', 'EXPIRED', 'CONTRACTED');
 
 
 DROP TABLE IF EXISTS POST;
@@ -42,13 +42,13 @@ INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricit
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, post_status
 ) VALUES
-('집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, 'IN_PROGRASS');
+('1집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, 'IN_PROGRESS');
 
 INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, post_status
 ) VALUES
-('[계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+('2[계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, 'EXPIRED');

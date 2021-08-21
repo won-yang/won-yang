@@ -1,7 +1,7 @@
 type TValues<T> = T[keyof T];
 
 export const POST_STATUS = {
-  IN_PROGRASS: 'IN_PROGRASS', //진행중
+  IN_PROGRESS: 'IN_PROGRESS', //진행중
   EXPIRED: 'EXPIRED', //계약완료
   CONTRACTED: 'CONTRACTED', //만료
 } as const;

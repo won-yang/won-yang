@@ -6,7 +6,8 @@ import cors from 'cors';
 
 import userRouter from './user';
 import mainRouter from './main';
-import universityRouter from './university';
+import schoolRouter from './university';
+import boardRouter from './main/board';
 
 const app = express();
 
@@ -18,7 +19,8 @@ app.use(cookieParser());
 
 app.use('/api/user', userRouter);
 app.use('/api/main', mainRouter);
-app.use('/api/university', universityRouter);
+app.use('/api/university', schoolRouter);
+app.use('/api/board', boardRouter);
 
 app.get('*', (req: any, res: any) => {
   res.send('not found');

@@ -1,4 +1,4 @@
-import { IUniversity } from '../interface';
+import { IUniversity } from '../interface/interface';
 import * as university_db from '../db/university';
 
 export const getUniversityList = async (name: string): Promise<IUniversity[]> => {

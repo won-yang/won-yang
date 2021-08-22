@@ -5,6 +5,8 @@ const router = express.Router();
 router.get('/', async (req: any, res) => {
   const { name } = req.query;
 
+  console.log('----------school---------');
+
   if (!name) {
     res.status(400).send('');
     return;

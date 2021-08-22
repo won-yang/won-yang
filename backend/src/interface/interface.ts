@@ -14,7 +14,7 @@ export interface IUser {
   lastLogin: number;
 }
 
-export interface ISchool {
+export interface IUniversity {
   id: number;
   name: string;
 }

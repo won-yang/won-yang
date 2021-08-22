@@ -1,5 +1,5 @@
 import pool from './';
-import { IUniversity } from '../interface';
+import { IUniversity } from '../interface/interface';
 
 export const getUniversityListByName = async (name: string): Promise<IUniversity[]> => {
   try {

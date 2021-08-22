@@ -1,9 +1,19 @@
-import { IPostBoardList } from './../../interface';
-import { TPOST_STATUS } from './../../types';
+import { IPostBoardList } from '../../interface/interface';
+import { TPOST_STATUS } from '../../interface/types';
 import * as post_db from '../../db/post';
 
-export const getPostList = async (type: TPOST_STATUS | null, page: number): Promise<{ total_post: number; post: IPostBoardList[] }> => {
-  const postList = await post_db.getPost(type, page);
+const converStatusName = (type: 'in_progress'): TPOST_STATUS | null => {
+  switch (type) {
+    case 'in_progress':
+      return 'IN_PROGRESS';
+    default:
+      return null;
+  }
+};
+
+export const getPostList = async (type: 'in_progress' | null, page: number): Promise<{ total_post: number; post: IPostBoardList[] }> => {
+  const convertedType = converStatusName(type);
+  const postList = await post_db.getPost(convertedType, page);
 
   console.log('-----getPostList---------');
   console.log(postList);

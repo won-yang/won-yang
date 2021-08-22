@@ -11,20 +11,32 @@ const converStatusName = (type: 'in_progress'): TPOST_STATUS | null => {
   }
 };
 
+const defaultUrl =
+  'https://cityhiker.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%A9%E1%84%83%E1%85%A2%E1%84%89%E1%85%A1%E1%86%AB_%E1%84%80%E1%85%A7%E1%84%8B%E1%85%AE%E1%86%AF_1.jpg';
+
 export const getPostList = async (type: 'in_progress' | null, page: number): Promise<{ total_post: number; post: IPostBoardList[] }> => {
+  console.log('-----------getPostList-----------------');
+  console.log(type, page);
+
   const convertedType = converStatusName(type);
   const postList = await post_db.getPost(convertedType, page);
 
   const postListForClient: IPostBoardList[] = postList.map((post) => {
+    console.log(post.image_url);
+    console.log(post.created_at);
+    console.log('');
+
+    const imageUrl = post.image_url || defaultUrl;
+
     return {
       id: post.id,
-      image_url: 'asdasd',
+      image_url: imageUrl,
       title: post.title,
       deposit: post.deposit,
       monthly_rent: post.monthly_rent,
       address: post.address,
-      created_at: 'creates_at',
-      status: post.post_status,
+      created_at: post.created_at,
+      post_status: post.post_status,
     };
   });
 

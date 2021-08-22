@@ -10,6 +10,8 @@ router.get('/', async (req: any, res: any) => {
     return;
   }
 
+  console.log(type, page);
+
   const result = await board_logic.getPostList(type, page);
 
   res.status(200).json({ total_post: result.total_post, post: result.post });

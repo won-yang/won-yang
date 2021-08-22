@@ -59,7 +59,7 @@ export interface IPostBoardList {
   monthly_rent: number;
   address: string;
   created_at: string;
-  status: types.TPOST_STATUS;
+  post_status: types.TPOST_STATUS;
 }
 
 export interface IUserRequest extends CustomRequest<IUser> {}

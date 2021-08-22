@@ -1,4 +1,4 @@
-import pool from '..';
+import pool from '../';
 
 export const createUser = async (authId: string) => {
   try {

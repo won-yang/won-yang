@@ -1,6 +1,6 @@
 import express from 'express';
+import * as university_logic from '../logic/university';
 const router = express.Router();
-import * as school_logic from '../../logic/school';
 
 router.get('/', async (req: any, res) => {
   const { name } = req.query;
@@ -12,9 +12,9 @@ router.get('/', async (req: any, res) => {
     return;
   }
 
-  const schoolList = await school_logic.getSchoolList(name);
+  const universityList = await university_logic.getUniversityList(name);
 
-  res.status(200).json({ list: schoolList });
+  res.status(200).json({ list: universityList });
 });
 
 export default router;

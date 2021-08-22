@@ -15,9 +15,6 @@ export const getPostList = async (type: 'in_progress' | null, page: number): Pro
   const convertedType = converStatusName(type);
   const postList = await post_db.getPost(convertedType, page);
 
-  console.log('-----getPostList---------');
-  console.log(postList);
-
   const postListForClient: IPostBoardList[] = postList.map((post) => {
     return {
       id: post.id,

@@ -1,6 +1,6 @@
 import pool from '..';
-import { IPost } from './../../interface';
-import { TPOST_STATUS } from './../../types';
+import { IPost } from '../../interface/interface';
+import { TPOST_STATUS } from '../../interface/types';
 
 const PAGE_SIZE = 10;
 

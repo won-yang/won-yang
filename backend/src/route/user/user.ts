@@ -1,6 +1,6 @@
 import express from 'express';
 import * as user_logic from '../../logic/user/user';
-import { IUserRequest } from '../../interface';
+import { IUserRequest } from '../../interface/interface';
 const router = express.Router();
 
 router.get('/', async (req: IUserRequest, res) => {

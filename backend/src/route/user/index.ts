@@ -1,5 +1,5 @@
 import express from 'express';
-import * as user_logic from '../../logic/user/user';
+import * as user_logic from '../../logic/user';
 import loginRouter from './login';
 const router = express.Router();
 

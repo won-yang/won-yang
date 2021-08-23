@@ -1,6 +1,6 @@
-import pool from '..';
-import { IPostBoardList } from '../../interface/interface';
-import { TPOST_STATUS } from '../../interface/types';
+import pool from '.';
+import { IPostBoardList } from '../interface/interface';
+import { TPOST_STATUS } from '../interface/types';
 
 const PAGE_SIZE = 10;
 

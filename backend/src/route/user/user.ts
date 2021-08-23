@@ -1,5 +1,5 @@
 import express from 'express';
-import * as user_logic from '../../logic/user/user';
+import * as user_logic from '../../logic/user';
 import { IUserRequest } from '../../interface/interface';
 const router = express.Router();
 

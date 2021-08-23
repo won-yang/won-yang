@@ -1,4 +1,4 @@
-import * as user_db from '../../db/user/user';
+import * as user_db from '../db/user';
 
 export const create = async (authId: string) => {
   await user_db.createUser(authId);

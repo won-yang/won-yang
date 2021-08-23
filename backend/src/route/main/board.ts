@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import * as board_logic from '../../logic/main/board';
+import * as board_logic from '../../logic/board';
 
 router.get('/', async (req: any, res: any) => {
   const { type, page } = req.query;

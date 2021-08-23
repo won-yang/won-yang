@@ -1,6 +1,6 @@
-import { IPostBoardList } from '../../interface/interface';
-import { TPOST_STATUS } from '../../interface/types';
-import * as post_db from '../../db/post';
+import { IPostBoardList } from '../interface/interface';
+import { TPOST_STATUS } from '../interface/types';
+import * as post_db from '../db/post';
 
 const converStatusName = (type: 'in_progress'): TPOST_STATUS | null => {
   switch (type) {

@@ -15,7 +15,7 @@ export const createUser = async (authId: string) => {
 export const getUser = async (id: number) => {
   try {
     const res = await pool.query(`SELECT * FROM USERS WHERE id = $1`, [id]);
-    return res;
+    return res.rows;
   } catch (err) {
     return err;
   }
@@ -24,7 +24,7 @@ export const getUser = async (id: number) => {
 export const getUserByAuthId = async (authId: string) => {
   try {
     const res = await pool.query(`SELECT * FROM USERS WHERE auth_id = $1`, [authId]);
-    return res;
+    return res.rows;
   } catch (err) {
     return err;
   }

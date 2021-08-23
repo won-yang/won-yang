@@ -17,11 +17,11 @@ export const getByAuthId = async (authId: string) => {
 export const getOrCreate = async (authId: string) => {
   const user = await getByAuthId(authId);
 
-  if (user?.rows.length === 0) {
-    const newUser = await create(authId);
+  if (user?.length === 0) {
+    await create(authId);
     const resUser = await getByAuthId(authId);
 
-    return resUser;
+    return resUser?.[0];
   }
-  return user;
+  return user?.[0];
 };

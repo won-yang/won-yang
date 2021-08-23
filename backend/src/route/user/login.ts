@@ -10,16 +10,17 @@ const router = express.Router();
 const KAKAO_CLIENT_ID = process.env.KAKAO_CLIENT_ID;
 const KAKAO_CALLBACK_URL = process.env.KAKAO_CALLBACK_URL;
 const KakaoStrategy = require('passport-kakao').Strategy;
+const cookieMaxAge: number = 1000 * 60 * 60;
 
 const successLogin = (req, res) => {
   const tokenData = {
-    id: 'iddd',
+    id: req.user.id,
     data: 'hihihi',
   };
 
   const token = util.createToken(tokenData);
-  res.cookie('token', token, { httpOnly: true });
 
+  res.cookie('token', token, { maxAge: cookieMaxAge, httpOnly: true });
   res.redirect('/api/main');
 };
 

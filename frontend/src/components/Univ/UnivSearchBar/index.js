@@ -3,6 +3,7 @@ import { debounce } from 'lodash';
 import styled from 'styled-components';
 
 const BASE_URL = 'http://localhost:8080';
+const UNIV_API = '/api/school';
 const styledInput = {
   padding: '1rem',
   fontSize: '1em',
@@ -12,7 +13,7 @@ const styledInput = {
 
 const UnivSearchbar = (props) => {
   const [inputValue, setInputValue] = useState('');
-  const [dataList, setDataList] = useState([]);
+  const [campusList, setCampusList] = useState([]);
   const [isInput, setIsInput] = useState(false);
 
   const onSelected = (e) => {
@@ -22,18 +23,16 @@ const UnivSearchbar = (props) => {
     setIsInput(true);
   };
 
-  const request = async () => {
+  const request = async (inputV) => {
     try {
-      const UNIV_API = '/api/school';
-      if (inputValue !== '') {
-        const response = await fetch(
-          `${BASE_URL}${UNIV_API}?name=${inputValue}`
-        );
+      if (inputV !== '') {
+        console.log('리퀘스트 보낸다');
+        const response = await fetch(`${BASE_URL}${UNIV_API}?name=${inputV}`);
         console.log(response);
         const data = await response.json();
         data.list.forEach((item) => console.log(item.name));
         data.list.forEach((item) => console.log(item.id));
-        setDataList(
+        setCampusList(
           data.list.map((item) => (
             <DropDownList
               key={item.id}
@@ -41,20 +40,26 @@ const UnivSearchbar = (props) => {
             >{`${item.name}`}</DropDownList>
           ))
         );
+        console.log(inputV);
+      } else {
+        console.log('아무것도 입력되지 않았다');
+        setCampusList([]);
       }
     } catch (err) {
       console.error(err);
     }
   };
 
-  const debounceCalled = debounce(() => {
-    request();
+  const debounceCalled = debounce((input) => {
+    request(input);
     console.log('debounce!!');
-  }, 500);
+  }, 300);
 
   const onChangeHandler = (e) => {
+    console.log(e);
     setInputValue(e.target.value);
-    debounceCalled();
+    console.log(e.target.value);
+    debounceCalled(e.target.value);
     setIsInput(false);
     console.log(inputValue);
   };
@@ -65,13 +70,13 @@ const UnivSearchbar = (props) => {
       console.log('다음 화면');
     } else {
       console.log('계속 검색');
-      request();
+      request(inputValue);
     }
   };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    request();
+    debounceCalled(inputValue);
   };
 
   return (
@@ -83,8 +88,6 @@ const UnivSearchbar = (props) => {
           type='search'
           value={inputValue}
           onChange={onChangeHandler}
-          onKeyUp={onChangeHandler}
-          on
           placeholder='대학교를 입력해주세요'
         />
         {isInput ? (
@@ -92,7 +95,7 @@ const UnivSearchbar = (props) => {
         ) : (
           <span onClick={onClickHandler}>[대충 돋보기]</span>
         )}
-        <ul>{dataList && dataList.map((item) => item)}</ul>
+        <ul>{campusList && campusList.map((item) => item)}</ul>
       </form>
     </>
   );

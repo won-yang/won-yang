@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Container } from './style';
+import React from "react";
+import PropTypes from "prop-types";
+import { Container } from "./style";
 
 const IconContainer = (props) => {
-  console.log(props);
   return <Container {...props}>{props.children}</Container>;
 };
 

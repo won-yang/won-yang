@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { debounce } from 'lodash';
-import styled from 'styled-components';
+import { DropDownList } from './style';
 
 const BASE_URL = 'http://localhost:8080';
 const UNIV_API = '/api/school';
@@ -8,7 +8,7 @@ const styledInput = {
   padding: '1rem',
   fontSize: '1em',
   width: '20em',
-  border: '1px solid navy',
+  border: '5px solid navy',
 };
 
 const UnivSearchbar = (props) => {
@@ -40,6 +40,7 @@ const UnivSearchbar = (props) => {
             >{`${item.name}`}</DropDownList>
           ))
         );
+        // '이거 JSX를 밑으로 뺄 것'
         console.log(inputV);
       } else {
         console.log('아무것도 입력되지 않았다');
@@ -81,7 +82,11 @@ const UnivSearchbar = (props) => {
 
   return (
     <>
-      <form name='univ-search' onSubmit={onSubmitHandler}>
+      <form
+        name='univ-search'
+        onSubmit={onSubmitHandler}
+        style={{ position: 'relative' }}
+      >
         <input
           style={styledInput}
           name='name'
@@ -95,19 +100,15 @@ const UnivSearchbar = (props) => {
         ) : (
           <span onClick={onClickHandler}>[대충 돋보기]</span>
         )}
-        <ul>{campusList && campusList.map((item) => item)}</ul>
+        {/* 이 부분 컴포넌트로 따로 뺄 것 */}
+        <ul style={{ position: 'absolute' }}>
+          {campusList && campusList.map((item) => item)}
+        </ul>
       </form>
     </>
   );
 };
 
 UnivSearchbar.propTypes = {};
-
-const DropDownList = styled('li')`
-  border: 1px solid navy;
-  border-top: none;
-  padding: 1em;
-  width: 20em;
-`;
 
 export default UnivSearchbar;

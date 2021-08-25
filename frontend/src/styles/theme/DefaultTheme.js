@@ -4,6 +4,7 @@ export const DarkTheme = {
   oppositeDefalutColor: "white",
   desktopFontSize: "30px",
   tabletFontSize: "24px",
+  middleFontSize: "20px",
   mobileFontSize: "16px",
   badgeFontSize: "14px",
   fontGrayColor: "#828282",

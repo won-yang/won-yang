@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { device } from "styles/media";
-import PostStatusBadge from "components/common/PostStatusBadge";
+import Badge from "components/common/Badge";
 
 const PlacePostItem = ({ item }) => {
   return (
     <Container>
       <ImageWrapper>
-        <img src={item.imageUrl} alt='place picture'></img>
-        <PostStatusBadge status={item.status} />
+        <img src={item.image_url} alt='place picture'></img>
+        <Badge status={item.post_status} />
       </ImageWrapper>
       <ItemInfo>
         <h2>{item.title}</h2>
@@ -32,17 +32,20 @@ const ImageWrapper = styled.div`
   height: ${(props) => props.size}; */
   position: relative;
   flex: 1;
+  width: 100%;
+  height: 100%;
   & img {
     min-width: 75px;
     min-height: 75px;
-    max-width: 400px;
+    /* max-width: 400px;
+    max-height: 400px; */
     width: 100%;
     height: 100%;
-    /* object-fit: fill; */
+    object-fit: scale-down;
   }
   @media ${device.tablet} {
     & img {
-      max-width: 400px;
+      /* max-width: 400px; */
       /* object-fit: fill; */
     }
   }

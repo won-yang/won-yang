@@ -1,14 +1,28 @@
-import * as express from 'express';
-import router from './hello';
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import passport from 'passport';
+import morgan from 'morgan';
+import cors from 'cors';
+
+import userRouter from './user';
+import mainRouter from './main';
+import schoolRouter from './university';
+import boardRouter from './main/board';
 
 const app = express();
 
+app.use(cors({ origin: true, credentials: true }));
+app.use(morgan('common'));
 app.use(express.json());
+app.use(passport.initialize());
+app.use(cookieParser());
 
-app.use('/api', router);
+app.use('/api/user', userRouter);
+app.use('/api/main', mainRouter);
+app.use('/api/university', schoolRouter);
+app.use('/api/board', boardRouter);
 
 app.get('*', (req: any, res: any) => {
-  // res.render('error/404');
   res.send('not found');
 });
 

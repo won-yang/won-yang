@@ -13,4 +13,4 @@ WORKDIR /wonyang
 RUN chmod 755 ./install.sh
 RUN ./install.sh
 
-ENTRYPOINT ["yarn", "start"]
+ENTRYPOINT ["yarn", "dev"]

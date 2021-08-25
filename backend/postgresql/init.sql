@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS USERS;
+
+CREATE TABLE USERS
+(
+	id SERIAL PRIMARY KEY,
+	auth_id VARCHAR(30) NOT NULL,
+	nickname VARCHAR(30),
+	university_id INT,
+	last_login TIMESTAMP
+);

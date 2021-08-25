@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { device } from "styles/media";
 import PlacePostItem from "./PlacePostItem";
-import PostFilter from "./PostFilter";
 
 const PlacePostList = (props) => {
-  const { items } = props;
+  const { items, intersectRef, isLastPage } = props;
+
   return (
     <Wrapper>
       {items?.map((item) => (
         <PlacePostItem key={item.id} item={item} />
       ))}
+      {!isLastPage ? <div ref={intersectRef}>...loading</div> : <div>Last</div>}
     </Wrapper>
   );
 };

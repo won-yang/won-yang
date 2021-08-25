@@ -1,29 +1,55 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
-import { device } from "styles/media";
 import Header from "components/Header";
 import PlacePostList from "components/PlacePostList";
-import { getPostItem } from "utils/api";
-import { BASE_URL } from "utils/constants/request";
 import PostFilter from "components/PlacePostList/PostFilter";
+import { getPostItem } from "utils/api";
+import { BASE_URL, END_POINT } from "utils/constants/request";
+import useInfiniteScroll from "hooks/useInfiniteScroll";
 
 const MainPage = (props) => {
   const [postData, setPostData] = useState([]);
+  /*
+   * 넘겨받는데이터(path)로 초기값세팅
+   */
+  const [pageNum, setPageNum] = useState(1);
+  /*
+   * page관련부분 hooks로 분리할 것
+   */
+  const [isLastPage, setIsLastPage] = useState(false);
+  const intersectRef = useRef(null);
+  const { isIntersect } = useInfiniteScroll(intersectRef, {
+    _rootMargin: "200px",
+    _threshold: 0.01,
+  });
+  const loadMorePostItem = async () => {
+    if (isIntersect) {
+      const response = await getPostItem(BASE_URL + END_POINT.board, {
+        page: pageNum,
+      });
+      if (response.post.length === 0) {
+        setIsLastPage(true);
+      } else {
+        setPostData([...postData, ...response.post]);
+        setPageNum((prev) => prev + 1);
+      }
+    }
+  };
 
-  useEffect(async () => {
-    const response = await getPostItem(BASE_URL);
-    setPostData([...response.post]);
-    return () => console.log("cleanup");
-  }, []);
+  useEffect(() => {
+    loadMorePostItem();
+  }, [isIntersect]);
   return (
     <>
       <Header />
       <ArticleContainer>
         <section className='temp-section'>검색 및 공지사항 div</section>
-        <section className='filtered-bar'>필터링 버튼</section>
         <PostFilter />
-        <PlacePostList items={postData} />
+        <PlacePostList
+          items={postData}
+          intersectRef={intersectRef}
+          isLastPage={isLastPage}
+        />
       </ArticleContainer>
     </>
   );

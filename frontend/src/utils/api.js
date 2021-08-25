@@ -1,5 +1,5 @@
 import { requestGet } from "./HttpMethod";
 
-export const getPostItem = (url) => {
-  return requestGet(url);
+export const getPostItem = (url, parameters) => {
+  return requestGet(url, parameters);
 };

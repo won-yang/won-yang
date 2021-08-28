@@ -12,20 +12,21 @@ const KAKAO_CALLBACK_URL = process.env.KAKAO_CALLBACK_URL;
 const KakaoStrategy = require('passport-kakao').Strategy;
 const cookieMaxAge: number = 1000 * 60 * 60;
 
-const successLogin = (req, res) => {
+const successLogin = (req, res, next) => {
   const tokenData = {
     id: req.user.id,
     data: 'hihihi',
   };
 
-  const token = util.createToken(tokenData);
+  try {
+    const token = util.createToken(tokenData);
 
-  res.cookie('token', token, { maxAge: cookieMaxAge, httpOnly: true });
-  res.redirect('/api/main');
+    res.cookie('token', token, { maxAge: cookieMaxAge, httpOnly: true });
+    res.sendStatus(200);
+  } catch (err) {
+    next(err);
+  }
 };
-
-router.get('/', passport.authenticate('kakao', { session: false }));
-router.get('/kakao/callback', passport.authenticate('kakao', { session: false, failureRedirect: '/api/user/login' }), successLogin);
 
 passport.use(
   'kakao',
@@ -44,5 +45,10 @@ passport.use(
     },
   ),
 );
+
+const kakaoCallbackMiddleWare = passport.authenticate('kakao', { session: false, failureRedirect: '/api/user/login' });
+
+router.get('/', passport.authenticate('kakao', { session: false }));
+router.get('/kakao/callback', kakaoCallbackMiddleWare, successLogin);
 
 export default router;

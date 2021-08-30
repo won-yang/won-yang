@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const SticksWrapper = styled.div`
   width: 100%;
@@ -18,7 +18,7 @@ export const HamburgerSticks = styled.div`
     background-color: black;
     transform: rotate3d(0, 0, 1, 45deg);
     &::before {
-      content: '';
+      content: "";
       background-color: black;
       top: 0;
       transition: 0.6s;
@@ -26,12 +26,12 @@ export const HamburgerSticks = styled.div`
     }
   }
   &.open::after {
-    content: '';
+    content: "";
     display: none;
   }
   &::before {
     position: absolute;
-    content: '';
+    content: "";
     width: 100%;
     height: 3px;
     background-color: white;
@@ -39,7 +39,7 @@ export const HamburgerSticks = styled.div`
   }
   &::after {
     position: absolute;
-    content: '';
+    content: "";
     width: 100%;
     height: 3px;
     background-color: white;

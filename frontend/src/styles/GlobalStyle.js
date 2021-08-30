@@ -1,18 +1,20 @@
-import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
     ${reset};
     html, body{
-        width: 100vw;
-        height: 100vh;
         padding: 0;
         margin: 0;
         font-family: 'Noto Sans KR', sans-serif;
+        box-sizing : border-box;
     };
     #root{
       width:100%;
       height:100%;
+    }
+    span {
+      line-height: normal;
     }
     /* button{
         display: flex;

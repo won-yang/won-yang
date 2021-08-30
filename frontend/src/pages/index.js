@@ -1,6 +1,6 @@
-import LandingPage from './Landing';
-import MainPage from './Main';
-import PostDetailPage from './PostDetail';
-import PostWritePage from './PostWrite';
+import LandingPage from "./Landing/Landing";
+import MainPage from "./Main/Main";
+import PostDetailPage from "./PostDetail/PostDetail";
+import PostWritePage from "./PostWrite/PostWrite";
 
 export { LandingPage, MainPage, PostDetailPage, PostWritePage };

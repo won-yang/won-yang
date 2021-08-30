@@ -6,6 +6,8 @@ import PostFilter from "components/PlacePostList/PostFilter/PostFilter";
 import { getPostItem } from "utils/api";
 import { BASE_URL, END_POINT } from "utils/constants/request";
 import useInfiniteScroll from "hooks/useInfiniteScroll";
+import Jumbotron from "components/common/Jumbotron";
+import MainTemplate from "components/Template/MainTemplate";
 
 const MainPage = (props) => {
   const [postData, setPostData] = useState([]);
@@ -40,8 +42,8 @@ const MainPage = (props) => {
     loadMorePostItem();
   }, [isIntersect]);
   return (
-    <>
-      <Header />
+    <MainTemplate>
+      <Jumbotron />
       <ArticleContainer>
         <section className='temp-section'>검색 및 공지사항 div</section>
         <PostFilter />
@@ -51,7 +53,7 @@ const MainPage = (props) => {
           isLastPage={isLastPage}
         />
       </ArticleContainer>
-    </>
+    </MainTemplate>
   );
 };
 
@@ -59,11 +61,8 @@ MainPage.propTypes = {};
 
 export default MainPage;
 
-export const ArticleContainer = styled.article`
+const ArticleContainer = styled.article`
   padding-top: 60px;
-  max-width: 1280px;
-  width: 90%;
-  margin: 0 auto;
   & .temp-section {
     height: 320px;
   }

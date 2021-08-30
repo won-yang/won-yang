@@ -45,13 +45,9 @@ const MainPage = (props) => {
     <MainTemplate>
       <Jumbotron />
       <ArticleContainer>
-        <section className='temp-section'>검색 및 공지사항 div</section>
+        <section className="temp-section">검색 및 공지사항 div</section>
         <PostFilter />
-        <PlacePostList
-          items={postData}
-          intersectRef={intersectRef}
-          isLastPage={isLastPage}
-        />
+        <PlacePostList items={postData} intersectRef={intersectRef} isLastPage={isLastPage} />
       </ArticleContainer>
     </MainTemplate>
   );

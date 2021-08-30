@@ -26,7 +26,7 @@ const Container = styled.div`
   justify-content: space-between;
   width: 90%;
   height: 50px;
-  margin: 40px auto;
+  margin: 0 auto;
 
   & > span {
     line-height: 50px;

@@ -7,11 +7,8 @@ const HamburgerModal = (props) => {
   const { open } = props;
   return (
     <ModalPortal>
-      <ModalBackGround data-kind='modal-bg'>
-        <ModalContainer
-          data-kind='modal'
-          className={open ? "modal-open" : "modal-close"}
-        >
+      <ModalBackGround data-kind="modal-bg">
+        <ModalContainer data-kind="modal" className={open ? "modal-open" : "modal-close"}>
           {props.children}
         </ModalContainer>
       </ModalBackGround>
@@ -20,10 +17,7 @@ const HamburgerModal = (props) => {
 };
 
 HamburgerModal.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 
 export default HamburgerModal;

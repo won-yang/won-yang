@@ -7,10 +7,10 @@ import { Wrapper, Container, CenterAlignWrapper } from "./style";
 
 const Header = (props) => {
   return (
-    <Wrapper id='header'>
+    <Wrapper id="header">
       <CenterAlignWrapper>
         <Container>
-          <IconLogo widthSize='65px' heightSize='100%'></IconLogo>
+          <IconLogo widthSize="65px" heightSize="100%"></IconLogo>
           <UnivTitle univName={props.univName}></UnivTitle>
           <HamburgerMenu></HamburgerMenu>
         </Container>

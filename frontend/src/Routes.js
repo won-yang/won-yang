@@ -11,19 +11,19 @@ const Routes = (props) => {
       <Header />
       <ThemeProvider theme={DarkTheme}>
         <Switch>
-          <Route path='/' exact>
+          <Route path="/" exact>
             {/* landing page */}
             <LandingPage />
           </Route>
-          <Route path='/main'>
+          <Route path="/main">
             {/* main page */}
             <MainPage />
           </Route>
-          <Route path='/posts'>
+          <Route path="/posts">
             {/* 작성 page */}
             <PostWritePage />
           </Route>
-          <Route path='/posts/:id'>
+          <Route path="/posts/:id">
             {/* 게시글보기 page */}
             <PostDetailPage />
           </Route>

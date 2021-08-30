@@ -13,23 +13,18 @@ const HamburgerMenu = (props) => {
     const { kind } = e.target.dataset;
     if (
       isMounted &&
-      (kind === "modal-toggle-btn" ||
-        kind === "modal-btn-sticks" ||
-        kind === "modal-bg")
+      (kind === "modal-toggle-btn" || kind === "modal-btn-sticks" || kind === "modal-bg")
     ) {
       setIsMounted(false);
-    } else if (
-      !isMounted &&
-      (kind === "modal-toggle-btn" || kind === "modal-btn-sticks")
-    ) {
+    } else if (!isMounted && (kind === "modal-toggle-btn" || kind === "modal-btn-sticks")) {
       setIsMounted(true);
     }
   };
   return (
     <Container onClick={handleClick}>
-      <SticksWrapper data-kind='modal-toggle-btn'>
+      <SticksWrapper data-kind="modal-toggle-btn">
         <HamburgerSticks
-          data-kind='modal-btn-sticks'
+          data-kind="modal-btn-sticks"
           className={shouldRender ? "open" : ""}
         ></HamburgerSticks>
       </SticksWrapper>

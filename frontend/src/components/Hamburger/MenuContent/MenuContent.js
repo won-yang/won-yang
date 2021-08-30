@@ -1,13 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  Wrapper,
-  ListWrapper,
-  List,
-  ListItems,
-  NickNameDisplayWrapper,
-  NickName,
-} from "./style";
+import { Wrapper, ListWrapper, List, ListItems, NickNameDisplayWrapper, NickName } from "./style";
 
 const HamburgerMenuContent = (props) => {
   return (

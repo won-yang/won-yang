@@ -8,7 +8,7 @@ const PlacePostItem = ({ item }) => {
   return (
     <Container>
       <ImageWrapper>
-        <img src={item.image_url} alt='place picture'></img>
+        <img src={item.image_url} alt="place picture"></img>
         <Badge status={item.post_status} />
       </ImageWrapper>
       <ItemInfo>

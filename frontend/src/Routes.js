@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { LandingPage, MainPage, PostDetailPage, PostWritePage } from "pages";
 import { ThemeProvider } from "styled-components";
 import { DarkTheme } from "styles/theme/DefaultTheme";
+import Header from "components/Header/Header";
 
 const Routes = (props) => {
   return (
     <Router>
+      <Header />
       <ThemeProvider theme={DarkTheme}>
         <Switch>
           <Route path='/' exact>

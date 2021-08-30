@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { device } from "styles/media";
-import PlacePostItem from "./PlacePostItem";
+import PlacePostItem from "./PostItem/PostItem";
 
 const PlacePostList = (props) => {
   const { items, intersectRef, isLastPage } = props;

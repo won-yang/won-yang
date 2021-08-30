@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
-import Header from "components/Header";
-import PlacePostList from "components/PlacePostList";
-import PostFilter from "components/PlacePostList/PostFilter";
+import Header from "components/Header/Header";
+import PlacePostList from "components/PlacePostList/PostList";
+import PostFilter from "components/PlacePostList/PostFilter/PostFilter";
 import { getPostItem } from "utils/api";
 import { BASE_URL, END_POINT } from "utils/constants/request";
 import useInfiniteScroll from "hooks/useInfiniteScroll";

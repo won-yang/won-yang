@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import useModal from "hooks/useModal";
-import HamburgerModal from "components/Hamburger/Modal";
-import HamburgerMenuContent from "components/Hamburger/MenuContent";
+import HamburgerModal from "components/Hamburger/Modal/Modal";
+import HamburgerMenuContent from "components/Hamburger/MenuContent/MenuContent";
 import { Container, HamburgerSticks, SticksWrapper } from "./style";
 
 const HamburgerMenu = (props) => {

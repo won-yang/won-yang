@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import UnivTitle from "components/Univ/UnivTitle";
+import UnivTitle from "components/Univ/UnivTitle/UnivTitle";
 import { HamburgerMenu } from "components/Hamburger";
 import { IconLogo } from "components/Icon";
 import { Wrapper, Container, CenterAlignWrapper } from "./style";

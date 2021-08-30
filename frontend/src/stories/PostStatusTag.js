@@ -11,22 +11,22 @@ export const PostStatusTag = ({
   fontSize,
   width,
 }) => {
-  const progress클래스 = progress ? "progress" : "";
-  const done클래스 = done ? "done" : "";
-  const expired클래스 = expired ? "expired" : "";
+  const progressClass = progress ? "progress" : "";
+  const doneClass = done ? "done" : "";
+  const expiredClass = expired ? "expired" : "";
   console.log(width);
   return (
     <Button
-      className={[progress클래스, done클래스, expired클래스].join("")}
+      className={[progressClass, doneClass, expiredClass].join("")}
       style={
         // borderRadius && { borderRadius },
         // backgroundColor && { backgroundColor },
         { width, fontSize, backgroundColor, borderRadius }
       }
     >
-      {progress클래스 ? "진행중" : ""}
-      {done클래스 ? "계약완료" : ""}
-      {expired클래스 ? "만료" : ""}
+      {progressClass ? "진행중" : ""}
+      {doneClass ? "계약완료" : ""}
+      {expiredClass ? "만료" : ""}
     </Button>
   );
 };

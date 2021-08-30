@@ -34,19 +34,28 @@ const ImageWrapper = styled.div`
   flex: 1;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   & img {
-    min-width: 75px;
-    min-height: 75px;
-    /* max-width: 400px;
-    max-height: 400px; */
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: scale-down;
+    min-width: 75px;
+    min-height: 150px;
+    max-height: 150px;
+    height: auto;
+    object-fit: fill;
   }
   @media ${device.tablet} {
+    & {
+      width: 100%;
+      min-height: 200px;
+    }
     & img {
-      /* max-width: 400px; */
-      /* object-fit: fill; */
+      width: 100%;
+      height: auto;
+      max-height: 225px;
+      object-fit: fill;
     }
   }
   @media ${device.desktop} {

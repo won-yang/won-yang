@@ -1,8 +1,8 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { LandingPage, MainPage, PostDetailPage, PostWritePage } from 'pages';
-import { ThemeProvider } from 'styled-components';
-import { DarkTheme } from 'styles/theme/DefaultTheme';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { LandingPage, MainPage, PostDetailPage, PostWritePage } from "pages";
+import { ThemeProvider } from "styled-components";
+import { DarkTheme } from "styles/theme/DefaultTheme";
 
 const Routes = (props) => {
   return (

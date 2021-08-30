@@ -11,8 +11,6 @@ router.use(function (req, res, next) {
 
   const verifedToken = verifyToken(token);
 
-  console.log('verifedToken: ', verifedToken);
-
   if (!verifedToken || !verifedToken.id) next('error');
 
   const user = userLogic.get(verifedToken.id);

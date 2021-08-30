@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div``;
 
@@ -42,6 +42,6 @@ export const NickName = styled.span`
   top: 100%;
   padding-bottom: 10px;
   transform: translate(0, -100%);
-  font-size: 20px;
+  font-size: 1rem;
   color: white;
 `;

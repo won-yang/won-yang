@@ -1,27 +1,28 @@
 import * as user_db from '../db/user';
+import { IUser } from '../interface/interface';
 
-export const create = async (authId: string) => {
+export const create = async (authId: string): Promise<void> => {
   await user_db.createUser(authId);
 };
 
-export const get = async (id: number) => {
+export const get = async (id: number): Promise<IUser> => {
   const user = await user_db.getUser(id);
   return user;
 };
 
-export const getByAuthId = async (authId: string) => {
+export const getByAuthId = async (authId: string): Promise<IUser> => {
   const user = await user_db.getUserByAuthId(authId);
   return user;
 };
 
-export const getOrCreate = async (authId: string) => {
+export const getOrCreate = async (authId: string): Promise<IUser> => {
   const user = await getByAuthId(authId);
 
-  if (user?.length === 0) {
+  if (!user) {
     await create(authId);
     const resUser = await getByAuthId(authId);
 
-    return resUser?.[0];
+    return resUser;
   }
-  return user?.[0];
+  return user;
 };

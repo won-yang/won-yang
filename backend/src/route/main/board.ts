@@ -3,16 +3,16 @@ const router = express.Router();
 import * as board_logic from '../../logic/board';
 
 router.get('/', async (req: any, res: any) => {
-  const { type, page } = req.query;
+  let { type, page, university_id } = req.query;
 
-  if (!page) {
+  if (!page || !university_id) {
     res.status(400).send('');
     return;
   }
 
-  console.log(type, page);
+  if (type === undefined) type = null;
 
-  const result = await board_logic.getPostList(type, page);
+  const result = await board_logic.getPostList(type, page, university_id);
 
   res.status(200).json({ total_post: result.total_post, post: result.post });
 });

@@ -7,11 +7,11 @@ const router = express.Router();
 router.use(function (req, res, next) {
   const token = req.headers.authorization;
 
-  if (!token) next('error');
+  if (!token) next('token does not exist');
 
   const verifedToken = verifyToken(token);
 
-  if (!verifedToken || !verifedToken.id) next('error');
+  if (!verifedToken || !verifedToken.id) next('invalid token');
 
   const user = userLogic.get(verifedToken.id);
 

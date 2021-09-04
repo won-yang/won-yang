@@ -30,3 +30,12 @@ export const getUserByAuthId = async (authId: string): Promise<IUser> => {
     return err;
   }
 };
+
+export const updateLastLogin = async (id: number) => {
+  try {
+    const nowTime = new Date();
+    await pool.query(`UPDATE USERS SET last_login = $1 WHERE id = $2`, [nowTime, id]);
+  } catch (err) {
+    return err;
+  }
+};

@@ -26,3 +26,15 @@ export const getOrCreate = async (authId: string): Promise<IUser> => {
   }
   return user;
 };
+
+export const updateLastLogin = async (id: number): Promise<boolean> => {
+  await user_db.updateLastLogin(id);
+  return true;
+};
+
+export const checkSignUp = (user: IUser) => {
+  if (user.universityId) {
+    return false;
+  }
+  return true;
+};

@@ -12,7 +12,7 @@ const KAKAO_CALLBACK_URL = process.env.KAKAO_CALLBACK_URL;
 const KakaoStrategy = require('passport-kakao').Strategy;
 const cookieMaxAge: number = 1000 * 60 * 60;
 
-const successLogin = (req, res, next) => {
+const successLogin = async (req, res, next) => {
   const tokenData = {
     id: req.user.id,
     data: 'hihihi',
@@ -20,9 +20,12 @@ const successLogin = (req, res, next) => {
 
   try {
     const token = util.createToken(tokenData);
+    const isSignUp = user_logic.checkSignUp(req.user);
+
+    await user_logic.updateLastLogin(req.user.id);
 
     res.cookie('token', token, { maxAge: cookieMaxAge, httpOnly: true });
-    res.sendStatus(200);
+    res.status(200).json({ isSignUp });
   } catch (err) {
     next(err);
   }
@@ -38,6 +41,7 @@ passport.use(
     async (accessToken: any, refreshToken: any, profile: any, done: any) => {
       try {
         const user = await user_logic.getOrCreate(profile.id);
+
         return done(null, user);
       } catch (err) {
         return done(err);

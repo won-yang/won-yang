@@ -28,7 +28,7 @@ app.get('*', (req: any, res: any) => {
 
 app.use(function (err, req, res, next) {
   console.error(err.stack);
-  res.status(500).send('server error!');
+  res.status(500).send(err?.msg || 'server error!');
 });
 
 app.listen(8080, () => {

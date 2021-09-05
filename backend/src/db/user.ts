@@ -32,6 +32,7 @@ export const getUserByAuthId = async (authId: string): Promise<IUser> => {
 };
 
 export const updateLastLogin = async (id: number) => {
+export const updateLastLogin = async (id: number): Promise<void> => {
   try {
     const nowTime = new Date();
     await pool.query(`UPDATE USERS SET last_login = $1 WHERE id = $2`, [nowTime, id]);

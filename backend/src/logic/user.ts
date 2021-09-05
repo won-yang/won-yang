@@ -33,6 +33,7 @@ export const updateLastLogin = async (id: number): Promise<boolean> => {
 };
 
 export const checkSignedUser = (user: IUser) => {
+export const checkSignedUser = (user: IUser): boolean => {
   if (user.universityId) {
     return true;
   }

@@ -25,7 +25,7 @@ const successLogin = async (req, res, next) => {
     await user_logic.updateLastLogin(req.user.id);
 
     res.cookie('token', token, { maxAge: cookieMaxAge, httpOnly: true });
-    res.status(200).json({ isSignUp });
+    res.status(200).json({ isSignUp, universityId: req.user.universityId });
   } catch (err) {
     next(err);
   }
@@ -53,6 +53,6 @@ passport.use(
 const kakaoCallbackMiddleWare = passport.authenticate('kakao', { session: false, failureRedirect: '/api/user/login' });
 
 router.get('/', passport.authenticate('kakao', { session: false }));
-router.get('/kakao/callback', kakaoCallbackMiddleWare, successLogin);
+router.get('/kakao-callback', kakaoCallbackMiddleWare, successLogin);
 
 export default router;

@@ -20,12 +20,12 @@ const successLogin = async (req, res, next) => {
 
   try {
     const token = util.createToken(tokenData);
-    const isSignUp = user_logic.checkSignUp(req.user);
+    const isSigned = user_logic.checkSignedUser(req.user);
 
     await user_logic.updateLastLogin(req.user.id);
 
     res.cookie('token', token, { maxAge: cookieMaxAge, httpOnly: true });
-    res.status(200).json({ isSignUp, universityId: req.user.universityId });
+    res.status(200).json({ isSigned, universityId: req.user.universityId });
   } catch (err) {
     next(err);
   }

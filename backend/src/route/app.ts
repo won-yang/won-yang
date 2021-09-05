@@ -6,11 +6,10 @@ import cors from 'cors';
 
 import userRouter from './user';
 import mainRouter from './main';
-import schoolRouter from './university';
-import boardRouter from './main/board';
+import schoolRouter from './school';
+import cors from 'cors';
 
 const app = express();
-
 app.use(cors({ origin: true, credentials: true }));
 app.use(morgan('common'));
 app.use(express.json());

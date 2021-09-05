@@ -20,7 +20,8 @@ const successLogin = (req, res) => {
   const token = util.createToken(tokenData);
   res.cookie('token', token, { httpOnly: true });
 
-  res.redirect('/api/main');
+  //res.redirect('/api/main');
+  res.sendStatus(200);
 };
 
 router.get('/', passport.authenticate('kakao', { session: false }));

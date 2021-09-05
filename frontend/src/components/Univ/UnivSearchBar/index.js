@@ -3,7 +3,7 @@ import { debounce } from 'lodash';
 import { DropDownList } from './style';
 
 const BASE_URL = 'http://localhost:8080';
-const UNIV_API = '/api/school';
+const UNIV_API = '/api/university';
 const styledInput = {
   padding: '1rem',
   fontSize: '1em',

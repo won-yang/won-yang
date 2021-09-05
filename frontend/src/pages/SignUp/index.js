@@ -9,6 +9,7 @@ const SignUpPage = () => {
         <IconLogo widthSize='100px' heightSize='100px' />
       </SignUpHeader>
       <SignUpForm>
+        <h2 className='header'>정보를 알려주세요</h2>
         <label className='univ univ__label' htmlFor='university'>
           소속 대학교
           <span className='univ info univ__info'>

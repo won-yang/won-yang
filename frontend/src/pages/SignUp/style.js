@@ -7,6 +7,12 @@ export const SignUpContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  .header {
+    text-align: center;
+  }
+  button {
+    border: none;
+  }
 `;
 
 export const SignUpHeader = styled.header`
@@ -19,7 +25,7 @@ export const SignUpHeader = styled.header`
 `;
 
 export const SignUpForm = styled.form`
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   display: flex;
   flex-direction: column;
 
@@ -29,8 +35,12 @@ export const SignUpForm = styled.form`
     font-weight: normal;
     font-size: 12px;
     line-height: 12px;
-    /* identical to box height */
 
     color: #515151;
+  }
+
+  .signup__conplete {
+    background-color: #4593ef;
+    color: white;
   }
 `;

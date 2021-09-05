@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.use('/', userRouter);
 
-router.get('/logout', (req: any, res: any) => {
+router.delete('/logout', (req: any, res: any) => {
   res.clearCookie('token');
   res.status(200).json();
 });

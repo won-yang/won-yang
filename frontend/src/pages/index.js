@@ -2,5 +2,6 @@ import LandingPage from "./Landing/Landing";
 import MainPage from "./Main/Main";
 import PostDetailPage from "./PostDetail/PostDetail";
 import PostWritePage from "./PostWrite/PostWrite";
+import SignUpPage from "./SignUp";
 
-export { LandingPage, MainPage, PostDetailPage, PostWritePage };
+export { SignUpPage, LandingPage, MainPage, PostDetailPage, PostWritePage };

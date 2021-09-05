@@ -1,6 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { LandingPage, MainPage, PostDetailPage, PostWritePage } from "pages";
+import {
+  LandingPage,
+  MainPage,
+  PostDetailPage,
+  PostWritePage,
+  SignUpPage,
+} from "pages";
 import { ThemeProvider } from "styled-components";
 import { DarkTheme } from "styles/theme/DefaultTheme";
 
@@ -12,6 +18,9 @@ const Routes = (props) => {
           <Route path='/' exact>
             {/* landing page */}
             <LandingPage />
+          </Route>
+          <Route path='/signup'>
+            <SignUpPage />
           </Route>
           <Route path='/main'>
             {/* main page */}

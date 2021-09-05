@@ -8,7 +8,7 @@ router.use('/', userRouter);
 
 router.get('/logout', (req: any, res: any) => {
   res.clearCookie('token');
-  res.redirect('/api/main');
+  res.status(200).json();
 });
 
 router.use('/login', loginRouter);

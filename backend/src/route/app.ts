@@ -23,7 +23,7 @@ app.use('/api/university', schoolRouter);
 app.use('/api/board', boardRouter);
 
 app.get('*', (req: any, res: any) => {
-  res.send('not found');
+  res.status(400).send('not found');
 });
 
 app.use(function (err, req, res, next) {

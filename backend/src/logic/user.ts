@@ -32,9 +32,8 @@ export const updateLastLogin = async (id: number): Promise<boolean> => {
   return true;
 };
 
-export const checkSignedUser = (user: IUser) => {
 export const checkSignedUser = (user: IUser): boolean => {
-  if (user.universityId) {
+  if (user.campusId) {
     return true;
   }
   return false;

@@ -13,14 +13,14 @@ export const getPost = async (type: TPOST_STATUS | null = null, page: number, un
         ? await pool.query(
             `SELECT p.id, p.title, p.deposit, p.monthly_rent, p.address, p.post_status, to_char(p.created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at, i.image_url 
           FROM post as p LEFT JOIN image as i ON p.id = i.post_id 
-          WHERE p.school_id = ${universityId}
+          WHERE p.university_id = ${universityId}
           ORDER BY p.id DESC
           LIMIT ${PAGE_SIZE} OFFSET ${offset}`,
           )
         : await pool.query(`
         SELECT p.id, p.title, p.deposit, p.monthly_rent, p.address, p.post_status, to_char(p.created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at, i.image_url 
         FROM post as p LEFT JOIN image as i ON p.id = i.post_id 
-        WHERE p.post_status = '${type}' AND p.school_id = ${universityId}
+        WHERE p.post_status = '${type}' AND p.university_id = ${universityId}
         ORDER BY p.id DESC
         LIMIT ${PAGE_SIZE} OFFSET ${offset}`);
     return res.rows;

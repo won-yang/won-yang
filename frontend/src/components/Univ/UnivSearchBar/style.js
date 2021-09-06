@@ -12,14 +12,14 @@ export const DropDownList = styled("li")`
 export const InputForm = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  width: ${(props) => props.isMobile < 700 && "100vw"};
-  position: ${(props) => props.isMobile < 700 && "absolute"};
-  top: ${(props) => props.isMobile < 700 && "0px"};
-  left: ${(props) => props.isMobile < 700 && "0px"};
-  background-color: ${(props) => (props.isMobile < 700 ? "white" : "#2e42a9")};
-  height: ${(props) => (props.isMobile < 700 ? "100vh" : "50px")};
+  width: ${(props) => props.isMobile < 768 && "100vw"};
+  position: ${(props) => props.isMobile < 768 && "absolute"};
+  top: ${(props) => props.isMobile < 768 && "0px"};
+  left: ${(props) => props.isMobile < 768 && "0px"};
+  background-color: ${(props) => (props.isMobile < 768 ? "white" : "#2e42a9")};
+  height: ${(props) => (props.isMobile < 768 ? "100vh" : "50px")};
   .input {
-    width: ${(props) => (props.isMobile < 700 ? `100vw` : "20em")};
+    width: ${(props) => (props.isMobile < 768 ? `100vw` : "20em")};
     height: 50px;
 
     padding: 14px;

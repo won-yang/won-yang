@@ -10,7 +10,7 @@ export interface IUser {
   id: number;
   authId: string;
   nickname: string;
-  schoolId: number;
+  universityId: number;
   lastLogin: number;
 }
 

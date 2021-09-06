@@ -14,18 +14,15 @@ const converStatusName = (type: 'in_progress'): TPOST_STATUS | null => {
 const defaultUrl =
   'https://cityhiker.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%A9%E1%84%83%E1%85%A2%E1%84%89%E1%85%A1%E1%86%AB_%E1%84%80%E1%85%A7%E1%84%8B%E1%85%AE%E1%86%AF_1.jpg';
 
-export const getPostList = async (type: 'in_progress' | null, page: number): Promise<{ total_post: number; post: IPostBoardList[] }> => {
-  console.log('-----------getPostList-----------------');
-  console.log(type, page);
-
+export const getPostList = async (
+  type: 'in_progress' | null,
+  page: number,
+  universityId: number,
+): Promise<{ total_post: number; post: IPostBoardList[] }> => {
   const convertedType = converStatusName(type);
-  const postList = await post_db.getPost(convertedType, page);
+  const postList = await post_db.getPost(convertedType, page, universityId);
 
   const postListForClient: IPostBoardList[] = postList.map((post) => {
-    console.log(post.image_url);
-    console.log(post.created_at);
-    console.log('');
-
     const imageUrl = post.image_url || defaultUrl;
 
     return {

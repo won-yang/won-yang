@@ -3,15 +3,19 @@ import PropTypes from "prop-types";
 import UnivSearchbar from "components/Univ/UnivSearchBar";
 import Login from "components/Login";
 import { IconLogo } from "components/Icon";
-import { LandingWrapper, StringWrapper } from "./style";
+import { LandingWrapper, StringWrapper, Wrapper } from "./style";
 
 const LandingPage = (props) => {
   return (
     <LandingWrapper>
-      <IconLogo />
-      <StringWrapper>원룸 양도의 정보가 모이는 곳</StringWrapper>
-      <UnivSearchbar />
-      <Login />
+      <Wrapper>
+        <IconLogo widthSize='400px' heightSize='400px' />
+        <StringWrapper>원룸 양도의 정보가 모이는 곳</StringWrapper>
+      </Wrapper>
+      <Wrapper>
+        <UnivSearchbar />
+        <Login />
+      </Wrapper>
     </LandingWrapper>
   );
 };

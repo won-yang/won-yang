@@ -1,49 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import { debounce } from 'lodash';
-import { DropDownList } from './style';
+import React, { useEffect, useState } from "react";
+import { debounce } from "lodash";
+import { ReactComponent as IconSearch } from "assets/icon_search.svg";
+import { DropDownList, InputForm, Button, Input } from "./style";
 
-const BASE_URL = 'http://localhost:8080';
-const UNIV_API = '/api/university';
+const BASE_URL = "http://localhost:8080";
+const UNIV_API = "/api/university";
 const styledInput = {
-  padding: '1rem',
-  fontSize: '1em',
-  width: '20em',
-  border: '5px solid navy',
+  padding: "1rem",
+  fontSize: "1em",
+  width: "20em",
+  border: "5px solid #2e42a9",
 };
 
 const UnivSearchbar = (props) => {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [campusList, setCampusList] = useState([]);
-  const [isInput, setIsInput] = useState(false);
+  const [isMobile, setIsMobile] = useState(1000);
 
   const onSelected = (e) => {
-    console.log(e);
-    console.log(e.target.innerText);
-    setInputValue(e.target.innerText);
-    setIsInput(true);
+    // console.log(e);
+    // console.log(e.target.innerText);
+    // setInputValue(e.target.innerText);
+    // setCampusList([]);
+    // setIsInput(true);
+    console.log("메인 페이지");
   };
 
   const request = async (inputV) => {
     try {
-      if (inputV !== '') {
-        console.log('리퀘스트 보낸다');
+      if (inputV !== "") {
+        console.log("리퀘스트 보낸다");
         const response = await fetch(`${BASE_URL}${UNIV_API}?name=${inputV}`);
         console.log(response);
         const data = await response.json();
-        data.list.forEach((item) => console.log(item.name));
-        data.list.forEach((item) => console.log(item.id));
-        setCampusList(
-          data.list.map((item) => (
-            <DropDownList
-              key={item.id}
-              onClick={onSelected}
-            >{`${item.name}`}</DropDownList>
-          ))
-        );
-        // '이거 JSX를 밑으로 뺄 것'
+        setCampusList(data.list);
         console.log(inputV);
       } else {
-        console.log('아무것도 입력되지 않았다');
+        console.log("아무것도 입력되지 않았다");
         setCampusList([]);
       }
     } catch (err) {
@@ -53,7 +46,7 @@ const UnivSearchbar = (props) => {
 
   const debounceCalled = debounce((input) => {
     request(input);
-    console.log('debounce!!');
+    console.log("debounce!!");
   }, 300);
 
   const onChangeHandler = (e) => {
@@ -61,17 +54,21 @@ const UnivSearchbar = (props) => {
     setInputValue(e.target.value);
     console.log(e.target.value);
     debounceCalled(e.target.value);
-    setIsInput(false);
     console.log(inputValue);
   };
 
   const onClickHandler = (e) => {
-    console.log('버튼누름');
-    if (isInput === true) {
-      console.log('다음 화면');
+    console.log(e);
+    console.log(window.innerWidth);
+    if (inputValue === "") {
+      console.log("입력을 해");
     } else {
-      console.log('계속 검색');
-      request(inputValue);
+      debounceCalled(inputValue);
+    }
+    if (window.innerWidth < 700) {
+      setIsMobile(window.innerWidth);
+    } else {
+      setIsMobile(window.innerWidth);
     }
   };
 
@@ -81,31 +78,33 @@ const UnivSearchbar = (props) => {
   };
 
   return (
-    <>
-      <form
-        name='univ-search'
-        onSubmit={onSubmitHandler}
-        style={{ position: 'relative' }}
-      >
-        <input
-          style={styledInput}
-          name='name'
-          type='search'
-          value={inputValue}
-          onChange={onChangeHandler}
-          placeholder='대학교를 입력해주세요'
-        />
-        {isInput ? (
-          <span onClick={onClickHandler}>대충 다음화면</span>
-        ) : (
-          <span onClick={onClickHandler}>[대충 돋보기]</span>
-        )}
-        {/* 이 부분 컴포넌트로 따로 뺄 것 */}
-        <ul style={{ position: 'absolute' }}>
-          {campusList && campusList.map((item) => item)}
-        </ul>
-      </form>
-    </>
+    <InputForm
+      isMobile={isMobile}
+      name='univ-search'
+      onSubmit={onSubmitHandler}
+      onClick={onClickHandler}
+    >
+      <Input
+        className='input'
+        name='name'
+        type='search'
+        value={inputValue}
+        onChange={onChangeHandler}
+        placeholder='대학교를 입력해주세요'
+      />
+      <Button onClick={onClickHandler}>
+        <IconSearch />
+      </Button>
+      <ul style={{ position: "absolute" }}>
+        {campusList &&
+          campusList.map((item) => (
+            <DropDownList
+              key={item.id}
+              onClick={onSelected}
+            >{`${item.name}`}</DropDownList>
+          ))}
+      </ul>
+    </InputForm>
   );
 };
 

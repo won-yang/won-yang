@@ -1,5 +1,6 @@
 import React from "react";
 import { IconLogo } from "components/Icon";
+import { ReactComponent as IconSearch } from "assets/icon_search.svg";
 import { SignUpHeader, SignUpContainer, SignUpForm } from "./style";
 
 const SignUpPage = () => {

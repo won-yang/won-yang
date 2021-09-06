@@ -10,21 +10,26 @@ const router = express.Router();
 const KAKAO_CLIENT_ID = process.env.KAKAO_CLIENT_ID;
 const KAKAO_CALLBACK_URL = process.env.KAKAO_CALLBACK_URL;
 const KakaoStrategy = require('passport-kakao').Strategy;
+const cookieMaxAge: number = 1000 * 60 * 60;
 
-const successLogin = (req, res) => {
+const successLogin = async (req, res, next) => {
   const tokenData = {
-    id: 'iddd',
+    id: req.user.id,
     data: 'hihihi',
   };
 
-  const token = util.createToken(tokenData);
-  res.cookie('token', token, { httpOnly: true });
+  try {
+    const token = util.createToken(tokenData);
+    const isSigned = user_logic.checkSignedUser(req.user);
 
-  res.redirect('/api/main');
+    await user_logic.updateLastLogin(req.user.id);
+
+    res.cookie('token', token, { maxAge: cookieMaxAge, httpOnly: true });
+    res.status(200).json({ isSigned, universityId: req.user.universityId });
+  } catch (err) {
+    next(err);
+  }
 };
-
-router.get('/', passport.authenticate('kakao', { session: false }));
-router.get('/kakao/callback', passport.authenticate('kakao', { session: false, failureRedirect: '/api/user/login' }), successLogin);
 
 passport.use(
   'kakao',
@@ -36,6 +41,7 @@ passport.use(
     async (accessToken: any, refreshToken: any, profile: any, done: any) => {
       try {
         const user = await user_logic.getOrCreate(profile.id);
+
         return done(null, user);
       } catch (err) {
         return done(err);
@@ -43,5 +49,10 @@ passport.use(
     },
   ),
 );
+
+const kakaoCallbackMiddleWare = passport.authenticate('kakao', { session: false, failureRedirect: '/api/user/login' });
+
+router.get('/', passport.authenticate('kakao', { session: false }));
+router.get('/kakao-callback', kakaoCallbackMiddleWare, successLogin);
 
 export default router;

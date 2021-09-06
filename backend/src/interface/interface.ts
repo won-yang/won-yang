@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import * as types from './types';
 
 export interface IJwtData {
-  id: string;
+  id: number;
   data: string;
 }
 

@@ -17,10 +17,10 @@ const defaultUrl =
 export const getPostList = async (
   type: 'in_progress' | null,
   page: number,
-  universityId: number,
+  campusId: number,
 ): Promise<{ total_post: number; post: IPostBoardList[] }> => {
   const convertedType = converStatusName(type);
-  const postList = await post_db.getPost(convertedType, page, universityId);
+  const postList = await post_db.getPost(convertedType, page, campusId);
 
   const postListForClient: IPostBoardList[] = postList.map((post) => {
     const imageUrl = post.image_url || defaultUrl;

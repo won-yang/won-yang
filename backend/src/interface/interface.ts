@@ -10,11 +10,11 @@ export interface IUser {
   id: number;
   authId: string;
   nickname: string;
-  universityId: number;
+  campusId: number;
   lastLogin: number;
 }
 
-export interface IUniversity {
+export interface ICampus {
   id: number;
   name: string;
 }

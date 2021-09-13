@@ -12,6 +12,7 @@ import {
   SIGNUP_API,
 } from "utils/constants/request";
 import axios from "axios";
+import { useHistory } from "react-router";
 import {
   SignUpHeader,
   SignUpContainer,
@@ -22,6 +23,7 @@ import {
 } from "./style";
 
 const SignUpPage = () => {
+  const history = useHistory();
   const [inputValue, setInputValue] = useState("");
   const [inputNickname, setInputNickname] = useState("");
   const [campusList, setCampusList] = useState([]);
@@ -62,13 +64,12 @@ const SignUpPage = () => {
     try {
       if (input !== "") {
         console.log("리퀘스트 보낸다");
-        console.log("it is cookie", cookie);
         const response = await axios.get(
           `${BASE_URL}${NICKNAME_API}?nickname=${input}`,
           { withCredentials: true }
         );
         console.log(response);
-        if (response.is_valid) {
+        if (response.data.is_valid) {
           console.log("사용할 수 있는 닉네임입니다.");
         } else {
           console.log("사용할 수 없는 닉네임입니다.");
@@ -117,12 +118,26 @@ const SignUpPage = () => {
     }
   };
 
-  const onSubmit = async (e, input) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    const responseSignup = await axios.put(
-      `${BASE_URL}${SIGNUP_API}?name=${input}`,
-      { withCredentials: true }
-    );
+    try {
+      const responseSignup = await axios.put(
+        `${BASE_URL}${SIGNUP_API}`,
+        {
+          campus_id: campusId,
+          nickname: inputNickname,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(responseSignup);
+      if (responseSignup) {
+        history.replace(`main/${campusId}`);
+      }
+    } catch {
+      console.log(e);
+    }
   };
 
   return (

@@ -5,5 +5,5 @@ export const END_POINT = {
 };
 
 export const UNIV_API = "/campus";
-export const NICKNAME_API = "/user/validate_nickname";
-export const SIGNUP_API = "/api/user/sign-up-data";
+export const NICKNAME_API = "/user/validate-nickname";
+export const SIGNUP_API = "/user/sign-up-data";

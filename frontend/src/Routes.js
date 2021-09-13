@@ -19,14 +19,11 @@ const Routes = (props) => {
             {/* main page */}
             <MainPage />
           </Route>
-          <Route path="/posts">
+          <Route path="/posts" exact>
             {/* 작성 page */}
             <PostWritePage />
           </Route>
-          <Route path="/posts/:id">
-            {/* 게시글보기 page */}
-            <PostDetailPage />
-          </Route>
+          <Route path="/posts/:id" exact component={PostDetailPage} />
         </Switch>
       </ThemeProvider>
     </Router>

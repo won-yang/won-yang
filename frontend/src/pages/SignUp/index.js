@@ -4,7 +4,6 @@ import { debounce } from "lodash";
 
 import { DropDownList } from "components/Univ/UnivSearchBar/style";
 import { ReactComponent as IconSearch } from "assets/icon_search.svg";
-import UnivSearchbar from "components/Univ/UnivSearchBar";
 import {
   BASE_URL,
   UNIV_API,
@@ -20,6 +19,7 @@ import {
   FormHeader,
   LabelContainer,
   InputContainer,
+  UL,
 } from "./style";
 
 const SignUpPage = () => {
@@ -164,7 +164,7 @@ const SignUpPage = () => {
           <button className='search__univ'>
             <IconSearch width='35px' height='35px' />
           </button>
-          <ul style={{ position: "absolute" }}>
+          <UL>
             {campusList &&
               campusList.map((item) => (
                 <DropDownList
@@ -172,7 +172,7 @@ const SignUpPage = () => {
                   onClick={(e) => onSelected(e, item.id)}
                 >{`${item.name}`}</DropDownList>
               ))}
-          </ul>
+          </UL>
         </InputContainer>
 
         <LabelContainer htmlFor='nickname'>

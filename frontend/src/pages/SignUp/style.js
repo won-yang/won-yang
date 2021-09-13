@@ -79,6 +79,7 @@ export const InputContainer = styled.div`
 
   .univ__search {
     transform: translateY(-11px);
+    width: 80%;
   }
 
   .search__univ {
@@ -88,4 +89,10 @@ export const InputContainer = styled.div`
   .nickname {
     width: 23rem;
   }
+`;
+
+export const UL = styled.ul`
+  position: absolute;
+  transform: translateY(-60px);
+  height: 0px;
 `;

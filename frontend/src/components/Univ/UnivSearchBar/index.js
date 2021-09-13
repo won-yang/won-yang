@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { debounce } from "lodash";
 import { ReactComponent as IconSearch } from "assets/icon_search.svg";
+import { BASE_URL, UNIV_API } from "utils/constants/request";
 import { DropDownList, InputForm, Button, Input } from "./style";
 
-const BASE_URL = "http://localhost:8080";
-const UNIV_API = "/api/university";
 const styledInput = {
   padding: "1rem",
   fontSize: "1em",

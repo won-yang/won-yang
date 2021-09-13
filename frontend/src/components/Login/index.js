@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useHistory } from "react-router";
 import qs from "qs";
 import axios from "axios";
 import { LoginButton } from "./style";
@@ -8,40 +9,40 @@ const KAKAO_URL = "/api/user/login";
 const CALLBACK_URL = "/kakao-callback";
 
 const Login = () => {
+  const history = useHistory();
+
   useEffect(() => {
     const codeQuery = qs.parse(window.location.search, {
       ignoreQueryPrefix: true,
     });
-    console.log(codeQuery);
 
-    const haha = async () => {
+    const loginRequest = async () => {
       try {
         const response = await axios.get(
-          `${BASE_URL + KAKAO_URL + CALLBACK_URL}?code=${codeQuery.code}`
+          `${BASE_URL + KAKAO_URL + CALLBACK_URL}?code=${codeQuery.code}`,
+          { withCredentials: true }
         );
         console.log(response);
-        // if (로그인) {
-        //  // @TODO : 메인페이지로 이동
-        // } else {
-        //  // @TODO : 회원가입이므로 유저 정보 입력 페이지
-        // }
         if (response.data.isSigned) {
           // main page
+          history.replace("/main");
         } else {
-          // 유저 정보 입력 페이지
+          history.replace("/signup");
         }
       } catch (e) {
         console.log(e);
-        // @TODO : 다시 랜딩 페이지
       }
     };
+
     if (codeQuery) {
-      haha();
+      loginRequest();
     }
   }, []);
+
   const onClick = async () => {
     window.location.href = `${BASE_URL + KAKAO_URL}`;
   };
+
   return (
     <>
       <LoginButton onClick={onClick}>카카오로 로그인하기</LoginButton>

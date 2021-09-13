@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { IconLogo } from "components/Icon";
+import { debounce } from "lodash";
+
+import { DropDownList } from "components/Univ/UnivSearchBar/style";
 import { ReactComponent as IconSearch } from "assets/icon_search.svg";
+import { BASE_URL, UNIV_API, NICKNAME_API } from "utils/constants/request";
 import {
   SignUpHeader,
   SignUpContainer,
@@ -11,6 +15,91 @@ import {
 } from "./style";
 
 const SignUpPage = () => {
+  const [inputValue, setInputValue] = useState("");
+  const [inputNickname, setInputNickname] = useState("");
+  const [campusList, setCampusList] = useState([]);
+  const [isMobile, setIsMobile] = useState(1000);
+
+  const request = async (input) => {
+    try {
+      if (input !== "") {
+        console.log("리퀘스트 보낸다");
+        const response = await fetch(`${BASE_URL}${UNIV_API}?name=${input}`);
+        console.log(response);
+        const data = await response.json();
+        setInputNickname(data.list);
+        console.log(input);
+      } else {
+        console.log("아무것도 입력되지 않았다");
+        setInputNickname("");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const debounceInputCampus = debounce((input) => {
+    request(input);
+    console.log("debounce!!");
+  }, 300);
+
+  const onChangeCampusInput = (e) => {
+    console.log(e.target.value);
+    setInputValue(e.target.value);
+    debounceInputCampus(e.target.value);
+  };
+
+  const requestNickName = async (input) => {
+    try {
+      if (input !== "") {
+        console.log("리퀘스트 보낸다");
+        const response = await fetch(
+          `${BASE_URL}${NICKNAME_API}?nickname=${input}`
+        );
+        console.log(response);
+        const data = await response.json();
+        setCampusList(data.list);
+        console.log(input);
+      } else {
+        console.log("아무것도 입력되지 않았다");
+        setCampusList([]);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const debounceInputNickname = debounce((input) => {
+    requestNickName(input);
+    console.log("nickname!!");
+    console.log(input);
+  }, 1000);
+
+  const onChangeNicknameInput = (e) => {
+    setInputNickname(e.target.value);
+    debounceInputNickname(e.target.value);
+  };
+
+  const onSelected = (e) => {
+    console.log("이걸 인풋창에 올린다.");
+    console.log("campuslist를 비운다. setCampusList([])");
+  };
+
+  const onClickHandler = (e) => {
+    console.log(e);
+    console.log(window.innerWidth);
+    if (inputValue === "") {
+      console.log("입력을 해");
+    } else {
+      debounceInputCampus(inputValue);
+    }
+    if (window.innerWidth < 700) {
+      setIsMobile(window.innerWidth);
+    } else {
+      setIsMobile(window.innerWidth);
+    }
+  };
+
   return (
     <SignUpContainer>
       <SignUpHeader>
@@ -29,10 +118,21 @@ const SignUpPage = () => {
             className='univ__search signup__form'
             type='text'
             name='university'
+            value={inputValue}
+            onChange={onChangeCampusInput}
           ></input>
           <button className='search__univ'>
             <IconSearch width='35px' height='35px' />
           </button>
+          <ul style={{ position: "absolute" }}>
+            {campusList &&
+              campusList.map((item) => (
+                <DropDownList
+                  key={item.id}
+                  onClick={onSelected}
+                >{`${item.name}`}</DropDownList>
+              ))}
+          </ul>
         </InputContainer>
 
         <LabelContainer htmlFor='nickname'>
@@ -46,6 +146,8 @@ const SignUpPage = () => {
             className='nickname signup__form'
             type='text'
             name='nickname'
+            value={inputNickname}
+            onChange={onChangeNicknameInput}
           ></input>
         </InputContainer>
         <button className='signup__conplete'>작성 완료</button>

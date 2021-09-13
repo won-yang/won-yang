@@ -4,7 +4,14 @@ import { debounce } from "lodash";
 
 import { DropDownList } from "components/Univ/UnivSearchBar/style";
 import { ReactComponent as IconSearch } from "assets/icon_search.svg";
-import { BASE_URL, UNIV_API, NICKNAME_API } from "utils/constants/request";
+import UnivSearchbar from "components/Univ/UnivSearchBar";
+import {
+  BASE_URL,
+  UNIV_API,
+  NICKNAME_API,
+  SIGNUP_API,
+} from "utils/constants/request";
+import axios from "axios";
 import {
   SignUpHeader,
   SignUpContainer,
@@ -19,19 +26,21 @@ const SignUpPage = () => {
   const [inputNickname, setInputNickname] = useState("");
   const [campusList, setCampusList] = useState([]);
   const [isMobile, setIsMobile] = useState(1000);
+  const [campusId, setCampusId] = useState(-1);
 
   const request = async (input) => {
     try {
       if (input !== "") {
         console.log("리퀘스트 보낸다");
-        const response = await fetch(`${BASE_URL}${UNIV_API}?name=${input}`);
-        console.log(response);
-        const data = await response.json();
-        setInputNickname(data.list);
+        const response = await axios.get(
+          `${BASE_URL}${UNIV_API}?name=${input}`
+        );
+        console.log(response.data.list);
+        setCampusList(response.data.list);
         console.log(input);
       } else {
         console.log("아무것도 입력되지 않았다");
-        setInputNickname("");
+        setCampusList("");
       }
     } catch (err) {
       console.error(err);
@@ -53,16 +62,21 @@ const SignUpPage = () => {
     try {
       if (input !== "") {
         console.log("리퀘스트 보낸다");
-        const response = await fetch(
-          `${BASE_URL}${NICKNAME_API}?nickname=${input}`
+        console.log("it is cookie", cookie);
+        const response = await axios.get(
+          `${BASE_URL}${NICKNAME_API}?nickname=${input}`,
+          { withCredentials: true }
         );
         console.log(response);
-        const data = await response.json();
-        setCampusList(data.list);
+        if (response.is_valid) {
+          console.log("사용할 수 있는 닉네임입니다.");
+        } else {
+          console.log("사용할 수 없는 닉네임입니다.");
+        }
         console.log(input);
       } else {
         console.log("아무것도 입력되지 않았다");
-        setCampusList([]);
+        setInputNickname("");
       }
     } catch (err) {
       console.error(err);
@@ -80,9 +94,12 @@ const SignUpPage = () => {
     debounceInputNickname(e.target.value);
   };
 
-  const onSelected = (e) => {
-    console.log("이걸 인풋창에 올린다.");
-    console.log("campuslist를 비운다. setCampusList([])");
+  const onSelected = (e, id) => {
+    console.log(e.target.innerText);
+    setInputValue(e.target.innerText);
+    setCampusId(id);
+    setCampusList([]);
+    console.log(id, " === ", campusId);
   };
 
   const onClickHandler = (e) => {
@@ -98,6 +115,14 @@ const SignUpPage = () => {
     } else {
       setIsMobile(window.innerWidth);
     }
+  };
+
+  const onSubmit = async (e, input) => {
+    e.preventDefault();
+    const responseSignup = await axios.put(
+      `${BASE_URL}${SIGNUP_API}?name=${input}`,
+      { withCredentials: true }
+    );
   };
 
   return (
@@ -129,7 +154,7 @@ const SignUpPage = () => {
               campusList.map((item) => (
                 <DropDownList
                   key={item.id}
-                  onClick={onSelected}
+                  onClick={(e) => onSelected(e, item.id)}
                 >{`${item.name}`}</DropDownList>
               ))}
           </ul>
@@ -150,7 +175,9 @@ const SignUpPage = () => {
             onChange={onChangeNicknameInput}
           ></input>
         </InputContainer>
-        <button className='signup__conplete'>작성 완료</button>
+        <button className='signup__conplete' onClick={onSubmit}>
+          작성 완료
+        </button>
       </SignUpForm>
     </SignUpContainer>
   );

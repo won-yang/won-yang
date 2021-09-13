@@ -4,5 +4,6 @@ export const END_POINT = {
   board: "/board",
 };
 
-export const UNIV_API = "/api/campus";
-export const NICKNAME_API = "/api/user/validate_nickname";
+export const UNIV_API = "/campus";
+export const NICKNAME_API = "/user/validate_nickname";
+export const SIGNUP_API = "/api/user/sign-up-data";

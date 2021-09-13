@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { debounce } from "lodash";
 import { ReactComponent as IconSearch } from "assets/icon_search.svg";
 import { BASE_URL, UNIV_API } from "utils/constants/request";
@@ -11,19 +11,10 @@ const styledInput = {
   border: "5px solid #2e42a9",
 };
 
-const UnivSearchbar = (props) => {
+const UnivSearchbar = ({ onSelected }) => {
   const [inputValue, setInputValue] = useState("");
   const [campusList, setCampusList] = useState([]);
   const [isMobile, setIsMobile] = useState(1000);
-
-  const onSelected = (e) => {
-    // console.log(e);
-    // console.log(e.target.innerText);
-    // setInputValue(e.target.innerText);
-    // setCampusList([]);
-    // setIsInput(true);
-    console.log("메인 페이지");
-  };
 
   const request = async (inputV) => {
     try {
@@ -32,6 +23,7 @@ const UnivSearchbar = (props) => {
         const response = await fetch(`${BASE_URL}${UNIV_API}?name=${inputV}`);
         console.log(response);
         const data = await response.json();
+        console.log(data);
         setCampusList(data.list);
         console.log(inputV);
       } else {
@@ -77,33 +69,35 @@ const UnivSearchbar = (props) => {
   };
 
   return (
-    <InputForm
-      isMobile={isMobile}
-      name='univ-search'
-      onSubmit={onSubmitHandler}
-      onClick={onClickHandler}
-    >
-      <Input
-        className='input'
-        name='name'
-        type='search'
-        value={inputValue}
-        onChange={onChangeHandler}
-        placeholder='대학교를 입력해주세요'
-      />
-      <Button onClick={onClickHandler}>
-        <IconSearch />
-      </Button>
-      <ul style={{ position: "absolute" }}>
-        {campusList &&
-          campusList.map((item) => (
-            <DropDownList
-              key={item.id}
-              onClick={onSelected}
-            >{`${item.name}`}</DropDownList>
-          ))}
-      </ul>
-    </InputForm>
+    <>
+      <InputForm
+        isMobile={isMobile}
+        name='univ-search'
+        onSubmit={onSubmitHandler}
+        onClick={onClickHandler}
+      >
+        <Input
+          className='input'
+          name='name'
+          type='search'
+          value={inputValue}
+          onChange={onChangeHandler}
+          placeholder='대학교를 입력해주세요'
+        />
+        <Button onClick={onClickHandler}>
+          <IconSearch />
+        </Button>
+        <ul style={{ position: "absolute", height: "0px" }}>
+          {campusList &&
+            campusList.map((item) => (
+              <DropDownList
+                key={item.id}
+                onMouseUp={(e) => onSelected(e, item.id)}
+              >{`${item.name}`}</DropDownList>
+            ))}
+        </ul>
+      </InputForm>
+    </>
   );
 };
 

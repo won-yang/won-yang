@@ -24,11 +24,17 @@ const MainPage = (props) => {
     _rootMargin: "200px",
     _threshold: 0.01,
   });
+
   const loadMorePostItem = async () => {
+    /*
+    TODO 대학교검색페이지에서 대학교 ID값 pathname으로 전달되면 해당 값 포함해서 API요청보내는 것 추가하기
+    */
     if (isIntersect) {
       const response = await getPostItem(BASE_URL + END_POINT.board, {
         page: pageNum,
       });
+      console.log(response);
+
       if (response.post.length === 0) {
         setIsLastPage(true);
       } else {

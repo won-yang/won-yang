@@ -96,3 +96,9 @@ export const UL = styled.ul`
   transform: translateY(-60px);
   height: 0px;
 `;
+
+export const IsValid = styled.p`
+  color: ${(props) => (props.isValidNickname ? "green" : "red")};
+  font-size: 1rem;
+  transform: translateY(10px);
+`;

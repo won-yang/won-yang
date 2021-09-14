@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { IconLogo } from "components/Icon";
 import { debounce } from "lodash";
 
@@ -20,6 +20,7 @@ import {
   LabelContainer,
   InputContainer,
   UL,
+  IsValid,
 } from "./style";
 
 const SignUpPage = () => {
@@ -29,6 +30,7 @@ const SignUpPage = () => {
   const [campusList, setCampusList] = useState([]);
   const [isMobile, setIsMobile] = useState(1000);
   const [campusId, setCampusId] = useState(-1);
+  const [isValidNickname, setIsValidNickname] = useState(undefined);
 
   const request = async (input) => {
     try {
@@ -49,10 +51,13 @@ const SignUpPage = () => {
     }
   };
 
-  const debounceInputCampus = debounce((input) => {
-    request(input);
-    console.log("debounce!!");
-  }, 300);
+  const debounceInputCampus = useCallback(
+    debounce((input) => {
+      request(input);
+      console.log("debounce!!");
+    }, 300),
+    []
+  );
 
   const onChangeCampusInput = (e) => {
     console.log(e.target.value);
@@ -70,8 +75,11 @@ const SignUpPage = () => {
         );
         console.log(response);
         if (response.data.is_valid) {
+          setIsValidNickname(true);
           console.log("사용할 수 있는 닉네임입니다.");
         } else {
+          setIsValidNickname(false);
+
           console.log("사용할 수 없는 닉네임입니다.");
         }
         console.log(input);
@@ -84,11 +92,14 @@ const SignUpPage = () => {
     }
   };
 
-  const debounceInputNickname = debounce((input) => {
-    requestNickName(input);
-    console.log("nickname!!");
-    console.log(input);
-  }, 1000);
+  const debounceInputNickname = useCallback(
+    debounce((input) => {
+      requestNickName(input);
+      console.log("nickname!!");
+      console.log(input);
+    }, 1000),
+    []
+  );
 
   const onChangeNicknameInput = (e) => {
     setInputNickname(e.target.value);
@@ -189,6 +200,12 @@ const SignUpPage = () => {
             value={inputNickname}
             onChange={onChangeNicknameInput}
           ></input>
+          <IsValid isValidNickname={isValidNickname}>
+            {isValidNickname !== undefined &&
+              (isValidNickname
+                ? "좋은 닉네임이군요!"
+                : "이미 존재하는 닉네임입니다.")}
+          </IsValid>
         </InputContainer>
         <button className='signup__conplete' onClick={onSubmit}>
           작성 완료

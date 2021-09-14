@@ -35,10 +35,13 @@ const UnivSearchbar = ({ onSelected }) => {
     }
   };
 
-  const debounceCalled = debounce((input) => {
-    request(input);
-    console.log("debounce!!");
-  }, 300);
+  const debounceCalled = useCallback(
+    debounce((input) => {
+      request(input);
+      console.log("debounce!!");
+    }, 300),
+    []
+  );
 
   const onChangeHandler = (e) => {
     console.log(e);

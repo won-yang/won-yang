@@ -63,7 +63,7 @@ export const FormHeader = styled.h2`
 `;
 
 export const LabelContainer = styled.label`
-  font-size: 1.4em;
+  font-size: 1.1em;
   display: flex;
   .header {
     margin-right: 6px;
@@ -71,6 +71,7 @@ export const LabelContainer = styled.label`
 
   .info {
     line-height: 20px;
+    font-size: 0.7rem;
   }
 `;
 
@@ -87,7 +88,7 @@ export const InputContainer = styled.div`
   }
 
   .nickname {
-    width: 23rem;
+    width: 17rem;
   }
 `;
 

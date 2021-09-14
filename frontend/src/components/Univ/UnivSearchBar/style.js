@@ -19,7 +19,7 @@ export const InputForm = styled.div`
   background-color: ${(props) => (props.isMobile < 768 ? "white" : "#2e42a9")};
   height: ${(props) => (props.isMobile < 768 ? "100vh" : "50px")};
   .input {
-    width: ${(props) => (props.isMobile < 768 ? `100vw` : "20em")};
+    width: ${(props) => (props.isMobile < 768 ? `100vw` : "15rem")};
     height: 50px;
 
     padding: 14px;
@@ -30,8 +30,8 @@ export const InputForm = styled.div`
 
 export const Button = styled.div`
   background-color: #2e42a9;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   display: inline-block;
 `;
 

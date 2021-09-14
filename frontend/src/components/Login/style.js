@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const LoginButton = styled.button`
   background-color: #fec941;
   color: #533730;
-  width: 20em;
+  width: 17em;
   font-size: 1rem;
   font-weight: 800;
   padding: 1em;

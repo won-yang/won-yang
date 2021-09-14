@@ -6,7 +6,7 @@ export const LandingWrapper = styled.div`
   align-items: center;
   background-color: #4693ef;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   @media only screen and (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -14,7 +14,7 @@ export const LandingWrapper = styled.div`
     align-items: center;
     background-color: #4693ef;
     height: 100vh;
-    width: 100%;
+    width: 100vw;
   }
 `;
 
@@ -27,7 +27,7 @@ export const Wrapper = styled.div`
 `;
 
 export const StringWrapper = styled.div`
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: white;
   margin-bottom: 1em;
 `;

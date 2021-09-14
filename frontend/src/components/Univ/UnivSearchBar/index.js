@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { debounce } from "lodash";
 import { ReactComponent as IconSearch } from "assets/icon_search.svg";
 import { BASE_URL, UNIV_API } from "utils/constants/request";

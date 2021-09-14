@@ -17,10 +17,10 @@ export const InputForm = styled.div`
   top: ${(props) => props.isMobile < 768 && "0px"};
   left: ${(props) => props.isMobile < 768 && "0px"};
   background-color: ${(props) => (props.isMobile < 768 ? "white" : "#2e42a9")};
-  height: ${(props) => (props.isMobile < 768 ? "100vh" : "50px")};
+  height: ${(props) => (props.isMobile < 768 ? "100vh" : "40px")};
   .input {
     width: ${(props) => (props.isMobile < 768 ? `100vw` : "15rem")};
-    height: 50px;
+    height: 40px;
 
     padding: 14px;
     font-size: 1em;

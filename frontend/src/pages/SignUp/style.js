@@ -94,7 +94,7 @@ export const InputContainer = styled.div`
 
 export const UL = styled.ul`
   position: absolute;
-  transform: translateY(-60px);
+  transform: translateY(-50px);
   height: 0px;
 `;
 

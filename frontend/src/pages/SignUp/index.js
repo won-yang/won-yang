@@ -32,7 +32,7 @@ const SignUpPage = () => {
   const [campusId, setCampusId] = useState(-1);
   const [isValidNickname, setIsValidNickname] = useState(undefined);
 
-  const request = async (input) => {
+  const requestInputCampus = async (input) => {
     try {
       if (input !== "") {
         console.log("리퀘스트 보낸다");
@@ -53,7 +53,7 @@ const SignUpPage = () => {
 
   const debounceInputCampus = useCallback(
     debounce((input) => {
-      request(input);
+      requestInputCampus(input);
       console.log("debounce!!");
     }, 300),
     []
@@ -189,7 +189,7 @@ const SignUpPage = () => {
         <LabelContainer htmlFor='nickname'>
           <h3 className='header'>닉네임</h3>
           <div className='univ info nickname__info'>
-            2~8자 한글, 영어로만 작성해주세요.
+            2~8자 한글, 영어 소문자로만 작성해주세요.
           </div>
         </LabelContainer>
         <InputContainer>
@@ -199,12 +199,12 @@ const SignUpPage = () => {
             name='nickname'
             value={inputNickname}
             onChange={onChangeNicknameInput}
-          ></input>
+          />
           <IsValid isValidNickname={isValidNickname}>
             {isValidNickname !== undefined &&
               (isValidNickname
                 ? "좋은 닉네임이군요!"
-                : "이미 존재하는 닉네임입니다.")}
+                : "유효하지 않은 닉네임입니다.")}
           </IsValid>
         </InputContainer>
         <button className='signup__conplete' onClick={onSubmit}>

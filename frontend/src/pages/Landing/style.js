@@ -7,7 +7,7 @@ export const LandingWrapper = styled.div`
   background-color: #4693ef;
   height: 100vh;
   width: 100vw;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 565px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,6 +15,7 @@ export const LandingWrapper = styled.div`
     background-color: #4693ef;
     height: 100vh;
     width: 100vw;
+    min-width: 280px;
   }
 `;
 

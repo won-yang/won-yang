@@ -5,8 +5,8 @@ export const DropDownList = styled("li")`
   border: 1px solid #2e42a9;
   border-top: none;
   padding: 1em;
-  width: 20em;
-  transform: translateY(50px);
+  width: 15.5em;
+  transform: translateY(40px);
 `;
 
 export const InputForm = styled.div`

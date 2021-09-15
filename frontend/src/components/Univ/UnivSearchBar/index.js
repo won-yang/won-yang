@@ -1,15 +1,8 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { debounce } from "lodash";
 import { ReactComponent as IconSearch } from "assets/icon_search.svg";
 import { BASE_URL, UNIV_API } from "utils/constants/request";
 import { DropDownList, InputForm, Button, Input } from "./style";
-
-const styledInput = {
-  padding: "1rem",
-  fontSize: "1em",
-  width: "20em",
-  border: "5px solid #2e42a9",
-};
 
 const UnivSearchbar = ({ onSelected }) => {
   const [inputValue, setInputValue] = useState("");

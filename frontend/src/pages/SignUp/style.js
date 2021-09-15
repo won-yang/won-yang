@@ -13,6 +13,10 @@ export const SignUpContainer = styled.div`
   button {
     border: none;
   }
+
+  button:hover {
+    cursor: pointer;
+  }
 `;
 
 export const SignUpHeader = styled.header`

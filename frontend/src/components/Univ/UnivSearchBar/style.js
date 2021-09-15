@@ -35,8 +35,7 @@ export const Button = styled.div`
   display: inline-block;
 `;
 
-export const Input = styled.input`
-  padding: 1rem;
-  font-size: 1em;
-  border: 5px solid #2e42a9;
+export const UnivSearchUL = styled.ul`
+  position: absolute;
+  height: 0px;
 `;

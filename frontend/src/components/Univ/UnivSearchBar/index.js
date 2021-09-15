@@ -8,7 +8,7 @@ import {
   DEFAULT_WIDTH,
 } from "utils/constants/numbers";
 import DropDown from "./DropDown";
-import { InputForm, Button, Input } from "./style";
+import { InputForm, Button, UnivSearchUL } from "./style";
 
 const UnivSearchbar = ({ onSelected }) => {
   const [inputValue, setInputValue] = useState("");
@@ -65,9 +65,8 @@ const UnivSearchbar = ({ onSelected }) => {
         onSubmit={onSubmitHandler}
         onClick={onClickHandler}
       >
-        <Input
+        <input
           className='input'
-          name='name'
           type='search'
           value={inputValue}
           onChange={onChangeHandler}
@@ -76,9 +75,9 @@ const UnivSearchbar = ({ onSelected }) => {
         <Button onClick={onClickHandler}>
           <IconSearch />
         </Button>
-        <ul style={{ position: "absolute", height: "0px" }}>
+        <UnivSearchUL>
           <DropDown campusList={campusList} onSelected={onSelected} />
-        </ul>
+        </UnivSearchUL>
       </InputForm>
     </>
   );

@@ -1,11 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { IconLogo } from "components/Icon";
 import { debounce } from "lodash";
-import {
-  DEBOUNCE_TIME,
-  BREAK_POINT,
-  DEFAULT_WIDTH,
-} from "utils/constants/numbers";
+import { DEBOUNCE_TIME } from "utils/constants/numbers";
 import { ReactComponent as IconSearch } from "assets/icon_search.svg";
 import {
   BASE_URL,
@@ -16,6 +12,7 @@ import {
 import axios from "axios";
 import { useHistory } from "react-router";
 import DropDown from "components/Univ/UnivSearchBar/DropDown";
+import CheckValidNickname from "./CheckValidNickname";
 import {
   SignUpHeader,
   SignUpContainer,
@@ -58,7 +55,6 @@ const SignUpPage = () => {
   );
 
   const onChangeCampusInput = (e) => {
-    console.log(e.target.value);
     setInputValue(e.target.value);
     debounceInputCampus(e.target.value);
   };
@@ -71,18 +67,12 @@ const SignUpPage = () => {
           `${BASE_URL}${NICKNAME_API}?nickname=${input}`,
           { withCredentials: true }
         );
-        console.log(response);
         if (response.data.is_valid) {
           setIsValidNickname(true);
-          console.log("사용할 수 있는 닉네임입니다.");
         } else {
           setIsValidNickname(false);
-
-          console.log("사용할 수 없는 닉네임입니다.");
         }
-        console.log(input);
       } else {
-        console.log("아무것도 입력되지 않았다");
         setInputNickname("");
       }
     } catch (err) {
@@ -93,23 +83,25 @@ const SignUpPage = () => {
   const debounceInputNickname = useCallback(
     debounce((input) => {
       requestNickName(input);
-      console.log("nickname!!");
-      console.log(input);
-    }, 1000),
+    }, DEBOUNCE_TIME),
     []
   );
 
   const onChangeNicknameInput = (e) => {
-    setInputNickname(e.target.value);
-    debounceInputNickname(e.target.value);
+    const inputNicknameValue = e.target.value;
+
+    if (inputNicknameValue === "") {
+      setInputNickname(undefined);
+    } else {
+      setInputNickname(inputNicknameValue);
+      debounceInputNickname(inputNicknameValue);
+    }
   };
 
   const onSelected = (e, id) => {
-    console.log(e.target.innerText);
     setInputValue(e.target.innerText);
     setCampusId(id);
     setCampusList([]);
-    console.log(id, " === ", campusId);
   };
 
   const onSubmit = async (e) => {
@@ -125,12 +117,11 @@ const SignUpPage = () => {
           withCredentials: true,
         }
       );
-      console.log(responseSignup);
       if (responseSignup) {
         history.replace(`main/${campusId}`);
       }
     } catch {
-      console.log(e);
+      console.error(e);
     }
   };
 
@@ -177,12 +168,7 @@ const SignUpPage = () => {
             value={inputNickname}
             onChange={onChangeNicknameInput}
           />
-          <IsValid isValidNickname={isValidNickname}>
-            {isValidNickname !== undefined &&
-              (isValidNickname
-                ? "좋은 닉네임이군요!"
-                : "유효하지 않은 닉네임입니다.")}
-          </IsValid>
+          <CheckValidNickname isValidNickname={isValidNickname} />
         </InputContainer>
         <button className='signup__conplete' onClick={onSubmit}>
           작성 완료

@@ -92,7 +92,7 @@ export const InputContainer = styled.div`
   }
 `;
 
-export const UL = styled.ul`
+export const DropDownUL = styled.ul`
   position: absolute;
   transform: translateY(-50px);
   height: 0px;

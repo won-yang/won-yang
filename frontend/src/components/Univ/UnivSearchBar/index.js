@@ -2,25 +2,26 @@ import React, { useState, useCallback } from "react";
 import { debounce } from "lodash";
 import { ReactComponent as IconSearch } from "assets/icon_search.svg";
 import { BASE_URL, UNIV_API } from "utils/constants/request";
-import { DropDownList, InputForm, Button, Input } from "./style";
+import {
+  DEBOUNCE_TIME,
+  BREAK_POINT,
+  DEFAULT_WIDTH,
+} from "utils/constants/numbers";
+import DropDown from "./DropDown";
+import { InputForm, Button, Input } from "./style";
 
 const UnivSearchbar = ({ onSelected }) => {
   const [inputValue, setInputValue] = useState("");
   const [campusList, setCampusList] = useState([]);
-  const [isMobile, setIsMobile] = useState(1000);
+  const [isMobile, setIsMobile] = useState(DEFAULT_WIDTH);
 
-  const request = async (inputV) => {
+  const requestCampusList = async (inputV) => {
     try {
       if (inputV !== "") {
-        console.log("리퀘스트 보낸다");
         const response = await fetch(`${BASE_URL}${UNIV_API}?name=${inputV}`);
-        console.log(response);
         const data = await response.json();
-        console.log(data);
         setCampusList(data.list);
-        console.log(inputV);
       } else {
-        console.log("아무것도 입력되지 않았다");
         setCampusList([]);
       }
     } catch (err) {
@@ -30,29 +31,21 @@ const UnivSearchbar = ({ onSelected }) => {
 
   const debounceCalled = useCallback(
     debounce((input) => {
-      request(input);
-      console.log("debounce!!");
-    }, 300),
+      requestCampusList(input);
+    }, DEBOUNCE_TIME),
     []
   );
 
   const onChangeHandler = (e) => {
-    console.log(e);
     setInputValue(e.target.value);
-    console.log(e.target.value);
     debounceCalled(e.target.value);
-    console.log(inputValue);
   };
 
-  const onClickHandler = (e) => {
-    console.log(e);
-    console.log(window.innerWidth);
-    if (inputValue === "") {
-      console.log("입력을 해");
-    } else {
+  const onClickHandler = () => {
+    if (inputValue !== "") {
       debounceCalled(inputValue);
     }
-    if (window.innerWidth < 700) {
+    if (window.innerWidth < BREAK_POINT) {
       setIsMobile(window.innerWidth);
     } else {
       setIsMobile(window.innerWidth);
@@ -84,13 +77,7 @@ const UnivSearchbar = ({ onSelected }) => {
           <IconSearch />
         </Button>
         <ul style={{ position: "absolute", height: "0px" }}>
-          {campusList &&
-            campusList.map((item) => (
-              <DropDownList
-                key={item.id}
-                onMouseUp={(e) => onSelected(e, item.id)}
-              >{`${item.name}`}</DropDownList>
-            ))}
+          <DropDown campusList={campusList} onSelected={onSelected} />
         </ul>
       </InputForm>
     </>

@@ -1,8 +1,11 @@
 import React, { useState, useCallback } from "react";
 import { IconLogo } from "components/Icon";
 import { debounce } from "lodash";
-
-import { DropDownList } from "components/Univ/UnivSearchBar/style";
+import {
+  DEBOUNCE_TIME,
+  BREAK_POINT,
+  DEFAULT_WIDTH,
+} from "utils/constants/numbers";
 import { ReactComponent as IconSearch } from "assets/icon_search.svg";
 import {
   BASE_URL,
@@ -12,6 +15,7 @@ import {
 } from "utils/constants/request";
 import axios from "axios";
 import { useHistory } from "react-router";
+import DropDown from "components/Univ/UnivSearchBar/DropDown";
 import {
   SignUpHeader,
   SignUpContainer,
@@ -19,7 +23,7 @@ import {
   FormHeader,
   LabelContainer,
   InputContainer,
-  UL,
+  DropDownUL,
   IsValid,
 } from "./style";
 
@@ -28,22 +32,17 @@ const SignUpPage = () => {
   const [inputValue, setInputValue] = useState("");
   const [inputNickname, setInputNickname] = useState("");
   const [campusList, setCampusList] = useState([]);
-  const [isMobile, setIsMobile] = useState(1000);
   const [campusId, setCampusId] = useState(-1);
   const [isValidNickname, setIsValidNickname] = useState(undefined);
 
   const requestInputCampus = async (input) => {
     try {
       if (input !== "") {
-        console.log("리퀘스트 보낸다");
         const response = await axios.get(
           `${BASE_URL}${UNIV_API}?name=${input}`
         );
-        console.log(response.data.list);
         setCampusList(response.data.list);
-        console.log(input);
       } else {
-        console.log("아무것도 입력되지 않았다");
         setCampusList("");
       }
     } catch (err) {
@@ -54,8 +53,7 @@ const SignUpPage = () => {
   const debounceInputCampus = useCallback(
     debounce((input) => {
       requestInputCampus(input);
-      console.log("debounce!!");
-    }, 300),
+    }, DEBOUNCE_TIME),
     []
   );
 
@@ -114,21 +112,6 @@ const SignUpPage = () => {
     console.log(id, " === ", campusId);
   };
 
-  const onClickHandler = (e) => {
-    console.log(e);
-    console.log(window.innerWidth);
-    if (inputValue === "") {
-      console.log("입력을 해");
-    } else {
-      debounceInputCampus(inputValue);
-    }
-    if (window.innerWidth < 700) {
-      setIsMobile(window.innerWidth);
-    } else {
-      setIsMobile(window.innerWidth);
-    }
-  };
-
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -175,15 +158,9 @@ const SignUpPage = () => {
           <button className='search__univ'>
             <IconSearch width='35px' height='35px' />
           </button>
-          <UL>
-            {campusList &&
-              campusList.map((item) => (
-                <DropDownList
-                  key={item.id}
-                  onClick={(e) => onSelected(e, item.id)}
-                >{`${item.name}`}</DropDownList>
-              ))}
-          </UL>
+          <DropDownUL>
+            <DropDown campusList={campusList} onSelected={onSelected} />
+          </DropDownUL>
         </InputContainer>
 
         <LabelContainer htmlFor='nickname'>

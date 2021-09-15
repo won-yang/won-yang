@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const MainTemplate = ({ children }) => {
-  return <Main>{children}</Main>;
+const MainTemplate = ({ children, ...restProps }) => {
+  return <Main {...restProps}>{children}</Main>;
 };
 
 MainTemplate.propTypes = {};

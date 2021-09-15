@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   line-height: 23px;
   border-radius: 8px;
   text-align: center;
-  font-size: ${(props) => props.theme.badgeFontSize};
+  font-size: ${(props) => props.theme.fontSize.badgeFontSize};
   color: white;
   &.CONTRACTED {
     background-color: ${(props) => props.theme.greenColor};

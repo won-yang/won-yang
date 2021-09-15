@@ -104,13 +104,13 @@ const Container = styled.div`
   /* width: 100%; */
   display: flex;
   border: 1px solid gray;
-  font-size: ${(props) => props.theme.mobileFontSize};
+  font-size: ${(props) => props.theme.fontSize.mobileFontSize};
 
   @media ${device.tablet} {
     flex-direction: column;
-    font-size: ${(props) => props.theme.tabletFontSize};
+    font-size: ${(props) => props.theme.fontSize.tabletFontSize};
   }
   @media ${device.desktop} {
-    font-size: ${(props) => props.theme.desktopFontSize};
+    font-size: ${(props) => props.theme.fontSize.desktopFontSize};
   }
 `;

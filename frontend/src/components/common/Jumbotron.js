@@ -115,7 +115,7 @@ const Container = styled.section`
   }
   & > span {
     line-height: 50px;
-    font-size: ${(props) => props.theme.middleFontSize};
+    font-size: ${(props) => props.theme.fontSize.middleFontSize};
   }
   & a {
     display: inline-block;

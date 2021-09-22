@@ -90,7 +90,7 @@ const SearchButtonContainer = styled.div`
   gap: 5px;
   margin-right: 0;
   & button {
-    background-color: ${({ theme }) => theme.primary};
+    background-color: ${({ theme }) => theme.colors.primary};
   }
   @media ${device.tablet} {
     margin-right: 5px;

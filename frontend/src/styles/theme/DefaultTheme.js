@@ -9,6 +9,18 @@ export const DarkTheme = {
   greenColor: "#2A9610",
   blueColor: "#3B4DF6",
   darkRedColor: "#B80101",
+  colors: {
+    primary: "#4593ef",
+    default: "black",
+    oppositeDefalut: "white",
+    gray: "#828282",
+    lightGray: "#b3b0b3",
+    purple: "#464DF1",
+    red: "#F14646",
+    green: "#2A9610",
+    blue: "#3B4DF6",
+    darkRed: "#B80101",
+  },
   fontSize: {
     desktopFontSize: "30px",
     tabletFontSize: "24px",

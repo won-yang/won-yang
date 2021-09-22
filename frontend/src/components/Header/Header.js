@@ -32,7 +32,7 @@ const UnivTitle = styled.div`
   color: white;
 `;
 const Wrapper = styled.header`
-  background-color: ${(props) => props.theme.primary};
+  background-color: ${({ theme }) => theme.colors.primary};
   width: 100%;
   box-shadow: 0px 2px 6px 0px black;
   height: 50px;

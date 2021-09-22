@@ -15,5 +15,5 @@ const Wrapper = styled.div`
   border-radius: 8px;
   color: white;
   padding: 5px;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.colors.primary};
 `;

@@ -73,10 +73,10 @@ const ItemInfo = styled.div`
 
   & span {
     font-size: 0.8rem;
-    color: ${(props) => props.theme.fontGrayColor};
+    color: ${(props) => props.theme.colors.gray};
   }
   & span:last-child {
-    color: ${(props) => props.theme.fontlightGrayColor};
+    color: ${(props) => props.theme.colors.lightGray};
     align-self: flex-end;
   }
   & h2 {

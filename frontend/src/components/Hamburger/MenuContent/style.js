@@ -13,7 +13,7 @@ export const List = styled.ul`
 export const ListItems = styled.li`
   height: 50px;
   padding-left: 20px;
-  border-bottom: 1px solid ${(props) => props.theme.primary};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
   & a {
     width: 100%;
     cursor: pointer;
@@ -33,7 +33,7 @@ export const NickNameDisplayWrapper = styled.div`
   position: relative;
   min-height: 100px;
   padding: 20px;
-  background-color: ${(props) => props.theme.primary};
+  background-color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const NickName = styled.span`

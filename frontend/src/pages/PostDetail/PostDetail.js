@@ -7,10 +7,18 @@ import Carousel from "components/common/Carousel";
 import { device } from "styles/media";
 import OptionBadge from "components/common/OptionBadge";
 
+import image1 from "assets/dummyImg/dmy1.jpeg";
+import image2 from "assets/dummyImg/dmy2.jpeg";
+import image3 from "assets/dummyImg/dmy3.jpeg";
+import image4 from "assets/dummyImg/dmy4.jpeg";
+import image5 from "assets/dummyImg/dmy5.jpeg";
+
 const PostDetailPage = (props) => {
+  const imagePaths = [image1, image2, image3];
+
   return (
     <PostDetailTemplate>
-      <Carousel />
+      <Carousel imagePaths={imagePaths} />
       <PostDetailContainer>
         <AuthBadgeWrapper>
           <AuthIcon />
@@ -141,7 +149,7 @@ const PostHeader = styled.div`
 
 const PostDate = styled.span`
   font-size: 0.8em;
-  color: ${({ theme }) => theme.fontGrayColor};
+  color: ${({ theme }) => theme.colors.gray};
 `;
 
 const UserInteractionButtonContainer = styled.div`
@@ -156,13 +164,13 @@ const PriceInfoList = styled.ul`
   display: flex;
   justify-content: space-between;
   padding: 15px;
-  border-top: 1px solid ${({ theme }) => theme.fontlightGrayColor};
-  border-bottom: 1px solid ${({ theme }) => theme.fontlightGrayColor};
+  border-top: 1px solid ${({ theme }) => theme.colors.lightGray};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.lightGray};
 `;
 
 const PriceText = styled.span`
   display: block;
-  color: ${({ theme }) => theme.blueColor};
+  color: ${({ theme }) => theme.colors.blue};
 `;
 
 const PriceSubText = styled.span`
@@ -171,7 +179,7 @@ const PriceSubText = styled.span`
 
 const PostAddress = styled.div`
   & span:last-child {
-    color: ${({ theme }) => theme.darkRedColor};
+    color: ${({ theme }) => theme.colors.darkRed};
     font-size: ${({ theme }) => theme.fontSize.badgeFontSize};
   }
 `;
@@ -183,19 +191,19 @@ const PostAddressText = styled.span`
 
 const PostBuildingInfoTable = styled.table`
   width: 100%;
-  border-top: 3px solid ${({ theme }) => theme.fontlightGrayColor};
-  border-bottom: 3px solid ${({ theme }) => theme.fontlightGrayColor};
+  border-top: 3px solid ${({ theme }) => theme.colors.lightGray};
+  border-bottom: 3px solid ${({ theme }) => theme.colors.lightGray};
   & td {
     padding: 15px 0 15px 0;
   }
 
   & tr + tr {
-    border-top: 1px solid ${({ theme }) => theme.fontlightGrayColor};
+    border-top: 1px solid ${({ theme }) => theme.colors.lightGray};
   }
 `;
 
 const TableRowTitle = styled.td`
-  color: ${({ theme }) => theme.fontGrayColor};
+  color: ${({ theme }) => theme.colors.gray};
 `;
 
 const TableRowInfo = styled.td`

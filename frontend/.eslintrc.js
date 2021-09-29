@@ -27,6 +27,7 @@ module.exports = {
     "react/display-name": 0,
     "import/prefer-default-export": 0,
     "import/no-unresolved": "off",
+    "no-else-return": 0,
   },
   settings: {
     react: {

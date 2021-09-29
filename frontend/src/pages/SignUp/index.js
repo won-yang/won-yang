@@ -1,15 +1,8 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { IconLogo } from "components/Icon";
-import { debounce } from "lodash";
-import { DEBOUNCE_TIME } from "utils/constants/numbers";
+import { getCampusList, getNickName, putSignup } from "utils/api";
+import useDebounce from "hooks/useDebounce";
 import { ReactComponent as IconSearch } from "assets/icon_search.svg";
-import {
-  BASE_URL,
-  UNIV_API,
-  NICKNAME_API,
-  SIGNUP_API,
-} from "utils/constants/request";
-import axios from "axios";
 import { useHistory } from "react-router";
 import DropDown from "components/Univ/UnivSearchBar/DropDown";
 import CheckValidNickname from "./CheckValidNickname";
@@ -21,7 +14,6 @@ import {
   LabelContainer,
   InputContainer,
   DropDownUL,
-  IsValid,
 } from "./style";
 
 const SignUpPage = () => {
@@ -32,42 +24,29 @@ const SignUpPage = () => {
   const [campusId, setCampusId] = useState(-1);
   const [isValidNickname, setIsValidNickname] = useState(undefined);
 
-  const requestInputCampus = async (input) => {
+  const requestInputCampus = useDebounce(async (input) => {
     try {
       if (input !== "") {
-        const response = await axios.get(
-          `${BASE_URL}${UNIV_API}?name=${input}`
-        );
-        setCampusList(response.data.list);
+        const response = await getCampusList(input);
+        setCampusList(response.list);
       } else {
         setCampusList("");
       }
     } catch (err) {
       console.error(err);
     }
-  };
-
-  const debounceInputCampus = useCallback(
-    debounce((input) => {
-      requestInputCampus(input);
-    }, DEBOUNCE_TIME),
-    []
-  );
+  });
 
   const onChangeCampusInput = (e) => {
     setInputValue(e.target.value);
-    debounceInputCampus(e.target.value);
+    requestInputCampus(e.target.value);
   };
 
-  const requestNickName = async (input) => {
+  const requestNickName = useDebounce(async (input) => {
     try {
       if (input !== "") {
-        console.log("리퀘스트 보낸다");
-        const response = await axios.get(
-          `${BASE_URL}${NICKNAME_API}?nickname=${input}`,
-          { withCredentials: true }
-        );
-        if (response.data.is_valid) {
+        const response = await getNickName(input);
+        if (response.is_valid) {
           setIsValidNickname(true);
         } else {
           setIsValidNickname(false);
@@ -78,14 +57,7 @@ const SignUpPage = () => {
     } catch (err) {
       console.error(err);
     }
-  };
-
-  const debounceInputNickname = useCallback(
-    debounce((input) => {
-      requestNickName(input);
-    }, DEBOUNCE_TIME),
-    []
-  );
+  });
 
   const onChangeNicknameInput = (e) => {
     const inputNicknameValue = e.target.value;
@@ -94,7 +66,7 @@ const SignUpPage = () => {
       setInputNickname(undefined);
     } else {
       setInputNickname(inputNicknameValue);
-      debounceInputNickname(inputNicknameValue);
+      requestNickName(inputNicknameValue);
     }
   };
 
@@ -107,16 +79,10 @@ const SignUpPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const responseSignup = await axios.put(
-        `${BASE_URL}${SIGNUP_API}`,
-        {
-          campus_id: campusId,
-          nickname: inputNickname,
-        },
-        {
-          withCredentials: true,
-        }
-      );
+      const responseSignup = await putSignup({
+        campus_id: campusId,
+        nickname: inputNickname,
+      });
       if (responseSignup) {
         history.replace(`main/${campusId}`);
       }

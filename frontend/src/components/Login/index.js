@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import qs from "qs";
-import axios from "axios";
-import { BASE_URL, KAKAO_URL, CALLBACK_URL } from "utils/constants/request";
+import { BASE_URL, KAKAO_URL } from "utils/constants/request";
+import { getLogin } from "utils/api";
 import { LoginButton } from "./style";
 
 const Login = () => {
@@ -15,13 +15,9 @@ const Login = () => {
 
     const loginRequest = async () => {
       try {
-        const response = await axios.get(
-          `${BASE_URL + KAKAO_URL + CALLBACK_URL}?code=${codeQuery.code}`,
-          { withCredentials: true }
-        );
-        console.log(response.data);
-        if (response.data.is_signed) {
-          history.replace(`/main/${response.data.campus_id}`);
+        const response = await getLogin(codeQuery.code);
+        if (response.is_signed) {
+          history.replace(`/main/${response.campus_id}`);
         } else {
           history.replace("/signup");
         }
@@ -35,7 +31,7 @@ const Login = () => {
     }
   }, []);
 
-  const onClick = async () => {
+  const onClick = () => {
     window.location.href = `${BASE_URL + KAKAO_URL}`;
   };
 

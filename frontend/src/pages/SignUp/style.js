@@ -83,7 +83,7 @@ export const InputContainer = styled.div`
   margin-bottom: 25px;
 
   .univ__search {
-    transform: translateY(-11px);
+    transform: translateY(-12px);
     width: 80%;
   }
 

@@ -7,6 +7,10 @@ export const DropDownList = styled("li")`
   padding: 1em;
   width: 15.5em;
   transform: translateY(40px);
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const InputForm = styled.div`
@@ -33,6 +37,9 @@ export const Button = styled.div`
   width: 40px;
   height: 40px;
   display: inline-block;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const UnivSearchUL = styled.ul`

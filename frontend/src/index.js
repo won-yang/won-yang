@@ -4,14 +4,14 @@ import GlobalStyle from "styles/GlobalStyle";
 import { DarkTheme } from "styles/theme/DefaultTheme";
 import { ThemeProvider } from "styled-components";
 import { Reset } from "styled-reset";
-import App from "./App";
+import Routes from "Routes";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Reset />
     <ThemeProvider theme={DarkTheme}>
+      <Reset />
       <GlobalStyle />
-      <App />
+      <Routes />
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root"),

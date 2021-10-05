@@ -24,6 +24,7 @@ const Routes = (props) => {
             <PostWritePage />
           </Route>
           <Route path="/posts/:id" exact component={PostDetailPage} />
+          <Route path="/tmp" exact component={PostWritePage} />
         </Switch>
       </ThemeProvider>
     </Router>

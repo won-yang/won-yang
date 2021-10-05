@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ModalBackGround = styled.div`
   width: 100%;
@@ -18,7 +18,7 @@ export const ModalContainer = styled.div`
   height: 100%;
   width: 70%;
   max-width: 260px;
-  /* transform: ${(props) => (props.open ? 'translateX(-100%)' : '')}; */
+  /* transform: ${(props) => (props.open ? "translateX(-100%)" : "")}; */
   transition: 0.4s;
   &.modal-open {
     transition: 0.4s;

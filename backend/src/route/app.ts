@@ -10,7 +10,6 @@ import campusRouter from './campus';
 import boardRouter from './main/board';
 
 const app = express();
-
 app.use(cors({ origin: true, credentials: true }));
 app.use(morgan('common'));
 app.use(express.json());

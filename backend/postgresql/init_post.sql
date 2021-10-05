@@ -12,6 +12,7 @@ DROP TABLE IF EXISTS POST;
 CREATE TABLE POST
 (
 	id SERIAL PRIMARY KEY,
+	campus_id INTEGER,
 	title VARCHAR(100),
 	contact VARCHAR(100),
 	deposit INTEGER,
@@ -38,188 +39,188 @@ CREATE TABLE POST
 	post_status STATUS_T
 );
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('1 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 1 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
 
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('2 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 2 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('3 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 3 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('4 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(2, 'KDB금융대학교 4 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('5 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 5 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('6 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 6 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('7 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(2, 'KDB금융대학교 7 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('8 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 8 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('9 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 9 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('10 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(2, 'KDB금융대학교 10 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('11 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 11 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('12 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 12 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('13 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 13 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('14 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(2, 'KDB금융대학교 14 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('15 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 15 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('16 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(2, 'KDB금융대학교 16 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('17 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 17 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('18 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 18 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('19 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(2, 'KDB금융대학교 19 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('20 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 20 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('21 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 21 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('22 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 22 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
 
-INSERT INTO POST (title, contact, deposit, monthly_rent, service_fee, electricity, 
+INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, end_at, start_at, address, address_detail,
 					address_private, total_floor, current_floor, building_type, 
 					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
 ) VALUES
-('23 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
+(1, 'ICT폴리텍대학 23 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
 	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
 

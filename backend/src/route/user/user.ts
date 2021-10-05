@@ -1,13 +1,25 @@
 import express from 'express';
 import * as user_logic from '../../logic/user';
-import { IUserRequest } from '../../interface/interface';
 const router = express.Router();
 
-router.get('/', async (req: IUserRequest, res) => {
-  // await user_logic.create('123');
-  // const user = await user_logic.get(1);
+router.get('/', async (req, res, next) => {
+  try {
+    const id = req.query.id as string;
+    if (!id) throw { msg: 'id가 없습니다.' };
 
-  res.status(200).json({ asd: '123' });
+    await user_logic.updateLastLogin(parseInt(id, 10));
+
+    res.status(200).json({ asd: '123' });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put('/', async (req, res, next) => {
+  try {
+  } catch (err) {
+    next(err);
+  }
 });
 
 export default router;

@@ -13,6 +13,7 @@ IconContainer.propTypes = {
 export default IconContainer;
 
 const Container = styled.div`
+  display: inline-block;
   width: ${(props) => props.widthSize};
   height: ${(props) => props.heightSize};
   & svg {

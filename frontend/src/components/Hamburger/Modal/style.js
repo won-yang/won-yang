@@ -14,11 +14,9 @@ export const ModalContainer = styled.div`
   position: absolute;
   left: 100%;
   padding-top: 50px;
-  /* 50%까지 이동. */
   height: 100%;
   width: 70%;
   max-width: 260px;
-  /* transform: ${(props) => (props.open ? "translateX(-100%)" : "")}; */
   transition: 0.4s;
   &.modal-open {
     transition: 0.4s;

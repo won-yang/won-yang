@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import MainTemplate from "components/Template/MainTemplate";
 import styled from "styled-components";
 import { ReactComponent as AuthIcon } from "assets/medal.svg";
@@ -12,8 +11,10 @@ import image2 from "assets/dummyImg/dmy2.jpeg";
 import image3 from "assets/dummyImg/dmy3.jpeg";
 import image4 from "assets/dummyImg/dmy4.jpeg";
 import image5 from "assets/dummyImg/dmy5.jpeg";
+import IconContainer from "components/Icon/IconContainer";
+import PostDetailHeader from "components/PostDetail/PostDetailHeader";
 
-const PostDetailPage = (props) => {
+const PostDetailPage = () => {
   const imagePaths = [image1, image2, image3];
 
   return (
@@ -21,18 +22,12 @@ const PostDetailPage = (props) => {
       <Carousel imagePaths={imagePaths} />
       <PostDetailContainer>
         <AuthBadgeWrapper>
-          <AuthIcon />
+          <IconContainer widthSize="25px" heightSize="25px">
+            <AuthIcon />
+          </IconContainer>
           <AuthText>인증완료사용자</AuthText>
         </AuthBadgeWrapper>
-        <PostHeader>
-          <PostTitle>농담대까지 10분 거리 원룸 양도합니다</PostTitle>
-          <PostDate>작성일자 : 2021. 06.21 13:00</PostDate>
-          <UserInteractionButtonContainer>
-            <PostBookmark>북</PostBookmark>
-            <PostShare>공</PostShare>
-          </UserInteractionButtonContainer>
-        </PostHeader>
-
+        <PostDetailHeader />
         <PriceInfoList>
           <li>
             보증금<PriceText>300 만원</PriceText>
@@ -118,10 +113,10 @@ const PostTitle = styled.span`
 `;
 
 const AuthBadgeWrapper = styled.div`
-  & > svg {
+  /* & > svg {
     width: 25px;
     height: 25px;
-  }
+  } */
 `;
 
 const AuthText = styled.span`
@@ -141,24 +136,6 @@ const PostDetailContainer = styled.section`
     font-size: ${({ theme }) => theme.fontSize.middleFontSize};
   }
 `;
-
-const PostHeader = styled.div`
-  /* display: flex; */
-  /* justify-content: space-between; */
-`;
-
-const PostDate = styled.span`
-  font-size: 0.8em;
-  color: ${({ theme }) => theme.colors.gray};
-`;
-
-const UserInteractionButtonContainer = styled.div`
-  float: right;
-`;
-
-const PostBookmark = styled.button``;
-
-const PostShare = styled.button``;
 
 const PriceInfoList = styled.ul`
   display: flex;

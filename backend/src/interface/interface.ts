@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import * as types from './types';
 
 export interface IJwtData {
-  id: string;
+  id: number;
   data: string;
 }
 
@@ -10,11 +10,11 @@ export interface IUser {
   id: number;
   authId: string;
   nickname: string;
-  schoolId: number;
+  campusId: number;
   lastLogin: number;
 }
 
-export interface IUniversity {
+export interface ICampus {
   id: number;
   name: string;
 }

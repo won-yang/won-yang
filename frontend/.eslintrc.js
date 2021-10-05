@@ -1,6 +1,10 @@
 module.exports = {
   parser: "babel-eslint",
-  extends: ["plugin:react/recommended", "plugin:prettier/recommended"],
+  extends: [
+    "airbnb-base",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+  ],
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module",
@@ -23,7 +27,7 @@ module.exports = {
     "react/display-name": 0,
     "import/prefer-default-export": 0,
     "import/no-unresolved": "off",
-    'quotes': ['off', 'single']
+    "no-else-return": 0,
   },
   settings: {
     react: {

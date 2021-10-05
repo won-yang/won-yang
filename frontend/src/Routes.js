@@ -1,19 +1,25 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { LandingPage, MainPage, PostDetailPage, PostWritePage } from "pages";
-import { ThemeProvider } from "styled-components";
-import { DarkTheme } from "styles/theme/DefaultTheme";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  LandingPage,
+  MainPage,
+  PostDetailPage,
+  PostWritePage,
+  SignUpPage,
+} from "pages";
 import Header from "components/Header/Header";
 
 const Routes = (props) => {
   return (
     <Router>
       <Header />
-      <ThemeProvider theme={DarkTheme}>
         <Switch>
           <Route path="/" exact>
             {/* landing page */}
             <LandingPage />
+          </Route>
+          <Route path="/signup">
+            <SignUpPage />
           </Route>
           <Route path="/main">
             {/* main page */}
@@ -26,7 +32,6 @@ const Routes = (props) => {
           <Route path="/posts/:id" exact component={PostDetailPage} />
           <Route path="/tmp" exact component={PostWritePage} />
         </Switch>
-      </ThemeProvider>
     </Router>
   );
 };

@@ -1,10 +1,6 @@
 module.exports = {
   parser: "babel-eslint",
-  extends: [
-    "airbnb-base",
-    "plugin:react/recommended",
-    "plugin:prettier/recommended",
-  ],
+  extends: ["airbnb-base", "plugin:react/recommended", "plugin:prettier/recommended"],
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module",

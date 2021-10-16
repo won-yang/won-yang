@@ -2,11 +2,7 @@ import React, { useState, useCallback } from "react";
 import { debounce } from "lodash";
 import { ReactComponent as IconSearch } from "assets/icon_search.svg";
 import { BASE_URL, UNIV_API } from "utils/constants/request";
-import {
-  DEBOUNCE_TIME,
-  BREAK_POINT,
-  DEFAULT_WIDTH,
-} from "utils/constants/numbers";
+import { DEBOUNCE_TIME, BREAK_POINT, DEFAULT_WIDTH } from "utils/constants/numbers";
 import DropDown from "./DropDown";
 import { InputForm, Button, UnivSearchUL } from "./style";
 
@@ -33,7 +29,7 @@ const UnivSearchbar = ({ onSelected }) => {
     debounce((input) => {
       requestCampusList(input);
     }, DEBOUNCE_TIME),
-    []
+    [],
   );
 
   const onChangeHandler = (e) => {
@@ -61,16 +57,16 @@ const UnivSearchbar = ({ onSelected }) => {
     <>
       <InputForm
         isMobile={isMobile}
-        name='univ-search'
+        name="univ-search"
         onSubmit={onSubmitHandler}
         onClick={onClickHandler}
       >
         <input
-          className='input'
-          type='search'
+          className="input"
+          type="search"
           value={inputValue}
           onChange={onChangeHandler}
-          placeholder='대학교를 입력해주세요'
+          placeholder="대학교를 입력해주세요"
         />
         <Button onClick={onClickHandler}>
           <IconSearch />

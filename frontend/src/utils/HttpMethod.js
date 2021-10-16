@@ -29,7 +29,7 @@ export const requestPut = async (url, parameters) => {
         },
         {
           withCredentials: true,
-        }
+        },
       );
       return response;
     } else {

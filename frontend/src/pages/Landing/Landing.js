@@ -18,7 +18,7 @@ const LandingPage = (props) => {
   return (
     <LandingWrapper>
       <Wrapper>
-        <IconLogo widthSize='20em' heightSize='20em' />
+        <IconLogo widthSize="20em" heightSize="20em" />
         <StringWrapper>원룸 양도의 정보가 모이는 곳</StringWrapper>
       </Wrapper>
       <Wrapper>

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const PageOne = (props) => {
+const PageTwo = (props) => {
   return (
     <div>
       <h2>보증금과 월세, 관리비, 납부금에 대한 정보를 입력해주세요.</h2>
@@ -25,6 +25,6 @@ const PageOne = (props) => {
   );
 };
 
-PageOne.propTypes = {};
+PageTwo.propTypes = {};
 
-export default PageOne;
+export default PageTwo;

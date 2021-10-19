@@ -1,3 +1,5 @@
+import Button from "components/common/Button";
+import Input from "components/common/Input";
 import React from "react";
 import styled from "styled-components";
 
@@ -6,9 +8,9 @@ const PhaseFour = () => {
     <>
       <AddressSection>
         <InputDescription>주소</InputDescription>
-        <input></input>
+        <Input></Input>
         <InputDescription>상세주소</InputDescription>
-        <input></input>
+        <Input></Input>
         <div>
           <input type="checkbox" />
           <span>주소 오픈</span>
@@ -16,54 +18,60 @@ const PhaseFour = () => {
       </AddressSection>
       <BuildingFloorSection>
         <InputDescription>건물 층수</InputDescription>
-        <input placeholder="현재 층을 입력"></input>
-        <input placeholder="건물 전체 층 입력"></input>
+        <Input placeholder="현재 층을 입력"></Input>
+        <Input placeholder="건물 전체 층 입력"></Input>
       </BuildingFloorSection>
       <BuildingStructureSection>
         <InputDescription>건물 구조</InputDescription>
-        <input type="radio" value="아파트" id="apart" />
-        <label htmlFor="apart">아파트</label>
-        <input type="radio" value="단주" id="apart" />
-        <label htmlFor="apart">단독 주택</label>
-        <input type="radio" value="다주" id="apart" />
-        <label htmlFor="apart">다세대 주택</label>
-        <input type="radio" value="빌" id="apart" />
-        <label htmlFor="apart">빌라</label>
-        <input type="radio" value="오" id="apart" />
-        <label htmlFor="apart">오피스텔</label>
-        <input type="radio" value="기" id="apart" />
-        <label htmlFor="apart">기타</label>
-        <input placeholder="직접 입력" />
+        <CheckboxContainer>
+          <Input type="radio" value="아파트" id="apart" />
+          <label htmlFor="apart">아파트</label>
+          <Input type="radio" value="단주" id="apart" />
+          <label htmlFor="apart">단독 주택</label>
+          <Input type="radio" value="다주" id="apart" />
+          <label htmlFor="apart">다세대 주택</label>
+          <Input type="radio" value="빌" id="apart" />
+          <label htmlFor="apart">빌라</label>
+          <Input type="radio" value="오" id="apart" />
+          <label htmlFor="apart">오피스텔</label>
+          <Input type="radio" value="기" id="apart" />
+          <label htmlFor="apart">기타</label>
+          <Input placeholder="직접 입력" />
+        </CheckboxContainer>
       </BuildingStructureSection>
       <RoomStructureSection>
         <InputDescription>방의 구조</InputDescription>
-        <input type="radio" value="분리형 원룸" id="apart" />
-        <label htmlFor="apart">분리형 원룸</label>
-        <input type="radio" value="일체형 원룸" id="apart" />
-        <label htmlFor="apart">일체형 원룸</label>
-        <input type="radio" value="복층 원룸" id="apart" />
-        <label htmlFor="apart">복층 원룸</label>
-        <input type="radio" value="빌" id="apart" />
-        <label htmlFor="apart">투름</label>
-        <input type="radio" value="오" id="apart" />
-        <label htmlFor="apart">쓰리룸</label>
-        <input type="radio" value="기" id="apart" />
-        <label htmlFor="apart">기타</label>
-        <input placeholder="직접 입력" />
+        <CheckboxContainer>
+          <Input type="radio" value="분리형 원룸" id="apart" />
+          <label htmlFor="apart">분리형 원룸</label>
+          <Input type="radio" value="일체형 원룸" id="apart" />
+          <label htmlFor="apart">일체형 원룸</label>
+          <Input type="radio" value="복층 원룸" id="apart" />
+          <label htmlFor="apart">복층 원룸</label>
+          <Input type="radio" value="빌" id="apart" />
+          <label htmlFor="apart">투름</label>
+          <Input type="radio" value="오" id="apart" />
+          <label htmlFor="apart">쓰리룸</label>
+          <Input type="radio" value="기" id="apart" />
+          <label htmlFor="apart">기타</label>
+          <Input placeholder="직접 입력" />
+        </CheckboxContainer>
       </RoomStructureSection>
 
       <WindowDirectionSection>
         <InputDescription>창의 방향</InputDescription>
-        <button>남향</button>
-        <button>서향</button>
-        <button>북향</button>
-        <button>동향</button>
+        <WindowDirectionButtonContainer>
+          <WindowDirectionButton>남향</WindowDirectionButton>
+          <WindowDirectionButton>서향</WindowDirectionButton>
+          <WindowDirectionButton>북향</WindowDirectionButton>
+          <WindowDirectionButton>동향</WindowDirectionButton>
+        </WindowDirectionButtonContainer>
       </WindowDirectionSection>
 
       <TransferTimeSection>
         <InputDescription>학교까지의 거리,,음..필여한데이터인가</InputDescription>
-        <input placeholder="도보로 걸리는 시각"></input>
-        <input placeholder="대중 교통으로 걸리는 시각"></input>
+        <Input placeholder="도보로 걸리는 시각"></Input>
+        <Input placeholder="대중 교통으로 걸리는 시각"></Input>
       </TransferTimeSection>
     </>
   );
@@ -92,4 +100,21 @@ const TransferTimeSection = styled.div``;
 
 const InputDescription = styled.span`
   display: block;
+`;
+
+const WindowDirectionButtonContainer = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+
+const WindowDirectionButton = styled(Button)`
+  line-height: 25px;
+  background-color: ${({ theme }) => theme.colors.oppositeDefalut};
+  border: 1px solid ${({ theme }) => theme.colors.gray};
+`;
+
+const CheckboxContainer = styled.div`
+  & label {
+    padding-right: 15px;
+  }
 `;

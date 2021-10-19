@@ -1,37 +1,44 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Button from "components/common/Button";
 
 const PhaseFive = (props) => {
   return (
     <>
       <HomeApplianceSection>
         <InputDescription>가전 제품</InputDescription>
-        <button>세탁기</button>
-        <button>에어컨</button>
-        <button>냉장고</button>
-        <button>전자레인지</button>
-        <button>TV</button>
+        <ButtonContainer>
+          <OptionButton>세탁기</OptionButton>
+          <OptionButton>에어컨</OptionButton>
+          <OptionButton>냉장고</OptionButton>
+          <OptionButton>전자레인지</OptionButton>
+          <OptionButton>TV</OptionButton>
+        </ButtonContainer>
         <InputDescription>선택된 옵션</InputDescription>
       </HomeApplianceSection>
 
       <FurnitureSection>
         <InputDescription>가구</InputDescription>
-        <button>책장</button>
-        <button>옷장</button>
-        <button>신발장</button>
-        <button>책상 / 의자</button>
-        <button>침대</button>
+        <ButtonContainer>
+          <OptionButton>책장</OptionButton>
+          <OptionButton>옷장</OptionButton>
+          <OptionButton>신발장</OptionButton>
+          <OptionButton>책상 / 의자</OptionButton>
+          <OptionButton>침대</OptionButton>
+        </ButtonContainer>
         <InputDescription>선택된 옵션</InputDescription>
       </FurnitureSection>
 
       <ExtraOptionSection>
         <InputDescription>기타</InputDescription>
-        <button>CCTV</button>
-        <button>도어락</button>
-        <button>열쇠</button>
-        <button>주차장</button>
-        <button>반려동물</button>
+        <ButtonContainer>
+          <OptionButton>CCTV</OptionButton>
+          <OptionButton>도어락</OptionButton>
+          <OptionButton>열쇠</OptionButton>
+          <OptionButton>주차장</OptionButton>
+          <OptionButton>반려동물</OptionButton>
+        </ButtonContainer>
         <InputDescription>선택된 옵션</InputDescription>
       </ExtraOptionSection>
     </>
@@ -50,3 +57,17 @@ const InputDescription = styled.span`
   display: block;
 `;
 const ExtraOptionSection = styled.div``;
+
+const OptionButton = styled(Button)`
+  border-radius: 8px;
+  min-width: 60px;
+  background-color: ${({ theme }) => theme.colors.darkGray};
+  color: white;
+  &.clicked {
+    background-color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 5px;
+`;

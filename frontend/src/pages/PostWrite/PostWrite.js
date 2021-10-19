@@ -1,8 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import PhaseThree from "components/PostWrite/PhaseThree";
+import PrevNext from "components/PostWrite/PrevNext";
 
 const PostWritePage = (props) => {
-  return <div></div>;
+  return (
+    <div>
+      <PhaseThree />
+      <PrevNext />
+    </div>
+  );
 };
 
 PostWritePage.propTypes = {};

@@ -2,11 +2,13 @@ import React from "react";
 import MainTemplate from "components/Template/MainTemplate";
 import styled from "styled-components";
 import PhaseFive from "components/PostWrite/PhaseFive";
+import PhaseFour from "components/PostWrite/PhaseFour";
+import WriteProgressBar from "components/common/WriteProgressBar";
 
 const WriteTmp = () => {
   return (
     <MainTemplate>
-      <WriteProgress>아이콘여러개 진척도 ~~</WriteProgress>
+      <WriteProgressBar />
       <Section>
         <PhaseFive />
       </Section>
@@ -19,12 +21,10 @@ WriteTmp.propTypes = {};
 
 export default WriteTmp;
 
-const WriteProgress = styled.div`
-  margin-top: 85px;
-`;
+const WriteProgress = styled.div``;
 
 const Section = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 `;

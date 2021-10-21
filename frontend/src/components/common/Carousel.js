@@ -22,7 +22,9 @@ const Carousel = ({ imagePaths }) => {
       <ImageWrapper>
         <CurrImage src={imagePaths[currImageIndex]} />
       </ImageWrapper>
-      <ImageCountNoti>{currImageIndex + 1 + "/" + imagePaths.length}</ImageCountNoti>
+      <ImageCountNoti>
+        {currImageIndex + 1}/{imagePaths.length}
+      </ImageCountNoti>
     </Container>
   );
 };

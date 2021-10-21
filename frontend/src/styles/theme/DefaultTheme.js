@@ -20,6 +20,8 @@ export const DarkTheme = {
     green: "#2A9610",
     blue: "#3B4DF6",
     darkRed: "#B80101",
+    darkGray: "#71758E",
+    darkPurple: "#3649F1",
   },
   fontSize: {
     desktopFontSize: "30px",

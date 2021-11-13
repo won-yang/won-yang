@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Title, Content, SubTitle, StyledInput, FlexBox } from "./Title";
+import PrevNext from "./PrevNext";
 
 const PhaseOne = (props) => {
   return (
@@ -18,6 +19,7 @@ const PhaseOne = (props) => {
           <StyledInput type="text" placeholder="연락처를 입력해주세요." />
         </div>
       </FlexBox>
+      <PrevNext />
     </>
   );
 };

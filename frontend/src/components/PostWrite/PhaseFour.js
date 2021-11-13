@@ -2,6 +2,7 @@ import Button from "components/common/Button";
 import Input from "components/common/Input";
 import React from "react";
 import styled from "styled-components";
+import PrevNext from "./PrevNext";
 
 const PhaseFour = () => {
   return (
@@ -73,6 +74,7 @@ const PhaseFour = () => {
         <Input placeholder="도보로 걸리는 시각"></Input>
         <Input placeholder="대중 교통으로 걸리는 시각"></Input>
       </TransferTimeSection>
+      <PrevNext />
     </>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Button from "components/common/Button";
+import PrevNext from "./PrevNext";
 
 const PhaseFive = (props) => {
   return (
@@ -41,6 +42,7 @@ const PhaseFive = (props) => {
         </ButtonContainer>
         <InputDescription>선택된 옵션</InputDescription>
       </ExtraOptionSection>
+      <PrevNext />
     </>
   );
 };

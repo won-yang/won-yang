@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import PrevNext from "./PrevNext";
 
 const PhaseSix = (props) => {
   const [imageFiles, setImageFiles] = useState([]);
@@ -46,6 +47,7 @@ const PhaseSix = (props) => {
         <label>글 내용</label>
         <textarea></textarea>
       </div>
+      <PrevNext />
     </>
   );
 };

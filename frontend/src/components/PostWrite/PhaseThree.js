@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Title, Content, FlexBox, InlineSubTitle, StyledInputDate } from "./Title";
+import PrevNext from "./PrevNext";
 
 const PhaseThree = (props) => {
   return (
@@ -20,6 +21,7 @@ const PhaseThree = (props) => {
           <StyledInputDate type="date" />
         </div>
       </FlexBox>
+      <PrevNext />
     </>
   );
 };

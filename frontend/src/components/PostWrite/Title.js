@@ -44,6 +44,8 @@ export const PrevNextBtn = styled(Button)`
   margin-left: 5px;
   border: none;
   border-radius: 5px;
+  opacity: ${(props) => (props.deactivated ? 0.5 : 1)};
+  cursor: ${(props) => (props.deactivated ? "not-allowed" : "pointer")};
 `;
 
 export const FlexBox = styled.div`

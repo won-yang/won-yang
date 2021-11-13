@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Title, Content, InlineSubTitle, SelectButton, FlexBox } from "./Title";
 import InputMoney from "./InputMoney";
+import PrevNext from "./PrevNext";
 
 const PhaseTwo = (props) => {
   return (
@@ -26,6 +27,7 @@ const PhaseTwo = (props) => {
           </div>
         </FlexBox>
       </FlexBox>
+      <PrevNext />
     </>
   );
 };

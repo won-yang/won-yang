@@ -10,6 +10,7 @@ Button.propTypes = {};
 const StyledButton = styled.button`
   height: 25px;
   line-height: 25px;
+  cursor: pointer;
 `;
 
 export default Button;

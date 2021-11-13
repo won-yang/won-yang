@@ -6,7 +6,7 @@ const InputMoney = (props) => {
   return (
     <div>
       <InlineSubTitle>{props.title}</InlineSubTitle>
-      <StyledInputMoney type='text' />
+      <StyledInputMoney type="text" />
       <Manwon>만원</Manwon>
     </div>
   );

@@ -9,6 +9,7 @@ module.exports = {
     },
   },
   rules: {
+    "import/no-extraneous-dependencies": "error",
     "no-unused-expressions": 0,
     "no-unused-vars": 0,
     "no-param-reassign": 0,

@@ -45,7 +45,7 @@ const MainPage = (props) => {
   };
 
   useEffect(() => {
-    loadMorePostItem();
+    // loadMorePostItem();
   }, [isIntersect]);
   return (
     <MainTemplate>

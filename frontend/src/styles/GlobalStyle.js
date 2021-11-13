@@ -27,6 +27,14 @@ const GlobalStyle = createGlobalStyle`
     button {
       border:none;
     }
+    h1 {
+      font-size: 32px;
+      font-weight: bold;
+    }
+    h2 {
+      font-size: 28px;
+      font-weight: bold;
+    }
 `;
 
 export default GlobalStyle;

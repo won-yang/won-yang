@@ -17,17 +17,24 @@ const GlobalStyle = createGlobalStyle`
     span {
       line-height: normal;
     }
-    /* button{
-        display: flex;
-        cursor: pointer;
-        outline: none;
-        border-radius: 3px;
-    };
-    input{
-        display: flex;
-        outline: none;
-        padding-left: 10px;
-    } */
+
+    a {
+      text-decoration: none;
+    }
+    a:visited{
+      color:white;
+    }
+    button {
+      border:none;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: bold;
+    }
+    h2 {
+      font-size: 28px;
+      font-weight: bold;
+    }
 `;
 
 export default GlobalStyle;

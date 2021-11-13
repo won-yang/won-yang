@@ -1,13 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  Wrapper,
-  ListWrapper,
-  List,
-  ListItems,
-  NickNameDisplayWrapper,
-  NickName,
-} from "./style";
+import { Link } from "react-router-dom";
+import { Wrapper, ListWrapper, List, ListItems, NickNameDisplayWrapper, NickName } from "./style";
 
 const HamburgerMenuContent = (props) => {
   return (
@@ -24,7 +18,7 @@ const HamburgerMenuContent = (props) => {
             <a>내 정보 수정</a>
           </ListItems>
           <ListItems>
-            <a>글 작성</a>
+            <Link to="/write/1">글 작성</Link>
           </ListItems>
           <ListItems>
             <a>로그아웃</a>

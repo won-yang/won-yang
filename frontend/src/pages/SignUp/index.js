@@ -94,49 +94,45 @@ const SignUpPage = () => {
   return (
     <SignUpContainer>
       <SignUpHeader>
-        <IconLogo widthSize='12em' heightSize='12em' />
+        <IconLogo widthSize="12em" heightSize="12em" />
       </SignUpHeader>
       <SignUpForm>
         <FormHeader>정보를 알려주세요</FormHeader>
-        <LabelContainer htmlFor='university'>
-          <h3 className='header'>소속 대학교</h3>
-          <div className='univ info univ__info'>
-            검색 버튼을 눌러 대학교를 입력해주세요
-          </div>
+        <LabelContainer htmlFor="university">
+          <h3 className="header">소속 대학교</h3>
+          <div className="univ info univ__info">검색 버튼을 눌러 대학교를 입력해주세요</div>
         </LabelContainer>
         <InputContainer>
           <input
-            className='univ__search signup__form'
-            type='text'
-            name='university'
+            className="univ__search signup__form"
+            type="text"
+            name="university"
             value={inputValue}
             onChange={onChangeCampusInput}
           ></input>
-          <button className='search__univ'>
-            <IconSearch width='35px' height='35px' />
+          <button className="search__univ">
+            <IconSearch width="35px" height="35px" />
           </button>
           <DropDownUL>
             <DropDown campusList={campusList} onSelected={onSelected} />
           </DropDownUL>
         </InputContainer>
 
-        <LabelContainer htmlFor='nickname'>
-          <h3 className='header'>닉네임</h3>
-          <div className='univ info nickname__info'>
-            2~8자 한글, 영어 소문자로만 작성해주세요.
-          </div>
+        <LabelContainer htmlFor="nickname">
+          <h3 className="header">닉네임</h3>
+          <div className="univ info nickname__info">2~8자 한글, 영어 소문자로만 작성해주세요.</div>
         </LabelContainer>
         <InputContainer>
           <input
-            className='nickname signup__form'
-            type='text'
-            name='nickname'
+            className="nickname signup__form"
+            type="text"
+            name="nickname"
             value={inputNickname}
             onChange={onChangeNicknameInput}
           />
           <CheckValidNickname isValidNickname={isValidNickname} />
         </InputContainer>
-        <button className='signup__conplete' onClick={onSubmit}>
+        <button className="signup__conplete" onClick={onSubmit}>
           작성 완료
         </button>
       </SignUpForm>

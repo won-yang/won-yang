@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Container } from "./style";
+import styled from "styled-components";
 
 const IconContainer = (props) => {
   return <Container {...props}>{props.children}</Container>;
@@ -11,3 +11,13 @@ IconContainer.propTypes = {
 };
 
 export default IconContainer;
+
+const Container = styled.div`
+  display: inline-block;
+  width: ${(props) => props.widthSize};
+  height: ${(props) => props.heightSize};
+  & svg {
+    width: 100%;
+    height: 100%;
+  }
+`;

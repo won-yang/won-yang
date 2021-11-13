@@ -26,11 +26,11 @@ const Container = styled.div`
   justify-content: space-between;
   width: 90%;
   height: 50px;
-  margin: 40px auto;
+  margin: 0 auto;
 
   & > span {
     line-height: 50px;
-    font-size: ${(props) => props.theme.middleFontSize};
+    font-size: ${(props) => props.theme.fontSize.middleFontSize};
   }
 
   /* 768 ~ 1280까지 width를 고정시켜야함.620px */
@@ -46,6 +46,6 @@ const ToggleWrapper = styled.div`
   align-items: center;
   & span {
     line-height: 50px;
-    font-size: ${(props) => props.theme.badgeFontSize};
+    font-size: ${(props) => props.theme.fontSize.badgeFontSize};
   }
 `;

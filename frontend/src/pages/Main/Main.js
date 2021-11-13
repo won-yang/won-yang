@@ -6,6 +6,8 @@ import PostFilter from "components/PlacePostList/PostFilter/PostFilter";
 import { getPostItem } from "utils/api";
 import { BASE_URL, END_POINT } from "utils/constants/request";
 import useInfiniteScroll from "hooks/useInfiniteScroll";
+import Jumbotron from "components/common/Jumbotron";
+import MainTemplate from "components/Template/MainTemplate";
 
 const MainPage = (props) => {
   const [postData, setPostData] = useState([]);
@@ -22,11 +24,17 @@ const MainPage = (props) => {
     _rootMargin: "200px",
     _threshold: 0.01,
   });
+
   const loadMorePostItem = async () => {
+    /*
+    TODO 대학교검색페이지에서 대학교 ID값 pathname으로 전달되면 해당 값 포함해서 API요청보내는 것 추가하기
+    */
     if (isIntersect) {
       const response = await getPostItem(BASE_URL + END_POINT.board, {
         page: pageNum,
       });
+      console.log(response);
+
       if (response.post.length === 0) {
         setIsLastPage(true);
       } else {
@@ -37,21 +45,17 @@ const MainPage = (props) => {
   };
 
   useEffect(() => {
-    loadMorePostItem();
+    // loadMorePostItem();
   }, [isIntersect]);
   return (
-    <>
-      <Header />
+    <MainTemplate>
+      <Jumbotron />
       <ArticleContainer>
-        <section className='temp-section'>검색 및 공지사항 div</section>
+        {/* <section className="temp-section">검색 및 공지사항 div</section> */}
         <PostFilter />
-        <PlacePostList
-          items={postData}
-          intersectRef={intersectRef}
-          isLastPage={isLastPage}
-        />
+        <PlacePostList items={postData} intersectRef={intersectRef} isLastPage={isLastPage} />
       </ArticleContainer>
-    </>
+    </MainTemplate>
   );
 };
 
@@ -59,11 +63,8 @@ MainPage.propTypes = {};
 
 export default MainPage;
 
-export const ArticleContainer = styled.article`
+const ArticleContainer = styled.article`
   padding-top: 60px;
-  max-width: 1280px;
-  width: 90%;
-  margin: 0 auto;
   & .temp-section {
     height: 320px;
   }

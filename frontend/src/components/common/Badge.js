@@ -23,15 +23,15 @@ const Wrapper = styled.div`
   line-height: 23px;
   border-radius: 8px;
   text-align: center;
-  font-size: ${(props) => props.theme.badgeFontSize};
+  font-size: ${(props) => props.theme.fontSize.badgeFontSize};
   color: white;
   &.CONTRACTED {
-    background-color: ${(props) => props.theme.greenColor};
+    background-color: ${(props) => props.theme.colors.green};
   }
   &.IN_PROGRESS {
-    background-color: ${(props) => props.theme.purpleColor};
+    background-color: ${(props) => props.theme.colors.purple};
   }
   &.EXPIRED {
-    background-color: ${(props) => props.theme.redColor};
+    background-color: ${(props) => props.theme.colors.red};
   }
 `;

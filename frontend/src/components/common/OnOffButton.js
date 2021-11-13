@@ -5,8 +5,8 @@ import styled from "styled-components";
 const OnOffButton = (props) => {
   return (
     <>
-      <Input type='checkbox' id='checkbox'></Input>
-      <Label htmlFor='checkbox'>
+      <Input type="checkbox" id="checkbox"></Input>
+      <Label htmlFor="checkbox">
         <span></span>
       </Label>
     </>

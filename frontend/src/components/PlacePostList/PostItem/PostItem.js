@@ -8,7 +8,7 @@ const PlacePostItem = ({ item }) => {
   return (
     <Container>
       <ImageWrapper>
-        <img src={item.image_url} alt='place picture'></img>
+        <img src={item.image_url} alt="place picture"></img>
         <Badge status={item.post_status} />
       </ImageWrapper>
       <ItemInfo>
@@ -73,10 +73,10 @@ const ItemInfo = styled.div`
 
   & span {
     font-size: 0.8rem;
-    color: ${(props) => props.theme.fontGrayColor};
+    color: ${(props) => props.theme.colors.gray};
   }
   & span:last-child {
-    color: ${(props) => props.theme.fontlightGrayColor};
+    color: ${(props) => props.theme.colors.lightGray};
     align-self: flex-end;
   }
   & h2 {
@@ -104,13 +104,13 @@ const Container = styled.div`
   /* width: 100%; */
   display: flex;
   border: 1px solid gray;
-  font-size: ${(props) => props.theme.mobileFontSize};
+  font-size: ${(props) => props.theme.fontSize.mobileFontSize};
 
   @media ${device.tablet} {
     flex-direction: column;
-    font-size: ${(props) => props.theme.tabletFontSize};
+    font-size: ${(props) => props.theme.fontSize.tabletFontSize};
   }
   @media ${device.desktop} {
-    font-size: ${(props) => props.theme.desktopFontSize};
+    font-size: ${(props) => props.theme.fontSize.desktopFontSize};
   }
 `;

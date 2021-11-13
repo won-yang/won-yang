@@ -7,6 +7,6 @@ const useDebounce = (callback) =>
     debounce((input) => {
       callback(input);
     }, DEBOUNCE_TIME),
-    []
+    [],
   );
 export default useDebounce;

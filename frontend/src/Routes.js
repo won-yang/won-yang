@@ -1,41 +1,32 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import {
-  LandingPage,
-  MainPage,
-  PostDetailPage,
-  PostWritePage,
-  SignUpPage,
-} from "pages";
-import { ThemeProvider } from "styled-components";
-import { DarkTheme } from "styles/theme/DefaultTheme";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { LandingPage, MainPage, PostDetailPage, PostWritePage, SignUpPage } from "pages";
+import Header from "components/Header/Header";
+import WriteTmp from "pages/PostWrite/WriteTmp";
 
 const Routes = (props) => {
   return (
     <Router>
-      <ThemeProvider theme={DarkTheme}>
-        <Switch>
-          <Route path='/' exact>
-            {/* landing page */}
-            <LandingPage />
-          </Route>
-          <Route path='/signup'>
-            <SignUpPage />
-          </Route>
-          <Route path='/main'>
-            {/* main page */}
-            <MainPage />
-          </Route>
-          <Route path='/posts'>
-            {/* 작성 page */}
-            <PostWritePage />
-          </Route>
-          <Route path='/posts/:id'>
-            {/* 게시글보기 page */}
-            <PostDetailPage />
-          </Route>
-        </Switch>
-      </ThemeProvider>
+      <Header />
+      <Switch>
+        <Route path="/" exact>
+          {/* landing page */}
+          <LandingPage />
+        </Route>
+        <Route path="/signup">
+          <SignUpPage />
+        </Route>
+        <Route path="/main">
+          {/* main page */}
+          <MainPage />
+        </Route>
+        <Route path="/posts" exact>
+          {/* 작성 page */}
+          <PostWritePage />
+        </Route>
+        <Route path="/posts/:id" exact component={PostDetailPage} />
+        <Route path="/write" component={PostWritePage} />
+      </Switch>
     </Router>
   );
 };

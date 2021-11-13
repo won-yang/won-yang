@@ -7,8 +7,8 @@ import IconContainer from "./IconContainer";
 const IconLogo = (props) => {
   return (
     <IconContainer {...props}>
-      <Link to='/'>
-        <Logo alt='logo'></Logo>
+      <Link to="/">
+        <Logo alt="logo"></Logo>
       </Link>
     </IconContainer>
   );

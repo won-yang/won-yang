@@ -1,8 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { setTitle } from "store/Postwrite/PostwriteSlice";
+import { useDispatch } from "react-redux";
 import { Title, Content, SubTitle, StyledInput, FlexBox } from "./Title";
 
 const PhaseOne = (props) => {
+  const dispatch = useDispatch();
   return (
     <>
       <Title>제목과 연락처를 입력해주세요.</Title>
@@ -13,7 +16,11 @@ const PhaseOne = (props) => {
       <FlexBox>
         <div>
           <SubTitle>제목*</SubTitle>
-          <StyledInput type="text" placeholder="제목을 입력해주세요." />
+          <StyledInput
+            onChange={() => dispatch(setTitle())}
+            type="text"
+            placeholder="제목을 입력해주세요."
+          />
           <SubTitle>연락처*</SubTitle>
           <StyledInput type="text" placeholder="연락처를 입력해주세요." />
         </div>

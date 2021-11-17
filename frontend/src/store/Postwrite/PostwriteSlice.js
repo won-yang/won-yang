@@ -1,6 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {};
+const initialState = {
+  title: "",
+  contact: "",
+  deposit: 0,
+  monthlyRent: 0,
+  serviceFee: 0,
+  includingTax: {
+    electricity: false,
+    water: false,
+    gas: false,
+  },
+  contractExpireDate: "",
+  moveInDate: "",
+};
 
 export const PostwriteSlice = createSlice({
   name: "postwrite",
@@ -19,10 +32,46 @@ export const PostwriteSlice = createSlice({
     incrementByAmount: (state, action) => {
       state.value += action.payload;
     },
+    setTitle: (state, action) => {
+      state.title = action.payload.title;
+    },
+    setContact: (state, action) => {
+      state.contact = action.payload.contact;
+    },
+    setDeposit: (state, action) => {
+      state.deposit = action.payload.contact;
+    },
+    setMonthlyRent: (state, action) => {
+      state.deposit = action.payload.monthlyRent;
+    },
+    setServiceFee: (state, action) => {
+      state.deposit = action.payload.serviceFee;
+    },
+    setIncludingTax: (state, action) => {
+      state.deposit = action.payload.includingTax;
+    },
+    setContractExpireDate: (state, action) => {
+      state.deposit = action.payload.contractExpireDate;
+    },
+    setMoveInDate: (state, action) => {
+      state.deposit = action.payload.moveInDate;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = PostwriteSlice.actions;
+export const {
+  increment,
+  decrement,
+  incrementByAmount,
+  setTitle,
+  setContact,
+  setDeposit,
+  setMonthlyRent,
+  setServiceFee,
+  setIncludingTax,
+  setContractExpireDate,
+  setMoveInDate,
+} = PostwriteSlice.actions;
 
 export default PostwriteSlice.reducer;

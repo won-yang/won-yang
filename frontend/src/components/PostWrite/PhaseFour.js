@@ -2,12 +2,30 @@ import Button from "components/common/Button";
 import Input from "components/common/Input";
 import React from "react";
 import styled from "styled-components";
+import DaumPostcode from "react-daum-postcode";
 import PrevNext from "./PrevNext";
 
-const PhaseFour = () => {
+const PhaseFour = (props) => {
+  const handleComplete = (data) => {
+    let fullAddress = data.address;
+    let extraAddress = "";
+
+    if (data.addressType === "R") {
+      if (data.bname !== "") {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== "") {
+        extraAddress += extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
+    }
+
+    console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
+  };
   return (
     <>
       <AddressSection>
+        <DaumPostcode onComplete={handleComplete} {...props} />
         <InputDescription>주소</InputDescription>
         <Input></Input>
         <InputDescription>상세주소</InputDescription>

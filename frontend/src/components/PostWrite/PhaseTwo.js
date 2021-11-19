@@ -1,9 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import {
+  setDeposit,
+  setMonthlyRent,
+  setServiceFee,
+  setIncludingTax,
+} from "store/Postwrite/PostwriteSlice";
 import { Title, Content, InlineSubTitle, SelectButton, FlexBox } from "./Title";
 import InputMoney from "./InputMoney";
 
 const PhaseTwo = (props) => {
+  const dispatch = useDispatch();
   return (
     <>
       <Title>보증금과 월세, 관리비, 납부금에 대한 정보를 입력해주세요.</Title>
@@ -13,16 +21,18 @@ const PhaseTwo = (props) => {
       </Content>
       <FlexBox>
         <FlexBox>
-          <InputMoney title="보증금*" />
-          <InputMoney title="월세*" />
-          <InputMoney title="관리비" />
+          <InputMoney handler={setDeposit} title="보증금*" />
+          <InputMoney handler={setMonthlyRent} title="월세*" />
+          <InputMoney handler={setServiceFee} title="관리비" />
         </FlexBox>
         <FlexBox>
           <div>
             <InlineSubTitle>월세에 포함</InlineSubTitle>
-            <SelectButton>전기세</SelectButton>
-            <SelectButton>수도세</SelectButton>
-            <SelectButton>가스비</SelectButton>
+            <SelectButton onClick={() => dispatch(setIncludingTax("electricity"))}>
+              전기세
+            </SelectButton>
+            <SelectButton onClick={() => dispatch(setIncludingTax("water"))}>수도세</SelectButton>
+            <SelectButton onClick={() => dispatch(setIncludingTax("gas"))}>가스비</SelectButton>
           </div>
         </FlexBox>
       </FlexBox>

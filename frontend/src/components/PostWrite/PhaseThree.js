@@ -1,8 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { setContractExpireDate, setMoveInDate } from "store/Postwrite/PostwriteSlice";
+
+import { useDispatch } from "react-redux";
+
 import { Title, Content, FlexBox, InlineSubTitle, StyledInputDate } from "./Title";
 
 const PhaseThree = (props) => {
+  const dispatch = useDispatch();
   return (
     <>
       <Title>계약이 만료되는 날짜와 입주가능한 날짜를 선택해주세요. </Title>
@@ -13,11 +18,14 @@ const PhaseThree = (props) => {
       <FlexBox>
         <div>
           <InlineSubTitle>계약 만료일*</InlineSubTitle>
-          <StyledInputDate type="date" />
+          <StyledInputDate
+            onChange={(e) => dispatch(setContractExpireDate(e.target.value))}
+            type="date"
+          />
         </div>
         <div>
           <InlineSubTitle>입주 가능일*</InlineSubTitle>
-          <StyledInputDate type="date" />
+          <StyledInputDate onChange={(e) => dispatch(setMoveInDate(e.target.value))} type="date" />
         </div>
       </FlexBox>
     </>

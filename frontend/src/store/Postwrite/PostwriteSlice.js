@@ -33,28 +33,31 @@ export const PostwriteSlice = createSlice({
       state.value += action.payload;
     },
     setTitle: (state, action) => {
-      state.title = action.payload.title;
+      state.title = action.payload;
     },
     setContact: (state, action) => {
-      state.contact = action.payload.contact;
+      state.contact = action.payload;
     },
     setDeposit: (state, action) => {
-      state.deposit = action.payload.contact;
+      state.deposit = action.payload;
     },
     setMonthlyRent: (state, action) => {
-      state.deposit = action.payload.monthlyRent;
+      state.monthlyRent = action.payload;
     },
     setServiceFee: (state, action) => {
-      state.deposit = action.payload.serviceFee;
+      state.serviceFee = action.payload;
     },
     setIncludingTax: (state, action) => {
-      state.deposit = action.payload.includingTax;
+      state.includingTax = {
+        ...state.includingTax,
+        [action.payload]: !state.includingTax[action.payload],
+      };
     },
     setContractExpireDate: (state, action) => {
-      state.deposit = action.payload.contractExpireDate;
+      state.contractExpireDate = action.payload;
     },
     setMoveInDate: (state, action) => {
-      state.deposit = action.payload.moveInDate;
+      state.moveInDate = action.payload;
     },
   },
 });

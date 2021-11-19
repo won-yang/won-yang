@@ -1,12 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 import { InlineSubTitle, StyledInputMoney, Manwon } from "./Title";
 
-const InputMoney = (props) => {
+const InputMoney = ({ title, handler }) => {
+  const dispatch = useDispatch();
+
   return (
     <div>
-      <InlineSubTitle>{props.title}</InlineSubTitle>
-      <StyledInputMoney type="text" />
+      <InlineSubTitle>{title}</InlineSubTitle>
+      <StyledInputMoney onChange={(e) => dispatch(handler(e.target.value))} type="text" />
       <Manwon>만원</Manwon>
     </div>
   );

@@ -27,6 +27,7 @@ export const InlineSubTitle = styled.h3`
 `;
 
 export const SelectButton = styled(Button)`
+  /* 인자를 받아서 그거 값에 따라서 색깔을 바꾼다 */
   border: 1px solid #aaaaaa;
   background-color: white;
   font-size: 25px;

@@ -3,37 +3,63 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Button from "components/common/Button";
 import Input from "components/common/Input";
+import { device } from "styles/media";
 
 export const Title = styled.h1`
-  font-size: 45px;
+  font-size: 25px;
   margin-bottom: 25px;
+  @media ${device.tablet} {
+    font-size: 45px;
+    margin-bottom: 25px;
+  }
 `;
 
 export const Content = styled.p`
-  font-size: 20px;
+  font-size: 15px;
   margin-bottom: 25px;
+  @media ${device.tablet} {
+    font-size: 25px;
+    margin-bottom: 25px;
+  }
 `;
 
 export const SubTitle = styled.h3`
-  font-size: 25px;
+  font-size: 15px;
   margin-bottom: 25px;
+  @media ${device.tablet} {
+    font-size: 25px;
+    margin-bottom: 25px;
+  }
 `;
 
 export const InlineSubTitle = styled.h3`
-  font-size: 25px;
+  font-size: 1em;
   display: inline-block;
-  width: 220px;
-  text-align: center;
+  width: 30%;
+  text-align: right;
+  margin-right: 10px;
+  @media ${device.tablet} {
+    font-size: 1.3em;
+    height: 50px;
+    width: 40%;
+    text-align: right;
+    margin-right: 30px;
+  }
 `;
 
 export const SelectButton = styled(Button)`
   /* 인자를 받아서 그거 값에 따라서 색깔을 바꾼다 */
   border: 1px solid #aaaaaa;
   background-color: white;
-  font-size: 25px;
-  height: 50px;
-  margin-left: 5px;
-  width: 100px;
+  font-size: 0.8rem;
+  height: 30px;
+  margin-left: 3px;
+  width: 4em;
+  @media ${device.tablet} {
+    font-size: 1.3em;
+    height: 50px;
+    width: 120px;
+  }
 `;
 
 export const PrevNextBtn = styled(Button)`
@@ -48,9 +74,16 @@ export const PrevNextBtn = styled(Button)`
 `;
 
 export const FlexBox = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media ${device.tablet} {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const SpaceBetween = styled.div`
@@ -59,10 +92,15 @@ export const SpaceBetween = styled.div`
 `;
 
 export const StyledInputMoney = styled(Input)`
-  width: 165px;
-  height: 50px;
+  width: 100px;
+  height: 30px;
   margin-bottom: 25px;
   box-sizing: border-box;
+  @media ${device.tablet} {
+    font-size: 1.3em;
+    height: 50px;
+    width: 150px;
+  }
 `;
 
 export const StyledInputDate = styled(Input)`
@@ -75,13 +113,32 @@ export const StyledInputDate = styled(Input)`
 `;
 
 export const StyledInput = styled(Input)`
-  width: 850px;
-  height: 50px;
+  width: 90%;
+  height: 25px;
   margin-bottom: 25px;
-  font-size: 25px;
+  font-size: 15px;
+  @media ${device.tablet} {
+    width: 95%;
+    height: 50px;
+    margin-bottom: 25px;
+    font-size: 25px;
+  }
 `;
 
 export const Manwon = styled.span`
-  font-size: 25px;
-  margin-left: 20px;
+  font-size: 1.1em;
+  margin-left: 10px;
+  @media ${device.tablet} {
+    font-size: 1.3em;
+    height: 50px;
+    width: 150px;
+  }
+`;
+
+export const ContentBody = styled.div`
+  width: 100%;
+`;
+
+export const InputMoneyBox = styled.div`
+  width: 100%;
 `;

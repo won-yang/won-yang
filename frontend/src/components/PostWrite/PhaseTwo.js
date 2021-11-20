@@ -7,13 +7,21 @@ import {
   setServiceFee,
   setIncludingTax,
 } from "store/Postwrite/PostwriteSlice";
-import { Title, Content, InlineSubTitle, SelectButton, FlexBox } from "./Title";
+import {
+  Title,
+  Content,
+  InlineSubTitle,
+  SelectButton,
+  FlexBox,
+  ContentBody,
+  InputMoneyBox,
+} from "./Title";
 import InputMoney from "./InputMoney";
 
 const PhaseTwo = (props) => {
   const dispatch = useDispatch();
   return (
-    <>
+    <ContentBody>
       <Title>보증금과 월세, 관리비, 납부금에 대한 정보를 입력해주세요.</Title>
       <Content>
         관리비는 없을 시 빈칸으로 두어도 되며, 납부금이 월세에 포함된다면 버튼을 눌러 활성화
@@ -26,17 +34,17 @@ const PhaseTwo = (props) => {
           <InputMoney handler={setServiceFee} title="관리비" />
         </FlexBox>
         <FlexBox>
-          <div>
+          <InputMoneyBox>
             <InlineSubTitle>월세에 포함</InlineSubTitle>
             <SelectButton onClick={() => dispatch(setIncludingTax("electricity"))}>
               전기세
             </SelectButton>
             <SelectButton onClick={() => dispatch(setIncludingTax("water"))}>수도세</SelectButton>
             <SelectButton onClick={() => dispatch(setIncludingTax("gas"))}>가스비</SelectButton>
-          </div>
+          </InputMoneyBox>
         </FlexBox>
       </FlexBox>
-    </>
+    </ContentBody>
   );
 };
 

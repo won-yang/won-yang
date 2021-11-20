@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { setContact, setTitle } from "store/Postwrite/PostwriteSlice";
-import { useDispatch } from "react-redux";
+import { setContact, setTitle, selectPostWrite } from "store/Postwrite/PostwriteSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { Title, Content, SubTitle, StyledInput, FlexBox, ContentBody } from "./Title";
 
 const PhaseOne = (props) => {
   const dispatch = useDispatch();
+  const state = useSelector(selectPostWrite);
+  const { title, contact } = state;
 
   return (
     <>
@@ -18,12 +20,14 @@ const PhaseOne = (props) => {
         <ContentBody>
           <SubTitle>제목*</SubTitle>
           <StyledInput
+            value={title}
             onChange={(e) => dispatch(setTitle(e.target.value))}
             type="text"
             placeholder="제목을 입력해주세요."
           />
           <SubTitle>연락처*</SubTitle>
           <StyledInput
+            value={contact}
             onChange={(e) => dispatch(setContact(e.target.value))}
             type="text"
             placeholder="연락처를 입력해주세요."

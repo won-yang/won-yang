@@ -17,7 +17,8 @@ const NON_SELECTED = "#aaaaaa";
 const PhaseTwo = (props) => {
   const dispatch = useDispatch();
   const state = useSelector(selectPostWrite);
-  const { electricity, water, gas } = state.includingTax;
+  const { deposit, monthlyRent, serviceFee, includingTax } = state;
+  const { electricity, water, gas } = includingTax;
 
   return (
     <ContentBody>
@@ -28,9 +29,9 @@ const PhaseTwo = (props) => {
       </Content>
       <FlexBox>
         <FlexBox>
-          <InputMoney handler={setDeposit} title="보증금*" />
-          <InputMoney handler={setMonthlyRent} title="월세*" />
-          <InputMoney handler={setServiceFee} title="관리비" />
+          <InputMoney value={deposit} handler={setDeposit} title="보증금*" />
+          <InputMoney value={monthlyRent} handler={setMonthlyRent} title="월세*" />
+          <InputMoney value={serviceFee} handler={setServiceFee} title="관리비" />
         </FlexBox>
         <FlexBox>
           <ContentBody>

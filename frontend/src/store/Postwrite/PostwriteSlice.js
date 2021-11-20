@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   title: "",
   contact: "",
-  deposit: 0,
-  monthlyRent: 0,
-  serviceFee: 0,
+  deposit: "",
+  monthlyRent: "",
+  serviceFee: "",
   includingTax: {
     electricity: false,
     water: false,

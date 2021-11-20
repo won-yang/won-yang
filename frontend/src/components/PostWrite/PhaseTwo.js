@@ -1,17 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setDeposit,
   setMonthlyRent,
   setServiceFee,
   setIncludingTax,
+  selectPostWrite,
 } from "store/Postwrite/PostwriteSlice";
 import { Title, Content, InlineSubTitle, SelectButton, FlexBox, ContentBody } from "./Title";
 import InputMoney from "./InputMoney";
 
+const SELECTED_COLOR = "#3775EF";
+
 const PhaseTwo = (props) => {
   const dispatch = useDispatch();
+  const state = useSelector(selectPostWrite);
+  const { electricity, water, gas } = state.includingTax;
+
   return (
     <ContentBody>
       <Title>보증금과 월세, 관리비, 납부금에 대한 정보를 입력해주세요.</Title>
@@ -28,11 +34,24 @@ const PhaseTwo = (props) => {
         <FlexBox>
           <ContentBody>
             <InlineSubTitle>월세에 포함</InlineSubTitle>
-            <SelectButton onClick={() => dispatch(setIncludingTax("electricity"))}>
+            <SelectButton
+              color={electricity && SELECTED_COLOR}
+              onClick={() => dispatch(setIncludingTax("electricity"))}
+            >
               전기세
             </SelectButton>
-            <SelectButton onClick={() => dispatch(setIncludingTax("water"))}>수도세</SelectButton>
-            <SelectButton onClick={() => dispatch(setIncludingTax("gas"))}>가스비</SelectButton>
+            <SelectButton
+              color={water && SELECTED_COLOR}
+              onClick={() => dispatch(setIncludingTax("water"))}
+            >
+              수도세
+            </SelectButton>
+            <SelectButton
+              color={gas && SELECTED_COLOR}
+              onClick={() => dispatch(setIncludingTax("gas"))}
+            >
+              가스비
+            </SelectButton>
           </ContentBody>
         </FlexBox>
       </FlexBox>

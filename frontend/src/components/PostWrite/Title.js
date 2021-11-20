@@ -48,17 +48,21 @@ export const InlineSubTitle = styled.h3`
 `;
 
 export const SelectButton = styled(Button)`
-  /* 인자를 받아서 그거 값에 따라서 색깔을 바꾼다 */
   border: 1px solid #aaaaaa;
   background-color: white;
   font-size: 0.7rem;
   height: 30px;
   margin-left: 3px;
   width: 4em;
+  border: 1px solid ${(props) => props.color};
+  color: ${(props) => props.color};
+
   @media ${device.tablet} {
     font-size: 1.3em;
     height: 50px;
     width: 120px;
+    border: 1px solid ${(props) => props.color};
+    color: ${(props) => props.color};
   }
 `;
 

@@ -62,6 +62,8 @@ export const PostwriteSlice = createSlice({
   },
 });
 
+export const selectPostWrite = (state) => state.postwriteReducer;
+
 // Action creators are generated for each case reducer function
 export const {
   increment,

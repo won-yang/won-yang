@@ -7,15 +7,7 @@ import {
   setServiceFee,
   setIncludingTax,
 } from "store/Postwrite/PostwriteSlice";
-import {
-  Title,
-  Content,
-  InlineSubTitle,
-  SelectButton,
-  FlexBox,
-  ContentBody,
-  InputMoneyBox,
-} from "./Title";
+import { Title, Content, InlineSubTitle, SelectButton, FlexBox, ContentBody } from "./Title";
 import InputMoney from "./InputMoney";
 
 const PhaseTwo = (props) => {
@@ -34,14 +26,14 @@ const PhaseTwo = (props) => {
           <InputMoney handler={setServiceFee} title="관리비" />
         </FlexBox>
         <FlexBox>
-          <InputMoneyBox>
+          <ContentBody>
             <InlineSubTitle>월세에 포함</InlineSubTitle>
             <SelectButton onClick={() => dispatch(setIncludingTax("electricity"))}>
               전기세
             </SelectButton>
             <SelectButton onClick={() => dispatch(setIncludingTax("water"))}>수도세</SelectButton>
             <SelectButton onClick={() => dispatch(setIncludingTax("gas"))}>가스비</SelectButton>
-          </InputMoneyBox>
+          </ContentBody>
         </FlexBox>
       </FlexBox>
     </ContentBody>

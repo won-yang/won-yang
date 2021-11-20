@@ -33,11 +33,11 @@ export const SubTitle = styled.h3`
 `;
 
 export const InlineSubTitle = styled.h3`
-  font-size: 1em;
+  font-size: 0.9em;
   display: inline-block;
   width: 30%;
   text-align: right;
-  margin-right: 10px;
+  margin-right: 8px;
   @media ${device.tablet} {
     font-size: 1.3em;
     height: 50px;
@@ -51,7 +51,7 @@ export const SelectButton = styled(Button)`
   /* 인자를 받아서 그거 값에 따라서 색깔을 바꾼다 */
   border: 1px solid #aaaaaa;
   background-color: white;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   height: 30px;
   margin-left: 3px;
   width: 4em;
@@ -65,12 +65,22 @@ export const SelectButton = styled(Button)`
 export const PrevNextBtn = styled(Button)`
   background-color: #4593ef;
   color: #ffffff;
-  font-size: 25px;
-  width: 170px;
-  height: 60px;
+  font-size: 15px;
+  width: 100px;
+  height: 40px;
   margin-left: 5px;
   border: none;
   border-radius: 5px;
+  @media ${device.tablet} {
+    background-color: #4593ef;
+    color: #ffffff;
+    font-size: 25px;
+    width: 170px;
+    height: 60px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 5px;
+  }
 `;
 
 export const FlexBox = styled.div`
@@ -78,12 +88,6 @@ export const FlexBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media ${device.tablet} {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 `;
 
 export const SpaceBetween = styled.div`
@@ -104,12 +108,20 @@ export const StyledInputMoney = styled(Input)`
 `;
 
 export const StyledInputDate = styled(Input)`
-  width: 300px;
-  height: 50px;
+  width: 65%;
+  height: 25px;
   margin-bottom: 25px;
   box-sizing: border-box;
   color: #0024a4;
-  font-size: 25px;
+  font-size: 15px;
+  @media ${device.tablet} {
+    width: 300px;
+    height: 50px;
+    margin-bottom: 25px;
+    box-sizing: border-box;
+    color: #0024a4;
+    font-size: 25px;
+  }
 `;
 
 export const StyledInput = styled(Input)`
@@ -126,7 +138,7 @@ export const StyledInput = styled(Input)`
 `;
 
 export const Manwon = styled.span`
-  font-size: 1.1em;
+  font-size: 0.8em;
   margin-left: 10px;
   @media ${device.tablet} {
     font-size: 1.3em;
@@ -136,9 +148,5 @@ export const Manwon = styled.span`
 `;
 
 export const ContentBody = styled.div`
-  width: 100%;
-`;
-
-export const InputMoneyBox = styled.div`
   width: 100%;
 `;

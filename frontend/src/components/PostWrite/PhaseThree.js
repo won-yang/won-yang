@@ -4,7 +4,7 @@ import { setContractExpireDate, setMoveInDate } from "store/Postwrite/PostwriteS
 
 import { useDispatch } from "react-redux";
 
-import { Title, Content, FlexBox, InlineSubTitle, StyledInputDate, ContentBody } from "./Title";
+import { Title, Content, FlexBox, ContentBody, InlineSubTitle, StyledInputDate } from "./Title";
 
 const PhaseThree = (props) => {
   const dispatch = useDispatch();
@@ -16,17 +16,17 @@ const PhaseThree = (props) => {
         항목입니다.
       </Content>
       <FlexBox>
-        <div>
+        <ContentBody>
           <InlineSubTitle>계약 만료일*</InlineSubTitle>
           <StyledInputDate
             onChange={(e) => dispatch(setContractExpireDate(e.target.value))}
             type="date"
           />
-        </div>
-        <div>
+        </ContentBody>
+        <ContentBody>
           <InlineSubTitle>입주 가능일*</InlineSubTitle>
           <StyledInputDate onChange={(e) => dispatch(setMoveInDate(e.target.value))} type="date" />
-        </div>
+        </ContentBody>
       </FlexBox>
     </ContentBody>
   );

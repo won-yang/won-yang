@@ -54,15 +54,15 @@ export const SelectButton = styled(Button)`
   height: 30px;
   margin-left: 3px;
   width: 4em;
-  border: 1px solid ${(props) => props.color};
-  color: ${(props) => props.color};
+  border: 1px solid ${(props) => props?.color};
+  color: ${(props) => props?.color};
 
   @media ${device.tablet} {
     font-size: 1.3em;
     height: 50px;
     width: 120px;
-    border: 1px solid ${(props) => props.color};
-    color: ${(props) => props.color};
+    border: 1px solid ${(props) => props?.color};
+    color: ${(props) => props?.color};
   }
 `;
 

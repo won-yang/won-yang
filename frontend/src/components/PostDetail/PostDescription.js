@@ -3,13 +3,16 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const PostDescription = (props) => {
+  const { contents } = props;
   return (
     <div>
-      <p>7개월 정도 살았고 방을 비울일이 생겨 양도합니다. 카카오톡 링크로 문의주세요.</p>
+      <p>{contents}</p>
     </div>
   );
 };
 
-PostDescription.propTypes = {};
+PostDescription.propTypes = {
+  contents: PropTypes.string,
+};
 
 export default PostDescription;

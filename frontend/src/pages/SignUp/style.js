@@ -23,7 +23,6 @@ export const SignUpHeader = styled.header`
   background-color: #4593ef;
   width: 100vw;
   height: 12em;
-
   div {
     margin: auto;
   }

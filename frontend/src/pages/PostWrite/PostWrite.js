@@ -10,6 +10,7 @@ import PhaseFive from "components/PostWrite/PhaseFive";
 import PhaseSix from "components/PostWrite/PhaseSix";
 import WriteProgressBar from "components/common/WriteProgressBar";
 import PrevNext from "components/PostWrite/common/PrevNext";
+import WritedContentCheck from "components/PostWrite/WritedContentCheck";
 
 const PostWritePage = () => {
   return (
@@ -22,11 +23,8 @@ const PostWritePage = () => {
         <Route path="/write/4" component={PhaseFour} />
         <Route path="/write/5" component={PhaseFive} />
         <Route path="/write/6" component={PhaseSix} />
+        <Route path="/write/7" component={WritedContentCheck} />
       </Switch>
-      {/* <WriteProgress>아이콘여러개 진척도 ~~</WriteProgress>
-      <section>가운데 내용 컴포넌트만 작성하면 될듯 ?</section>
-      <div>이전단계 | 다음단계 버튼 섹션</div> */}
-      <PrevNext />
     </MainTemplate>
   );
 };

@@ -17,6 +17,7 @@ import {
   ContentBody,
   InputMoney,
 } from "./common";
+import PrevNext from "./common/PrevNext";
 
 const PhaseTwo = (props) => {
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ const PhaseTwo = (props) => {
           </ContentBody>
         </FlexBox>
       </FlexBox>
+      <PrevNext />
     </ContentBody>
   );
 };

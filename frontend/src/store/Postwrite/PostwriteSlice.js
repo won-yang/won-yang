@@ -1,3 +1,4 @@
+import moment from "moment";
 import { createSlice } from "@reduxjs/toolkit";
 import { ETC_OPTIONS, FURNITURES, HOME_APPLIANCES } from "components/PostWrite/PhaseFive";
 
@@ -12,8 +13,8 @@ const initialState = {
     water: false,
     gas: false,
   },
-  contractExpireDate: "",
-  moveInDate: "",
+  contractExpireDate: moment().format("YYYY-MM-DD"),
+  moveInDate: moment().format("YYYY-MM-DD"),
   address: "",
   address_detail: "",
   is_address_visible: false,

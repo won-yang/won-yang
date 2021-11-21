@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useDebugValue, useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { selectPostWrite, setContent, setContents } from "store/Postwrite/PostwriteSlice";
+
 import PrevNext from "./PrevNext";
 
 const PhaseSix = (props) => {
   const [imageFiles, setImageFiles] = useState([]);
+  const dispatch = useDispatch();
+  const { contents } = useSelector(selectPostWrite);
 
   const handleUploadImagePreview = (e) => {
     const files = Array.from(e.target.files);
@@ -22,6 +27,7 @@ const PhaseSix = (props) => {
         });
       }),
     );
+    // s3로 업로드
   };
   return (
     <>
@@ -45,7 +51,10 @@ const PhaseSix = (props) => {
       </div>
       <div>
         <label>글 내용</label>
-        <textarea></textarea>
+        <textarea
+          onChange={(e) => dispatch(setContents(e.target.value))}
+          value={contents}
+        ></textarea>
       </div>
       <PrevNext />
     </>

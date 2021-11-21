@@ -1,7 +1,7 @@
 import usePathname from "hooks/usePathname";
 import React from "react";
 import { Link } from "react-router-dom";
-import { PrevNextBtn, SpaceBetween } from "./Title";
+import { PrevNextBtn, SpaceBetween } from "components/PostWrite/common";
 
 const PrevNext = (props) => {
   const { isPrevDisabled, isNextDisabled } = props;
@@ -13,6 +13,7 @@ const PrevNext = (props) => {
   const getPrevPhase = () => {
     return parseInt(getWritePhase(), 10) - 1;
   };
+
   return (
     <SpaceBetween>
       <Link to={`/write/${getPrevPhase()}`}>

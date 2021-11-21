@@ -9,7 +9,7 @@ import {
 
 import PrevNext from "./PrevNext";
 
-import { Title, Content, FlexBox, ContentBody, InlineSubTitle, StyledInputDate } from "./Title";
+import { Title, Content, FlexBox, ContentBody, InlineSubTitle, StyledInputDate } from "./common";
 
 const PhaseThree = (props) => {
   const dispatch = useDispatch();

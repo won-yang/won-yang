@@ -1,5 +1,6 @@
 import moment from "moment";
 import { createSlice } from "@reduxjs/toolkit";
+import { ETC_OPTIONS, FURNITURES, HOME_APPLIANCES } from "components/PostWrite/PhaseFive";
 
 const initialState = {
   title: "",
@@ -14,6 +15,22 @@ const initialState = {
   },
   contractExpireDate: moment().format("YYYY-MM-DD"),
   moveInDate: moment().format("YYYY-MM-DD"),
+  address: "",
+  address_detail: "",
+  is_address_visible: false,
+  total_floor: "",
+  current_floor: "",
+  building_type: "",
+  room_type: "",
+  window_side: "",
+  walking_time: "",
+  bus_time: "",
+  content: "",
+  option: [],
+  homeAppliances: HOME_APPLIANCES,
+  furnitures: FURNITURES,
+  etcOptions: ETC_OPTIONS,
+  images: [],
 };
 
 export const PostwriteSlice = createSlice({
@@ -60,6 +77,75 @@ export const PostwriteSlice = createSlice({
     setMoveInDate: (state, action) => {
       state.moveInDate = action.payload;
     },
+    setAddress: (state, action) => {
+      state.address = action.payload;
+    },
+    setAddressDetail: (state, action) => {
+      state.address_detail = action.payload;
+    },
+    setAddressVisible: (state, action) => {
+      if (action.payload === "on") state.is_address_visible = true;
+      else state.is_address_visible = false;
+    },
+    setTotalFloor: (state, action) => {
+      state.total_floor = action.payload;
+    },
+    setCurrentFloor: (state, action) => {
+      state.current_floor = action.payload;
+    },
+    setBuildingType: (state, action) => {
+      state.building_type = action.payload;
+    },
+    setRoomType: (state, action) => {
+      state.room_type = action.payload;
+    },
+    setWindowSide: (state, action) => {
+      state.window_side = action.payload;
+    },
+    setWalkingTime: (state, action) => {
+      state.walking_time = action.payload;
+    },
+
+    setBusTime: (state, action) => {
+      state.bus_time = action.payload;
+    },
+    setSelectOption: (state, action) => {
+      // state.
+      const {
+        payload: { kind, name },
+      } = action;
+      if (kind === "etc") {
+        state.etcOptions = state.etcOptions.map((option) =>
+          option.name === name ? { ...option, isSelected: !option.isSelected } : option,
+        );
+      } else if (kind === "homeAppliances") {
+        state.homeAppliances = state.homeAppliances.map((option) =>
+          option.name === name ? { ...option, isSelected: !option.isSelected } : option,
+        );
+      } else {
+        state.furnitures = state.furnitures.map((option) =>
+          option.name === name ? { ...option, isSelected: !option.isSelected } : option,
+        );
+      }
+      state.option = state.etcOptions
+        .map((option) => (option.isSelected ? option.name : null))
+        .filter((option) => option);
+
+      state.option.push(
+        ...state.homeAppliances
+          .map((option) => (option.isSelected ? option.name : null))
+          .filter((option) => option),
+      );
+      state.option.push(
+        ...state.furnitures
+          .map((option) => (option.isSelected ? option.name : null))
+          .filter((option) => option),
+      );
+    },
+    setContents: (state, action) => {
+      state.contents = action.payload;
+    },
+    setImages: (state, action) => {},
   },
 });
 
@@ -78,6 +164,19 @@ export const {
   setIncludingTax,
   setContractExpireDate,
   setMoveInDate,
+  setAddress,
+  setAddressDetail,
+  setAddressVisible,
+  setTotalFloor,
+  setCurrentFloor,
+  setBuildingType,
+  setRoomType,
+  setWindowSide,
+  setWalkingTime,
+  setBusTime,
+  setSelectOption,
+  setContents,
+  setImages,
 } = PostwriteSlice.actions;
 
 export default PostwriteSlice.reducer;

@@ -1,7 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
-const BuildingInfoTable = () => {
+const BuildingInfoTable = (props) => {
+  const {
+    totalFloor,
+    currentFloor,
+    buildType,
+    walkingTime,
+    windowSide,
+    roomType,
+    contractExpireDate,
+    moveInDate,
+  } = props;
   return (
     <Table>
       <tr>
@@ -10,31 +20,33 @@ const BuildingInfoTable = () => {
       </tr>
       <tr>
         <TableRowTitle>계약만료일</TableRowTitle>
-        <TableRowInfo>2019년 2월 3일</TableRowInfo>
+        <TableRowInfo>{contractExpireDate}</TableRowInfo>
       </tr>
       <tr>
         <TableRowTitle>입주가능일</TableRowTitle>
-        <TableRowInfo>2018년 7월 8일</TableRowInfo>
+        <TableRowInfo>{moveInDate}</TableRowInfo>
       </tr>
       <tr>
         <TableRowTitle>건물 층수</TableRowTitle>
-        <TableRowInfo>총 5층 중에 2층</TableRowInfo>
+        <TableRowInfo>
+          총 {totalFloor}층 중에 {currentFloor}층
+        </TableRowInfo>
       </tr>
       <tr>
         <TableRowTitle>건물 구조</TableRowTitle>
-        <TableRowInfo>단독 주택</TableRowInfo>
+        <TableRowInfo>{buildType}</TableRowInfo>
       </tr>
       <tr>
         <TableRowTitle>방의 구조</TableRowTitle>
-        <TableRowInfo>투룸</TableRowInfo>
+        <TableRowInfo>{roomType}</TableRowInfo>
       </tr>
       <tr>
         <TableRowTitle>창의 방향</TableRowTitle>
-        <TableRowInfo>남향</TableRowInfo>
+        <TableRowInfo>{windowSide}</TableRowInfo>
       </tr>
       <tr>
         <TableRowTitle>힉교까지의 거리</TableRowTitle>
-        <TableRowInfo>도보로 10분</TableRowInfo>
+        <TableRowInfo>도보로 {walkingTime}분</TableRowInfo>
       </tr>
     </Table>
   );

@@ -1,5 +1,5 @@
 import IconContainer from "components/Icon/IconContainer";
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { ReactComponent as PersonIcon } from "assets/icon_person_blue.svg";
 import { ReactComponent as MoneyIcon } from "assets/icon_money_blue.svg";
@@ -9,32 +9,48 @@ import { ReactComponent as FurnitureIcon } from "assets/icon_furniture_blue.svg"
 import { ReactComponent as PictureIcon } from "assets/icon_picture_blue.svg";
 import { ReactComponent as CheckIcon } from "assets/icon_check.svg";
 import WriteProgressIcon from "components/Icon/WriteProgressIcon";
+import usePathname from "hooks/usePathname";
+import { Link } from "react-router-dom";
 
 const WriteProgressBar = (props) => {
+  const { getWritePhase } = usePathname();
+  const currentPhase = useMemo(() => getWritePhase, []);
   return (
     <Container>
-      <WriteProgressIcon isWrited={true}>
-        <PersonIcon />
+      <WriteProgressIcon isWrited={getWritePhase() >= "1"}>
+        <Link to="/write/1">
+          <PersonIcon />
+        </Link>
       </WriteProgressIcon>
 
-      <WriteProgressIcon>
-        <MoneyIcon />
+      <WriteProgressIcon isWrited={getWritePhase() >= "2"}>
+        <Link to="/write/2">
+          <MoneyIcon />
+        </Link>
       </WriteProgressIcon>
 
-      <WriteProgressIcon>
-        <CalendarIcon />
+      <WriteProgressIcon isWrited={getWritePhase() >= "3"}>
+        <Link to="/write/3">
+          <CalendarIcon />
+        </Link>
       </WriteProgressIcon>
 
-      <WriteProgressIcon>
-        <MapIcon />
+      <WriteProgressIcon isWrited={getWritePhase() >= "4"}>
+        <Link to="/write/4">
+          <MapIcon />
+        </Link>
       </WriteProgressIcon>
 
-      <WriteProgressIcon>
-        <FurnitureIcon />
+      <WriteProgressIcon isWrited={getWritePhase() >= "5"}>
+        <Link to="/write/5">
+          <FurnitureIcon />
+        </Link>
       </WriteProgressIcon>
 
-      <WriteProgressIcon>
-        <PictureIcon />
+      <WriteProgressIcon isWrited={getWritePhase() >= "6"}>
+        <Link to="/write/6">
+          <PictureIcon />
+        </Link>
       </WriteProgressIcon>
     </Container>
   );

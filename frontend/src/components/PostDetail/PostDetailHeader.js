@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const PostDetailHeader = (props) => {
+  const { title, created_date } = props;
   return (
     <Container>
-      <PostTitle>농담대까지 10분 거리 원룸 양도합니다</PostTitle>
-      <PostDate>작성일자 : 2021. 06.21 13:00</PostDate>
+      <PostTitle>{title}</PostTitle>
+      <PostDate>{created_date ? `작성일자: ${created_date}` : ""}</PostDate>
       <UserInteractionButtonContainer>
         <PostBookmark>북</PostBookmark>
         <PostShare>공</PostShare>
@@ -15,7 +16,10 @@ const PostDetailHeader = (props) => {
   );
 };
 
-PostDetailHeader.propTypes = {};
+PostDetailHeader.propTypes = {
+  title: PropTypes.string,
+  created_date: PropTypes.string,
+};
 
 export default PostDetailHeader;
 

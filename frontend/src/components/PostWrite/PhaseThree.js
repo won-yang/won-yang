@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectPostWrite,
   setContractExpireDate,
@@ -7,8 +8,8 @@ import {
 } from "store/Postwrite/PostwriteSlice";
 import DatePicker from "react-date-picker";
 import datemaker from "utils/datemaker";
-import { useDispatch, useSelector } from "react-redux";
 import { Title, Content, FlexBox, ContentBody, InlineSubTitle, StyledInputDate } from "./common";
+import PrevNext from "./common/PrevNext";
 
 const PhaseThree = (props) => {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const PhaseThree = (props) => {
           />
         </ContentBody>
       </FlexBox>
+      <PrevNext />
     </ContentBody>
   );
 };

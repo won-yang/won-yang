@@ -1,11 +1,31 @@
+import usePathname from "hooks/usePathname";
 import React from "react";
+import { Link } from "react-router-dom";
 import { PrevNextBtn, SpaceBetween } from "components/PostWrite/common";
 
-const PrevNext = () => {
+const PrevNext = (props) => {
+  const { isPrevDisabled, isNextDisabled } = props;
+  const { getWritePhase } = usePathname();
+
+  const getNextPhase = () => {
+    return parseInt(getWritePhase(), 10) + 1;
+  };
+  const getPrevPhase = () => {
+    return parseInt(getWritePhase(), 10) - 1;
+  };
+
   return (
     <SpaceBetween>
-      <PrevNextBtn>{`< `} 이전단계</PrevNextBtn>
-      <PrevNextBtn>다음단계 {` >`}</PrevNextBtn>
+      <Link to={`/write/${getPrevPhase()}`}>
+        <PrevNextBtn disabled={isPrevDisabled} deactivated={isPrevDisabled}>
+          {`< `} 이전단계
+        </PrevNextBtn>
+      </Link>
+      <Link to={`/write/${getNextPhase()}`}>
+        <PrevNextBtn disabled={isNextDisabled} deactivated={isNextDisabled}>
+          다음단계 {` >`}
+        </PrevNextBtn>
+      </Link>
     </SpaceBetween>
   );
 };

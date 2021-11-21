@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { InlineSubTitle, StyledInputMoney, Manwon } from "./Title";
+import { InlineSubTitle, StyledInputMoney, Manwon } from "components/common/postWrite";
 
 const InputMoney = ({ value, title, handler }) => {
   const dispatch = useDispatch();

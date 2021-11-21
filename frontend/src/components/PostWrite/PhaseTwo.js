@@ -8,7 +8,14 @@ import {
   setIncludingTax,
   selectPostWrite,
 } from "store/Postwrite/PostwriteSlice";
-import { Title, Content, InlineSubTitle, SelectButton, FlexBox, ContentBody } from "./Title";
+import {
+  Title,
+  Content,
+  InlineSubTitle,
+  SelectButton,
+  FlexBox,
+  ContentBody,
+} from "components/common/postWrite";
 import InputMoney from "./InputMoney";
 
 const SELECTED_COLOR = "#3775EF";

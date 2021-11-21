@@ -9,6 +9,7 @@ export const DarkTheme = {
   greenColor: "#2A9610",
   blueColor: "#3B4DF6",
   darkRedColor: "#B80101",
+  navyColor: "#0024a4",
   colors: {
     primary: "#4593ef",
     default: "black",

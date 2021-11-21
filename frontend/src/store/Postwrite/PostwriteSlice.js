@@ -24,7 +24,7 @@ const initialState = {
   window_side: "",
   walking_time: "",
   bus_time: "",
-  content: "",
+  contents: "",
   option: [],
   homeAppliances: HOME_APPLIANCES,
   furnitures: FURNITURES,
@@ -83,8 +83,10 @@ export const PostwriteSlice = createSlice({
       state.address_detail = action.payload;
     },
     setAddressVisible: (state, action) => {
-      if (action.payload === "on") state.is_address_visible = true;
-      else state.is_address_visible = false;
+      console.log(state.is_address_visible);
+      state.is_address_visible = !state.is_address_visible;
+      // if (action.payload) state.is_address_visible = true;
+      // else state.is_address_visible = false;
     },
     setTotalFloor: (state, action) => {
       state.total_floor = action.payload;

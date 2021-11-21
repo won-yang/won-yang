@@ -5,15 +5,23 @@ import {
   setContractExpireDate,
   setMoveInDate,
 } from "store/Postwrite/PostwriteSlice";
-
+import DatePicker from "react-date-picker";
+import datemaker from "utils/datemaker";
 import { useDispatch, useSelector } from "react-redux";
-
 import { Title, Content, FlexBox, ContentBody, InlineSubTitle, StyledInputDate } from "./common";
 
 const PhaseThree = (props) => {
   const dispatch = useDispatch();
   const state = useSelector(selectPostWrite);
   const { contractExpireDate, moveInDate } = state;
+
+  const handleChangeExpiredDate = (value) => {
+    dispatch(setContractExpireDate(datemaker(value)));
+  };
+
+  const handleChangeMoveInDate = (value) => {
+    dispatch(setMoveInDate(datemaker(value)));
+  };
 
   return (
     <ContentBody>
@@ -25,18 +33,20 @@ const PhaseThree = (props) => {
       <FlexBox>
         <ContentBody>
           <InlineSubTitle>계약 만료일*</InlineSubTitle>
-          <StyledInputDate
-            value={contractExpireDate}
-            onChange={(e) => dispatch(setContractExpireDate(e.target.value))}
-            type="date"
+          <DatePicker
+            format="yyyy-MM-dd"
+            minDate={new Date()}
+            value={new Date(contractExpireDate)}
+            onChange={(value) => handleChangeExpiredDate(value)}
           />
         </ContentBody>
         <ContentBody>
           <InlineSubTitle>입주 가능일*</InlineSubTitle>
-          <StyledInputDate
-            value={moveInDate}
-            onChange={(e) => dispatch(setMoveInDate(e.target.value))}
-            type="date"
+          <DatePicker
+            format="yyyy-MM-dd"
+            minDate={new Date()}
+            value={new Date(moveInDate)}
+            onChange={(value) => handleChangeMoveInDate(value)}
           />
         </ContentBody>
       </FlexBox>

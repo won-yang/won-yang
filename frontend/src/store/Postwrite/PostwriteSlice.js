@@ -1,3 +1,4 @@
+import moment from "moment";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -11,8 +12,8 @@ const initialState = {
     water: false,
     gas: false,
   },
-  contractExpireDate: "",
-  moveInDate: "",
+  contractExpireDate: moment().format("YYYY-MM-DD"),
+  moveInDate: moment().format("YYYY-MM-DD"),
 };
 
 export const PostwriteSlice = createSlice({

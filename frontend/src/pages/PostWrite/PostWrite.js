@@ -10,6 +10,7 @@ import PhaseFive from "components/PostWrite/PhaseFive";
 import PhaseSix from "components/PostWrite/PhaseSix";
 import WriteProgressBar from "components/common/WriteProgressBar";
 import PrevNext from "components/PostWrite/PrevNext";
+import WritedContentCheck from "components/PostWrite/WritedContentCheck";
 
 const PostWritePage = () => {
   return (
@@ -22,6 +23,7 @@ const PostWritePage = () => {
         <Route path="/write/4" component={PhaseFour} />
         <Route path="/write/5" component={PhaseFive} />
         <Route path="/write/6" component={PhaseSix} />
+        <Route path="/write/7" component={WritedContentCheck} />
       </Switch>
     </MainTemplate>
   );

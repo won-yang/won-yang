@@ -5,6 +5,7 @@ import { device } from "styles/media";
 const PrevNextBtn = styled(Button)`
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.oppositeDefalut};
+  opacity: ${(props) => props.deactivated && 0.5};
   font-size: 15px;
   width: 100px;
   height: 40px;

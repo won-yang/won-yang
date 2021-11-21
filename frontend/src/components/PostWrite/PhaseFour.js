@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectPostWrite,
   setAddress,
+  setAddressDetail,
   setAddressVisible,
   setBuildingType,
   setBusTime,
@@ -58,13 +59,11 @@ const PhaseFour = (props) => {
         <DaumPostcode onComplete={handleComplete} {...props} />
         <InputDescription>주소</InputDescription>
         <Input value={address}></Input>
-        <InputDescription
+        <InputDescription>상세주소</InputDescription>
+        <Input
           onChange={(e) => dispatch(setAddressDetail(e.target.value))}
           value={address_detail}
-        >
-          상세주소
-        </InputDescription>
-        <Input></Input>
+        ></Input>
         <div>
           <input
             type="checkbox"

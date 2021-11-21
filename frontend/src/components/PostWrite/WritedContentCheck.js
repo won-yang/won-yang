@@ -48,7 +48,7 @@ const WritedContentCheck = (props) => {
           moveInDate={state.moveInDate}
           contractExpireDate={state.contractExpireDate}
           totalFloor={state.total_floor}
-          currentFloor={state.curren_floor}
+          currentFloor={state.current_floor}
           buildType={state.build_type}
           walkingTime={state.walking_time}
           windowSide={state.window_side}

@@ -1,4 +1,4 @@
-import LabelWithText from "components/PostWrite/LabelWithTextListItem";
+import LabelWithText from "components/PostWrite/common/LabelWithTextListItem";
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectPostWrite } from "store/Postwrite/PostwriteSlice";

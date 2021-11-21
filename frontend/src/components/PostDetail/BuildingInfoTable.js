@@ -2,7 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 const BuildingInfoTable = (props) => {
-  const { totalFloor, currentFloor, buildType, walkingTime, windowSide, roomType } = props;
+  const {
+    totalFloor,
+    currentFloor,
+    buildType,
+    walkingTime,
+    windowSide,
+    roomType,
+    contractExpireDate,
+    moveInDate,
+  } = props;
   return (
     <Table>
       <tr>
@@ -11,11 +20,11 @@ const BuildingInfoTable = (props) => {
       </tr>
       <tr>
         <TableRowTitle>계약만료일</TableRowTitle>
-        <TableRowInfo>2019년 2월 3일</TableRowInfo>
+        <TableRowInfo>{contractExpireDate}</TableRowInfo>
       </tr>
       <tr>
         <TableRowTitle>입주가능일</TableRowTitle>
-        <TableRowInfo>2018년 7월 8일</TableRowInfo>
+        <TableRowInfo>{moveInDate}</TableRowInfo>
       </tr>
       <tr>
         <TableRowTitle>건물 층수</TableRowTitle>

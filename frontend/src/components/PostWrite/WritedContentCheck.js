@@ -15,8 +15,8 @@ import BuildingInfoTable from "components/PostDetail/BuildingInfoTable";
 import RoomOptionList from "components/PostDetail/RoomOptionList";
 import { selectPostWrite } from "store/Postwrite/PostwriteSlice";
 import { device } from "styles/media";
-import { PrevNextBtn, SpaceBetween } from "./Title";
-import LabelWithText from "./LabelWithTextListItem";
+import { PrevNextBtn, SpaceBetween } from "./common";
+import LabelWithText from "./common/LabelWithTextListItem";
 
 const WritedContentCheck = (props) => {
   const state = useSelector(selectPostWrite);
@@ -45,6 +45,8 @@ const WritedContentCheck = (props) => {
         />
         <PostDescription contents={state.contents} />
         <BuildingInfoTable
+          moveInDate={state.moveInDate}
+          contractExpireDate={state.contractExpireDate}
           totalFloor={state.total_floor}
           currentFloor={state.curren_floor}
           buildType={state.build_type}

@@ -4,7 +4,7 @@ import usePathname from "hooks/usePathname";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setContact, setTitle, selectPostWrite } from "store/Postwrite/PostwriteSlice";
-import { Title, Content, SubTitle, StyledInput, FlexBox, ContentBody } from "./Title";
+import { Title, Content, SubTitle, StyledInput, FlexBox, ContentBody } from "./common";
 import PrevNext from "./common/PrevNext";
 
 const PhaseOne = (props) => {

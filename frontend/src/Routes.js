@@ -7,7 +7,6 @@ import WriteTmp from "pages/PostWrite/WriteTmp";
 const Routes = (props) => {
   return (
     <Router>
-      <Header />
       <Switch>
         <Route path="/" exact>
           {/* landing page */}
@@ -18,10 +17,20 @@ const Routes = (props) => {
         </Route>
         <Route path="/main">
           {/* main page */}
+          <Header />
           <MainPage />
         </Route>
         <Route path="/posts" exact>
           {/* 작성 page */}
+          <Header />
+          <PostWritePage />
+        </Route>
+        <Route path="/posts/:id" exact>
+          <Header />
+          <PostDetailPage />
+        </Route>
+        <Route path="/write">
+          <Header />
           <PostWritePage />
         </Route>
         <Route path="/posts/:id" exact component={PostDetailPage} />

@@ -1,6 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {};
+const initialState = {
+  title: "",
+  contact: "",
+  deposit: "",
+  monthlyRent: "",
+  serviceFee: "",
+  includingTax: {
+    electricity: false,
+    water: false,
+    gas: false,
+  },
+  contractExpireDate: "",
+  moveInDate: "",
+};
 
 export const PostwriteSlice = createSlice({
   name: "postwrite",
@@ -19,10 +32,51 @@ export const PostwriteSlice = createSlice({
     incrementByAmount: (state, action) => {
       state.value += action.payload;
     },
+    setTitle: (state, action) => {
+      state.title = action.payload;
+    },
+    setContact: (state, action) => {
+      state.contact = action.payload;
+    },
+    setDeposit: (state, action) => {
+      state.deposit = action.payload;
+    },
+    setMonthlyRent: (state, action) => {
+      state.monthlyRent = action.payload;
+    },
+    setServiceFee: (state, action) => {
+      state.serviceFee = action.payload;
+    },
+    setIncludingTax: (state, action) => {
+      state.includingTax = {
+        ...state.includingTax,
+        [action.payload]: !state.includingTax[action.payload],
+      };
+    },
+    setContractExpireDate: (state, action) => {
+      state.contractExpireDate = action.payload;
+    },
+    setMoveInDate: (state, action) => {
+      state.moveInDate = action.payload;
+    },
   },
 });
 
+export const selectPostWrite = (state) => state.postwriteReducer;
+
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = PostwriteSlice.actions;
+export const {
+  increment,
+  decrement,
+  incrementByAmount,
+  setTitle,
+  setContact,
+  setDeposit,
+  setMonthlyRent,
+  setServiceFee,
+  setIncludingTax,
+  setContractExpireDate,
+  setMoveInDate,
+} = PostwriteSlice.actions;
 
 export default PostwriteSlice.reducer;

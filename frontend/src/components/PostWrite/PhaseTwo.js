@@ -15,11 +15,8 @@ import {
   SelectButton,
   FlexBox,
   ContentBody,
-} from "components/common/postWrite";
-import InputMoney from "./InputMoney";
-
-const SELECTED_COLOR = "#3775EF";
-const NON_SELECTED = "#aaaaaa";
+  InputMoney,
+} from "./common";
 
 const PhaseTwo = (props) => {
   const dispatch = useDispatch();
@@ -44,21 +41,15 @@ const PhaseTwo = (props) => {
           <ContentBody>
             <InlineSubTitle>월세에 포함</InlineSubTitle>
             <SelectButton
-              color={electricity ? SELECTED_COLOR : NON_SELECTED}
+              isSelected={electricity}
               onClick={() => dispatch(setIncludingTax("electricity"))}
             >
               전기세
             </SelectButton>
-            <SelectButton
-              color={water ? SELECTED_COLOR : NON_SELECTED}
-              onClick={() => dispatch(setIncludingTax("water"))}
-            >
+            <SelectButton isSelected={water} onClick={() => dispatch(setIncludingTax("water"))}>
               수도세
             </SelectButton>
-            <SelectButton
-              color={gas ? SELECTED_COLOR : NON_SELECTED}
-              onClick={() => dispatch(setIncludingTax("gas"))}
-            >
+            <SelectButton isSelected={gas} onClick={() => dispatch(setIncludingTax("gas"))}>
               가스비
             </SelectButton>
           </ContentBody>

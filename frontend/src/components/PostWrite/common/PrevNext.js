@@ -1,5 +1,5 @@
 import React from "react";
-import { PrevNextBtn, SpaceBetween } from "components/common/postWrite";
+import { PrevNextBtn, SpaceBetween } from "components/PostWrite/common";
 
 const PrevNext = () => {
   return (

@@ -8,14 +8,7 @@ import {
 
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  Title,
-  Content,
-  FlexBox,
-  ContentBody,
-  InlineSubTitle,
-  StyledInputDate,
-} from "components/common/postWrite";
+import { Title, Content, FlexBox, ContentBody, InlineSubTitle, StyledInputDate } from "./common";
 
 const PhaseThree = (props) => {
   const dispatch = useDispatch();

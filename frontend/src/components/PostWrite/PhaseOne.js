@@ -2,14 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { setContact, setTitle, selectPostWrite } from "store/Postwrite/PostwriteSlice";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Title,
-  Content,
-  SubTitle,
-  StyledInput,
-  FlexBox,
-  ContentBody,
-} from "components/common/postWrite";
+import { Title, Content, SubTitle, StyledInput, FlexBox, ContentBody } from "./common";
 
 const PhaseOne = (props) => {
   const dispatch = useDispatch();

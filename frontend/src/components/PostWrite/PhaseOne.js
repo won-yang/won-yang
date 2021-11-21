@@ -1,8 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Title, Content, SubTitle, StyledInput, FlexBox } from "./Title";
+import { setContact, setTitle, selectPostWrite } from "store/Postwrite/PostwriteSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { Title, Content, SubTitle, StyledInput, FlexBox, ContentBody } from "./Title";
 
 const PhaseOne = (props) => {
+  const dispatch = useDispatch();
+  const state = useSelector(selectPostWrite);
+  const { title, contact } = state;
+
   return (
     <>
       <Title>제목과 연락처를 입력해주세요.</Title>
@@ -11,12 +17,22 @@ const PhaseOne = (props) => {
         입력해주세요. *표시가 된 항목은 필수 입력 항목입니다.
       </Content>
       <FlexBox>
-        <div>
+        <ContentBody>
           <SubTitle>제목*</SubTitle>
-          <StyledInput type="text" placeholder="제목을 입력해주세요." />
+          <StyledInput
+            value={title}
+            onChange={(e) => dispatch(setTitle(e.target.value))}
+            type="text"
+            placeholder="제목을 입력해주세요."
+          />
           <SubTitle>연락처*</SubTitle>
-          <StyledInput type="text" placeholder="연락처를 입력해주세요." />
-        </div>
+          <StyledInput
+            value={contact}
+            onChange={(e) => dispatch(setContact(e.target.value))}
+            type="text"
+            placeholder="연락처를 입력해주세요."
+          />
+        </ContentBody>
       </FlexBox>
     </>
   );

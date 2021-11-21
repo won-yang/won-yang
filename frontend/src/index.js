@@ -10,13 +10,13 @@ import { store } from "store/store";
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
-    <ThemeProvider theme={DarkTheme}>
-      <Reset />
-      <GlobalStyle />
-      <Routes />
-    </ThemeProvider>
-    {/* </Provider> */}
+    <Provider store={store}>
+      <ThemeProvider theme={DarkTheme}>
+        <Reset />
+        <GlobalStyle />
+        <Routes />
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root"),
 );

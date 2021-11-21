@@ -9,6 +9,7 @@ import PhaseFour from "components/PostWrite/PhaseFour";
 import PhaseFive from "components/PostWrite/PhaseFive";
 import PhaseSix from "components/PostWrite/PhaseSix";
 import WriteProgressBar from "components/common/WriteProgressBar";
+import PrevNext from "components/PostWrite/PrevNext";
 
 const PostWritePage = () => {
   return (
@@ -25,6 +26,7 @@ const PostWritePage = () => {
       {/* <WriteProgress>아이콘여러개 진척도 ~~</WriteProgress>
       <section>가운데 내용 컴포넌트만 작성하면 될듯 ?</section>
       <div>이전단계 | 다음단계 버튼 섹션</div> */}
+      <PrevNext />
     </MainTemplate>
   );
 };

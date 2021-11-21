@@ -5,7 +5,7 @@ import styled, { css } from "styled-components";
 import { selectPostWrite, setSelectOption } from "store/Postwrite/PostwriteSlice";
 
 import Button from "components/common/Button";
-import PrevNext from "./PrevNext";
+import PrevNext from "./common/PrevNext";
 
 export const HOME_APPLIANCES = [
   {

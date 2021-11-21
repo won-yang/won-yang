@@ -17,7 +17,7 @@ import {
   setWalkingTime,
   setWindowSide,
 } from "store/Postwrite/PostwriteSlice";
-import PrevNext from "./PrevNext";
+import PrevNext from "./common/PrevNext";
 
 const PhaseFour = (props) => {
   const dispatch = useDispatch();

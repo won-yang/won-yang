@@ -1,10 +1,9 @@
-import React, { useDebugValue, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { selectPostWrite, setContent, setContents } from "store/Postwrite/PostwriteSlice";
-
-import PrevNext from "./PrevNext";
+import PrevNext from "./common/PrevNext";
 
 const PhaseSix = (props) => {
   const [imageFiles, setImageFiles] = useState([]);

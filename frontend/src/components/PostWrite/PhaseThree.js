@@ -7,9 +7,8 @@ import {
   setMoveInDate,
 } from "store/Postwrite/PostwriteSlice";
 
-import PrevNext from "./PrevNext";
-
 import { Title, Content, FlexBox, ContentBody, InlineSubTitle, StyledInputDate } from "./common";
+import PrevNext from "./common/PrevNext";
 
 const PhaseThree = (props) => {
   const dispatch = useDispatch();

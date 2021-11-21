@@ -10,6 +10,7 @@ import PhaseFive from "components/PostWrite/PhaseFive";
 import PhaseSix from "components/PostWrite/PhaseSix";
 import WriteProgressBar from "components/common/WriteProgressBar";
 import PrevNext from "components/PostWrite/common/PrevNext";
+import WritedContentCheck from "components/PostWrite/WritedContentCheck";
 
 const PostWritePage = () => {
   return (

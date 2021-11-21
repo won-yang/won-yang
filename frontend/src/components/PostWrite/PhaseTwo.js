@@ -17,6 +17,7 @@ import {
   ContentBody,
   InputMoney,
 } from "./common";
+import PrevNext from "./common/PrevNext";
 
 const PhaseTwo = (props) => {
   const dispatch = useDispatch();

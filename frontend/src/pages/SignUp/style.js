@@ -24,6 +24,7 @@ export const SignUpHeader = styled.header`
   width: 100vw;
   height: 12em;
   div {
+    width: 100%;
     margin: auto;
   }
 `;

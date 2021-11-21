@@ -3,7 +3,7 @@ import MainTemplate from "components/Template/MainTemplate";
 import styled from "styled-components";
 import PhaseFive from "components/PostWrite/PhaseFive";
 import PhaseFour from "components/PostWrite/PhaseFour";
-import PrevNext from "components/PostWrite/PrevNext";
+import PrevNext from "components/PostWrite/common/PrevNext";
 import WriteProgressBar from "components/common/WriteProgressBar";
 
 const WriteTmp = () => {

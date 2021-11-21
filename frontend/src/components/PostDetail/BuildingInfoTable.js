@@ -12,42 +12,46 @@ const BuildingInfoTable = (props) => {
     contractExpireDate,
     moveInDate,
   } = props;
+  console.log(currentFloor);
+
   return (
     <Table>
-      <tr>
-        <th></th>
-        <th></th>
-      </tr>
-      <tr>
-        <TableRowTitle>계약만료일</TableRowTitle>
-        <TableRowInfo>{contractExpireDate}</TableRowInfo>
-      </tr>
-      <tr>
-        <TableRowTitle>입주가능일</TableRowTitle>
-        <TableRowInfo>{moveInDate}</TableRowInfo>
-      </tr>
-      <tr>
-        <TableRowTitle>건물 층수</TableRowTitle>
-        <TableRowInfo>
-          총 {totalFloor}층 중에 {currentFloor}층
-        </TableRowInfo>
-      </tr>
-      <tr>
-        <TableRowTitle>건물 구조</TableRowTitle>
-        <TableRowInfo>{buildType}</TableRowInfo>
-      </tr>
-      <tr>
-        <TableRowTitle>방의 구조</TableRowTitle>
-        <TableRowInfo>{roomType}</TableRowInfo>
-      </tr>
-      <tr>
-        <TableRowTitle>창의 방향</TableRowTitle>
-        <TableRowInfo>{windowSide}</TableRowInfo>
-      </tr>
-      <tr>
-        <TableRowTitle>힉교까지의 거리</TableRowTitle>
-        <TableRowInfo>도보로 {walkingTime}분</TableRowInfo>
-      </tr>
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <TableRowTitle>계약만료일</TableRowTitle>
+          <TableRowInfo>{contractExpireDate}</TableRowInfo>
+        </tr>
+        <tr>
+          <TableRowTitle>입주가능일</TableRowTitle>
+          <TableRowInfo>{moveInDate}</TableRowInfo>
+        </tr>
+        <tr>
+          <TableRowTitle>건물 층수</TableRowTitle>
+          <TableRowInfo>
+            총 {totalFloor}층 중에 {currentFloor}층
+          </TableRowInfo>
+        </tr>
+        <tr>
+          <TableRowTitle>건물 구조</TableRowTitle>
+          <TableRowInfo>{buildType}</TableRowInfo>
+        </tr>
+        <tr>
+          <TableRowTitle>방의 구조</TableRowTitle>
+          <TableRowInfo>{roomType}</TableRowInfo>
+        </tr>
+        <tr>
+          <TableRowTitle>창의 방향</TableRowTitle>
+          <TableRowInfo>{windowSide}</TableRowInfo>
+        </tr>
+        <tr>
+          <TableRowTitle>힉교까지의 거리</TableRowTitle>
+          <TableRowInfo>도보로 {walkingTime}분</TableRowInfo>
+        </tr>
+      </thead>
     </Table>
   );
 };

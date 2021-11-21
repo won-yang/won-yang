@@ -15,7 +15,7 @@ const LabelWithText = (props) => {
 
 LabelWithText.propTypes = {
   titleText: PropTypes.string,
-  text: PropTypes.text,
+  text: PropTypes.string,
   children: PropTypes.node,
 };
 

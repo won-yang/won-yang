@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectPostWrite,
   setAddress,
+  setAddressDetail,
   setAddressVisible,
   setBuildingType,
   setBusTime,
@@ -58,13 +59,11 @@ const PhaseFour = (props) => {
         <DaumPostcode onComplete={handleComplete} {...props} />
         <InputDescription>주소</InputDescription>
         <Input value={address}></Input>
-        <InputDescription
+        <InputDescription>상세주소</InputDescription>
+        <Input
           onChange={(e) => dispatch(setAddressDetail(e.target.value))}
           value={address_detail}
-        >
-          상세주소
-        </InputDescription>
-        <Input></Input>
+        ></Input>
         <div>
           <input
             type="checkbox"
@@ -106,17 +105,22 @@ const PhaseFour = (props) => {
       <RoomStructureSection>
         <InputDescription>방의 구조</InputDescription>
         <CheckboxContainer onChange={handleChangeRoomType}>
-          <Input type="radio" value="분리형 원룸" id="STUDIO_WITH_SEPERATION" name="roomType" />
+          <Input
+            type="radio"
+            value="STUDIO_WITH_SEPERATION"
+            id="STUDIO_WITH_SEPERATION"
+            name="roomType"
+          />
           <label htmlFor="STUDIO_WITH_SEPERATION">분리형 원룸</label>
-          <Input type="radio" value="일체형 원룸" id="STUDIO" name="roomType" />
+          <Input type="radio" value="STUDIO" id="STUDIO" name="roomType" />
           <label htmlFor="STUDIO">일체형 원룸</label>
-          <Input type="radio" value="복층 원룸" id="LOFT" name="roomType" />
+          <Input type="radio" value="LOFT" id="LOFT" name="roomType" />
           <label htmlFor="LOFT">복층 원룸</label>
-          <Input type="radio" value="빌" id="TWO_BEDROOM" name="roomType" />
-          <label htmlFor="TWO_BEDROOM">투름</label>
-          <Input type="radio" value="오" id="THREE_BEDROOM" name="roomType" />
+          <Input type="radio" value="TWO_BEDROOM" id="TWO_BEDROOM" name="roomType" />
+          <label htmlFor="TWO_BEDROOM">투룸</label>
+          <Input type="radio" value="THREE_BEDROOM" id="THREE_BEDROOM" name="roomType" />
           <label htmlFor="THREE_BEDROOM">쓰리룸</label>
-          <Input type="radio" value="기" id="ROOM_TYPE_ETC" name="roomType" />
+          <Input type="radio" value="ROOM_TYPE_ETC" id="ROOM_TYPE_ETC" name="roomType" />
           <label htmlFor="ROOM_TYPE_ETC">기타</label>
           <Input placeholder="직접 입력" />
         </CheckboxContainer>

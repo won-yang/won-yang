@@ -30,8 +30,8 @@ const WritedContentCheck = (props) => {
       <Carousel imagePaths={""} />
       <WritedContentContainer>
         <PhaseOneContainer>
-          <LabelWithText titleText="제목" text={state.title} />
-          <LabelWithText titleText="연락처" text={state.contact} />
+          <LabelWithText titleText="제목" text={state.title || ""} />
+          <LabelWithText titleText="연락처" text={state.contact || ""} />
         </PhaseOneContainer>
         <MonthlyChargeList
           monthlyRent={state.monthlyRent}
@@ -48,7 +48,7 @@ const WritedContentCheck = (props) => {
           moveInDate={state.moveInDate}
           contractExpireDate={state.contractExpireDate}
           totalFloor={state.total_floor}
-          currentFloor={state.curren_floor}
+          currentFloor={state.current_floor}
           buildType={state.build_type}
           walkingTime={state.walking_time}
           windowSide={state.window_side}

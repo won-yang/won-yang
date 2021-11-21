@@ -127,17 +127,17 @@ export const PostwriteSlice = createSlice({
         );
       }
       state.option = state.etcOptions
-        .map((option) => (option.isSelected ? option.name : null))
+        .map((option) => (option.isSelected ? option.id : null))
         .filter((option) => option);
 
       state.option.push(
         ...state.homeAppliances
-          .map((option) => (option.isSelected ? option.name : null))
+          .map((option) => (option.isSelected ? option.id : null))
           .filter((option) => option),
       );
       state.option.push(
         ...state.furnitures
-          .map((option) => (option.isSelected ? option.name : null))
+          .map((option) => (option.isSelected ? option.id : null))
           .filter((option) => option),
       );
     },

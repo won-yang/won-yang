@@ -30,8 +30,8 @@ const WritedContentCheck = (props) => {
       <Carousel imagePaths={""} />
       <WritedContentContainer>
         <PhaseOneContainer>
-          <LabelWithText titleText="제목" text={state.title} />
-          <LabelWithText titleText="연락처" text={state.contact} />
+          <LabelWithText titleText="제목" text={state.title || ""} />
+          <LabelWithText titleText="연락처" text={state.contact || ""} />
         </PhaseOneContainer>
         <MonthlyChargeList
           monthlyRent={state.monthlyRent}

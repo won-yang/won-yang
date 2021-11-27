@@ -7,6 +7,7 @@ const Input = ({ ...restParams }) => {
 
 const StyledInput = styled.input`
   padding: 5px;
+  max-width: ${(props) => props.inputMaxWidth};
 `;
 
 export default Input;

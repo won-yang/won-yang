@@ -1,9 +1,22 @@
 import axios from "axios";
 
+const getAccessToken = () => {
+  return "1";
+};
+
+const setAccessTokenHeader = () => {
+  return {
+    Authorization: `${getAccessToken()}`,
+  };
+};
+
 export const requestGet = async (url, parameters) => {
   try {
     if (parameters) {
       const response = await axios.get(url, {
+        headers: {
+          ...setAccessTokenHeader(),
+        },
         params: {
           ...parameters,
         },

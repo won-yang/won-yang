@@ -11,6 +11,8 @@ import MainTemplate from "components/Template/MainTemplate";
 
 const MainPage = (props) => {
   const [postData, setPostData] = useState([]);
+  const [filteredPostData, setFilteredPostData] = useState([]);
+
   /*
    * 넘겨받는데이터(path)로 초기값세팅
    */
@@ -30,30 +32,51 @@ const MainPage = (props) => {
     TODO 대학교검색페이지에서 대학교 ID값 pathname으로 전달되면 해당 값 포함해서 API요청보내는 것 추가하기
     */
     if (isIntersect) {
-      const response = await getPostItem(BASE_URL + END_POINT.board, {
-        page: pageNum,
-      });
-      console.log(response);
-
-      if (response.post.length === 0) {
-        setIsLastPage(true);
-      } else {
-        setPostData([...postData, ...response.post]);
-        setPageNum((prev) => prev + 1);
+      try {
+        const response = await getPostItem(BASE_URL + END_POINT.board, {
+          page: pageNum,
+          campus_id: 1,
+        });
+        console.log(response);
+        if (response.post.length === 0) {
+          setIsLastPage(true);
+        } else {
+          setPostData([...postData, ...response.post]);
+          setFilteredPostData([...postData, ...response.post]);
+          setPageNum((prev) => prev + 1);
+        }
+      } catch (e) {
+        console.error(e);
       }
     }
   };
-
   useEffect(() => {
-    // loadMorePostItem();
+    loadMorePostItem();
   }, [isIntersect]);
+  const [isShowProgressPost, setIsShowProgressPost] = useState(false);
+  const handleToggleProgressFilter = () => {
+    setIsShowProgressPost((prev) => !prev);
+    if (isShowProgressPost) {
+      setFilteredPostData([...postData]);
+    } else {
+      setFilteredPostData(postData.filter((data) => data.post_status === "IN_PROGRESS"));
+    }
+  };
   return (
     <MainTemplate>
       <Jumbotron />
       <ArticleContainer>
         {/* <section className="temp-section">검색 및 공지사항 div</section> */}
-        <PostFilter />
-        <PlacePostList items={postData} intersectRef={intersectRef} isLastPage={isLastPage} />
+        <PostFilter handleToggleProgressFilter={handleToggleProgressFilter} />
+        <PlacePostList
+          items={
+            isShowProgressPost
+              ? postData.filter((data) => data.post_status === "IN_PROGRESS")
+              : postData
+          }
+          intersectRef={intersectRef}
+          isLastPage={isLastPage}
+        />
       </ArticleContainer>
     </MainTemplate>
   );

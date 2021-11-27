@@ -29,10 +29,10 @@ const Jumbotron = () => {
           <button>
             <span>양도시 주의사항</span>
           </button>
-          <button>원양이용방법</button>
+          <button>원양이용방법</button>
           <button>
-            기타 공지사항
-            <NoticeIcon />
+            기타 공지사항
+            {/* <NoticeIcon /> */}
           </button>
         </NoticeButtonContainer>
       </ButtonContainer>

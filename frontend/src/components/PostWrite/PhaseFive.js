@@ -148,8 +148,10 @@ const PhaseFive = (props) => {
   return (
     <>
       <HomeApplianceSection>
-        <Title>양도하려는 방의 옵션을 선택해주세요.</Title>
-        <Content>가구는 어떤게 있는지, 보안은 어떤지 옵션을 선택하여 알려주세요.</Content>
+        <div>
+          <Title>양도하려는 방의 옵션을 선택해주세요.</Title>
+          <Content>가구는 어떤게 있는지, 보안은 어떤지 옵션을 선택하여 알려주세요.</Content>
+        </div>
         <InputDescription>가전 제품</InputDescription>
         <ButtonContainer>
           {homeAppliances.map((option) => (
@@ -234,4 +236,10 @@ const OptionButton = styled(Button)`
 const ButtonContainer = styled.div`
   display: flex;
   gap: 5px;
+`;
+
+const Secition = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;

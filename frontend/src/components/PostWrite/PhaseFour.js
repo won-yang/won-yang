@@ -48,7 +48,7 @@ const PhaseFour = (props) => {
     setIsMounted(true);
   };
   return (
-    <Section>
+    <>
       <Title>양도하려는 방의 위치와 건물의 정보를 입력해주세요</Title>
       <Content>
         타사용자에겐 대략적인 주소만 보여집니다.(예: ~로, ~길 까지)
@@ -166,7 +166,7 @@ const PhaseFour = (props) => {
         ></Input>
       </TransferTimeSection>
       <PrevNext />
-    </Section>
+    </>
   );
 };
 

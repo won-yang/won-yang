@@ -3,6 +3,7 @@ import Input from "components/common/Input";
 import React from "react";
 import styled, { css } from "styled-components";
 import DaumPostcode from "react-daum-postcode";
+import useAnimation from "hooks/useAnimation";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -19,6 +20,7 @@ import {
   setWindowSide,
 } from "store/Postwrite/PostwriteSlice";
 import PrevNext from "./common/PrevNext";
+import AddressModal from "./Four/AddressModal";
 
 const PhaseFour = (props) => {
   const dispatch = useDispatch();
@@ -53,13 +55,17 @@ const PhaseFour = (props) => {
       dispatch(setWindowSide(value));
     }
   };
-  const handleOpenModal = () => {};
+  const { isMounted, setIsMounted } = useAnimation({ delay: 600 });
+  const handleOpenModal = () => {
+    setIsMounted(true);
+  };
   return (
     <>
       <AddressSection>
-        <DaumPostcode onComplete={handleComplete} {...props} />
+        {isMounted && <AddressModal setIsMounted={setIsMounted} />}
+        {/* <DaumPostcode onComplete={handleComplete} {...props} /> */}
         <InputDescription>주소</InputDescription>
-        <Input value={address} onClick={handleOpenModal}></Input>
+        <Input draggable={false} value={address} onClick={handleOpenModal}></Input>
         <InputDescription>상세주소</InputDescription>
         <Input
           onChange={(e) => dispatch(setAddressDetail(e.target.value))}

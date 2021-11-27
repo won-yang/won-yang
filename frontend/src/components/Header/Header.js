@@ -11,7 +11,7 @@ const Header = (props) => {
         <Container>
           <IconLogo widthSize="65px" heightSize="100%"></IconLogo>
           <UnivTitle>{props.univName}</UnivTitle>
-          <HamburgerMenu></HamburgerMenu>
+          <HamburgerMenu />
         </Container>
       </CenterAlignWrapper>
     </Wrapper>

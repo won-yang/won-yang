@@ -4,11 +4,12 @@ import ModalPortal from "components/ModalPortal/ModalPortal";
 import { ModalBackGround, ModalContainer } from "./style";
 
 const HamburgerModal = (props) => {
-  const { open } = props;
+  const { isOnAnimation } = props;
+
   return (
     <ModalPortal>
-      <ModalBackGround data-kind="modal-bg">
-        <ModalContainer data-kind="modal" className={open ? "modal-open" : "modal-close"}>
+      <ModalBackGround data-kind="modal-bg" isOnAnimation={isOnAnimation}>
+        <ModalContainer data-kind="modal" isOnAnimation={isOnAnimation}>
           {props.children}
         </ModalContainer>
       </ModalBackGround>
@@ -17,6 +18,7 @@ const HamburgerModal = (props) => {
 };
 
 HamburgerModal.propTypes = {
+  isOnAnimation: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 

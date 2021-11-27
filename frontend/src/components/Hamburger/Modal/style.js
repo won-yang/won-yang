@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const ModalBackGround = styled.div`
   width: 100%;
@@ -7,6 +7,11 @@ export const ModalBackGround = styled.div`
   position: fixed;
   left: 0;
   top: 0;
+  ${(props) =>
+    props.isOnAnimation === false &&
+    css`
+      background-color: unset;
+    `}
 `;
 
 export const ModalContainer = styled.div`
@@ -18,12 +23,21 @@ export const ModalContainer = styled.div`
   width: 70%;
   max-width: 260px;
   transition: 0.4s;
-  &.modal-open {
+  ${(props) =>
+    props.isOnAnimation
+      ? css`
+          transition: 0.4s;
+          transform: translateX(-100%);
+        `
+      : css`
+          transition: 0.4s;
+          transform: translateX(100%);
+        `}/* &.modal-open {
     transition: 0.4s;
     transform: translateX(-100%);
   }
   &.modal-close {
     transition: 0.4s;
     transform: translateX(100%);
-  }
+  } */
 `;

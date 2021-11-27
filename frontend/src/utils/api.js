@@ -6,7 +6,7 @@ import {
   KAKAO_URL,
   CALLBACK_URL,
 } from "utils/constants/request";
-import { requestGet, requestPut } from "./HttpMethod";
+import { requestGet, requestGetWithToken, requestPut } from "./HttpMethod";
 
 export const getPostItem = (url, parameters) => {
   return requestGet(url, parameters);

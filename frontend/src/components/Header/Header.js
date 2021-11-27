@@ -1,19 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { HamburgerMenu } from "components/Hamburger";
+import { HamburgerMenu, HamburgerModal } from "components/HamburgerMenu";
 import { IconLogo } from "components/Icon";
 import styled from "styled-components";
+import useAnimation from "hooks/useAnimation";
 
 const Header = (props) => {
+  const { isMounted, setIsMounted, unMount, animation } = useAnimation({ delay: 600 });
+
   return (
     <Wrapper id="header">
       <CenterAlignWrapper>
         <Container>
           <IconLogo widthSize="65px" heightSize="100%"></IconLogo>
           <UnivTitle>{props.univName}</UnivTitle>
-          <HamburgerMenu />
+          <HamburgerMenu
+            isMounted={isMounted}
+            setIsMounted={setIsMounted}
+            unMount={unMount}
+            animation={animation}
+          />
         </Container>
       </CenterAlignWrapper>
+      {isMounted && <HamburgerModal isOnAnimation={animation} />}
     </Wrapper>
   );
 };

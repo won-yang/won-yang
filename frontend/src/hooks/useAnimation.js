@@ -13,7 +13,7 @@ const useAnimation = (props) => {
   const onAnimation = () => {
     setAnimation(true);
   };
-  const offAnimation = () => {
+  const unMount = () => {
     setAnimation(false);
     unMountAfterDelay();
   };
@@ -23,7 +23,7 @@ const useAnimation = (props) => {
       onAnimation();
     }
   }, [isMounted]);
-  return { animation, isMounted, unMountAfterDelay, onAnimation, offAnimation, setIsMounted };
+  return { animation, isMounted, unMountAfterDelay, onAnimation, unMount, setIsMounted };
 };
 
 export default useAnimation;

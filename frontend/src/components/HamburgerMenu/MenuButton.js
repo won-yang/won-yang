@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import useModal from "hooks/useModal";
-import HamburgerModal from "components/Hamburger/Modal/Modal";
-import HamburgerMenuContent from "components/Hamburger/MenuContent/MenuContent";
+import React from "react";
+
+import HamburgerModal from "components/HamburgerMenu/Modal";
 import styled from "styled-components";
-import useAnimation from "hooks/useAnimation";
 
 const HamburgerMenu = (props) => {
-  const { isMounted, setIsMounted, offAnimation, animation } = useAnimation({ delay: 600 });
+  const { isMounted, setIsMounted, unMount, animation } = props;
   const handleClick = (e) => {
     const { kind } = e.target.dataset;
     if (
       isMounted &&
       (kind === "modal-toggle-btn" || kind === "modal-btn-sticks" || kind === "modal-bg")
     ) {
-      offAnimation();
+      unMount();
     } else if (!isMounted && (kind === "modal-toggle-btn" || kind === "modal-btn-sticks")) {
       setIsMounted(true);
     }
@@ -27,11 +24,7 @@ const HamburgerMenu = (props) => {
           className={animation && "open"}
         ></HamburgerSticks>
       </SticksWrapper>
-      {isMounted && (
-        <HamburgerModal isOnAnimation={animation}>
-          <HamburgerMenuContent />
-        </HamburgerModal>
-      )}
+      {isMounted && <HamburgerModal isOnAnimation={animation} />}
     </Container>
   );
 };

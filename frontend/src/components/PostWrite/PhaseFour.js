@@ -53,12 +53,13 @@ const PhaseFour = (props) => {
       dispatch(setWindowSide(value));
     }
   };
+  const handleOpenModal = () => {};
   return (
     <>
       <AddressSection>
         <DaumPostcode onComplete={handleComplete} {...props} />
         <InputDescription>주소</InputDescription>
-        <Input value={address}></Input>
+        <Input value={address} onClick={handleOpenModal}></Input>
         <InputDescription>상세주소</InputDescription>
         <Input
           onChange={(e) => dispatch(setAddressDetail(e.target.value))}

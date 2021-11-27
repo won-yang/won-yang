@@ -6,6 +6,7 @@ import { selectPostWrite, setSelectOption } from "store/Postwrite/PostwriteSlice
 
 import Button from "components/common/Button";
 import PrevNext from "./common/PrevNext";
+import { Content, Title } from "./common";
 
 export const HOME_APPLIANCES = [
   {
@@ -147,6 +148,8 @@ const PhaseFive = (props) => {
   return (
     <>
       <HomeApplianceSection>
+        <Title>양도하려는 방의 옵션을 선택해주세요.</Title>
+        <Content>가구는 어떤게 있는지, 보안은 어떤지 옵션을 선택하여 알려주세요.</Content>
         <InputDescription>가전 제품</InputDescription>
         <ButtonContainer>
           {homeAppliances.map((option) => (

@@ -19,28 +19,16 @@ import {
   setWalkingTime,
   setWindowSide,
 } from "store/Postwrite/PostwriteSlice";
+import InputWithLabel from "components/common/InputWithLabel";
 import PrevNext from "./common/PrevNext";
 import AddressModal from "./Four/AddressModal";
+import { Content, Title } from "./common";
 
 const PhaseFour = (props) => {
   const dispatch = useDispatch();
   const { address, address_detail, is_address_visible, window_side, walking_time, bus_time } =
     useSelector(selectPostWrite);
-  const handleComplete = (data) => {
-    let fullAddress = data.address;
-    let extraAddress = "";
 
-    if (data.addressType === "R") {
-      if (data.bname !== "") {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== "") {
-        extraAddress += extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
-      }
-      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
-    }
-    dispatch(setAddress(fullAddress));
-  };
   const handleChangeBuildingType = (e) => {
     const { value } = e.target;
     dispatch(setBuildingType(value));
@@ -60,25 +48,34 @@ const PhaseFour = (props) => {
     setIsMounted(true);
   };
   return (
-    <>
+    <Section>
+      <Title>양도하려는 방의 위치와 건물의 정보를 입력해주세요</Title>
+      <Content>
+        타사용자에겐 대략적인 주소만 보여집니다.(예: ~로, ~길 까지)
+        <br /> 주소를 상세하게 보여주고 싶다면 주소 오픈을 체크해주세요.
+        <br />
+        *표시가 된 항목은 필수 입력 항목입니다.
+      </Content>
       <AddressSection>
         {isMounted && <AddressModal setIsMounted={setIsMounted} />}
-        {/* <DaumPostcode onComplete={handleComplete} {...props} /> */}
-        <InputDescription>주소</InputDescription>
-        <Input draggable={false} value={address} onClick={handleOpenModal}></Input>
-        <InputDescription>상세주소</InputDescription>
-        <Input
+        <InputWithLabel
+          columnDirection={true}
+          labelText="주소"
+          value={address}
+          onClick={handleOpenModal}
+        />
+        <InputWithLabel
+          columnDirection={true}
+          labelText="상세주소"
           onChange={(e) => dispatch(setAddressDetail(e.target.value))}
           value={address_detail}
-        ></Input>
-        <div>
-          <input
-            type="checkbox"
-            checked={is_address_visible}
-            onChange={(e) => dispatch(setAddressVisible(e.target.value))}
-          />
-          <span>주소 오픈</span>
-        </div>
+        />
+        <InputWithLabel
+          type="checkbox"
+          checked={is_address_visible}
+          onChange={(e) => dispatch(setAddressVisible(e.target.value))}
+          labelText="주소 오픈"
+        />
       </AddressSection>
       <BuildingFloorSection>
         <InputDescription>건물 층수</InputDescription>
@@ -169,7 +166,7 @@ const PhaseFour = (props) => {
         ></Input>
       </TransferTimeSection>
       <PrevNext />
-    </>
+    </Section>
   );
 };
 
@@ -180,6 +177,7 @@ export default PhaseFour;
 const AddressSection = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 10px;
   & span:last-child {
   }
 `;
@@ -217,4 +215,9 @@ const CheckboxContainer = styled.div`
   & label {
     padding-right: 15px;
   }
+`;
+const Section = styled.section`
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
 `;

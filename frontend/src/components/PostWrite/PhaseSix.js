@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { selectPostWrite, setContent, setContents } from "store/Postwrite/PostwriteSlice";
 import PrevNext from "./common/PrevNext";
+import { Title } from "./common";
 
 const PhaseSix = (props) => {
   const [imageFiles, setImageFiles] = useState([]);
@@ -30,7 +31,7 @@ const PhaseSix = (props) => {
   };
   return (
     <>
-      <h2>방을 보여줄 사진, 간단한 소개글을 입력해주세요.</h2>
+      <Title>방을 보여줄 사진, 간단한 소개글을 입력해주세요.</Title>
       <UploadedFilePreviewContainer>
         <PreviewList>
           {imageFiles?.map((image, idx) => (

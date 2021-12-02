@@ -8,11 +8,13 @@ import { BASE_URL, END_POINT } from "utils/constants/request";
 import useInfiniteScroll from "hooks/useInfiniteScroll";
 import Jumbotron from "components/common/Jumbotron";
 import MainTemplate from "components/Template/MainTemplate";
+import { useLocation } from "react-router";
 
 const MainPage = (props) => {
+  const location = useLocation();
   const [postData, setPostData] = useState([]);
   const [filteredPostData, setFilteredPostData] = useState([]);
-
+  const [campusId, setCampusId] = useState(parseInt(location.pathname.split("/").pop(), 10));
   /*
    * 넘겨받는데이터(path)로 초기값세팅
    */
@@ -35,7 +37,7 @@ const MainPage = (props) => {
       try {
         const response = await getPostItem(BASE_URL + END_POINT.board, {
           page: pageNum,
-          campus_id: 1,
+          campus_id: campusId,
         });
         console.log(response);
         if (response.post.length === 0) {
@@ -51,7 +53,9 @@ const MainPage = (props) => {
     }
   };
   useEffect(() => {
-    loadMorePostItem();
+    if (typeof campusId === "number") {
+      loadMorePostItem();
+    }
   }, [isIntersect]);
   const [isShowProgressPost, setIsShowProgressPost] = useState(false);
   const handleToggleProgressFilter = () => {

@@ -30,7 +30,10 @@ const initialState = {
   homeAppliances: HOME_APPLIANCES,
   furnitures: FURNITURES,
   etcOptions: ETC_OPTIONS,
-  images: [],
+  images: {
+    files: [],
+    urls: [],
+  },
 };
 
 export const PostwriteSlice = createSlice({
@@ -147,7 +150,11 @@ export const PostwriteSlice = createSlice({
     setContents: (state, action) => {
       state.contents = action.payload;
     },
-    setImages: (state, action) => {},
+    setImages: (state, action) => {
+      state.images.files.push(action.payload.files);
+      state.images.urls.push(action.payload.url);
+      console.log(action);
+    },
   },
 });
 

@@ -27,7 +27,7 @@ const WritedContentCheck = (props) => {
   };
   return (
     <>
-      <Carousel imagePaths={""} />
+      <Carousel imagePaths={state.images.urls} />
       <WritedContentContainer>
         <PhaseOneContainer>
           <LabelWithText titleText="제목" text={state.title || ""} />

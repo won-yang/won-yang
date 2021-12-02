@@ -220,8 +220,9 @@ const InputDescription = styled.span`
 const ExtraOptionSection = styled.div``;
 
 const OptionButton = styled(Button)`
-  border-radius: 8px;
-  min-width: 60px;
+  border-radius: 5px;
+  min-height: 30px;
+
   background-color: ${({ theme }) => theme.colors.darkGray};
   color: white;
   &.clicked {
@@ -232,10 +233,12 @@ const OptionButton = styled(Button)`
     css`
       background-color: ${props.theme.colors.primary};
     `}
+  white-space: nowrap;
 `;
 const ButtonContainer = styled.div`
-  display: flex;
+  display: grid;
   gap: 5px;
+  grid-template-columns: repeat(5, 1fr);
 `;
 
 const Secition = styled.section`

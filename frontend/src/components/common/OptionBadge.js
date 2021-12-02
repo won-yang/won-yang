@@ -10,7 +10,7 @@ OptionBadge.propTypes = {};
 
 export default OptionBadge;
 
-const Wrapper = styled.div`
+const Wrapper = styled.span`
   border-radius: 8px;
   color: white;
   padding: 5px;

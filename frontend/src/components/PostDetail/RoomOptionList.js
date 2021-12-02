@@ -43,4 +43,7 @@ const OptionList = styled.ul`
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   gap: 15px;
+  & li {
+    width: fit-content;
+  }
 `;

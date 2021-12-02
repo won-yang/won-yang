@@ -15,7 +15,7 @@ const Routes = (props) => {
         <Route path="/signup">
           <SignUpPage />
         </Route>
-        <Route path="/main">
+        <Route path="/main/:id" exact>
           {/* main page */}
           <Header />
           <MainPage />

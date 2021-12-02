@@ -63,12 +63,14 @@ const PhaseFour = (props) => {
           labelText="주소"
           value={address}
           onClick={handleOpenModal}
+          inputMaxWidth="250px"
         />
         <InputWithLabel
           columnDirection={true}
           labelText="상세주소"
           onChange={(e) => dispatch(setAddressDetail(e.target.value))}
           value={address_detail}
+          inputMaxWidth="250px"
         />
         <InputWithLabel
           type="checkbox"
@@ -79,14 +81,20 @@ const PhaseFour = (props) => {
       </AddressSection>
       <BuildingFloorSection>
         <InputDescription>건물 층수</InputDescription>
+        <span>총</span>
         <Input
           placeholder="현재 층을 입력"
           onChange={(e) => dispatch(setCurrentFloor(e.target.value))}
+          inputMaxWidth="80px"
         ></Input>
+        <span>중의 </span>
+
         <Input
           placeholder="건물 전체 층 입력"
           onChange={(e) => dispatch(setTotalFloor(e.target.value))}
+          inputMaxWidth="95px"
         ></Input>
+        <span>층</span>
       </BuildingFloorSection>
       <BuildingStructureSection>
         <InputDescription>건물 구조</InputDescription>
@@ -199,16 +207,22 @@ const InputDescription = styled.span`
 const WindowDirectionButtonContainer = styled.div`
   display: flex;
   gap: 5px;
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const WindowDirectionButton = styled(Button)`
-  line-height: 25px;
+  /* line-height: 25px; */
+  background-color: white;
+  border: 1px solid ${({ theme }) => theme.colors.gray};
+  padding: 5px;
+  border-radius: 5px;
   ${(props) =>
     props.isFocused &&
     css`
       background-color: ${({ theme }) => theme.colors.primary};
+      border: 1px solid ${({ theme }) => theme.colors.primary};
+      color: white;
     `}
-  border: 1px solid ${({ theme }) => theme.colors.gray};
 `;
 
 const CheckboxContainer = styled.div`

@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { HamburgerMenu, HamburgerModal } from "components/HamburgerMenu";
 import { IconLogo } from "components/Icon";
 import styled from "styled-components";
 import useAnimation from "hooks/useAnimation";
 
+import { useHistory } from "react-router-dom";
+
 const Header = (props) => {
   const { isMounted, setIsMounted, unMount, animation } = useAnimation({ delay: 600 });
-
+  const history = useHistory();
+  useEffect(() => {
+    return history.listen((location) => {
+      setIsMounted(false);
+    });
+  }, [history]);
   return (
     <Wrapper id="header">
       <CenterAlignWrapper>

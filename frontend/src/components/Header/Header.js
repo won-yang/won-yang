@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { useHistory, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { HamburgerMenu, HamburgerModal } from "components/HamburgerMenu";
 import { IconLogo } from "components/Icon";
 import styled from "styled-components";
 import useAnimation from "hooks/useAnimation";
 
-import { useHistory, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { selectUniversity } from "store/University/UniversitySlice";
 
 const Header = (props) => {

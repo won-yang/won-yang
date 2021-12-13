@@ -25,7 +25,7 @@ const Routes = (props) => {
           <Header />
           <PostWritePage />
         </Route>
-        <Route path="/posts/:id" exact>
+        <Route path="/post/:id" exact>
           <Header />
           <PostDetailPage />
         </Route>

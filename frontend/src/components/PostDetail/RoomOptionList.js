@@ -8,7 +8,7 @@ const RoomOptionList = (props) => {
     <>
       <h1>옵션</h1>
       <OptionList>
-        {homeAppliances.map(
+        {homeAppliances?.map(
           (option) =>
             option.isSelected && (
               <li key={option.name}>
@@ -16,7 +16,7 @@ const RoomOptionList = (props) => {
               </li>
             ),
         )}
-        {furnitures.map(
+        {furnitures?.map(
           (option) =>
             option.isSelected && (
               <li key={option.name}>
@@ -24,7 +24,7 @@ const RoomOptionList = (props) => {
               </li>
             ),
         )}
-        {etcOptions.map(
+        {etcOptions?.map(
           (option) =>
             option.isSelected && (
               <li key={option.name}>

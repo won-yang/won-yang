@@ -9,7 +9,7 @@ const PrevNextBtn = styled(Button)`
   font-size: 15px;
   width: 100px;
   height: 40px;
-  margin-left: 5px;
+  margin: 0 10px 0 10px;
   border: none;
   border-radius: 5px;
   @media ${device.tablet} {

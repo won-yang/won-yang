@@ -15,7 +15,7 @@ const PrevNext = (props) => {
   };
 
   return (
-    <SpaceBetween prevPhase={getPrevPhase() % 3 === 0}>
+    <SpaceBetween prevPhase={getPrevPhase() === 3}>
       <Link to={`/write/${getPrevPhase()}`}>
         <PrevNextBtn disabled={isPrevDisabled} deactivated={isPrevDisabled}>
           {`< `} 이전단계

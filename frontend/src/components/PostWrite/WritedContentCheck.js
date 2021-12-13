@@ -59,13 +59,13 @@ const WritedContentCheck = (props) => {
           etcOptions={state.etcOptions}
           furnitures={state.furnitures}
         />
-        <SpaceBetween>
-          <Link to={`/write/${getPrevPhase()}`}>
-            <PrevNextBtn>{`< `} 이전단계</PrevNextBtn>
-          </Link>
-          <PrevNextBtn>작성완료 {` >`}</PrevNextBtn>
-        </SpaceBetween>
       </WritedContentContainer>
+      <SpaceBetween prevPhase={getPrevPhase() % 3 === 0}>
+        <Link to={`/write/${getPrevPhase()}`}>
+          <PrevNextBtn prevPhase={getPrevPhase() % 3 === 0}>{`< `} 이전단계</PrevNextBtn>
+        </Link>
+        <PrevNextBtn prevPhase={getPrevPhase() % 3 === 0}>작성완료 {` >`}</PrevNextBtn>
+      </SpaceBetween>
     </>
   );
 };

@@ -4,7 +4,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import usePathname from "hooks/usePathname";
+import { postWrite } from "utils/api";
 
+import { selectUniversity } from "store/University/UniversitySlice";
 import Carousel from "components/common/Carousel";
 import PostDetailHeader from "components/PostDetail/PostDetailHeader";
 import MonthlyChargeList from "components/PostDetail/MonthlyChargeList";
@@ -21,9 +23,14 @@ import LabelWithText from "./common/LabelWithTextListItem";
 const WritedContentCheck = (props) => {
   const state = useSelector(selectPostWrite);
   const { getWritePhase } = usePathname();
+  const { campusInfo } = useSelector(selectUniversity);
 
   const getPrevPhase = () => {
     return parseInt(getWritePhase(), 10) - 1;
+  };
+  const handleClickPostSubmit = async () => {
+    const res = await postWrite(campusInfo.campus_id, state);
+    console.log(res);
   };
   return (
     <>
@@ -63,7 +70,7 @@ const WritedContentCheck = (props) => {
           <Link to={`/write/${getPrevPhase()}`}>
             <PrevNextBtn>{`< `} 이전단계</PrevNextBtn>
           </Link>
-          <PrevNextBtn>작성완료 {` >`}</PrevNextBtn>
+          <PrevNextBtn onClick={handleClickPostSubmit}>작성완료 {` >`}</PrevNextBtn>
         </SpaceBetween>
       </WritedContentContainer>
     </>

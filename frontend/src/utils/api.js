@@ -5,8 +5,9 @@ import {
   SIGNUP_API,
   KAKAO_URL,
   CALLBACK_URL,
+  CAMPUS,
 } from "utils/constants/request";
-import { requestGet, requestPut } from "./HttpMethod";
+import { requestGet, requestGetWithToken, requestPut } from "./HttpMethod";
 
 export const getPostItem = (url, parameters) => {
   return requestGet(url, parameters);
@@ -28,4 +29,8 @@ export const getNickName = (input) => {
 
 export const putSignup = (params) => {
   return requestPut(`${BASE_URL}${SIGNUP_API}`, params);
+};
+
+export const getCampusInfo = (campus_id) => {
+  return requestGet(`${BASE_URL}${CAMPUS}`, { campus_id });
 };

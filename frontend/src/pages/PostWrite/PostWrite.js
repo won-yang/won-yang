@@ -20,10 +20,12 @@ const PostWritePage = () => {
         <Route path="/write/1" component={PhaseOne} />
         <Route path="/write/2" component={PhaseTwo} />
         <Route path="/write/3" component={PhaseThree} />
-        <Route path="/write/4" component={PhaseFour} />
-        <Route path="/write/5" component={PhaseFive} />
-        <Route path="/write/6" component={PhaseSix} />
-        <Route path="/write/7" component={WritedContentCheck} />
+        <Section>
+          <Route path="/write/4" component={PhaseFour} />
+          <Route path="/write/5" component={PhaseFive} />
+          <Route path="/write/6" component={PhaseSix} />
+          <Route path="/write/7" component={WritedContentCheck} />
+        </Section>
       </Switch>
     </MainTemplate>
   );
@@ -35,4 +37,10 @@ export default PostWritePage;
 
 const WriteProgress = styled.div`
   margin-top: 85px;
+`;
+
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;

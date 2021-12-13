@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { selectPostWrite, setContent, setContents } from "store/Postwrite/PostwriteSlice";
+import {
+  selectPostWrite,
+  setContent,
+  setContents,
+  setImages,
+} from "store/Postwrite/PostwriteSlice";
 import PrevNext from "./common/PrevNext";
+import { Title } from "./common";
 
 const PhaseSix = (props) => {
   const [imageFiles, setImageFiles] = useState([]);
   const dispatch = useDispatch();
-  const { contents } = useSelector(selectPostWrite);
+  const { contents, images } = useSelector(selectPostWrite);
 
   const handleUploadImagePreview = (e) => {
     const files = Array.from(e.target.files);
@@ -22,21 +28,25 @@ const PhaseSix = (props) => {
           reader.addEventListener("error", reject);
           reader.readAsDataURL(file);
         }).then((url) => {
+          dispatch(setImages({ files, url }));
           setImageFiles((prev) => prev.concat(url));
         });
       }),
     );
     // s3로 업로드
+    console.log(images);
   };
   return (
     <>
-      <h2>방을 보여줄 사진, 간단한 소개글을 입력해주세요.</h2>
+      <Title>방을 보여줄 사진, 간단한 소개글을 입력해주세요.</Title>
       <UploadedFilePreviewContainer>
         <PreviewList>
-          {imageFiles?.map((image, idx) => (
-            <img key={idx} src={image}></img>
-          ))}
-          <li></li>
+          {images.urls &&
+            images.urls?.map((url, idx) => (
+              <li key={idx}>
+                <img src={url}></img>
+              </li>
+            ))}
         </PreviewList>
       </UploadedFilePreviewContainer>
       <div>
@@ -69,7 +79,11 @@ const UploadedFilePreviewContainer = styled.div``;
 const PreviewList = styled.ul`
   display: flex;
   align-items: center;
-  & > img {
+  & li {
     max-width: 150px;
+    & > img {
+      width: 100%;
+      height: 100%;
+    }
   }
 `;

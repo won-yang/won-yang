@@ -3,6 +3,7 @@ import Input from "components/common/Input";
 import React from "react";
 import styled, { css } from "styled-components";
 import DaumPostcode from "react-daum-postcode";
+import useAnimation from "hooks/useAnimation";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -18,27 +19,16 @@ import {
   setWalkingTime,
   setWindowSide,
 } from "store/Postwrite/PostwriteSlice";
+import InputWithLabel from "components/common/InputWithLabel";
 import PrevNext from "./common/PrevNext";
+import AddressModal from "./Four/AddressModal";
+import { Content, Title } from "./common";
 
 const PhaseFour = (props) => {
   const dispatch = useDispatch();
   const { address, address_detail, is_address_visible, window_side, walking_time, bus_time } =
     useSelector(selectPostWrite);
-  const handleComplete = (data) => {
-    let fullAddress = data.address;
-    let extraAddress = "";
 
-    if (data.addressType === "R") {
-      if (data.bname !== "") {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== "") {
-        extraAddress += extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
-      }
-      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
-    }
-    dispatch(setAddress(fullAddress));
-  };
   const handleChangeBuildingType = (e) => {
     const { value } = e.target;
     dispatch(setBuildingType(value));
@@ -53,36 +43,58 @@ const PhaseFour = (props) => {
       dispatch(setWindowSide(value));
     }
   };
+  const { isMounted, setIsMounted } = useAnimation({ delay: 600 });
+  const handleOpenModal = () => {
+    setIsMounted(true);
+  };
   return (
     <>
+      <Title>양도하려는 방의 위치와 건물의 정보를 입력해주세요</Title>
+      <Content>
+        타사용자에겐 대략적인 주소만 보여집니다.(예: ~로, ~길 까지)
+        <br /> 주소를 상세하게 보여주고 싶다면 주소 오픈을 체크해주세요.
+        <br />
+        *표시가 된 항목은 필수 입력 항목입니다.
+      </Content>
       <AddressSection>
-        <DaumPostcode onComplete={handleComplete} {...props} />
-        <InputDescription>주소</InputDescription>
-        <Input value={address}></Input>
-        <InputDescription>상세주소</InputDescription>
-        <Input
+        {isMounted && <AddressModal setIsMounted={setIsMounted} />}
+        <InputWithLabel
+          columnDirection={true}
+          labelText="주소"
+          value={address}
+          onClick={handleOpenModal}
+          inputMaxWidth="250px"
+        />
+        <InputWithLabel
+          columnDirection={true}
+          labelText="상세주소"
           onChange={(e) => dispatch(setAddressDetail(e.target.value))}
           value={address_detail}
-        ></Input>
-        <div>
-          <input
-            type="checkbox"
-            checked={is_address_visible}
-            onChange={(e) => dispatch(setAddressVisible(e.target.value))}
-          />
-          <span>주소 오픈</span>
-        </div>
+          inputMaxWidth="250px"
+        />
+        <InputWithLabel
+          type="checkbox"
+          checked={is_address_visible}
+          onChange={(e) => dispatch(setAddressVisible(e.target.value))}
+          labelText="주소 오픈"
+        />
       </AddressSection>
       <BuildingFloorSection>
         <InputDescription>건물 층수</InputDescription>
+        <span>총</span>
         <Input
           placeholder="현재 층을 입력"
           onChange={(e) => dispatch(setCurrentFloor(e.target.value))}
+          inputMaxWidth="80px"
         ></Input>
+        <span>중의 </span>
+
         <Input
           placeholder="건물 전체 층 입력"
           onChange={(e) => dispatch(setTotalFloor(e.target.value))}
+          inputMaxWidth="95px"
         ></Input>
+        <span>층</span>
       </BuildingFloorSection>
       <BuildingStructureSection>
         <InputDescription>건물 구조</InputDescription>
@@ -173,6 +185,7 @@ export default PhaseFour;
 const AddressSection = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 10px;
   & span:last-child {
   }
 `;
@@ -194,20 +207,31 @@ const InputDescription = styled.span`
 const WindowDirectionButtonContainer = styled.div`
   display: flex;
   gap: 5px;
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const WindowDirectionButton = styled(Button)`
-  line-height: 25px;
+  /* line-height: 25px; */
+  background-color: white;
+  border: 1px solid ${({ theme }) => theme.colors.gray};
+  padding: 5px;
+  border-radius: 5px;
   ${(props) =>
     props.isFocused &&
     css`
       background-color: ${({ theme }) => theme.colors.primary};
+      border: 1px solid ${({ theme }) => theme.colors.primary};
+      color: white;
     `}
-  border: 1px solid ${({ theme }) => theme.colors.gray};
 `;
 
 const CheckboxContainer = styled.div`
   & label {
     padding-right: 15px;
   }
+`;
+const Section = styled.section`
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
 `;

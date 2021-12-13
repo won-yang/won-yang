@@ -11,47 +11,55 @@ import { ReactComponent as CheckIcon } from "assets/icon_check.svg";
 import WriteProgressIcon from "components/Icon/WriteProgressIcon";
 import usePathname from "hooks/usePathname";
 import { Link } from "react-router-dom";
+import { device } from "styles/media";
 
 const WriteProgressBar = (props) => {
   const { getWritePhase } = usePathname();
-  const currentPhase = useMemo(() => getWritePhase, []);
+  const currentPhase = useMemo(() => getWritePhase(), [getWritePhase]);
+  console.log(currentPhase);
   return (
     <Container>
-      <WriteProgressIcon isWrited={getWritePhase() >= "1"}>
+      <IconBox>
+        {currentPhase >= "1" && <StyledCheckIcon />}
         <Link to="/write/1">
           <PersonIcon />
         </Link>
-      </WriteProgressIcon>
+      </IconBox>
 
-      <WriteProgressIcon isWrited={getWritePhase() >= "2"}>
+      <IconBox>
+        {currentPhase >= "2" && <StyledCheckIcon />}
         <Link to="/write/2">
           <MoneyIcon />
         </Link>
-      </WriteProgressIcon>
+      </IconBox>
 
-      <WriteProgressIcon isWrited={getWritePhase() >= "3"}>
+      <IconBox>
+        {currentPhase >= "3" && <StyledCheckIcon />}
         <Link to="/write/3">
           <CalendarIcon />
         </Link>
-      </WriteProgressIcon>
+      </IconBox>
 
-      <WriteProgressIcon isWrited={getWritePhase() >= "4"}>
+      <IconBox>
+        {currentPhase >= "4" && <StyledCheckIcon />}
         <Link to="/write/4">
           <MapIcon />
         </Link>
-      </WriteProgressIcon>
+      </IconBox>
 
-      <WriteProgressIcon isWrited={getWritePhase() >= "5"}>
+      <IconBox>
+        {currentPhase >= "5" && <StyledCheckIcon />}
         <Link to="/write/5">
           <FurnitureIcon />
         </Link>
-      </WriteProgressIcon>
+      </IconBox>
 
-      <WriteProgressIcon isWrited={getWritePhase() >= "6"}>
+      <IconBox>
+        {currentPhase >= "6" && <StyledCheckIcon />}
         <Link to="/write/6">
           <PictureIcon />
         </Link>
-      </WriteProgressIcon>
+      </IconBox>
     </Container>
   );
 };
@@ -61,16 +69,26 @@ WriteProgressBar.propTypes = {};
 export default WriteProgressBar;
 
 const Container = styled.div`
-  display: flex;
   justify-content: center;
+  display: flex;
   gap: 2em;
-  margin: 50px 0px;
+  margin: 80px 0px;
+  width: 100%;
 `;
-const ProgressBarIconContainer = styled(IconContainer)`
+
+const IconBox = styled.div`
+  & svg {
+    max-width: 70px;
+    max-height: 70px;
+    @media ${device.mobileL} {
+      max-width: 30px;
+      max-height: 30px;
+    }
+  }
   position: relative;
 `;
 
-const CheckContainer = styled(IconContainer)`
+const StyledCheckIcon = styled(CheckIcon)`
   position: absolute;
-  bottom: 40px;
+  top: -70%;
 `;

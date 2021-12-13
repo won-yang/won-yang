@@ -12,6 +12,7 @@ const PlacePostList = (props) => {
       {items?.map((item) => (
         <PlacePostItem key={item.id} item={item} />
       ))}
+      {items.length === 0 && <span>none data</span>}
       {!isLastPage ? <div ref={intersectRef}>...loading</div> : <div>Last</div>}
     </Wrapper>
   );

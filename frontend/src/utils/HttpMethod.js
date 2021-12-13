@@ -1,9 +1,50 @@
+import {
+  BASE_URL,
+  UNIV_API,
+  NICKNAME_API,
+  SIGNUP_API,
+  KAKAO_URL,
+  CALLBACK_URL,
+} from "utils/constants/request";
 import axios from "axios";
+
+const getAccessToken = () => {
+  return "1";
+};
+
+const setAccessTokenHeader = () => {
+  return {
+    Authorization: `${getAccessToken()}`,
+  };
+};
+
+const tokenInstance = axios.create({
+  baseURL: BASE_URL,
+  headers: { ...getAccessToken() },
+  responseType: "json",
+});
+// instance.defaults.headers.common['Authorization'] = TOKEN 으로 수정가능합니다
+export const requestGetWithToken = async (endPoint, parameters) => {
+  try {
+    const res = await tokenInstance.get(endPoint, {
+      params: {
+        ...parameters,
+      },
+      withCredentials: true,
+    });
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
 
 export const requestGet = async (url, parameters) => {
   try {
     if (parameters) {
       const response = await axios.get(url, {
+        headers: {
+          ...setAccessTokenHeader(),
+        },
         params: {
           ...parameters,
         },

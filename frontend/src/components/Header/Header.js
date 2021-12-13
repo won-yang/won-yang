@@ -1,30 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { HamburgerMenu } from "components/Hamburger";
+import { HamburgerMenu, HamburgerModal } from "components/HamburgerMenu";
 import { IconLogo } from "components/Icon";
 import styled from "styled-components";
+import useAnimation from "hooks/useAnimation";
+
+import { useHistory, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUniversity } from "store/University/UniversitySlice";
 
 const Header = (props) => {
+  const { isMounted, setIsMounted, unMount, animation } = useAnimation({ delay: 600 });
+  const history = useHistory();
+  const { campusInfo } = useSelector(selectUniversity);
+
+  useEffect(() => {
+    return history.listen((location) => {
+      setIsMounted(false);
+    });
+  }, [history]);
   return (
     <Wrapper id="header">
       <CenterAlignWrapper>
         <Container>
           <IconLogo widthSize="65px" heightSize="100%"></IconLogo>
-          <UnivTitle>{props.univName}</UnivTitle>
-          <HamburgerMenu></HamburgerMenu>
+          <UnivTitle>
+            <Link to={`/main/${campusInfo?.campusId}`}>{campusInfo?.campus_name || "원양"}</Link>
+          </UnivTitle>
+          <HamburgerMenu
+            isMounted={isMounted}
+            setIsMounted={setIsMounted}
+            unMount={unMount}
+            animation={animation}
+          />
         </Container>
       </CenterAlignWrapper>
+      {isMounted && <HamburgerModal isOnAnimation={animation} />}
     </Wrapper>
   );
 };
 
-Header.defaultProps = {
-  univName: "농담곰대학교",
-};
-
-Header.propTypes = {
-  univName: PropTypes.string.isRequired,
-};
+Header.propTypes = {};
 
 export default Header;
 

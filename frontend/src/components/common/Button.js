@@ -8,8 +8,8 @@ const Button = ({ ...restParams }) => {
 Button.propTypes = {};
 
 const StyledButton = styled.button`
-  height: 25px;
-  line-height: 25px;
+  /* height: 25px; */
+  /* line-height: 25px; */
   cursor: pointer;
 `;
 

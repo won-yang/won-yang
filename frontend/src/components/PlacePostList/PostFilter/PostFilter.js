@@ -5,18 +5,21 @@ import { device } from "styles/media";
 import OnOffButton from "components/common/OnOffButton";
 
 const PostFilter = (props) => {
+  const { handleToggleProgressFilter } = props;
   return (
     <Container>
       <span>총 29건</span>
       <ToggleWrapper>
         <span>진행중인 글만 보기</span>
-        <OnOffButton />
+        <OnOffButton handleToggle={handleToggleProgressFilter} />
       </ToggleWrapper>
     </Container>
   );
 };
 
-PostFilter.propTypes = {};
+PostFilter.propTypes = {
+  handleToggleProgressFilter: PropTypes.func,
+};
 
 export default PostFilter;
 

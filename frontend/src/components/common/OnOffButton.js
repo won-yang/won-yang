@@ -3,17 +3,16 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const OnOffButton = (props) => {
+  const { handleToggle } = props;
   return (
     <>
-      <Input type="checkbox" id="checkbox"></Input>
+      <Input type="checkbox" id="checkbox" onChange={handleToggle}></Input>
       <Label htmlFor="checkbox">
         <span></span>
       </Label>
     </>
   );
 };
-
-OnOffButton.propTypes = {};
 
 export default OnOffButton;
 

@@ -3,10 +3,16 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { device } from "styles/media";
 import Badge from "components/common/Badge";
+import { useHistory } from "react-router-dom";
 
 const PlacePostItem = ({ item }) => {
+  const history = useHistory();
+  const handleClickPost = (e) => {
+    console.log("click post", item);
+    history.push(`${item.id}`);
+  };
   return (
-    <Container>
+    <Container onClick={handleClickPost}>
       <ImageWrapper>
         <img src={item.image_url} alt="place picture"></img>
         <Badge status={item.post_status} />

@@ -9,13 +9,14 @@ const PrevNextBtn = styled(Button)`
   font-size: 15px;
   width: 100px;
   height: 40px;
-  margin: 0 10px 0 10px;
+  margin: 0 15px 0 15px;
   border: none;
   border-radius: 5px;
   @media ${device.tablet} {
     font-size: 25px;
     width: 170px;
     height: 60px;
+    margin: 0 50px 0 50px;
   }
 `;
 

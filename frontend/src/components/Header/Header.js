@@ -40,11 +40,7 @@ const Header = (props) => {
   );
 };
 
-Header.defaultProps = {};
-
-Header.propTypes = {
-  univName: PropTypes.string.isRequired,
-};
+Header.propTypes = {};
 
 export default Header;
 

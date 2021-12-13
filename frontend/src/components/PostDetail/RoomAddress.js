@@ -8,7 +8,7 @@ const RoomAddress = (props) => {
     <Container>
       <h1>주소</h1>
       <PostAddressText>{address}</PostAddressText>
-      {!isPosted && <span>{address_detail}</span>}
+      {isPosted && <span>{address_detail}</span>}
     </Container>
   );
 };

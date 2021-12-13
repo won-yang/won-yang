@@ -70,29 +70,51 @@ const PostDetailPage = () => {
   useEffect(() => {
     getPostInfo();
   }, []);
+  console.log(postData);
 
   return (
     <PostDetailTemplate>
-      <Carousel imagePaths={imagePaths} />
-      <PostDetailContainer>
-        <AuthBadgeContainer>
-          <IconContainer widthSize="25px" heightSize="25px">
-            <AuthIcon />
-          </IconContainer>
-          <AuthText>인증완료사용자</AuthText>
-        </AuthBadgeContainer>
-        <PostDetailHeader />
-        <MonthlyChargeList />
-        <RoomAddress />
-        <PostDescription />
-        <OwnerContactInfo />
-        <BuildingInfoTable />
-        <RoomOptionList
-          homeAppliances={postData?.homeAppliances}
-          etcOptions={postData?.etcOptions}
-          furnitures={postData?.furnitures}
-        />
-      </PostDetailContainer>
+      {postData && (
+        <>
+          <Carousel imagePaths={imagePaths} />
+          <PostDetailContainer>
+            <AuthBadgeContainer>
+              <IconContainer widthSize="25px" heightSize="25px">
+                <AuthIcon />
+              </IconContainer>
+              <AuthText>인증완료사용자</AuthText>
+            </AuthBadgeContainer>
+            <PostDetailHeader title={postData.title} created_date={postData.created_at} />
+            <MonthlyChargeList
+              deposit={postData.deposit}
+              monthlyRent={postData.monthly_rent}
+              includingTax={postData.service_fee}
+            />
+            <RoomAddress
+              address={postData.address}
+              isPosted={postData.is_address_visible}
+              address_detail={postData.address_detail}
+            />
+            <PostDescription contents={postData.content} />
+            <OwnerContactInfo contact={postData.contact} />
+            <BuildingInfoTable
+              contractExpireDate={postData.contract_expire_date}
+              moveInDate={postData.move_in_date}
+              currentFloor={postData.current_floor}
+              totalFloor={postData.current_floor}
+              buildType={postData.building_type}
+              roomType={postData.room_type}
+              windowSide={postData.windowSide}
+              walkingTime={postData.walking_time}
+            />
+            <RoomOptionList
+              homeAppliances={postData?.homeAppliances}
+              etcOptions={postData?.etcOptions}
+              furnitures={postData?.furnitures}
+            />
+          </PostDetailContainer>
+        </>
+      )}
     </PostDetailTemplate>
   );
 };

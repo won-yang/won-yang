@@ -5,12 +5,12 @@ import { selectPostWrite } from "store/Postwrite/PostwriteSlice";
 import styled from "styled-components";
 
 const MonthlyChargeList = (props) => {
-  const { monthlyRent, deposit, includingTax } = useSelector(selectPostWrite);
+  const { monthlyRent, deposit, includingTax } = props;
   return (
     <PriceInfoList>
-      <LabelWithText titleText="보증금" text={`${deposit}만원`} />
-      <LabelWithText titleText="월세" text={`${monthlyRent}만원`} />
-      <LabelWithText titleText="관리비" text={`n만원`}>
+      <LabelWithText titleText="보증금" text={`${deposit || 0}만원`} />
+      <LabelWithText titleText="월세" text={`${monthlyRent || 0}만원`} />
+      <LabelWithText titleText="관리비" text={`${includingTax || 0}만원`}>
         <PriceSubText>(전기세, 수도세, 가스비 포함)</PriceSubText>
       </LabelWithText>
     </PriceInfoList>

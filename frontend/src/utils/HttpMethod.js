@@ -38,6 +38,15 @@ export const requestGetWithToken = async (endPoint, parameters) => {
   }
 };
 
+export const requestPostWithToken = async (endPoint, body) => {
+  try {
+    const res = await tokenInstance.post(endPoint, body, { withCredentials: true });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const requestGet = async (url, parameters) => {
   try {
     if (parameters) {

@@ -20,6 +20,7 @@ import OwnerContactInfo from "components/PostDetail/OwnerContactInfo";
 import PostDescription from "components/PostDetail/PostDescription";
 import { useLocation } from "react-router";
 import { getPostItem } from "utils/api";
+import { ETC_OPTIONS, FURNITURES, HOME_APPLIANCES } from "components/PostWrite/PhaseFive";
 
 const PostDetailPage = () => {
   const imagePaths = [image1, image2, image3];
@@ -29,9 +30,42 @@ const PostDetailPage = () => {
 
   const getPostInfo = async () => {
     const res = await getPostItem(postId);
-    console.log(postId);
-
-    console.log(res);
+    const homeAppliances = [];
+    const furnitures = [];
+    const etcOptions = [];
+    for (let i = 0; i < res.post_info.option.length; i++) {
+      console.log(i);
+      if (HOME_APPLIANCES.filter((item) => item.id === res.post_info.option[i]).length > 0) {
+        homeAppliances.push(
+          ...HOME_APPLIANCES.filter((item) => item.id === res.post_info.option[i]).map((item) => ({
+            ...item,
+            isSelected: true,
+          })),
+        );
+      }
+      if (FURNITURES.filter((item) => item.id === res.post_info.option[i]).length > 0) {
+        furnitures.push(
+          ...FURNITURES.filter((item) => item.id === res.post_info.option[i]).map((item) => ({
+            ...item,
+            isSelected: true,
+          })),
+        );
+      }
+      if (ETC_OPTIONS.filter((item) => item.id === res.post_info.option[i]).length > 0) {
+        etcOptions.push(
+          ...ETC_OPTIONS.filter((item) => item.id === res.post_info.option[i]).map((item) => ({
+            ...item,
+            isSelected: true,
+          })),
+        );
+      }
+    }
+    setPostData({
+      ...res.post_info,
+      homeAppliances,
+      furnitures,
+      etcOptions,
+    });
   };
   useEffect(() => {
     getPostInfo();
@@ -53,7 +87,11 @@ const PostDetailPage = () => {
         <PostDescription />
         <OwnerContactInfo />
         <BuildingInfoTable />
-        <RoomOptionList />
+        <RoomOptionList
+          homeAppliances={postData?.homeAppliances}
+          etcOptions={postData?.etcOptions}
+          furnitures={postData?.furnitures}
+        />
       </PostDetailContainer>
     </PostDetailTemplate>
   );

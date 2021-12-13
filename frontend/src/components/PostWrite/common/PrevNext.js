@@ -15,14 +15,22 @@ const PrevNext = (props) => {
   };
 
   return (
-    <SpaceBetween prevPhase={getPrevPhase() === 3}>
+    <SpaceBetween prevPhase={getPrevPhase() % 3 === 0}>
       <Link to={`/write/${getPrevPhase()}`}>
-        <PrevNextBtn disabled={isPrevDisabled} deactivated={isPrevDisabled}>
+        <PrevNextBtn
+          prevPhase={getPrevPhase() % 3 === 0}
+          disabled={isPrevDisabled}
+          deactivated={isPrevDisabled}
+        >
           {`< `} 이전단계
         </PrevNextBtn>
       </Link>
       <Link to={`/write/${getNextPhase()}`}>
-        <PrevNextBtn disabled={isNextDisabled} deactivated={isNextDisabled}>
+        <PrevNextBtn
+          prevPhase={getPrevPhase() % 3 === 0}
+          disabled={isNextDisabled}
+          deactivated={isNextDisabled}
+        >
           다음단계 {` >`}
         </PrevNextBtn>
       </Link>

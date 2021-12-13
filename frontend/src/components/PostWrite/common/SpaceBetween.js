@@ -5,8 +5,10 @@ const SpaceBetween = styled.div`
   justify-content: space-between;
   position: ${(props) => (props.prevPhase ? "none" : "fixed")};
   bottom: 25px;
-  left: 0;
-  width: 100vw;
+  left: 10px;
+  width: ${(props) => (props.prevPhase ? "none" : "100vw")};
+  height: ${(props) => (props.prevPhase ? "80px" : "none")};
+  margin-top: 30px;
 `;
 
 export default SpaceBetween;

@@ -94,7 +94,7 @@ const SignUpPage = () => {
   return (
     <SignUpContainer>
       <SignUpHeader>
-        <IconLogo widthSize="12em" heightSize="12em" />
+        <IconLogo widthSize="100%" heightSize="12em" />
       </SignUpHeader>
       <SignUpForm>
         <FormHeader>정보를 알려주세요</FormHeader>

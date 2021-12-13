@@ -5,11 +5,15 @@ import { IconLogo } from "components/Icon";
 import styled from "styled-components";
 import useAnimation from "hooks/useAnimation";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUniversity } from "store/University/UniversitySlice";
 
 const Header = (props) => {
   const { isMounted, setIsMounted, unMount, animation } = useAnimation({ delay: 600 });
   const history = useHistory();
+  const { campusInfo } = useSelector(selectUniversity);
+
   useEffect(() => {
     return history.listen((location) => {
       setIsMounted(false);
@@ -20,7 +24,9 @@ const Header = (props) => {
       <CenterAlignWrapper>
         <Container>
           <IconLogo widthSize="65px" heightSize="100%"></IconLogo>
-          <UnivTitle>{props.univName}</UnivTitle>
+          <UnivTitle>
+            <Link to={`/main/${campusInfo?.campusId}`}>{campusInfo?.campus_name || "원양"}</Link>
+          </UnivTitle>
           <HamburgerMenu
             isMounted={isMounted}
             setIsMounted={setIsMounted}
@@ -34,9 +40,7 @@ const Header = (props) => {
   );
 };
 
-Header.defaultProps = {
-  univName: "농담곰대학교",
-};
+Header.defaultProps = {};
 
 Header.propTypes = {
   univName: PropTypes.string.isRequired,

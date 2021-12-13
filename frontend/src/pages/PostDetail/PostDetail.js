@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MainTemplate from "components/Template/MainTemplate";
 import styled from "styled-components";
 import { ReactComponent as AuthIcon } from "assets/medal.svg";
@@ -18,9 +18,24 @@ import RoomOptionList from "components/PostDetail/RoomOptionList";
 import RoomAddress from "components/PostDetail/RoomAddress";
 import OwnerContactInfo from "components/PostDetail/OwnerContactInfo";
 import PostDescription from "components/PostDetail/PostDescription";
+import { useLocation } from "react-router";
+import { getPostItem } from "utils/api";
 
 const PostDetailPage = () => {
   const imagePaths = [image1, image2, image3];
+  const [postData, setPostData] = useState(null);
+  const location = useLocation();
+  const [postId, setPostId] = useState(parseInt(location.pathname.split("/").pop(), 10));
+
+  const getPostInfo = async () => {
+    const res = await getPostItem(postId);
+    console.log(postId);
+
+    console.log(res);
+  };
+  useEffect(() => {
+    getPostInfo();
+  }, []);
 
   return (
     <PostDetailTemplate>

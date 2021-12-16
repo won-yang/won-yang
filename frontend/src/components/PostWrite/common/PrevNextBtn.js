@@ -9,13 +9,14 @@ const PrevNextBtn = styled(Button)`
   font-size: 15px;
   width: 100px;
   height: 40px;
-  margin-left: 5px;
+  margin: ${(props) => (props.prevPhase ? "0" : "0 15px 0 15px")};
   border: none;
   border-radius: 5px;
   @media ${device.tablet} {
     font-size: 25px;
     width: 170px;
     height: 60px;
+    margin: ${(props) => (props.prevPhase ? "0" : "0 50px 0 50px")};
   }
 `;
 

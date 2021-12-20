@@ -11,6 +11,10 @@ import {
 } from "utils/constants/request";
 import { requestGet, requestGetWithToken, requestPut, requestPostWithToken } from "./HttpMethod";
 
+export const getPostList = (parameters) => {
+  return requestGet(`${BASE_URL}${END_POINT.board}`, parameters);
+};
+
 export const getPostItem = (id) => {
   return requestGet(`${BASE_URL}${END_POINT.post}`, { id });
 };

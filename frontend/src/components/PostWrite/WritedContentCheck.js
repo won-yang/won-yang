@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { selectUniversity } from "store/University/UniversitySlice";
 
 import usePathname from "hooks/usePathname";
+import { useHistory } from "react-router";
 import { postWrite } from "utils/api";
 import Carousel from "components/common/Carousel";
 import PostDetailHeader from "components/PostDetail/PostDetailHeader";
@@ -76,10 +77,12 @@ const WritedContentCheck = (props) => {
   const getPrevPhase = () => {
     return parseInt(getWritePhase(), 10) - 1;
   };
-
+  const history = useHistory();
   const onSubmitHandler = async () => {
     try {
       const res = await postWrite(campusInfo.campus_id, state);
+      history.replace(`/main/${campusInfo.campus_id}`);
+
       // const result = await requestPost(`${BASE_URL}/write`, { campus_id: 1, ...resultState });
     } catch (e) {
       console.error(e);

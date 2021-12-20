@@ -94,14 +94,14 @@ const PhaseFour = (props) => {
         <span>총</span>
         <Input
           placeholder="건물 전체 층 입력"
-          onChange={(e) => dispatch(setCurrentFloor(e.target.value))}
+          onChange={(e) => dispatch(setTotalFloor(e.target.value))}
           inputMaxWidth="95px"
         ></Input>
         <span>중의 </span>
 
         <Input
           placeholder="현재 층을 입력"
-          onChange={(e) => dispatch(setTotalFloor(e.target.value))}
+          onChange={(e) => dispatch(setCurrentFloor(e.target.value))}
           inputMaxWidth="80px"
         ></Input>
         <span>층</span>

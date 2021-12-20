@@ -81,3 +81,20 @@ export const requestPut = async (url, parameters) => {
     console.log(e);
   }
 };
+
+export const requestPost = async (url, parameters) => {
+  try {
+    const response = await axios.post(
+      url,
+      {
+        ...parameters,
+      },
+      {
+        withCredentials: true,
+      },
+    );
+    return response;
+  } catch (e) {
+    console.log(e);
+  }
+};

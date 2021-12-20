@@ -14,6 +14,8 @@ import OwnerContactInfo from "components/PostDetail/OwnerContactInfo";
 import BuildingInfoTable from "components/PostDetail/BuildingInfoTable";
 import RoomOptionList from "components/PostDetail/RoomOptionList";
 import { selectPostWrite } from "store/Postwrite/PostwriteSlice";
+import { requestPost } from "utils/HttpMethod";
+import { BASE_URL } from "utils/constants/request";
 import { device } from "styles/media";
 import { PrevNextBtn, SpaceBetween } from "./common";
 import LabelWithText from "./common/LabelWithTextListItem";
@@ -21,10 +23,65 @@ import LabelWithText from "./common/LabelWithTextListItem";
 const WritedContentCheck = (props) => {
   const state = useSelector(selectPostWrite);
   const { getWritePhase } = usePathname();
-
+  const {
+    title,
+    contact,
+    deposit,
+    monthly_rent,
+    service_fee,
+    contract_expire_date,
+    move_in_date,
+    address,
+    is_address_visible,
+    address_detail,
+    total_floor,
+    current_floor,
+    building_type,
+    room_type,
+    window_side,
+    walking_time,
+    bus_time,
+    contents,
+    option,
+    post_status,
+    images,
+  } = state;
+  const resultState = {
+    title,
+    contact,
+    deposit,
+    monthly_rent,
+    service_fee,
+    contract_expire_date,
+    move_in_date,
+    address,
+    is_address_visible,
+    address_detail,
+    total_floor,
+    current_floor,
+    building_type,
+    room_type,
+    window_side,
+    walking_time,
+    bus_time,
+    content: contents,
+    option,
+    post_status,
+    images,
+    ...state.including_tax,
+  };
   const getPrevPhase = () => {
     return parseInt(getWritePhase(), 10) - 1;
   };
+
+  const onSubmitHandler = async () => {
+    try {
+      const result = await requestPost(`${BASE_URL}/write`, { campus_id: 1, ...resultState });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <>
       <Carousel imagePaths={state.images.urls} />
@@ -46,8 +103,8 @@ const WritedContentCheck = (props) => {
         />
         <PostDescription contents={state.contents} />
         <BuildingInfoTable
-          moveInDate={state.moveInDate}
-          contractExpireDate={state.contractExpireDate}
+          moveInDate={state.move_in_date}
+          contractExpireDate={state.contract_expire_date}
           totalFloor={state.total_floor}
           currentFloor={state.current_floor}
           buildType={state.building_type}
@@ -66,7 +123,7 @@ const WritedContentCheck = (props) => {
         <Link to={`/write/${getPrevPhase()}`}>
           <PrevNextBtn>{`< `} 이전단계</PrevNextBtn>
         </Link>
-        <PrevNextBtn>작성완료 {` >`}</PrevNextBtn>
+        <PrevNextBtn onClick={onSubmitHandler}>작성완료 {` >`}</PrevNextBtn>
       </SpaceBetween>
     </>
   );

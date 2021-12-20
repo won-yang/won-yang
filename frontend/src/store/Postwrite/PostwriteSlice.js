@@ -6,7 +6,7 @@ const initialState = {
   title: "",
   contact: "",
   deposit: "",
-  monthlyRent: "",
+  monthly_rent: "",
   service_fee: "",
   including_tax: {
     electricity: false,
@@ -75,10 +75,10 @@ export const PostwriteSlice = createSlice({
       };
     },
     setContractExpireDate: (state, action) => {
-      state.contractExpireDate = action.payload;
+      state.contract_expire_date = action.payload;
     },
     setMoveInDate: (state, action) => {
-      state.moveInDate = action.payload;
+      state.move_in_date = action.payload;
     },
     setAddress: (state, action) => {
       state.address = action.payload;

@@ -5,8 +5,8 @@ import { selectPostWrite } from "store/Postwrite/PostwriteSlice";
 import styled from "styled-components";
 
 const MonthlyChargeList = (props) => {
-  const { monthlyRent, deposit, serviceFee, includingTax } = useSelector(selectPostWrite);
-  const { electricity, water, gas } = includingTax;
+  const { monthly_rent, deposit, service_fee, including_tax } = useSelector(selectPostWrite);
+  const { electricity, water, gas } = including_tax;
   const taxText = () => {
     let result = "";
     if (!(electricity || water || gas)) {
@@ -27,8 +27,8 @@ const MonthlyChargeList = (props) => {
   return (
     <PriceInfoList>
       <LabelWithText titleText="보증금" text={`${deposit}만원`} />
-      <LabelWithText titleText="월세" text={`${monthlyRent}만원`} />
-      <LabelWithText titleText="관리비" text={`${serviceFee}만원`}>
+      <LabelWithText titleText="월세" text={`${monthly_rent}만원`} />
+      <LabelWithText titleText="관리비" text={`${service_fee}만원`}>
         <PriceSubText>{taxText()}포함</PriceSubText>
       </LabelWithText>
     </PriceInfoList>

@@ -34,10 +34,10 @@ const WritedContentCheck = (props) => {
           <LabelWithText titleText="연락처" text={state.contact || ""} />
         </PhaseOneContainer>
         <MonthlyChargeList
-          monthlyRent={state.monthlyRent}
+          monthlyRent={state.monthly_rent}
           deposit={state.deposit}
-          serviceFee={state.serviceFee}
-          includingTax={state.includingTax}
+          serviceFee={state.service_fee}
+          includingTax={state.including_tax}
         />
         <RoomAddress
           isPosted={false}

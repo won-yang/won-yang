@@ -21,7 +21,7 @@ const PlacePostItem = ({ item }) => {
         <h2>{item.title}</h2>
         <span>기타</span>
         <span>보증금 {item.deposit}</span>
-        <span>월세 {item.monthlyRent}</span>
+        <span>월세 {item.monthly_rent}</span>
         <span>{item.addres}</span>
         <span>{item.createdAt}</span>
       </ItemInfo>

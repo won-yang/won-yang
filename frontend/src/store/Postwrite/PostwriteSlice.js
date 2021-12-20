@@ -7,14 +7,14 @@ const initialState = {
   contact: "",
   deposit: "",
   monthlyRent: "",
-  serviceFee: "",
-  includingTax: {
+  service_fee: "",
+  including_tax: {
     electricity: false,
     water: false,
     gas: false,
   },
-  contractExpireDate: moment().format("YYYY-MM-DD"),
-  moveInDate: moment().format("YYYY-MM-DD"),
+  contract_expire_date: moment().format("YYYY-MM-DD"),
+  move_in_date: moment().format("YYYY-MM-DD"),
   address: "",
   address_detail: "",
   is_address_visible: false,
@@ -63,15 +63,15 @@ export const PostwriteSlice = createSlice({
       state.deposit = action.payload;
     },
     setMonthlyRent: (state, action) => {
-      state.monthlyRent = action.payload;
+      state.monthly_rent = action.payload;
     },
     setServiceFee: (state, action) => {
-      state.serviceFee = action.payload;
+      state.service_fee = action.payload;
     },
     setIncludingTax: (state, action) => {
-      state.includingTax = {
-        ...state.includingTax,
-        [action.payload]: !state.includingTax[action.payload],
+      state.including_tax = {
+        ...state.including_tax,
+        [action.payload]: !state.including_tax[action.payload],
       };
     },
     setContractExpireDate: (state, action) => {

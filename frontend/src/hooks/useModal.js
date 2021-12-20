@@ -2,23 +2,20 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 const useModal = (props) => {
-  const { isMounted } = props;
-  const [shouldRender, setShouldRender] = useState(false);
-
-  useEffect(() => {
-    if (isMounted && !shouldRender) {
-      setShouldRender(true);
-    } else if (!isMounted && shouldRender) {
-      setShouldRender(false);
-    }
-  }, [isMounted]);
+  const [isOpen, setIsOpen] = useState(false);
+  const open = () => {
+    setIsOpen(true);
+  };
+  const close = () => {
+    setIsOpen(false);
+  };
   return {
-    shouldRender,
+    isOpen,
+    open,
+    close,
   };
 };
 
-useModal.propTypes = {
-  isMounted: PropTypes.bool,
-};
+useModal.propTypes = {};
 
 export default useModal;

@@ -8,11 +8,13 @@ import useAnimation from "hooks/useAnimation";
 import { useHistory, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUniversity } from "store/University/UniversitySlice";
+import useModal from "hooks/useModal";
 
 const Header = (props) => {
-  const { isMounted, setIsMounted, unMount, animation } = useAnimation({ delay: 600 });
+  const { isMounted, setIsMounted, unMount, animation } = useAnimation({ delay: 0 });
   const history = useHistory();
   const { campusInfo } = useSelector(selectUniversity);
+  const { isOpen, open, close } = useModal();
 
   useEffect(() => {
     return history.listen((location) => {
@@ -37,7 +39,7 @@ const Header = (props) => {
           />
         </Container>
       </CenterAlignWrapper>
-      {isMounted && <HamburgerModal isOnAnimation={animation} />}
+      {isMounted && <HamburgerModal isOnAnimation={animation} {...{ isOpen, close, open }} />}
     </Wrapper>
   );
 };

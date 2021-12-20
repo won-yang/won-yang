@@ -53,7 +53,9 @@ const BuildingInfoTable = (props) => {
         </tr>
         <tr>
           <TableRowTitle>힉교까지의 거리</TableRowTitle>
-          <TableRowInfo>도보로 {walkingTime}분</TableRowInfo>
+          <TableRowInfo>
+            도보로 {walkingTime}분 / 대중교통으로 {busTime} 분
+          </TableRowInfo>
         </tr>
       </thead>
     </Table>

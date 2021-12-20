@@ -8,8 +8,7 @@ import { useHistory } from "react-router-dom";
 const PlacePostItem = ({ item }) => {
   const history = useHistory();
   const handleClickPost = (e) => {
-    console.log("click post", item);
-    history.push(`${item.id}`);
+    history.push(`/posts/${item.id}`);
   };
   return (
     <Container onClick={handleClickPost}>

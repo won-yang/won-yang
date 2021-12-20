@@ -36,6 +36,7 @@ const WritedContentCheck = (props) => {
         <MonthlyChargeList
           monthlyRent={state.monthlyRent}
           deposit={state.deposit}
+          serviceFee={state.serviceFee}
           includingTax={state.includingTax}
         />
         <RoomAddress
@@ -49,8 +50,9 @@ const WritedContentCheck = (props) => {
           contractExpireDate={state.contractExpireDate}
           totalFloor={state.total_floor}
           currentFloor={state.current_floor}
-          buildType={state.build_type}
+          buildType={state.building_type}
           walkingTime={state.walking_time}
+          busTime={state.bus_time}
           windowSide={state.window_side}
           roomType={state.room_type}
         />
@@ -60,11 +62,11 @@ const WritedContentCheck = (props) => {
           furnitures={state.furnitures}
         />
       </WritedContentContainer>
-      <SpaceBetween prevPhase={getPrevPhase() % 3 === 0}>
+      <SpaceBetween>
         <Link to={`/write/${getPrevPhase()}`}>
-          <PrevNextBtn prevPhase={getPrevPhase() % 3 === 0}>{`< `} 이전단계</PrevNextBtn>
+          <PrevNextBtn>{`< `} 이전단계</PrevNextBtn>
         </Link>
-        <PrevNextBtn prevPhase={getPrevPhase() % 3 === 0}>작성완료 {` >`}</PrevNextBtn>
+        <PrevNextBtn>작성완료 {` >`}</PrevNextBtn>
       </SpaceBetween>
     </>
   );

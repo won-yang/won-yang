@@ -5,13 +5,31 @@ import { selectPostWrite } from "store/Postwrite/PostwriteSlice";
 import styled from "styled-components";
 
 const MonthlyChargeList = (props) => {
-  const { monthlyRent, deposit, includingTax } = useSelector(selectPostWrite);
+  const { monthlyRent, deposit, serviceFee, includingTax } = useSelector(selectPostWrite);
+  const { electricity, water, gas } = includingTax;
+  const taxText = () => {
+    let result = "";
+    if (!(electricity || water || gas)) {
+      return "미";
+    } else {
+      if (electricity) {
+        result += "전기세 ";
+      }
+      if (water) {
+        result += "수도세 ";
+      }
+      if (gas) {
+        result += "가스비 ";
+      }
+    }
+    return result;
+  };
   return (
     <PriceInfoList>
       <LabelWithText titleText="보증금" text={`${deposit}만원`} />
       <LabelWithText titleText="월세" text={`${monthlyRent}만원`} />
-      <LabelWithText titleText="관리비" text={`n만원`}>
-        <PriceSubText>(전기세, 수도세, 가스비 포함)</PriceSubText>
+      <LabelWithText titleText="관리비" text={`${serviceFee}만원`}>
+        <PriceSubText>{taxText()}포함</PriceSubText>
       </LabelWithText>
     </PriceInfoList>
   );

@@ -4,22 +4,25 @@ import { useSelector } from "react-redux";
 import { selectPostWrite } from "store/Postwrite/PostwriteSlice";
 import styled from "styled-components";
 
-const MonthlyChargeList = (props) => {
-  const { monthly_rent, deposit, service_fee, including_tax } = useSelector(selectPostWrite);
-  const { electricity, water, gas } = including_tax;
+const MonthlyChargeList = ({ monthlyRent, deposit, serviceFee, includingTax }) => {
+  // const { monthly_rent, deposit, service_fee, including_tax } = useSelector(selectPostWrite);
+
   const taxText = () => {
     let result = "";
-    if (!(electricity || water || gas)) {
-      return "미";
-    } else {
-      if (electricity) {
-        result += "전기세 ";
-      }
-      if (water) {
-        result += "수도세 ";
-      }
-      if (gas) {
-        result += "가스비 ";
+    if (includingTax) {
+      const { electricity, water, gas } = includingTax;
+      if (!(electricity || water || gas)) {
+        return "미";
+      } else {
+        if (electricity) {
+          result += "전기세 ";
+        }
+        if (water) {
+          result += "수도세 ";
+        }
+        if (gas) {
+          result += "가스비 ";
+        }
       }
     }
     return result;
@@ -27,8 +30,8 @@ const MonthlyChargeList = (props) => {
   return (
     <PriceInfoList>
       <LabelWithText titleText="보증금" text={`${deposit}만원`} />
-      <LabelWithText titleText="월세" text={`${monthly_rent}만원`} />
-      <LabelWithText titleText="관리비" text={`${service_fee}만원`}>
+      <LabelWithText titleText="월세" text={`${monthlyRent}만원`} />
+      <LabelWithText titleText="관리비" text={`${serviceFee}만원`}>
         <PriceSubText>{taxText()}포함</PriceSubText>
       </LabelWithText>
     </PriceInfoList>

@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const RoomAddress = (props) => {
-  const { address, address_detail, isPosted } = props;
+  const { address, addressDetail, isPosted } = props;
   return (
     <Container>
       <h1>주소</h1>
       <PostAddressText>{address}</PostAddressText>
-      {!isPosted && <span>{address_detail}</span>}
+      {isPosted && <span>{addressDetail}</span>}
     </Container>
   );
 };

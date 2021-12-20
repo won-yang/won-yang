@@ -103,7 +103,7 @@ const WritedContentCheck = (props) => {
         <RoomAddress
           isPosted={false}
           address={state.address}
-          address_detail={state.address_detail}
+          addressDetail={state.address_detail}
         />
         <PostDescription contents={state.contents} />
         <BuildingInfoTable

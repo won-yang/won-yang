@@ -14,8 +14,8 @@ export const getPostList = (parameters) => {
   return requestGet(`${BASE_URL}${END_POINT.board}`, parameters);
 };
 
-export const getPostItem = (url, parameters) => {
-  return requestGet(url, parameters);
+export const getPostItem = (id) => {
+  return requestGet(`${BASE_URL}${END_POINT.post}`, { id });
 };
 
 export const getLogin = (codeQuery) => {

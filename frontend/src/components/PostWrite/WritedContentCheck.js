@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import usePathname from "hooks/usePathname";
+import { selectUniversity } from "store/University/UniversitySlice";
 
+import usePathname from "hooks/usePathname";
+import { postWrite } from "utils/api";
 import Carousel from "components/common/Carousel";
 import PostDetailHeader from "components/PostDetail/PostDetailHeader";
 import MonthlyChargeList from "components/PostDetail/MonthlyChargeList";
@@ -23,6 +25,7 @@ import LabelWithText from "./common/LabelWithTextListItem";
 const WritedContentCheck = (props) => {
   const state = useSelector(selectPostWrite);
   const { getWritePhase } = usePathname();
+  const { campusInfo } = useSelector(selectUniversity);
   const {
     title,
     contact,
@@ -76,7 +79,8 @@ const WritedContentCheck = (props) => {
 
   const onSubmitHandler = async () => {
     try {
-      const result = await requestPost(`${BASE_URL}/write`, { campus_id: 1, ...resultState });
+      const res = await postWrite(campusInfo.campus_id, state);
+      // const result = await requestPost(`${BASE_URL}/write`, { campus_id: 1, ...resultState });
     } catch (e) {
       console.error(e);
     }

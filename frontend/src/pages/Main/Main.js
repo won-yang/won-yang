@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Header from "components/Header/Header";
 import PlacePostList from "components/PlacePostList/PostList";
 import PostFilter from "components/PlacePostList/PostFilter/PostFilter";
-import { getCampusInfo, getPostItem } from "utils/api";
+import { getCampusInfo, getPostItem, getPostList } from "utils/api";
 import { BASE_URL, END_POINT } from "utils/constants/request";
 import useInfiniteScroll from "hooks/useInfiniteScroll";
 import Jumbotron from "components/common/Jumbotron";
@@ -38,11 +38,10 @@ const MainPage = (props) => {
     */
     if (isIntersect) {
       try {
-        const response = await getPostItem(BASE_URL + END_POINT.board, {
+        const response = await getPostList({
           page: pageNum,
           campus_id: campusId,
         });
-        console.log(response);
         if (response.post.length === 0) {
           setIsLastPage(true);
         } else {
@@ -71,7 +70,6 @@ const MainPage = (props) => {
   };
   const requestGetCampusInfo = async () => {
     const res = await getCampusInfo(campusId);
-    console.log(res);
 
     dispatch(
       setUnivInfo({

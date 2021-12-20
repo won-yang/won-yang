@@ -25,7 +25,9 @@ const Header = (props) => {
         <Container>
           <IconLogo widthSize="65px" heightSize="100%"></IconLogo>
           <UnivTitle>
-            <Link to={`/main/${campusInfo?.campusId}`}>{campusInfo?.campus_name || "원양"}</Link>
+            <Link to={campusInfo?.campusId ? `/main/${campusInfo?.campusId}` : "/"}>
+              {campusInfo?.campus_name || "원양"}
+            </Link>
           </UnivTitle>
           <HamburgerMenu
             isMounted={isMounted}

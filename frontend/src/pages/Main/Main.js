@@ -11,6 +11,8 @@ import MainTemplate from "components/Template/MainTemplate";
 import { useLocation } from "react-router";
 import { useDispatch } from "react-redux";
 import { setUnivInfo } from "store/University/UniversitySlice";
+import OnOffButton from "components/common/OnOffButton";
+import { device } from "styles/media";
 
 const MainPage = (props) => {
   const location = useLocation();
@@ -27,6 +29,7 @@ const MainPage = (props) => {
    */
   const [isLastPage, setIsLastPage] = useState(false);
   const intersectRef = useRef(null);
+  const [totalPost, setTotalPost] = useState(0);
   const { isIntersect } = useInfiniteScroll(intersectRef, {
     _rootMargin: "0px",
     _threshold: 0.5,
@@ -42,6 +45,7 @@ const MainPage = (props) => {
           page: pageNum,
           campus_id: campusId,
         });
+        setTotalPost(response.total_post);
         if (response.post.length === 0) {
           setIsLastPage(true);
         } else {
@@ -88,8 +92,13 @@ const MainPage = (props) => {
     <MainTemplate>
       <Jumbotron />
       <ArticleContainer>
-        {/* <section className="temp-section">검색 및 공지사항 div</section> */}
-        <PostFilter handleToggleProgressFilter={handleToggleProgressFilter} />
+        <ToolBarContainer>
+          <span>총 {totalPost}건</span>
+          <ToggleWrapper>
+            <OnOffButton handleToggle={handleToggleProgressFilter} />
+          </ToggleWrapper>
+        </ToolBarContainer>
+        {/* <PostFilter handleToggleProgressFilter={handleToggleProgressFilter} /> */}
         <PlacePostList
           intersectRef={intersectRef}
           isLastPage={isLastPage}
@@ -118,4 +127,35 @@ const ArticleContainer = styled.article`
     height: 50px;
   }
   background-color: aliceblue;
+`;
+
+const ToolBarContainer = styled.div`
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  width: 90%;
+  height: 50px;
+  margin: 0 auto;
+
+  & > span {
+    line-height: 50px;
+    font-size: ${(props) => props.theme.fontSize.middleFontSize};
+  }
+
+  /* 768 ~ 1280까지 width를 고정시켜야함.620px */
+  @media ${device.tablet} {
+    width: 620px;
+  }
+  @media ${device.desktop} {
+    width: 1080px;
+  }
+`;
+
+const ToggleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  & span {
+    line-height: 50px;
+    font-size: ${(props) => props.theme.fontSize.badgeFontSize};
+  }
 `;

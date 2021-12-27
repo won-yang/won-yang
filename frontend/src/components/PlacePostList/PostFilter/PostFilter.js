@@ -8,7 +8,6 @@ const PostFilter = (props) => {
   const { handleToggleProgressFilter } = props;
   return (
     <Container>
-      <span>총 29건</span>
       <ToggleWrapper>
         <span>진행중인 글만 보기</span>
         <OnOffButton handleToggle={handleToggleProgressFilter} />

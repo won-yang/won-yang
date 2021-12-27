@@ -33,7 +33,6 @@ const WritedContentCheck = (props) => {
   const history = useHistory();
   const onSubmitHandler = async () => {
     try {
-      console.log("campusInfo == ", campusInfo);
       const res = await postWrite(campusInfo.campusId, state);
       history.replace(`/main/${campusInfo.campusId}`);
 

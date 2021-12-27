@@ -28,8 +28,8 @@ const MainPage = (props) => {
   const [isLastPage, setIsLastPage] = useState(false);
   const intersectRef = useRef(null);
   const { isIntersect } = useInfiniteScroll(intersectRef, {
-    _rootMargin: "200px",
-    _threshold: 0.01,
+    _rootMargin: "0px",
+    _threshold: 1.0,
   });
 
   const loadMorePostItem = async () => {
@@ -91,13 +91,14 @@ const MainPage = (props) => {
         {/* <section className="temp-section">검색 및 공지사항 div</section> */}
         <PostFilter handleToggleProgressFilter={handleToggleProgressFilter} />
         <PlacePostList
+          intersectRef={intersectRef}
+          isLastPage={isLastPage}
+          loadMorePostItem={loadMorePostItem}
           items={
             isShowProgressPost
               ? postData.filter((data) => data.post_status === "IN_PROGRESS")
               : postData
           }
-          intersectRef={intersectRef}
-          isLastPage={isLastPage}
         />
       </ArticleContainer>
     </MainTemplate>

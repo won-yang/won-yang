@@ -29,7 +29,7 @@ const MainPage = (props) => {
   const intersectRef = useRef(null);
   const { isIntersect } = useInfiniteScroll(intersectRef, {
     _rootMargin: "0px",
-    _threshold: 1.0,
+    _threshold: 0.5,
   });
 
   const loadMorePostItem = async () => {

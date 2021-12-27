@@ -9,7 +9,7 @@ import { BASE_URL } from "utils/constants/request";
 const Routes = (props) => {
   const getUser = async () => {
     const res = await requestGet(`${BASE_URL}/user`);
-    console.log(res);
+    console.log("res :", res);
   };
   useEffect(() => {
     getUser();

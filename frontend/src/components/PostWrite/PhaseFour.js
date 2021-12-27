@@ -26,16 +26,26 @@ import { Content, Title } from "./common";
 
 const PhaseFour = (props) => {
   const dispatch = useDispatch();
-  const { address, address_detail, is_address_visible, window_side, walking_time, bus_time } =
-    useSelector(selectPostWrite);
+  const {
+    address,
+    address_detail,
+    is_address_visible,
+    window_side,
+    walking_time,
+    bus_time,
+    building_type,
+    room_type,
+  } = useSelector(selectPostWrite);
 
   const handleChangeBuildingType = (e) => {
     const { value } = e.target;
     dispatch(setBuildingType(value));
+    console.log(building_type);
   };
   const handleChangeRoomType = (e) => {
     const { value } = e.target;
     dispatch(setRoomType(value));
+    console.log(room_type);
   };
   const handleChangeWindowSide = (e) => {
     const { value } = e.target;
@@ -83,33 +93,69 @@ const PhaseFour = (props) => {
         <InputDescription>건물 층수</InputDescription>
         <span>총</span>
         <Input
-          placeholder="현재 층을 입력"
-          onChange={(e) => dispatch(setCurrentFloor(e.target.value))}
-          inputMaxWidth="80px"
+          placeholder="건물 전체 층 입력"
+          onChange={(e) => dispatch(setTotalFloor(e.target.value))}
+          inputMaxWidth="95px"
         ></Input>
         <span>중의 </span>
 
         <Input
-          placeholder="건물 전체 층 입력"
-          onChange={(e) => dispatch(setTotalFloor(e.target.value))}
-          inputMaxWidth="95px"
+          placeholder="현재 층을 입력"
+          onChange={(e) => dispatch(setCurrentFloor(e.target.value))}
+          inputMaxWidth="80px"
         ></Input>
         <span>층</span>
       </BuildingFloorSection>
       <BuildingStructureSection>
         <InputDescription>건물 구조</InputDescription>
         <CheckboxContainer onChange={handleChangeBuildingType}>
-          <Input type="radio" value="APARTMENT" id="APARTMENT" name="buildingType" />
+          <Input
+            type="radio"
+            value="APARTMENT"
+            isFocused={building_type === "APARTMENT"}
+            id="APARTMENT"
+            name="buildingType"
+          />
           <label htmlFor="APARTMENT">아파트</label>
-          <Input type="radio" value="DETACHED_HOUSE" id="DETACHED_HOUSE" name="buildingType" />
+          <Input
+            type="radio"
+            value="DETACHED_HOUSE"
+            isFocused={building_type === "DETACHED_HOUSE"}
+            id="DETACHED_HOUSE"
+            name="buildingType"
+          />
           <label htmlFor="DETACHED_HOUSE">단독 주택</label>
-          <Input type="radio" value="ROW_HOUSE" id="ROW_HOUSE" name="buildingType" />
+          <Input
+            type="radio"
+            value="ROW_HOUSE"
+            isFocused={building_type === "ROW_HOUSE"}
+            id="ROW_HOUSE"
+            name="buildingType"
+          />
           <label htmlFor="ROW_HOUSE">다세대 주택</label>
-          <Input type="radio" value="VILLA" id="VILLA" name="buildingType" />
+          <Input
+            type="radio"
+            value="VILLA"
+            isFocused={building_type === "VILLA"}
+            id="VILLA"
+            name="buildingType"
+          />
           <label htmlFor="VILLA">빌라</label>
-          <Input type="radio" value="OFFICETEL" id="OFFICETEL" name="buildingType" />
+          <Input
+            type="radio"
+            value="OFFICETEL"
+            isFocused={building_type === "OFFICETEL"}
+            id="OFFICETEL"
+            name="buildingType"
+          />
           <label htmlFor="OFFICETEL">오피스텔</label>
-          <Input type="radio" value="ETC" id="ETC" name="buildingType" />
+          <Input
+            type="radio"
+            value="ETC"
+            isFocused={building_type === "ETC"}
+            id="ETC"
+            name="buildingType"
+          />
           <label htmlFor="ETC">기타</label>
           <Input placeholder="직접 입력" />
         </CheckboxContainer>
@@ -120,19 +166,50 @@ const PhaseFour = (props) => {
           <Input
             type="radio"
             value="STUDIO_WITH_SEPERATION"
+            isFocused={room_type === "STUDIO_WITH_SEPERATION"}
             id="STUDIO_WITH_SEPERATION"
             name="roomType"
           />
           <label htmlFor="STUDIO_WITH_SEPERATION">분리형 원룸</label>
-          <Input type="radio" value="STUDIO" id="STUDIO" name="roomType" />
+          <Input
+            type="radio"
+            value="STUDIO"
+            isFocused={room_type === "STUDIO"}
+            id="STUDIO"
+            name="roomType"
+          />
           <label htmlFor="STUDIO">일체형 원룸</label>
-          <Input type="radio" value="LOFT" id="LOFT" name="roomType" />
+          <Input
+            type="radio"
+            value="LOFT"
+            isFocused={room_type === "LOFT"}
+            id="LOFT"
+            name="roomType"
+          />
           <label htmlFor="LOFT">복층 원룸</label>
-          <Input type="radio" value="TWO_BEDROOM" id="TWO_BEDROOM" name="roomType" />
+          <Input
+            type="radio"
+            value="TWO_BEDROOM"
+            isFocused={room_type === "TWO_BEDROOM"}
+            id="TWO_BEDROOM"
+            name="roomType"
+          />
           <label htmlFor="TWO_BEDROOM">투룸</label>
-          <Input type="radio" value="THREE_BEDROOM" id="THREE_BEDROOM" name="roomType" />
+          <Input
+            type="radio"
+            value="THREE_BEDROOM"
+            isFocused={room_type === "THREE_BEDROOM"}
+            id="THREE_BEDROOM"
+            name="roomType"
+          />
           <label htmlFor="THREE_BEDROOM">쓰리룸</label>
-          <Input type="radio" value="ROOM_TYPE_ETC" id="ROOM_TYPE_ETC" name="roomType" />
+          <Input
+            type="radio"
+            value="ROOM_TYPE_ETC"
+            isFocused={room_type === "ROOM_TYPE_ETC"}
+            id="ROOM_TYPE_ETC"
+            name="roomType"
+          />
           <label htmlFor="ROOM_TYPE_ETC">기타</label>
           <Input placeholder="직접 입력" />
         </CheckboxContainer>

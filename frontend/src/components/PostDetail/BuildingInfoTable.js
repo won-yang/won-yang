@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { roomTypes } from "utils/constants/roomTypes";
+import { buildingTypes } from "utils/constants/buildingTypes";
+import { windowSides } from "utils/constants/windowSide";
 
 const BuildingInfoTable = (props) => {
   const {
@@ -7,6 +10,7 @@ const BuildingInfoTable = (props) => {
     currentFloor,
     buildType,
     walkingTime,
+    busTime,
     windowSide,
     roomType,
     contractExpireDate,
@@ -37,19 +41,21 @@ const BuildingInfoTable = (props) => {
         </tr>
         <tr>
           <TableRowTitle>건물 구조</TableRowTitle>
-          <TableRowInfo>{buildType}</TableRowInfo>
+          <TableRowInfo>{buildingTypes[buildType]}</TableRowInfo>
         </tr>
         <tr>
           <TableRowTitle>방의 구조</TableRowTitle>
-          <TableRowInfo>{roomType}</TableRowInfo>
+          <TableRowInfo>{roomTypes[roomType]}</TableRowInfo>
         </tr>
         <tr>
           <TableRowTitle>창의 방향</TableRowTitle>
-          <TableRowInfo>{windowSide}</TableRowInfo>
+          <TableRowInfo>{windowSides[windowSide]}</TableRowInfo>
         </tr>
         <tr>
           <TableRowTitle>힉교까지의 거리</TableRowTitle>
-          <TableRowInfo>도보로 {walkingTime}분</TableRowInfo>
+          <TableRowInfo>
+            도보로 {walkingTime}분 / 대중교통으로 {busTime} 분
+          </TableRowInfo>
         </tr>
       </thead>
     </Table>

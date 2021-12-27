@@ -6,7 +6,7 @@
       "imageUrl": "https://picsum.photos/536/354",
       "title": "태평동 방 양도해요1231232123113123123123123213",
       "deposit": 5000000,
-      "monthlyRent": 350000,
+      "monthly_rent": 350000,
       "address": "성남시 수정구 태평동 5107 202호",
       "createdAt": "2021년 08월 03일 21:22",
       "status": "progress"
@@ -16,7 +16,7 @@
       "imageUrl": "https://picsum.photos/536/354",
       "title": "태평동 방 양도해요",
       "deposit": 5000000,
-      "monthlyRent": 350000,
+      "monthly_rent": 350000,
       "address": "성남시 수정구 태평동 5107 202호",
       "createdAt": "2021년 08월 03일 21:22",
       "status": "expired"
@@ -26,7 +26,7 @@
       "imageUrl": "https://picsum.photos/536/354",
       "title": "태평동 방 양도해요",
       "deposit": 5000000,
-      "monthlyRent": 350000,
+      "monthly_rent": 350000,
       "address": "성남시 수정구 태평동 5107 202호",
       "createdAt": "2021년 08월 03일 21:22",
       "status": "contracted"
@@ -36,7 +36,7 @@
       "imageUrl": "https://picsum.photos/536/354",
       "title": "태평동 방 양도해요",
       "deposit": 5000000,
-      "monthlyRent": 350000,
+      "monthly_rent": 350000,
       "address": "성남시 수정구 태평동 5107 202호",
       "createdAt": "2021년 08월 03일 21:22",
       "status": "progress"
@@ -46,7 +46,7 @@
       "imageUrl": "https://picsum.photos/536/354",
       "title": "태평동 방 양도해요",
       "deposit": 5000000,
-      "monthlyRent": 350000,
+      "monthly_rent": 350000,
       "address": "성남시 수정구 태평동 5107 202호",
       "createdAt": "2021년 08월 03일 21:22",
       "status": "progress"
@@ -56,7 +56,7 @@
       "imageUrl": "https://picsum.photos/536/354",
       "title": "태평동 방 양도해요",
       "deposit": 5000000,
-      "monthlyRent": 350000,
+      "monthly_rent": 350000,
       "address": "성남시 수정구 태평동 5107 202호",
       "createdAt": "2021년 08월 03일 21:22",
       "status": "progress"

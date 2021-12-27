@@ -35,7 +35,6 @@ export default Carousel;
 
 const Container = styled.div`
   position: relative;
-  max-width: 640px;
   margin: 0 auto;
 `;
 const ImageCountNoti = styled.span`
@@ -55,7 +54,7 @@ const PrevButton = styled.button`
   position: absolute;
   left: 0;
   top: 50%;
-  transform: translate(10px, -50%);
+  transform: translate(150%, -50%);
   border: none;
   background: unset;
   cursor: pointer;
@@ -74,7 +73,7 @@ const NextButton = styled.button`
   position: absolute;
   right: 0;
   top: 50%;
-  transform: translate(-10px, -50%);
+  transform: translate(-150%, -50%);
   border: none;
   background: unset;
   cursor: pointer;
@@ -90,18 +89,14 @@ const NextButton = styled.button`
 `;
 
 const ImageWrapper = styled.div`
-  width: 100%;
+  min-width: 720px;
+  height: 360px;
   display: flex;
   justify-content: center;
-  & img {
-    max-width: 640px;
-  }
 `;
 const CurrImage = styled.img`
   width: 100%;
   height: 100%;
-  max-height: 480px;
-  object-fit: contain;
-  overflow: hidden;
+  object-fit: fill;
   transition: 0.6s;
 `;

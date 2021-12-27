@@ -1,19 +1,26 @@
 import React, { useRef } from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { device } from "styles/media";
+
+import Button from "components/common/Button";
 import PlacePostItem from "./PostItem/PostItem";
 
 const PlacePostList = (props) => {
-  const { items, intersectRef, isLastPage } = props;
+  const { items, intersectRef, isLastPage, loadMorePostItem } = props;
 
   return (
     <Wrapper>
       {items?.map((item) => (
         <PlacePostItem key={item.id} item={item} />
       ))}
-      {items.length === 0 && <span>none data</span>}
-      {!isLastPage ? <div ref={intersectRef}>...loading</div> : <div>Last</div>}
+      <div ref={intersectRef}>
+        {isLastPage ? (
+          ""
+        ) : (
+          <LoadMorePostButton onClick={loadMorePostItem}>더보기</LoadMorePostButton>
+        )}
+      </div>
     </Wrapper>
   );
 };
@@ -39,4 +46,12 @@ const Wrapper = styled.section`
   @media ${device.desktop} {
     grid-template-columns: repeat(3, 1fr);
   }
+`;
+
+const LoadMorePostButton = styled(Button)`
+  color: white;
+  background-color: ${({ theme }) => theme.colors.primary};
+  padding: 10px;
+  border-radius: 8px;
+  font-size: ${({ theme }) => theme.fontSize.middleFontSize};
 `;

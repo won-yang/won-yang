@@ -10,11 +10,13 @@ OptionBadge.propTypes = {};
 
 export default OptionBadge;
 
-const Wrapper = styled.span`
+const Wrapper = styled.div`
   border-radius: 8px;
   color: white;
   padding: 5px;
-  white-space: nowrap;
+  white-space: wrap;
+  width: max-content;
+  flex-wrap: wrap;
   text-align: center;
   background-color: ${({ theme }) => theme.colors.primary};
 `;

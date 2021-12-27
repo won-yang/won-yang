@@ -38,6 +38,15 @@ export const requestGetWithToken = async (endPoint, parameters) => {
   }
 };
 
+export const requestPostWithToken = async (endPoint, body) => {
+  try {
+    const res = await tokenInstance.post(endPoint, body, { withCredentials: true });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const requestGet = async (url, parameters) => {
   try {
     if (parameters) {
@@ -77,6 +86,23 @@ export const requestPut = async (url, parameters) => {
       const response = await axios.put(url);
       return response;
     }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const requestPost = async (url, parameters) => {
+  try {
+    const response = await axios.post(
+      url,
+      {
+        ...parameters,
+      },
+      {
+        withCredentials: true,
+      },
+    );
+    return response;
   } catch (e) {
     console.log(e);
   }

@@ -6,11 +6,16 @@ import {
   KAKAO_URL,
   CALLBACK_URL,
   CAMPUS,
+  END_POINT,
 } from "utils/constants/request";
-import { requestGet, requestGetWithToken, requestPut } from "./HttpMethod";
+import { requestGet, requestGetWithToken, requestPostWithToken, requestPut } from "./HttpMethod";
 
-export const getPostItem = (url, parameters) => {
-  return requestGet(url, parameters);
+export const getPostList = (parameters) => {
+  return requestGet(`${BASE_URL}${END_POINT.board}`, parameters);
+};
+
+export const getPostItem = (id) => {
+  return requestGet(`${BASE_URL}${END_POINT.post}`, { id });
 };
 
 export const getLogin = (codeQuery) => {
@@ -33,4 +38,10 @@ export const putSignup = (params) => {
 
 export const getCampusInfo = (campus_id) => {
   return requestGet(`${BASE_URL}${CAMPUS}`, { campus_id });
+};
+
+export const postWrite = (campus_id, body) => {
+  console.log(body);
+
+  return requestPostWithToken(`${BASE_URL}${END_POINT.write}`, { campus_id, ...body });
 };

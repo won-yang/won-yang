@@ -4,6 +4,9 @@ export const LOCAL_URL = `http://localhost:8080/api`;
 export const BASE_URL = `http://localhost:8080/api`;
 export const END_POINT = {
   board: "/board",
+  write: "/write",
+  main: "/main",
+  post: "/post",
 };
 
 export const UNIV_API = "/campus";

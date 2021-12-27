@@ -43,9 +43,9 @@ const PhaseSix = (props) => {
         <PreviewList>
           {images.urls &&
             images.urls?.map((url, idx) => (
-              <li key={idx}>
-                <img src={url}></img>
-              </li>
+              <ImageItem key={idx}>
+                <Thumbnail src={url} />
+              </ImageItem>
             ))}
         </PreviewList>
       </UploadedFilePreviewContainer>
@@ -79,11 +79,19 @@ const UploadedFilePreviewContainer = styled.div``;
 const PreviewList = styled.ul`
   display: flex;
   align-items: center;
-  & li {
-    max-width: 150px;
-    & > img {
-      width: 100%;
-      height: 100%;
-    }
-  }
+  gap: 10px;
+`;
+
+const ImageItem = styled.li`
+  height: 100%;
+`;
+
+const Thumbnail = styled.img`
+  min-width: 300px;
+  min-height: 300px;
+  object-fit: cover;
+  max-width: 300px;
+  max-height: 300px;
+  /* width: 100%;
+  height: 100%; */
 `;

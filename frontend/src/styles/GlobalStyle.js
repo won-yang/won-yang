@@ -21,8 +21,17 @@ const GlobalStyle = createGlobalStyle`
     a {
       text-decoration: none;
     }
-    a:visited{
-      color:white;
+    a:link {
+      color:black;
+    }
+    a:visited {
+      color:black;
+    }
+    a:hover {
+      color:black;
+    }
+    a:active {
+      color:black;
     }
     button {
       border:none;

@@ -165,7 +165,6 @@ const PhaseFive = (props) => {
             </OptionButton>
           ))}
         </ButtonContainer>
-        <InputDescription>선택된 옵션</InputDescription>
       </HomeApplianceSection>
 
       <FurnitureSection>
@@ -182,7 +181,6 @@ const PhaseFive = (props) => {
             </OptionButton>
           ))}
         </ButtonContainer>
-        <InputDescription>선택된 옵션</InputDescription>
       </FurnitureSection>
 
       <ExtraOptionSection>
@@ -199,7 +197,6 @@ const PhaseFive = (props) => {
             </OptionButton>
           ))}
         </ButtonContainer>
-        <InputDescription>선택된 옵션</InputDescription>
       </ExtraOptionSection>
       <PrevNext />
     </>

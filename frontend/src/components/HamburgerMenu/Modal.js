@@ -20,16 +20,16 @@ const HamburgerModal = (props) => {
             <ListWrapper>
               <List>
                 <ListItems>
-                  <a>내가 쓴 글</a>
+                  <Link to="/main">내가 쓴 글</Link>
                 </ListItems>
                 <ListItems>
-                  <a>내 정보 수정</a>
+                  <Link to="/main">내 정보 수정</Link>
                 </ListItems>
                 <ListItems>
                   <Link to="/write/1">글 작성</Link>
                 </ListItems>
                 <ListItems>
-                  <a>로그아웃</a>
+                  <Link to="/main">로그아웃</Link>
                 </ListItems>
               </List>
             </ListWrapper>
@@ -63,6 +63,7 @@ export const ListItems = styled.li`
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
   & a {
     width: 100%;
+    color: black;
     cursor: pointer;
     display: inline-block;
     height: 100%;

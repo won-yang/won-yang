@@ -21,10 +21,10 @@ const HamburgerMenu = (props) => {
       <SticksWrapper data-kind="modal-toggle-btn">
         <HamburgerSticks
           data-kind="modal-btn-sticks"
-          className={animation && "open"}
+          className={isMounted && "open"}
         ></HamburgerSticks>
       </SticksWrapper>
-      {isMounted && <HamburgerModal isOnAnimation={animation} />}
+      {/* {isMounted && <HamburgerModal isOnAnimation={animation} />} */}
     </Container>
   );
 };

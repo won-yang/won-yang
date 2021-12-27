@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { LandingPage, MainPage, PostDetailPage, PostWritePage, SignUpPage } from "pages";
 import Header from "components/Header/Header";
 import WriteTmp from "pages/PostWrite/WriteTmp";
+import { requestGet } from "utils/HttpMethod";
+import { BASE_URL } from "utils/constants/request";
 
 const Routes = (props) => {
+  const getUser = async () => {
+    const res = await requestGet(`${BASE_URL}/user`);
+    console.log(res);
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
   return (
     <Router>
       <Switch>

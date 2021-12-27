@@ -40,10 +40,12 @@ const RoomOptionList = (props) => {
 export default RoomOptionList;
 
 const OptionList = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  width: 80vw;
+  height: 100px;
+  display: flex;
+  flex-wrap: wrap;
   gap: 15px;
   & li {
-    width: fit-content;
+    height: 10px;
   }
 `;

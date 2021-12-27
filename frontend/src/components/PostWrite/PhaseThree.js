@@ -14,7 +14,7 @@ import PrevNext from "./common/PrevNext";
 const PhaseThree = (props) => {
   const dispatch = useDispatch();
   const state = useSelector(selectPostWrite);
-  const { contractExpireDate, moveInDate } = state;
+  const { contract_expire_date, move_in_date } = state;
 
   const handleChangeExpiredDate = (value) => {
     dispatch(setContractExpireDate(datemaker(value)));
@@ -38,7 +38,7 @@ const PhaseThree = (props) => {
             <DatePicker
               format="yyyy-MM-dd"
               minDate={new Date()}
-              value={new Date(contractExpireDate)}
+              value={new Date(contract_expire_date)}
               onChange={(value) => handleChangeExpiredDate(value)}
             />
           </ContentBody>
@@ -47,7 +47,7 @@ const PhaseThree = (props) => {
             <DatePicker
               format="yyyy-MM-dd"
               minDate={new Date()}
-              value={new Date(moveInDate)}
+              value={new Date(move_in_date)}
               onChange={(value) => handleChangeMoveInDate(value)}
             />
           </ContentBody>

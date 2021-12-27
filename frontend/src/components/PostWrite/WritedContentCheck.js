@@ -27,61 +27,15 @@ const WritedContentCheck = (props) => {
   const state = useSelector(selectPostWrite);
   const { getWritePhase } = usePathname();
   const { campusInfo } = useSelector(selectUniversity);
-  const {
-    title,
-    contact,
-    deposit,
-    monthly_rent,
-    service_fee,
-    contract_expire_date,
-    move_in_date,
-    address,
-    is_address_visible,
-    address_detail,
-    total_floor,
-    current_floor,
-    building_type,
-    room_type,
-    window_side,
-    walking_time,
-    bus_time,
-    contents,
-    option,
-    post_status,
-    images,
-  } = state;
-  const resultState = {
-    title,
-    contact,
-    deposit,
-    monthly_rent,
-    service_fee,
-    contract_expire_date,
-    move_in_date,
-    address,
-    is_address_visible,
-    address_detail,
-    total_floor,
-    current_floor,
-    building_type,
-    room_type,
-    window_side,
-    walking_time,
-    bus_time,
-    content: contents,
-    option,
-    post_status,
-    images,
-    ...state.including_tax,
-  };
   const getPrevPhase = () => {
     return parseInt(getWritePhase(), 10) - 1;
   };
   const history = useHistory();
   const onSubmitHandler = async () => {
     try {
-      const res = await postWrite(campusInfo.campus_id, state);
-      history.replace(`/main/${campusInfo.campus_id}`);
+      console.log("campusInfo == ", campusInfo);
+      const res = await postWrite(campusInfo.campusId, state);
+      history.replace(`/main/${campusInfo.campusId}`);
 
       // const result = await requestPost(`${BASE_URL}/write`, { campus_id: 1, ...resultState });
     } catch (e) {

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUniversity } from "store/University/UniversitySlice";
 
+import ImageCarousel from "components/common/ImageCarousel";
 import usePathname from "hooks/usePathname";
 import { useHistory } from "react-router";
 import { postWrite } from "utils/api";
@@ -44,7 +45,7 @@ const WritedContentCheck = (props) => {
 
   return (
     <>
-      <Carousel imagePaths={state.images.urls} />
+      <ImageCarousel imagePaths={state.images.urls} />
       <WritedContentContainer>
         <PhaseOneContainer>
           <LabelWithText titleText="제목" text={state.title || ""} />

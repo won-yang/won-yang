@@ -16,7 +16,6 @@ import { device } from "styles/media";
 const WriteProgressBar = (props) => {
   const { getWritePhase } = usePathname();
   const currentPhase = useMemo(() => getWritePhase(), [getWritePhase]);
-  console.log(currentPhase);
   return (
     <Container>
       <IconBox>

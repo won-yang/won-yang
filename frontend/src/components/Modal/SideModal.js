@@ -20,16 +20,16 @@ const SideModal = (props) => {
         <ListWrapper>
           <List>
             <ListItems>
-              <Link to="/main">내가 쓴 글</Link>
+              <StyledLink to="/main">내가 쓴 글</StyledLink>
             </ListItems>
             <ListItems>
-              <Link to="/main">내 정보 수정</Link>
+              <StyledLink to="/main">내 정보 수정</StyledLink>
             </ListItems>
             <ListItems>
-              <Link to="/write/1">글 작성</Link>
+              <StyledLink to="/write/1">글 작성</StyledLink>
             </ListItems>
             <ListItems>
-              <Link to="/main">로그아웃</Link>
+              <StyledLink to="/main">로그아웃</StyledLink>
             </ListItems>
           </List>
         </ListWrapper>
@@ -64,7 +64,6 @@ export const List = styled.ul`
 
 export const ListItems = styled.li`
   height: 50px;
-  padding-left: 20px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
   & a {
     width: 100%;
@@ -97,4 +96,8 @@ export const NickName = styled.span`
   transform: translate(0, -100%);
   font-size: 1rem;
   color: white;
+`;
+
+const StyledLink = styled(Link)`
+  padding-left: 20px;
 `;

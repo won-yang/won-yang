@@ -109,6 +109,7 @@ const Container = styled.div`
   /* width: 100%; */
   display: flex;
   border: 1px solid gray;
+  cursor: pointer;
   font-size: ${(props) => props.theme.fontSize.mobileFontSize};
 
   @media ${device.tablet} {

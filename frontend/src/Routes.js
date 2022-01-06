@@ -5,32 +5,32 @@ import Header from "components/Header/Header";
 import WriteTmp from "pages/PostWrite/WriteTmp";
 import { requestGet } from "utils/HttpMethod";
 import { BASE_URL } from "utils/constants/request";
+import { useDispatch } from "react-redux";
+import { fetchUserInfo } from "store/User/userSlice";
 
 const Routes = (props) => {
-  const getUser = async () => {
-    const res = await requestGet(`${BASE_URL}/user`);
-    console.log("res :", res);
-  };
+  const dispatch = useDispatch();
+  // const getUser = async () => {
+  //   const res = await requestGet(`${BASE_URL}/user`);
+  //   console.log("res :", res);
+  // };
   useEffect(() => {
-    getUser();
+    dispatch(fetchUserInfo());
   }, []);
   return (
     <Router>
       <Switch>
         <Route path="/" exact>
-          {/* landing page */}
           <LandingPage />
         </Route>
         <Route path="/signup">
           <SignUpPage />
         </Route>
         <Route path="/main/:id" exact>
-          {/* main page */}
           <Header />
           <MainPage />
         </Route>
         <Route path="/posts" exact>
-          {/* 작성 page */}
           <Header />
           <PostWritePage />
         </Route>

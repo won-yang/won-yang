@@ -24,6 +24,10 @@ export const getLogin = (codeQuery) => {
   });
 };
 
+export const getUserInfo = () => {
+  return requestGet(`${BASE_URL}/user`);
+};
+
 export const getCampusList = (input) => {
   return requestGet(`${BASE_URL}${UNIV_API}`, { name: input });
 };

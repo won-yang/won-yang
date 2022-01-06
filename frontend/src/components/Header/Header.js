@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 // import { HamburgerMenu, HamburgerModal } from "components/HamburgerMenu";
 import { IconLogo } from "components/Icon";
 import styled from "styled-components";
-import useAnimation from "hooks/useAnimation";
 
 import { useHistory, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -27,9 +26,9 @@ const Header = (props) => {
         <Container>
           <IconLogo widthSize="65px" heightSize="100%"></IconLogo>
           <UnivTitle>
-            <Link to={campusInfo?.campusId ? `/main/${campusInfo?.campusId}` : "/"}>
+            <StyledLink to={campusInfo?.campusId ? `/main/${campusInfo?.campusId}` : "/"}>
               {campusInfo?.campus_name || "원양"}
-            </Link>
+            </StyledLink>
           </UnivTitle>
           <HamburgerMenu onClick={() => (isOpen ? close() : open())}>
             <HamburgerSticks className={isOpen && "open"} />
@@ -118,4 +117,7 @@ const HamburgerSticks = styled.div`
     background-color: white;
     top: 10px;
   }
+`;
+const StyledLink = styled(Link)`
+  color: white;
 `;

@@ -22,16 +22,12 @@ const GlobalStyle = createGlobalStyle`
       text-decoration: none;
     }
     a:link {
-      color:black;
     }
     a:visited {
-      color:black;
     }
     a:hover {
-      color:black;
     }
     a:active {
-      color:black;
     }
     button {
       border:none;

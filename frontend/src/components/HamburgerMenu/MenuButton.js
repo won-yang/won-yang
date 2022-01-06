@@ -24,7 +24,6 @@ const HamburgerMenu = (props) => {
           className={isMounted && "open"}
         ></HamburgerSticks>
       </SticksWrapper>
-      {/* {isMounted && <HamburgerModal isOnAnimation={animation} />} */}
     </Container>
   );
 };

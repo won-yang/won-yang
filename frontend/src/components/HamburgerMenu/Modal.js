@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import { selectUser } from "store/User/userSlice";
 import ModalPortal from "components/ModalPortal/ModalPortal";
 import { ModalBackGround, ModalContainer } from "./style";
 
 const HamburgerModal = (props) => {
   const { isOnAnimation } = props;
+  const { userInfo } = useSelector(selectUser);
 
   return (
     <ModalPortal>
@@ -15,7 +18,7 @@ const HamburgerModal = (props) => {
         <ModalContainer data-kind="modal" isOnAnimation={isOnAnimation}>
           <Wrapper>
             <NickNameDisplayWrapper>
-              <NickName>닉네임</NickName>
+              <NickName>{userInfo.nickname}님 안녕하세요 !</NickName>
             </NickNameDisplayWrapper>
             <ListWrapper>
               <List>
@@ -42,7 +45,7 @@ const HamburgerModal = (props) => {
 
 HamburgerModal.propTypes = {
   isOnAnimation: PropTypes.bool,
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };
 
 export default HamburgerModal;

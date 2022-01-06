@@ -6,16 +6,14 @@ import styled from "styled-components";
 
 import DimPortal from "components/ModalPortal/DimPortal";
 import { selectUser } from "store/User/userSlice";
-import ModalPortal from "components/ModalPortal/ModalPortal";
-import { ModalBackGround, ModalContainer } from "./style";
 
-const HamburgerModal = (props) => {
+const SideModal = (props) => {
   const { close } = props;
   const { userInfo } = useSelector(selectUser);
 
   return (
     <DimPortal {...{ close }}>
-      <Wrapper>
+      <Container>
         <NickNameDisplayWrapper>
           <NickName>{userInfo.nickname}님 안녕하세요 !</NickName>
         </NickNameDisplayWrapper>
@@ -35,19 +33,26 @@ const HamburgerModal = (props) => {
             </ListItems>
           </List>
         </ListWrapper>
-      </Wrapper>
+      </Container>
     </DimPortal>
   );
 };
 
-HamburgerModal.propTypes = {
+SideModal.propTypes = {
   isOnAnimation: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };
 
-export default HamburgerModal;
+export default SideModal;
 
-export const Wrapper = styled.div``;
+export const Container = styled.div`
+  position: absolute;
+  background-color: white;
+  max-width: 450px;
+  width: 100%;
+  right: 0px;
+  height: 100%;
+`;
 
 export const ListWrapper = styled.div``;
 

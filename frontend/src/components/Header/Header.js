@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { HamburgerMenu, HamburgerModal } from "components/HamburgerMenu";
+// import { HamburgerMenu, HamburgerModal } from "components/HamburgerMenu";
 import { IconLogo } from "components/Icon";
 import styled from "styled-components";
 import useAnimation from "hooks/useAnimation";
@@ -9,18 +9,18 @@ import { useHistory, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUniversity } from "store/University/UniversitySlice";
 import useModal from "hooks/useModal";
+import SideModal from "components/Modal/SideModal";
 
 const Header = (props) => {
-  const { isMounted, setIsMounted, unMount, animation } = useAnimation({ delay: 0 });
   const history = useHistory();
   const { campusInfo } = useSelector(selectUniversity);
   const { isOpen, open, close } = useModal();
 
   useEffect(() => {
-    return history.listen((location) => {
-      setIsMounted(false);
-    });
-  }, [history]);
+    return () => {
+      close();
+    };
+  }, [history.location.pathname]);
   return (
     <Wrapper id="header">
       <CenterAlignWrapper>
@@ -31,15 +31,12 @@ const Header = (props) => {
               {campusInfo?.campus_name || "원양"}
             </Link>
           </UnivTitle>
-          <HamburgerMenu
-            isMounted={isMounted}
-            setIsMounted={setIsMounted}
-            unMount={unMount}
-            animation={animation}
-          />
+          <HamburgerMenu onClick={() => (isOpen ? close() : open())}>
+            <HamburgerSticks className={isOpen && "open"} />
+          </HamburgerMenu>
         </Container>
       </CenterAlignWrapper>
-      {isMounted && <HamburgerModal isOnAnimation={animation} {...{ isOpen, close, open }} />}
+      {isOpen && <SideModal {...{ close }} />}
     </Wrapper>
   );
 };
@@ -57,7 +54,7 @@ const Wrapper = styled.header`
   box-shadow: 0px 2px 6px 0px black;
   height: 50px;
   position: fixed;
-  z-index: 1;
+  z-index: 7;
   font-size: 1rem;
 `;
 const CenterAlignWrapper = styled.div`
@@ -73,4 +70,52 @@ const Container = styled.div`
   width: 100%;
   max-width: 1280px;
   height: 50px;
+`;
+
+const HamburgerMenu = styled.div`
+  width: 65px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+`;
+const HamburgerSticks = styled.div`
+  position: relative;
+  top: 50%;
+  transform: translate(0%, -50%);
+  width: 50%;
+  height: 3px;
+  background-color: white;
+  transition: ease-in 0.3s;
+  &.open {
+    background-color: black;
+    transform: rotate3d(0, 0, 1, 45deg);
+    &::before {
+      content: "";
+      background-color: black;
+      top: 0;
+      transition: 0.6s;
+      transform: rotate3d(0, 0, 1, 90deg);
+    }
+  }
+  &.open::after {
+    content: "";
+    display: none;
+  }
+  &::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    top: -10px;
+  }
+  &::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    top: 10px;
+  }
 `;

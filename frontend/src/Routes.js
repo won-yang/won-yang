@@ -10,10 +10,7 @@ import { fetchUserInfo } from "store/User/userSlice";
 
 const Routes = (props) => {
   const dispatch = useDispatch();
-  // const getUser = async () => {
-  //   const res = await requestGet(`${BASE_URL}/user`);
-  //   console.log("res :", res);
-  // };
+
   useEffect(() => {
     dispatch(fetchUserInfo());
   }, []);

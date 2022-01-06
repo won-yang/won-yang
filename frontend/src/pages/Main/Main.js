@@ -126,7 +126,6 @@ const ArticleContainer = styled.article`
   & .filtered-bar {
     height: 50px;
   }
-  background-color: aliceblue;
 `;
 
 const ToolBarContainer = styled.div`

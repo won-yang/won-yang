@@ -7,8 +7,11 @@ import { ReactComponent as ConditionSearchBtnIcon } from "assets/condisearchIcon
 import { ReactComponent as CautionIcon } from "assets/sorrySheep.svg";
 import { ReactComponent as GuideIcon } from "assets/guidicon.svg";
 import { ReactComponent as NoticeIcon } from "assets/noticesheep.svg";
+import useNotReady from "hooks/useNotReady";
 
 const Jumbotron = () => {
+  const { goNotReadyPage } = useNotReady();
+
   return (
     <Container>
       <IntroductionText>원양에서 원룸을 양도하거나 양도받아보세요!</IntroductionText>
@@ -16,21 +19,24 @@ const Jumbotron = () => {
         <SearchButtonContainer>
           <SearchWrapperButton>
             <span>지도에서 검색</span>
-            <Link className="link" to="/mapsearch" />
+            {/* TODO: <Link className="link" to="/mapsearch" /> */}
+            <Link className="link" to="/not-ready" />
             <MapSearchBtnIcon />
           </SearchWrapperButton>
           <SearchWrapperButton>
             <span>원하는 조건으로 검색</span>
-            <Link className="link" to="conditionsearch" />
+            {/* TODO: <Link className="link" to="conditionsearch" /> */}
+            <Link className="link" to="/not-ready" />
             <ConditionSearchBtnIcon />
           </SearchWrapperButton>
         </SearchButtonContainer>
+
         <NoticeButtonContainer>
-          <button>
+          <button onClick={goNotReadyPage}>
             <span>양도시 주의사항</span>
           </button>
-          <button>원양이용방법</button>
-          <button>
+          <button onClick={goNotReadyPage}>원양이용방법</button>
+          <button onClick={goNotReadyPage}>
             기타 공지사항
             {/* <NoticeIcon /> */}
           </button>

@@ -1,6 +1,13 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { LandingPage, MainPage, PostDetailPage, PostWritePage, SignUpPage } from "pages";
+import {
+  LandingPage,
+  MainPage,
+  PostDetailPage,
+  PostWritePage,
+  SignUpPage,
+  NotReadyPage,
+} from "pages";
 import Header from "components/Header/Header";
 import WriteTmp from "pages/PostWrite/WriteTmp";
 import { requestGet } from "utils/HttpMethod";
@@ -14,6 +21,7 @@ const Routes = (props) => {
   useEffect(() => {
     dispatch(fetchUserInfo());
   }, []);
+
   return (
     <Router>
       <Switch>
@@ -41,6 +49,7 @@ const Routes = (props) => {
         </Route>
         <Route path="/posts/:id" exact component={PostDetailPage} />
         <Route path="/write/:phase" component={PostWritePage} />
+        <Route path="/not-ready" component={NotReadyPage} />
       </Switch>
     </Router>
   );

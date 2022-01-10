@@ -43,7 +43,7 @@ export const requestPostWithToken = async (endPoint, body) => {
     const res = await tokenInstance.post(endPoint, body, { withCredentials: true });
     return res.data;
   } catch (e) {
-    console.log(e);
+    window.alert(e.response.data.message);
   }
 };
 

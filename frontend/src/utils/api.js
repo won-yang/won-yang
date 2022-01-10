@@ -45,5 +45,11 @@ export const getCampusInfo = (campus_id) => {
 };
 
 export const postWrite = (campus_id, body) => {
-  return requestPostWithToken(`${BASE_URL}${END_POINT.write}`, { campus_id, ...body });
+  const { including_tax, contents: content, ...rest } = body;
+  return requestPostWithToken(`${BASE_URL}${END_POINT.write}`, {
+    campus_id,
+    content,
+    ...including_tax,
+    ...rest,
+  });
 };

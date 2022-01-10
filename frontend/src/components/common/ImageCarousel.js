@@ -1,19 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-// import Slider from "react-slick";
 import styled from "styled-components";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 
 const ImageCarousel = ({ imagePaths }) => {
   return (
-    <StyledCarousel
-      autoPlay={true}
-      infiniteLoop={true}
-      // centerMode={true}
-      // centerSlidePercentage={100}
-    >
+    <StyledCarousel autoPlay={true} infiniteLoop={true}>
       {imagePaths.map((image, idx) => (
         <Wrapper key={image}>
           <Image src={image} />

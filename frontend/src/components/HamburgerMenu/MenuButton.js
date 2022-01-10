@@ -1,10 +1,8 @@
 import React from "react";
-
-import HamburgerModal from "components/HamburgerMenu/Modal";
 import styled from "styled-components";
 
 const HamburgerMenu = (props) => {
-  const { isMounted, setIsMounted, unMount, animation } = props;
+  const { isMounted, setIsMounted, unMount, animation, open, close } = props;
   const handleClick = (e) => {
     const { kind } = e.target.dataset;
     if (
@@ -12,7 +10,9 @@ const HamburgerMenu = (props) => {
       (kind === "modal-toggle-btn" || kind === "modal-btn-sticks" || kind === "modal-bg")
     ) {
       unMount();
+      close();
     } else if (!isMounted && (kind === "modal-toggle-btn" || kind === "modal-btn-sticks")) {
+      open();
       setIsMounted(true);
     }
   };
@@ -24,7 +24,6 @@ const HamburgerMenu = (props) => {
           className={isMounted && "open"}
         ></HamburgerSticks>
       </SticksWrapper>
-      {/* {isMounted && <HamburgerModal isOnAnimation={animation} />} */}
     </Container>
   );
 };

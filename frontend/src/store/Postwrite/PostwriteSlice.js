@@ -1,6 +1,6 @@
 import moment from "moment";
 import { createSlice } from "@reduxjs/toolkit";
-import { ETC_OPTIONS, FURNITURES, HOME_APPLIANCES } from "components/PostWrite/PhaseFive";
+import { ETC_OPTIONS, FURNITURES, HOME_APPLIANCES } from "utils/constants";
 
 const initialState = {
   title: "",

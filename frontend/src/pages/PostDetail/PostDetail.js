@@ -20,7 +20,7 @@ import OwnerContactInfo from "components/PostDetail/OwnerContactInfo";
 import PostDescription from "components/PostDetail/PostDescription";
 import { useLocation } from "react-router";
 import { getPostItem } from "utils/api";
-import { ETC_OPTIONS, FURNITURES, HOME_APPLIANCES } from "components/PostWrite/PhaseFive";
+import { ETC_OPTIONS, FURNITURES, HOME_APPLIANCES } from "utils/constants";
 
 const PostDetailPage = () => {
   const imagePaths = [image1, image2, image3];

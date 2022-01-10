@@ -7,7 +7,7 @@ export const fetchUserInfo = createAsyncThunk("user/fetchUserInfo", async () => 
 });
 
 const initialState = {
-  userInfo: {},
+  userInfo: null,
 };
 
 export const userSlice = createSlice({

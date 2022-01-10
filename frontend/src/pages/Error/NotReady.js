@@ -2,14 +2,19 @@ import useNotReady from "hooks/useNotReady";
 import React from "react";
 import styled from "styled-components";
 
+import notReadyImage from "../../assets/not-ready-image.png";
+
 const NotReady = () => {
   const { goBack } = useNotReady();
 
   return (
     <NotReadyBody>
-      <section>준비중인 기능입니다.</section>
-      <MarginBox />
-      <button onClick={goBack}>뒤로가기</button>
+      <NotReadyImg src={notReadyImage} />
+      <section>
+        <Button onClick={goBack}>
+          <ButtonText>뒤로가기</ButtonText>
+        </Button>
+      </section>
     </NotReadyBody>
   );
 };
@@ -29,6 +34,19 @@ const NotReadyBody = styled.section`
   text-align: center;
 `;
 
-const MarginBox = styled.section`
-  height: 32px;
+const NotReadyImg = styled.img`
+  width: 100%;
+  max-width: 512px;
+`;
+
+const Button = styled.button`
+  width: 8rem;
+  height: 3rem;
+  border-radius: 10px;
+
+  cursor: pointer;
+`;
+
+const ButtonText = styled.span`
+  font-size: 1.25rem;
 `;

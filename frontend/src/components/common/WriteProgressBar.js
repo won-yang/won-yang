@@ -1,6 +1,6 @@
-import IconContainer from "components/Icon/IconContainer";
 import React, { useMemo } from "react";
 import styled from "styled-components";
+
 import { ReactComponent as PersonIcon } from "assets/icon_person_blue.svg";
 import { ReactComponent as MoneyIcon } from "assets/icon_money_blue.svg";
 import { ReactComponent as CalendarIcon } from "assets/icon_calender_blue.svg";
@@ -8,7 +8,6 @@ import { ReactComponent as MapIcon } from "assets/icon_map_blue.svg";
 import { ReactComponent as FurnitureIcon } from "assets/icon_furniture_blue.svg";
 import { ReactComponent as PictureIcon } from "assets/icon_picture_blue.svg";
 import { ReactComponent as CheckIcon } from "assets/icon_check.svg";
-import WriteProgressIcon from "components/Icon/WriteProgressIcon";
 import usePathname from "hooks/usePathname";
 import { Link } from "react-router-dom";
 import { device } from "styles/media";
@@ -16,7 +15,6 @@ import { device } from "styles/media";
 const WriteProgressBar = (props) => {
   const { getWritePhase } = usePathname();
   const currentPhase = useMemo(() => getWritePhase(), [getWritePhase]);
-  console.log(currentPhase);
   return (
     <Container>
       <IconBox>

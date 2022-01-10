@@ -87,8 +87,13 @@ const PostDetailPage = () => {
             <PostDetailHeader title={postData.title} created_date={postData.created_at} />
             <MonthlyChargeList
               deposit={postData.deposit}
-              monthly_rent={postData.monthly_rent}
-              including_tax={postData.including_tax}
+              monthlyRent={postData.monthly_rent}
+              includingTax={{
+                electricity: postData.electricity,
+                gas: postData.gas,
+                water: postData.water,
+              }}
+              serviceFee={postData.service_fee}
             />
             <RoomAddress
               address={postData.address}

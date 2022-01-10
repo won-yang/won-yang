@@ -1,9 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
+
 import { device } from "styles/media";
 import Badge from "components/common/Badge";
-import { useHistory } from "react-router-dom";
 
 const PlacePostItem = ({ item }) => {
   const history = useHistory();
@@ -109,6 +109,7 @@ const Container = styled.div`
   /* width: 100%; */
   display: flex;
   border: 1px solid gray;
+  cursor: pointer;
   font-size: ${(props) => props.theme.fontSize.mobileFontSize};
 
   @media ${device.tablet} {

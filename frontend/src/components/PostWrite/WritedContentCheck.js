@@ -5,20 +5,16 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUniversity } from "store/University/UniversitySlice";
 
+import ImageCarousel from "components/common/ImageCarousel";
 import usePathname from "hooks/usePathname";
 import { useHistory } from "react-router";
 import { postWrite } from "utils/api";
-import Carousel from "components/common/Carousel";
-import PostDetailHeader from "components/PostDetail/PostDetailHeader";
 import MonthlyChargeList from "components/PostDetail/MonthlyChargeList";
 import RoomAddress from "components/PostDetail/RoomAddress";
 import PostDescription from "components/PostDetail/PostDescription";
-import OwnerContactInfo from "components/PostDetail/OwnerContactInfo";
 import BuildingInfoTable from "components/PostDetail/BuildingInfoTable";
 import RoomOptionList from "components/PostDetail/RoomOptionList";
 import { selectPostWrite } from "store/Postwrite/PostwriteSlice";
-import { requestPost } from "utils/HttpMethod";
-import { BASE_URL } from "utils/constants/request";
 import { device } from "styles/media";
 import { PrevNextBtn, SpaceBetween } from "./common";
 import LabelWithText from "./common/LabelWithTextListItem";
@@ -44,7 +40,7 @@ const WritedContentCheck = (props) => {
 
   return (
     <>
-      <Carousel imagePaths={state.images.urls} />
+      <ImageCarousel imagePaths={state.images.urls} />
       <WritedContentContainer>
         <PhaseOneContainer>
           <LabelWithText titleText="제목" text={state.title || ""} />

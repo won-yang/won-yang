@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
@@ -7,45 +7,52 @@ import styled from "styled-components";
 import DimPortal from "components/ModalPortal/DimPortal";
 import { selectUser } from "store/User/userSlice";
 
-const HamburgerModal = (props) => {
+const SideModal = (props) => {
   const { close } = props;
   const { userInfo } = useSelector(selectUser);
 
   return (
     <DimPortal {...{ close }}>
-      <Wrapper>
+      <Container>
         <NickNameDisplayWrapper>
           <NickName>{userInfo.nickname}님 안녕하세요 !</NickName>
         </NickNameDisplayWrapper>
         <ListWrapper>
           <List>
             <ListItems>
-              <Link to="/main">내가 쓴 글</Link>
+              <StyledLink to="/main">내가 쓴 글</StyledLink>
             </ListItems>
             <ListItems>
-              <Link to="/main">내 정보 수정</Link>
+              <StyledLink to="/main">내 정보 수정</StyledLink>
             </ListItems>
             <ListItems>
-              <Link to="/write/1">글 작성</Link>
+              <StyledLink to="/write/1">글 작성</StyledLink>
             </ListItems>
             <ListItems>
-              <Link to="/main">로그아웃</Link>
+              <StyledLink to="/main">로그아웃</StyledLink>
             </ListItems>
           </List>
         </ListWrapper>
-      </Wrapper>
+      </Container>
     </DimPortal>
   );
 };
 
-HamburgerModal.propTypes = {
+SideModal.propTypes = {
   isOnAnimation: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };
 
-export default HamburgerModal;
+export default SideModal;
 
-export const Wrapper = styled.div``;
+export const Container = styled.div`
+  position: absolute;
+  background-color: white;
+  max-width: 450px;
+  width: 100%;
+  right: 0px;
+  height: 100%;
+`;
 
 export const ListWrapper = styled.div``;
 
@@ -57,7 +64,6 @@ export const List = styled.ul`
 
 export const ListItems = styled.li`
   height: 50px;
-  padding-left: 20px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
   & a {
     width: 100%;
@@ -90,4 +96,8 @@ export const NickName = styled.span`
   transform: translate(0, -100%);
   font-size: 1rem;
   color: white;
+`;
+
+const StyledLink = styled(Link)`
+  padding-left: 20px;
 `;

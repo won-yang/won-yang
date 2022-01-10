@@ -24,6 +24,10 @@ export const getLogin = (codeQuery) => {
   });
 };
 
+export const getUserInfo = () => {
+  return requestGet(`${BASE_URL}/user`);
+};
+
 export const getCampusList = (input) => {
   return requestGet(`${BASE_URL}${UNIV_API}`, { name: input });
 };
@@ -41,5 +45,11 @@ export const getCampusInfo = (campus_id) => {
 };
 
 export const postWrite = (campus_id, body) => {
-  return requestPostWithToken(`${BASE_URL}${END_POINT.write}`, { campus_id, ...body });
+  const { including_tax, contents: content, ...rest } = body;
+  return requestPostWithToken(`${BASE_URL}${END_POINT.write}`, {
+    campus_id,
+    content,
+    ...including_tax,
+    ...rest,
+  });
 };

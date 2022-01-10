@@ -4,10 +4,9 @@ import styled from "styled-components";
 
 import ModalPortal from "./ModalPortal";
 
-const DimPortal = (props) => {
-  const { children, close } = props;
+const DimPortal = ({ close, children }) => {
   const handleClickDim = (e) => {
-    const { type } = e.target.dataset;
+    const { type, kind } = e.target.dataset;
     if (type === "dim") {
       close();
     }
@@ -15,7 +14,7 @@ const DimPortal = (props) => {
   return (
     <ModalPortal>
       <Dim data-type="dim" onClick={handleClickDim}>
-        {props.children}
+        {children}
       </Dim>
     </ModalPortal>
   );
@@ -34,4 +33,5 @@ const Dim = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
+  z-index: 6;
 `;

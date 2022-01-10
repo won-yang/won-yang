@@ -60,10 +60,10 @@ const PhaseSix = (props) => {
       </div>
       <div>
         <label>글 내용</label>
-        <textarea
+        <TextArea
           onChange={(e) => dispatch(setContents(e.target.value))}
           value={contents}
-        ></textarea>
+        ></TextArea>
       </div>
       <PrevNext />
     </>
@@ -95,3 +95,5 @@ const Thumbnail = styled.img`
   /* width: 100%;
   height: 100%; */
 `;
+
+const TextArea = styled.textarea``;

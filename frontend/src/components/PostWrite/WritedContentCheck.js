@@ -33,8 +33,8 @@ const WritedContentCheck = (props) => {
   const history = useHistory();
   const onSubmitHandler = async () => {
     try {
-      const res = await postWrite(campusInfo.campusId, state);
-      history.replace(`/main/${campusInfo.campusId}`);
+      const res = await postWrite(campusInfo.campus_id, state);
+      history.replace(`/main/${campusInfo.campus_id}`);
 
       // const result = await requestPost(`${BASE_URL}/write`, { campus_id: 1, ...resultState });
     } catch (e) {

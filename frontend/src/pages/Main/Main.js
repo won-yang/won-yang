@@ -79,7 +79,7 @@ const MainPage = (props) => {
       setUnivInfo({
         info: {
           ...res,
-          campusId,
+          campus_id: campusId,
         },
       }),
     );

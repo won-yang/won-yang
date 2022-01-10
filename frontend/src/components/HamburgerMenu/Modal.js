@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
@@ -6,8 +6,6 @@ import styled from "styled-components";
 
 import DimPortal from "components/ModalPortal/DimPortal";
 import { selectUser } from "store/User/userSlice";
-import ModalPortal from "components/ModalPortal/ModalPortal";
-import { ModalBackGround, ModalContainer } from "./style";
 
 const HamburgerModal = (props) => {
   const { close } = props;

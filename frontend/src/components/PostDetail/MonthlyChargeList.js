@@ -1,12 +1,9 @@
-import LabelWithText from "components/PostWrite/common/LabelWithTextListItem";
 import React from "react";
-import { useSelector } from "react-redux";
-import { selectPostWrite } from "store/Postwrite/PostwriteSlice";
 import styled from "styled-components";
 
-const MonthlyChargeList = ({ monthlyRent, deposit, serviceFee, includingTax }) => {
-  // const { monthly_rent, deposit, service_fee, including_tax } = useSelector(selectPostWrite);
+import LabelWithText from "components/PostWrite/common/LabelWithTextListItem";
 
+const MonthlyChargeList = ({ monthlyRent, deposit, serviceFee, includingTax }) => {
   const taxText = () => {
     let result = "";
     if (includingTax) {

@@ -1,6 +1,4 @@
 import React from "react";
-
-import HamburgerModal from "components/HamburgerMenu/Modal";
 import styled from "styled-components";
 
 const HamburgerMenu = (props) => {

@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { device } from "styles/media";
 
+import { device } from "styles/media";
 import Button from "components/common/Button";
 import PlacePostItem from "./PostItem/PostItem";
 

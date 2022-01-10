@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-// import { HamburgerMenu, HamburgerModal } from "components/HamburgerMenu";
-import { IconLogo } from "components/Icon";
 import styled from "styled-components";
-
 import { useHistory, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+
+import { IconLogo } from "components/Icon";
 import { selectUniversity } from "store/University/UniversitySlice";
 import useModal from "hooks/useModal";
 import SideModal from "components/Modal/SideModal";

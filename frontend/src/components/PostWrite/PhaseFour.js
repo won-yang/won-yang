@@ -2,7 +2,6 @@ import Button from "components/common/Button";
 import Input from "components/common/Input";
 import React from "react";
 import styled, { css } from "styled-components";
-import DaumPostcode from "react-daum-postcode";
 import useAnimation from "hooks/useAnimation";
 
 import { useDispatch, useSelector } from "react-redux";

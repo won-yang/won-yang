@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import usePathname from "hooks/usePathname";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setContact, setTitle, selectPostWrite } from "store/Postwrite/PostwriteSlice";

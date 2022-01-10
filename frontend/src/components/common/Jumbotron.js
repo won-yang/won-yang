@@ -4,9 +4,6 @@ import { device } from "styles/media";
 import { Link } from "react-router-dom";
 import { ReactComponent as MapSearchBtnIcon } from "assets/mapsearchIcon.svg";
 import { ReactComponent as ConditionSearchBtnIcon } from "assets/condisearchIcon.svg";
-import { ReactComponent as CautionIcon } from "assets/sorrySheep.svg";
-import { ReactComponent as GuideIcon } from "assets/guidicon.svg";
-import { ReactComponent as NoticeIcon } from "assets/noticesheep.svg";
 
 const Jumbotron = () => {
   return (

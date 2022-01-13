@@ -45,7 +45,6 @@ const PhaseThree = (props) => {
               format="yyyy-MM-dd"
               minDate={new Date()}
               value={new Date(contract_expire_date)}
-              selected={new Date()}
               onChange={(selected) => handleChangeExpiredDate(selected)}
             />
           </ContentBody>
@@ -55,7 +54,6 @@ const PhaseThree = (props) => {
               format="yyyy-MM-dd"
               minDate={new Date()}
               value={new Date(move_in_date)}
-              selected={new Date()}
               onChange={(selected) => handleChangeMoveInDate(selected)}
             />
           </ContentBody>

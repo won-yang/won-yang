@@ -25,7 +25,7 @@ export const getLogin = (codeQuery) => {
 };
 
 export const getUserInfo = () => {
-  return requestGet(`${BASE_URL}/user`);
+  return requestGetWithToken(`${BASE_URL}/user`);
 };
 
 export const getCampusList = (input) => {
@@ -52,4 +52,8 @@ export const postWrite = (campus_id, body) => {
     ...including_tax,
     ...rest,
   });
+};
+
+export const postUploadImageUrl = () => {
+  return requestPostWithToken(`${BASE_URL}${END_POINT.uploadUrl}`);
 };

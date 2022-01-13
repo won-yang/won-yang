@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import {
   LandingPage,
   MainPage,
@@ -10,18 +9,9 @@ import {
   NotReadyPage,
 } from "pages";
 import Header from "components/Header/Header";
-import { fetchUserInfo } from "store/User/userSlice";
 import withAuth from "components/Auth/withAuth";
 
 const Routes = (props) => {
-  const dispatch = useDispatch();
-  // const history = useHistory();
-  // console.log(history);
-
-  // useEffect(() => {
-  //   dispatch(fetchUserInfo());
-  // }, []);
-
   return (
     <Router>
       <Switch>

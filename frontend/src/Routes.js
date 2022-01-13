@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
   LandingPage,
   MainPage,
@@ -9,18 +10,17 @@ import {
   NotReadyPage,
 } from "pages";
 import Header from "components/Header/Header";
-import WriteTmp from "pages/PostWrite/WriteTmp";
-import { requestGet } from "utils/HttpMethod";
-import { BASE_URL } from "utils/constants/request";
-import { useDispatch } from "react-redux";
 import { fetchUserInfo } from "store/User/userSlice";
+import withAuth from "components/Auth/withAuth";
 
 const Routes = (props) => {
   const dispatch = useDispatch();
+  // const history = useHistory();
+  // console.log(history);
 
-  useEffect(() => {
-    dispatch(fetchUserInfo());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchUserInfo());
+  // }, []);
 
   return (
     <Router>
@@ -31,24 +31,15 @@ const Routes = (props) => {
         <Route path="/signup">
           <SignUpPage />
         </Route>
-        <Route path="/main/:id" exact>
+        <>
           <Header />
-          <MainPage />
-        </Route>
-        <Route path="/posts" exact>
-          <Header />
-          <PostWritePage />
-        </Route>
-        <Route path="/posts/:id" exact>
-          <Header />
-          <PostDetailPage />
-        </Route>
-        <Route path="/write">
-          <Header />
-          <PostWritePage />
-        </Route>
+          <Route path="/main/:id" component={withAuth(MainPage)}></Route>
+          <Route path="/posts" exact component={withAuth(PostWritePage)}></Route>
+          <Route path="/posts/:id" exact component={withAuth(PostDetailPage)}></Route>
+          {/* <Route path="/write" exact component={withAuth(PostWritePage)}></Route> */}
+          <Route path="/write/:phase" component={withAuth(PostWritePage)} />
+        </>
         <Route path="/posts/:id" exact component={PostDetailPage} />
-        <Route path="/write/:phase" component={PostWritePage} />
         <Route path="/not-ready" component={NotReadyPage} />
       </Switch>
     </Router>

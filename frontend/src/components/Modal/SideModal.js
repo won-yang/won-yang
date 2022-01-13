@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import DimPortal from "components/ModalPortal/DimPortal";
@@ -10,12 +10,18 @@ import { selectUser } from "store/User/userSlice";
 const SideModal = (props) => {
   const { close } = props;
   const { userInfo } = useSelector(selectUser);
-
+  const location = useLocation();
+  console.log(location);
+  useEffect(() => {
+    return () => {
+      close();
+    };
+  }, [location]);
   return (
     <DimPortal {...{ close }}>
       <Container>
         <NickNameDisplayWrapper>
-          <NickName>{userInfo.nickname}님 안녕하세요 !</NickName>
+          <NickName>{userInfo?.nickname}님 안녕하세요 !</NickName>
         </NickNameDisplayWrapper>
         <ListWrapper>
           <List>

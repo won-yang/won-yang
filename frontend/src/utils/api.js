@@ -9,7 +9,13 @@ import {
   CAMPUS,
   END_POINT,
 } from "utils/constants/request";
-import { requestGet, requestGetWithToken, requestPostWithToken, requestPut } from "./HttpMethod";
+import {
+  requestGet,
+  requestGetWithToken,
+  requestPost,
+  requestPostWithToken,
+  requestPut,
+} from "./HttpMethod";
 
 export const getPostList = (parameters) => {
   return requestGet(`${BASE_URL}${END_POINT.board}`, parameters);
@@ -26,7 +32,7 @@ export const getLogin = (codeQuery) => {
 };
 
 export const getImageUploadURL = () => {
-  return requestGetWithToken(`${BASE_URL}${END_POINT.uploadUrl}`);
+  return requestPostWithToken(`${BASE_URL}${END_POINT.uploadUrl}`);
 };
 
 export const getUserInfo = () => {

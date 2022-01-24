@@ -34,7 +34,7 @@ const WritedContentCheck = (props) => {
         return postUploadImageUrl(res.uploadUrl, state.images.files);
       })
       .then((res) => {
-        return postWrite(userInfo.campus_id, state);
+        return postWrite(userInfo.campus_id, state, res.imageURL);
       })
       .then((res) => console.log(res));
   };

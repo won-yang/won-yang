@@ -49,14 +49,14 @@ export const getCampusInfo = (campus_id) => {
   return requestGet(`${BASE_URL}${CAMPUS}`, { campus_id });
 };
 
-export const postWrite = (campus_id, body) => {
-  console.log("here");
+export const postWrite = (campus_id, body, imageURL) => {
   const { including_tax, contents: content, ...rest } = body;
   return requestPostWithToken(`${BASE_URL}${END_POINT.write}`, {
     campus_id,
     content,
     ...including_tax,
     ...rest,
+    images: imageURL,
   });
 };
 

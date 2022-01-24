@@ -35,7 +35,7 @@ export const requestGetWithToken = async (endPoint, parameters) => {
       },
       withCredentials: true,
     });
-    return res.data;
+    return res;
   } catch (e) {
     console.error(e);
   }

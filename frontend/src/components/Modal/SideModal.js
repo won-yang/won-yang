@@ -11,17 +11,19 @@ const SideModal = (props) => {
   const { close } = props;
   const { userInfo } = useSelector(selectUser);
   const location = useLocation();
-  console.log(location);
   useEffect(() => {
     return () => {
       close();
     };
   }, [location]);
+  const getUserNameText = () => {
+    return userInfo ? `${userInfo.nickname}님 안녕하세요 !` : "로그인이 필요합니다.";
+  };
   return (
     <DimPortal {...{ close }}>
       <Container>
         <NickNameDisplayWrapper>
-          <NickName>{userInfo?.nickname}님 안녕하세요 !</NickName>
+          <NickName>{getUserNameText()}</NickName>
         </NickNameDisplayWrapper>
         <ListWrapper>
           <List>

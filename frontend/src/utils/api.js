@@ -25,7 +25,7 @@ export const getLogin = (codeQuery) => {
 };
 
 export const getUserInfo = () => {
-  return requestGetWithToken(`${BASE_URL}/user`);
+  return requestGet(`${BASE_URL}/user`);
 };
 
 export const getCampusList = (input) => {

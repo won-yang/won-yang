@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getUserInfo } from "utils/api";
-import { useHistory } from "react-router";
 
 export const fetchUserInfo = createAsyncThunk("user/fetchUserInfo", async () => {
   const res = await getUserInfo();

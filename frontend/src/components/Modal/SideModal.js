@@ -1,24 +1,46 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
+import { useHistory } from "react-router";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import DimPortal from "components/ModalPortal/DimPortal";
-import { selectUser } from "store/User/userSlice";
+import { selectUser, setUserInfo } from "store/User/userSlice";
+import { getLogout } from "utils/api";
 
 const SideModal = (props) => {
   const { close } = props;
   const { userInfo } = useSelector(selectUser);
   const location = useLocation();
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const logoutHandler = async () => {
+    try {
+      const response = await getLogout();
+      console.log(response.status);
+      if (+response.status === 200) {
+        dispatch(setUserInfo(0));
+        history.replace(`/`);
+      } else {
+        window.alert("로그아웃에 실패했습니다. ");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     return () => {
       close();
     };
   }, [location]);
+
   const getUserNameText = () => {
     return userInfo ? `${userInfo.nickname}님 안녕하세요 !` : "로그인이 필요합니다.";
   };
+
   return (
     <DimPortal {...{ close }}>
       <Container>
@@ -37,7 +59,7 @@ const SideModal = (props) => {
               <StyledLink to="/write/1">글 작성</StyledLink>
             </ListItems>
             <ListItems>
-              <StyledLink to="/main">로그아웃</StyledLink>
+              <button onClick={logoutHandler}>로그아웃</button>
             </ListItems>
           </List>
         </ListWrapper>

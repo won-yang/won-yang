@@ -14,6 +14,8 @@ const Login = () => {
       ignoreQueryPrefix: true,
     });
 
+    const isCodeExist = Object.keys(codeQuery).length;
+
     const loginRequest = async () => {
       try {
         const response = await getLogin(codeQuery.code);
@@ -28,7 +30,7 @@ const Login = () => {
       }
     };
 
-    if (codeQuery) {
+    if (isCodeExist) {
       loginRequest();
     }
   }, []);

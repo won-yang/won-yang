@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { setUnivInfo } from "store/University/UniversitySlice";
 import OnOffButton from "components/common/OnOffButton";
 import { device } from "styles/media";
+import { fetchUserInfo } from "store/User/userSlice";
 
 const MainPage = (props) => {
   const location = useLocation();
@@ -20,6 +21,9 @@ const MainPage = (props) => {
   const [filteredPostData, setFilteredPostData] = useState([]);
   const dispatch = useDispatch();
   const [campusId, setCampusId] = useState(parseInt(location.pathname.split("/").pop(), 10));
+  // useEffect(() => {
+  //   dispatch(fetchUserInfo());
+  // }, []);
   /*
    * 넘겨받는데이터(path)로 초기값세팅
    */

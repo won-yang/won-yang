@@ -1,8 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getUserInfo } from "utils/api";
+import { useHistory } from "react-router";
 
 export const fetchUserInfo = createAsyncThunk("user/fetchUserInfo", async () => {
   const res = await getUserInfo();
+  if (res.message === "invalid token") {
+    return Promise.reject();
+  }
   return res;
 });
 
@@ -19,6 +23,9 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchUserInfo.rejected, (state) => {
+      console.log("실패스");
+    });
     builder.addCase(fetchUserInfo.fulfilled, (state, { payload }) => {
       console.log(payload);
       state.userInfo = payload;

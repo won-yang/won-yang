@@ -22,6 +22,9 @@ const tokenInstance = axios.create({
   baseURL: BASE_URL,
   headers: { ...getAccessToken() },
   responseType: "json",
+  validateStatus: (status) => {
+    return status > 400;
+  },
 });
 // instance.defaults.headers.common['Authorization'] = TOKEN 으로 수정가능합니다
 export const requestGetWithToken = async (endPoint, parameters) => {
@@ -32,7 +35,7 @@ export const requestGetWithToken = async (endPoint, parameters) => {
       },
       withCredentials: true,
     });
-    return res.data;
+    return res;
   } catch (e) {
     console.error(e);
   }
@@ -48,25 +51,27 @@ export const requestPostWithToken = async (endPoint, body) => {
 };
 
 export const requestGet = async (url, parameters) => {
-  try {
-    if (parameters) {
-      const response = await axios.get(url, {
-        headers: {
-          ...setAccessTokenHeader(),
-        },
-        params: {
-          ...parameters,
-        },
-        withCredentials: true,
-      });
-      return response.data;
-    } else {
-      const response = await axios.get(url, { withCredentials: true });
-      return response.data;
-    }
-  } catch (e) {
-    console.log(e);
+  // try {
+  if (parameters) {
+    const response = await axios.get(url, {
+      headers: {
+        ...setAccessTokenHeader(),
+      },
+      params: {
+        ...parameters,
+      },
+      withCredentials: true,
+    });
+    return response.data;
+  } else {
+    const response = await axios.get(url, { withCredentials: true });
+    return response.data;
   }
+  // }
+  // catch (e) {
+  //   console.log(e);
+  //   // return Promise.reject();
+  // }
 };
 
 export const requestPut = async (url, parameters) => {

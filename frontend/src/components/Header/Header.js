@@ -7,25 +7,27 @@ import { IconLogo } from "components/Icon";
 import { selectUniversity } from "store/University/UniversitySlice";
 import useModal from "hooks/useModal";
 import SideModal from "components/Modal/SideModal";
+import { selectUser } from "store/User/userSlice";
 
 const Header = (props) => {
-  const history = useHistory();
-  const { campusInfo } = useSelector(selectUniversity);
+  // const history = useHistory();
+  const { userInfo } = useSelector(selectUser);
   const { isOpen, open, close } = useModal();
 
-  useEffect(() => {
-    return () => {
-      close();
-    };
-  }, [history.location.pathname]);
+  // console.log(history.location.pathname);
+  // useEffect(() => {
+  //   // return () => {
+  //   close();
+  //   // };
+  // }, [history.location.pathname]);
   return (
     <Wrapper id="header">
       <CenterAlignWrapper>
         <Container>
           <IconLogo widthSize="65px" heightSize="100%"></IconLogo>
           <UnivTitle>
-            <StyledLink to={campusInfo?.campusId ? `/main/${campusInfo?.campusId}` : "/"}>
-              {campusInfo?.campus_name || "원양"}
+            <StyledLink to={userInfo ? `/main/${userInfo?.campus_id}` : "/"}>
+              {userInfo?.campus_name ?? "원양"}
             </StyledLink>
           </UnivTitle>
           <HamburgerMenu onClick={() => (isOpen ? close() : open())}>

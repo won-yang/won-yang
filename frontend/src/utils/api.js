@@ -53,3 +53,7 @@ export const postWrite = (campus_id, body) => {
     ...rest,
   });
 };
+
+export const postUploadImageUrl = () => {
+  return requestPostWithToken(`${BASE_URL}${END_POINT.uploadUrl}`);
+};

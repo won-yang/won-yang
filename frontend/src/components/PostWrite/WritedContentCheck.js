@@ -4,11 +4,12 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUniversity } from "store/University/UniversitySlice";
+import { useHistory } from "react-router";
 
 import ImageCarousel from "components/common/ImageCarousel";
 import usePathname from "hooks/usePathname";
-import { useHistory } from "react-router";
-import { postWrite } from "utils/api";
+import { selectUser } from "store/User/userSlice";
+import { postUploadImageUrl, postWrite } from "utils/api";
 import MonthlyChargeList from "components/PostDetail/MonthlyChargeList";
 import RoomAddress from "components/PostDetail/RoomAddress";
 import PostDescription from "components/PostDetail/PostDescription";
@@ -22,15 +23,20 @@ import LabelWithText from "./common/LabelWithTextListItem";
 const WritedContentCheck = (props) => {
   const state = useSelector(selectPostWrite);
   const { getWritePhase } = usePathname();
-  const { campusInfo } = useSelector(selectUniversity);
+  const { userInfo } = useSelector(selectUser);
   const getPrevPhase = () => {
     return parseInt(getWritePhase(), 10) - 1;
   };
   const history = useHistory();
   const onSubmitHandler = async () => {
     try {
-      const res = await postWrite(campusInfo.campus_id, state);
-      history.replace(`/main/${campusInfo.campus_id}`);
+      const res = await postWrite(userInfo.campus_id, state);
+      const response = await postUploadImageUrl();
+      // const url = response.data.url;
+
+      // const res = await postUploadImageUrl(url, imagesData);
+      console.log("get url", response);
+      history.replace(`/main/${userInfo.campus_id}`);
 
       // const result = await requestPost(`${BASE_URL}/write`, { campus_id: 1, ...resultState });
     } catch (e) {

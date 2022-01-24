@@ -7,6 +7,7 @@ export const END_POINT = {
   write: "/write",
   main: "/main",
   post: "/post",
+  uploadUrl: "/image/upload_url",
 };
 
 export const UNIV_API = "/campus";

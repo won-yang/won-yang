@@ -4,7 +4,6 @@ import { useHistory } from "react-router";
 
 export const fetchUserInfo = createAsyncThunk("user/fetchUserInfo", async () => {
   const res = await getUserInfo();
-  console.log(res);
   if (res.message === "invalid token") {
     return Promise.reject();
   }

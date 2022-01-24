@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import ImageCarousel from "components/common/ImageCarousel";
 import {
   selectPostWrite,
   setContent,
   setContents,
   setImages,
 } from "store/Postwrite/PostwriteSlice";
+
 import PrevNext from "./common/PrevNext";
 import { Title } from "./common";
 
@@ -41,12 +43,7 @@ const PhaseSix = (props) => {
       <Title>방을 보여줄 사진, 간단한 소개글을 입력해주세요.</Title>
       <UploadedFilePreviewContainer>
         <PreviewList>
-          {images.urls &&
-            images.urls?.map((url, idx) => (
-              <ImageItem key={idx}>
-                <Thumbnail src={url} />
-              </ImageItem>
-            ))}
+          <ImageCarousel imagePaths={images.urls} />
         </PreviewList>
       </UploadedFilePreviewContainer>
       <div>

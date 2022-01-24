@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router";
 import { Link, useLocation } from "react-router-dom";
@@ -7,29 +7,14 @@ import styled from "styled-components";
 
 import DimPortal from "components/ModalPortal/DimPortal";
 import { selectUser, setUserInfo } from "store/User/userSlice";
-import { getLogout } from "utils/api";
+
+import Logout from "components/Logout";
 
 const SideModal = (props) => {
   const { close } = props;
   const { userInfo } = useSelector(selectUser);
   const location = useLocation();
   const history = useHistory();
-  const dispatch = useDispatch();
-
-  const logoutHandler = async () => {
-    try {
-      const response = await getLogout();
-      console.log(response.status);
-      if (+response.status === 200) {
-        dispatch(setUserInfo(0));
-        history.replace(`/`);
-      } else {
-        window.alert("로그아웃에 실패했습니다. ");
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   useEffect(() => {
     return () => {
@@ -59,7 +44,7 @@ const SideModal = (props) => {
               <StyledLink to="/write/1">글 작성</StyledLink>
             </ListItems>
             <ListItems>
-              <button onClick={logoutHandler}>로그아웃</button>
+              <Logout />
             </ListItems>
           </List>
         </ListWrapper>

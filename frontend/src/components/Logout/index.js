@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 
 import { setUserInfo } from "store/User/userSlice";
+import styled from "styled-components";
 import { getLogout } from "utils/api";
 
 const Logout = (props) => {
@@ -24,7 +25,12 @@ const Logout = (props) => {
     }
   };
 
-  return <div onClick={logoutHandler}>로그아웃</div>;
+  return <SideButton onClick={logoutHandler}>로그아웃</SideButton>;
 };
+
+const SideButton = styled.div`
+  padding: 20px;
+  cursor: pointer;
+`;
 
 export default Logout;

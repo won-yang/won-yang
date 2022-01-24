@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUniversity } from "store/University/UniversitySlice";
 import { useHistory } from "react-router";
 
 import ImageCarousel from "components/common/ImageCarousel";
 import usePathname from "hooks/usePathname";
 import { selectUser } from "store/User/userSlice";
-import { postUploadImageUrl, postWrite } from "utils/api";
+import { getImageUploadURL, postUploadImageUrl, postWrite } from "utils/api";
 import MonthlyChargeList from "components/PostDetail/MonthlyChargeList";
 import RoomAddress from "components/PostDetail/RoomAddress";
 import PostDescription from "components/PostDetail/PostDescription";
@@ -29,19 +29,14 @@ const WritedContentCheck = (props) => {
   };
   const history = useHistory();
   const onSubmitHandler = async () => {
-    try {
-      const res = await postWrite(userInfo.campus_id, state);
-      const response = await postUploadImageUrl();
-      // const url = response.data.url;
-
-      // const res = await postUploadImageUrl(url, imagesData);
-      console.log("get url", response);
-      history.replace(`/main/${userInfo.campus_id}`);
-
-      // const result = await requestPost(`${BASE_URL}/write`, { campus_id: 1, ...resultState });
-    } catch (e) {
-      console.error(e);
-    }
+    await getImageUploadURL()
+      .then((res) => {
+        return postUploadImageUrl(res.uploadUrl, state.images.files);
+      })
+      .then((res) => {
+        return postWrite(userInfo.campus_id, state);
+      })
+      .then((res) => console.log(res));
   };
 
   return (

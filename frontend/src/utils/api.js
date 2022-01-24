@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   BASE_URL,
   UNIV_API,
@@ -24,6 +25,10 @@ export const getLogin = (codeQuery) => {
   });
 };
 
+export const getImageUploadURL = () => {
+  return requestGetWithToken(`${BASE_URL}${END_POINT.uploadUrl}`);
+};
+
 export const getUserInfo = () => {
   return requestGet(`${BASE_URL}/user`);
 };
@@ -45,6 +50,7 @@ export const getCampusInfo = (campus_id) => {
 };
 
 export const postWrite = (campus_id, body) => {
+  console.log("here");
   const { including_tax, contents: content, ...rest } = body;
   return requestPostWithToken(`${BASE_URL}${END_POINT.write}`, {
     campus_id,
@@ -54,6 +60,11 @@ export const postWrite = (campus_id, body) => {
   });
 };
 
-export const postUploadImageUrl = () => {
+export const postUploadImageUrl = (url, images) => {
+  const blobData = new Blob([new Uint8Array(images)], { type: "image/jpeg" });
+  return axios.post(`${url}`, blobData);
+};
+
+export const postUploadImage = () => {
   return requestPostWithToken(`${BASE_URL}${END_POINT.uploadUrl}`);
 };

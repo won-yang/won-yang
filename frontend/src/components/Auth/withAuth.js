@@ -9,7 +9,6 @@ const withAuth =
     const RenderComponent = () => {
       const location = useLocation();
       const dispatch = useDispatch();
-      console.log(location);
       useEffect(() => {
         dispatch(fetchUserInfo());
       }, [location]);

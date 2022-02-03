@@ -34,6 +34,7 @@ const WritedContentCheck = (props) => {
       // console.log(getUploadUrlResponse);
       // // const res = await postUploadImageUrl(getUploadUrlResponse.upload_url, state.images.files);
       const writePostResponse = await postWrite(userInfo.campus_id, state);
+      history.push(`/main/${userInfo.campus_id}`);
     } catch (e) {
       console.error(e);
     }

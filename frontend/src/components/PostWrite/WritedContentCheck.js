@@ -30,10 +30,10 @@ const WritedContentCheck = (props) => {
   const history = useHistory();
   const onSubmitHandler = async () => {
     try {
-      const getUploadUrlResponse = await getImageUploadURL();
-      console.log(getUploadUrlResponse.uploadUrl);
-      const res = await postUploadImageUrl(getUploadUrlResponse.uploadUrl, state.images.files);
-      const writePostResponse = await postWrite(userInfo.campus_id, state, res.imageURL);
+      // const getUploadUrlResponse = await getImageUploadURL();
+      // console.log(getUploadUrlResponse);
+      // // const res = await postUploadImageUrl(getUploadUrlResponse.upload_url, state.images.files);
+      const writePostResponse = await postWrite(userInfo.campus_id, state);
     } catch (e) {
       console.error(e);
     }

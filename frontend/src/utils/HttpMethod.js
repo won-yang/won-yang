@@ -23,7 +23,7 @@ const tokenInstance = axios.create({
   headers: { ...getAccessToken() },
   responseType: "json",
   validateStatus: (status) => {
-    return status > 400;
+    return status < 400;
   },
 });
 // instance.defaults.headers.common['Authorization'] = TOKEN 으로 수정가능합니다

@@ -67,7 +67,10 @@ export const postWrite = (campus_id, body) => {
     deposit,
     monthly_rent,
     service_fee,
+    total_floor,
+    current_floor,
     walking_time,
+    bus_time,
     ...rest
   } = body;
   return requestPostWithToken(`${BASE_URL}${END_POINT.write}`, {
@@ -82,7 +85,6 @@ export const postWrite = (campus_id, body) => {
     bus_time: parseInt(bus_time, 10),
     ...including_tax,
     ...rest,
-    images: imageURL,
   });
 };
 

@@ -8,6 +8,7 @@ import {
   CALLBACK_URL,
   CAMPUS,
   END_POINT,
+  SIGNOUT_API,
 } from "utils/constants/request";
 import {
   requestGet,
@@ -35,6 +36,10 @@ export const getImageUploadURL = () => {
   return requestPostWithToken(`${BASE_URL}${END_POINT.uploadUrl}`);
 };
 
+export const getLogout = () => {
+  return axios.delete(`${BASE_URL + SIGNOUT_API}`, { withCredentials: true });
+};
+
 export const getUserInfo = () => {
   return requestGet(`${BASE_URL}/user`);
 };
@@ -55,11 +60,26 @@ export const getCampusInfo = (campus_id) => {
   return requestGet(`${BASE_URL}${CAMPUS}`, { campus_id });
 };
 
-export const postWrite = (campus_id, body, imageURL) => {
-  const { including_tax, contents: content, ...rest } = body;
+export const postWrite = (campus_id, body) => {
+  const {
+    including_tax,
+    contents: content,
+    deposit,
+    monthly_rent,
+    service_fee,
+    walking_time,
+    ...rest
+  } = body;
   return requestPostWithToken(`${BASE_URL}${END_POINT.write}`, {
     campus_id,
     content,
+    deposit: parseInt(deposit, 10),
+    monthly_rent: parseInt(monthly_rent, 10),
+    service_fee: parseInt(service_fee, 10),
+    total_floor: parseInt(total_floor, 10),
+    current_floor: parseInt(current_floor, 10),
+    walking_time: parseInt(walking_time, 10),
+    bus_time: parseInt(bus_time, 10),
     ...including_tax,
     ...rest,
     images: imageURL,

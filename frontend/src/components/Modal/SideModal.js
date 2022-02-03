@@ -1,24 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
+import { useHistory } from "react-router";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import DimPortal from "components/ModalPortal/DimPortal";
-import { selectUser } from "store/User/userSlice";
+import { selectUser, setUserInfo } from "store/User/userSlice";
+
+import Logout from "components/Logout";
 
 const SideModal = (props) => {
   const { close } = props;
   const { userInfo } = useSelector(selectUser);
   const location = useLocation();
+  const history = useHistory();
+
   useEffect(() => {
     return () => {
       close();
     };
   }, [location]);
+
   const getUserNameText = () => {
     return userInfo ? `${userInfo.nickname}님 안녕하세요 !` : "로그인이 필요합니다.";
   };
+
   return (
     <DimPortal {...{ close }}>
       <Container>
@@ -37,7 +44,7 @@ const SideModal = (props) => {
               <StyledLink to="/write/1">글 작성</StyledLink>
             </ListItems>
             <ListItems>
-              <StyledLink to="/main">로그아웃</StyledLink>
+              <Logout />
             </ListItems>
           </List>
         </ListWrapper>

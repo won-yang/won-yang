@@ -92,6 +92,7 @@ const MainPage = (props) => {
   useEffect(() => {
     requestGetCampusInfo();
   }, []);
+
   return (
     <MainTemplate>
       <Jumbotron />

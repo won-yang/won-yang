@@ -17,10 +17,16 @@ const PhaseThree = (props) => {
   const { contract_expire_date, move_in_date } = state;
 
   const handleChangeExpiredDate = (value) => {
+    if (!value) {
+      value = new Date();
+    }
     dispatch(setContractExpireDate(datemaker(value)));
   };
 
   const handleChangeMoveInDate = (value) => {
+    if (!value) {
+      value = new Date();
+    }
     dispatch(setMoveInDate(datemaker(value)));
   };
 
@@ -39,7 +45,7 @@ const PhaseThree = (props) => {
               format="yyyy-MM-dd"
               minDate={new Date()}
               value={new Date(contract_expire_date)}
-              onChange={(value) => handleChangeExpiredDate(value)}
+              onChange={(selected) => handleChangeExpiredDate(selected)}
             />
           </ContentBody>
           <ContentBody>
@@ -48,7 +54,7 @@ const PhaseThree = (props) => {
               format="yyyy-MM-dd"
               minDate={new Date()}
               value={new Date(move_in_date)}
-              onChange={(value) => handleChangeMoveInDate(value)}
+              onChange={(selected) => handleChangeMoveInDate(selected)}
             />
           </ContentBody>
         </FlexBox>

@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   BASE_URL,
   UNIV_API,
@@ -7,6 +8,7 @@ import {
   CALLBACK_URL,
   CAMPUS,
   END_POINT,
+  SIGNOUT_API,
 } from "utils/constants/request";
 import { requestGet, requestGetWithToken, requestPostWithToken, requestPut } from "./HttpMethod";
 
@@ -22,6 +24,10 @@ export const getLogin = (codeQuery) => {
   return requestGet(`${BASE_URL + KAKAO_URL + CALLBACK_URL}`, {
     code: codeQuery,
   });
+};
+
+export const getLogout = () => {
+  return axios.delete(`${BASE_URL + SIGNOUT_API}`, { withCredentials: true });
 };
 
 export const getUserInfo = () => {

@@ -39,12 +39,10 @@ const PhaseFour = (props) => {
   const handleChangeBuildingType = (e) => {
     const { value } = e.target;
     dispatch(setBuildingType(value));
-    console.log(building_type);
   };
   const handleChangeRoomType = (e) => {
     const { value } = e.target;
     dispatch(setRoomType(value));
-    console.log(room_type);
   };
   const handleChangeWindowSide = (e) => {
     const { value } = e.target;

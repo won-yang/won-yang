@@ -10,7 +10,13 @@ import {
   END_POINT,
   SIGNOUT_API,
 } from "utils/constants/request";
-import { requestGet, requestGetWithToken, requestPostWithToken, requestPut } from "./HttpMethod";
+import {
+  requestGet,
+  requestGetWithToken,
+  requestPost,
+  requestPostWithToken,
+  requestPut,
+} from "./HttpMethod";
 
 export const getPostList = (parameters) => {
   return requestGet(`${BASE_URL}${END_POINT.board}`, parameters);
@@ -24,6 +30,10 @@ export const getLogin = (codeQuery) => {
   return requestGet(`${BASE_URL + KAKAO_URL + CALLBACK_URL}`, {
     code: codeQuery,
   });
+};
+
+export const getImageUploadURL = () => {
+  return requestPostWithToken(`${BASE_URL}${END_POINT.uploadUrl}`);
 };
 
 export const getLogout = () => {
@@ -57,7 +67,10 @@ export const postWrite = (campus_id, body) => {
     deposit,
     monthly_rent,
     service_fee,
+    total_floor,
+    current_floor,
     walking_time,
+    bus_time,
     ...rest
   } = body;
   return requestPostWithToken(`${BASE_URL}${END_POINT.write}`, {
@@ -75,6 +88,11 @@ export const postWrite = (campus_id, body) => {
   });
 };
 
-export const postUploadImageUrl = () => {
+export const postUploadImageUrl = (url, images) => {
+  const blobData = new Blob([new Uint8Array(images)], { type: "image/jpeg" });
+  return axios.post(`${url}`, blobData);
+};
+
+export const postUploadImage = () => {
   return requestPostWithToken(`${BASE_URL}${END_POINT.uploadUrl}`);
 };

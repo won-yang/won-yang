@@ -19,7 +19,6 @@ const Login = () => {
     const loginRequest = async () => {
       try {
         const response = await getLogin(codeQuery.code);
-        console.log(response);
         if (response.is_signed) {
           history.replace(`/main/${response.campus_id}`);
         } else {

@@ -13,7 +13,6 @@ const Logout = (props) => {
   const logoutHandler = async () => {
     try {
       const response = await getLogout();
-      console.log(response.status);
       if (+response.status === 200) {
         dispatch(setUserInfo(0));
         history.replace(`/`);

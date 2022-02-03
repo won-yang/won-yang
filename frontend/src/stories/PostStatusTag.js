@@ -14,7 +14,6 @@ export const PostStatusTag = ({
   const progressClass = progress ? "progress" : "";
   const doneClass = done ? "done" : "";
   const expiredClass = expired ? "expired" : "";
-  console.log(width);
   return (
     <Button
       className={[progressClass, doneClass, expiredClass].join("")}

@@ -23,7 +23,7 @@ const tokenInstance = axios.create({
   headers: { ...getAccessToken() },
   responseType: "json",
   validateStatus: (status) => {
-    return status > 400;
+    return status < 400;
   },
 });
 // instance.defaults.headers.common['Authorization'] = TOKEN 으로 수정가능합니다
@@ -67,11 +67,6 @@ export const requestGet = async (url, parameters) => {
     const response = await axios.get(url, { withCredentials: true });
     return response.data;
   }
-  // }
-  // catch (e) {
-  //   console.log(e);
-  //   // return Promise.reject();
-  // }
 };
 
 export const requestPut = async (url, parameters) => {

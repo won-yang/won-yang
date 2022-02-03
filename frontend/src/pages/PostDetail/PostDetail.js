@@ -33,9 +33,7 @@ const PostDetailPage = () => {
     const homeAppliances = [];
     const furnitures = [];
     const etcOptions = [];
-    console.log(res);
     for (let i = 0; i < res.post_info.option.length; i++) {
-      console.log(i);
       if (HOME_APPLIANCES.filter((item) => item.id === res.post_info.option[i]).length > 0) {
         homeAppliances.push(
           ...HOME_APPLIANCES.filter((item) => item.id === res.post_info.option[i]).map((item) => ({

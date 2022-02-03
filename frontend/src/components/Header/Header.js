@@ -10,16 +10,9 @@ import SideModal from "components/Modal/SideModal";
 import { selectUser } from "store/User/userSlice";
 
 const Header = (props) => {
-  // const history = useHistory();
   const { userInfo } = useSelector(selectUser);
   const { isOpen, open, close } = useModal();
 
-  // console.log(history.location.pathname);
-  // useEffect(() => {
-  //   // return () => {
-  //   close();
-  //   // };
-  // }, [history.location.pathname]);
   return (
     <Wrapper id="header">
       <CenterAlignWrapper>

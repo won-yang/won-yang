@@ -36,7 +36,6 @@ const PhaseSix = (props) => {
       }),
     );
     // s3로 업로드
-    console.log(images);
   };
   return (
     <>

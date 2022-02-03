@@ -29,14 +29,14 @@ const WritedContentCheck = (props) => {
   };
   const history = useHistory();
   const onSubmitHandler = async () => {
-    await getImageUploadURL()
-      .then((res) => {
-        return postUploadImageUrl(res.uploadUrl, state.images.files);
-      })
-      .then((res) => {
-        return postWrite(userInfo.campus_id, state, res.imageURL);
-      })
-      .then((res) => console.log(res));
+    try {
+      const getUploadUrlResponse = await getImageUploadURL();
+      console.log(getUploadUrlResponse.uploadUrl);
+      const res = await postUploadImageUrl(getUploadUrlResponse.uploadUrl, state.images.files);
+      const writePostResponse = await postWrite(userInfo.campus_id, state, res.imageURL);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (

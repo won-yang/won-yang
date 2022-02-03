@@ -16,14 +16,11 @@ const LandingPage = (props) => {
   const onSelected = (e, id) => {
     if (id) {
       history.replace(`/main/${id}`);
-    } else {
-      console.log("id == ", id);
     }
   };
   useEffect(() => {
     if (userInfo) {
       history.replace(`/main/${userInfo.campus_id}`);
-      console.log(userInfo);
     }
   }, [userInfo]);
   return (

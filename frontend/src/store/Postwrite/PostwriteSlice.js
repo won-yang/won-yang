@@ -87,7 +87,6 @@ export const PostwriteSlice = createSlice({
       state.address_detail = action.payload;
     },
     setAddressVisible: (state, action) => {
-      console.log(state.is_address_visible);
       state.is_address_visible = !state.is_address_visible;
       // if (action.payload) state.is_address_visible = true;
       // else state.is_address_visible = false;
@@ -153,7 +152,6 @@ export const PostwriteSlice = createSlice({
     setImages: (state, action) => {
       state.images.files.push(action.payload.files);
       state.images.urls.push(action.payload.url);
-      console.log(action);
     },
   },
 });

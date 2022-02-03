@@ -16,7 +16,6 @@ const BuildingInfoTable = (props) => {
     contractExpireDate,
     moveInDate,
   } = props;
-  console.log(currentFloor);
 
   return (
     <Table>

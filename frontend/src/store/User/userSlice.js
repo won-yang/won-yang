@@ -22,11 +22,8 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchUserInfo.rejected, (state) => {
-      console.log("실패스");
-    });
+    builder.addCase(fetchUserInfo.rejected, (state) => {});
     builder.addCase(fetchUserInfo.fulfilled, (state, { payload }) => {
-      console.log(payload);
       state.userInfo = payload;
     });
   },

@@ -67,11 +67,6 @@ export const requestGet = async (url, parameters) => {
     const response = await axios.get(url, { withCredentials: true });
     return response.data;
   }
-  // }
-  // catch (e) {
-  //   console.log(e);
-  //   // return Promise.reject();
-  // }
 };
 
 export const requestPut = async (url, parameters) => {
